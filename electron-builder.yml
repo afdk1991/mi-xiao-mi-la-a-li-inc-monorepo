@@ -1,0 +1,89 @@
+appId: com.galeengine.app
+productName: 疾风引擎
+directories:
+  output: release
+files:
+  - out/**
+  - package.json
+electronLanguages:
+  - zh-CN
+compression: maximum
+
+# ── Windows ───────────────────────────────────────────────────
+win:
+  # 不在这里指定 arch：CI 通过 electron-builder --win --x64 / --arm64 显式指定。
+  # 若在此写 arch: [x64, arm64]，NSIS 会额外生成一个合并两架构的 setup.exe
+  # （artifactName 中 ${arch} 为空），导致产物冗余。
+  target: nsis
+  # ★ 提权清单（写入 exe 的 requestedExecutionLevel）：
+  # 这里必须保持 asInvoker —— 若设为 requireAdministrator，每次启动都弹 UAC，
+  # 会直接破坏「开机自启」（登录项不会自动过 UAC）与自动更新体验；
+  # 且 Electron 无法在运行时给自身提权。正确姿势是：asInvoker 启动，
+  # 需要高权限时经 electron/services/elevate.ts 走 ShellExecute(runas) 按需提权，
+  # 用户也可在设置里点「以提升权限重启」整体切到管理员模式。
+  requestedExecutionLevel: asInvoker
+  # 代码签名：由环境变量驱动，无需改本文件。
+  #   CSC_LINK=<证书 .pfx/.p12 路径或 base64>、CSC_KEY_PASSWORD=<证书密码>
+  # 两项为空时 electron-builder 自动跳过签名（当前默认），SmartScreen 提示"未知发布者"，属预期。
+  # CI 中由 .github/workflows/release.yml 注入 secrets.CSC_LINK / secrets.CSC_KEY_PASSWORD 实现自动签名。
+  # forceCodeSigning=false：保证无证书时本地/CI 仍能产出未签名安装包，不因缺失证书而构建失败。
+  forceCodeSigning: false
+  # 图标：默认取 build/icon.ico（由 scripts/generate-icon.mjs 生成，可复现）。
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  # ★ 安装路径与安装期提权：
+  # 默认按「当前用户」安装到 %LOCALAPPDATA%\Programs\疾风引擎，无需管理员即可完成安装，
+  # 因此自动更新（electron-updater）也不会因权限不足失败。
+  # allowElevation=true 保留「为所有用户安装」的能力：用户在安装向导里选了 per-machine
+  # 或安装目录写到 Program Files 时，NSIS 才会申请一次 UAC 提权。
+  # 注意：安装包默认装到用户目录 ≠ 应用运行时有管理员权限，二者互不影响。
+  perMachine: false
+  allowElevation: true
+  # 必须用 ASCII 文件名：electron-builder 在 latest.yml 中对非 ASCII artifactName
+  # 会生成净化名（gale-engine-setup-x.y.z.exe），与实际产物名不一致会导致
+  # electron-updater 下载 404。安装界面展示名仍取 productName（疾风引擎）。
+  artifactName: gale-engine-${version}-${arch}-setup.exe
+
+# ── macOS ─────────────────────────────────────────────────────
+mac:
+  # 不指定 arch：CI 通过 --x64 / --arm64 显式控制，避免产生合并产物。
+  # ★ 必须同时产出 dmg 与 zip：
+  #   dmg 是给用户手动拖拽安装的；而 electron-updater 在 macOS 上**只认 zip**
+  #   （它用 zip 做增量替换）。只出 dmg 会导致「检查更新提示有新版本，却永远装不上」。
+  target:
+    - dmg
+    - zip
+  category: public.app-category.utilities
+  # 签名与公证：配置 Apple Developer 证书后由 CI 自动签名（CSC_LINK/CSC_KEY_PASSWORD 同 Win 复用）。
+  # 公证需额外设置 APPLE_ID / APPLE_APP_SPECIFIC_PASSWORD / APPLE_TEAM_ID 环境变量。
+  # identity: null 表示无证书时显式跳过签名（ad-hoc 签名），避免 CI 在未配置 CSC_LINK 时
+  # 因 hardenedRuntime+entitlements 在 Apple Silicon (arm64) 上构建失败。
+  # 注意：未签名的应用会被 macOS 拒绝自动替换，此时自动更新会失败——
+  # 应用内已把该错误翻译为「请手动下载 dmg 覆盖安装」，见 update.capability.ts。
+  identity: null
+  hardenedRuntime: false
+  gatekeeperAssess: false
+  entitlements: build/entitlements.mac.plist
+  entitlementsInherit: build/entitlements.mac.plist
+  artifactName: gale-engine-${version}-${arch}.${ext}
+
+# ── Linux ─────────────────────────────────────────────────────
+linux:
+  # 不指定 arch：CI 通过 --x64 / --arm64 显式控制。
+  # AppImage 同时支持 x64/arm64；deb 仅在 x64 job 中产出（CI matrix 控制）。
+  target:
+    - AppImage
+    - deb
+  category: Utility
+  maintainer: afdk1991
+  vendor: GaleEngine
+  artifactName: gale-engine-${version}-${arch}.${ext}
+
+# 自动更新源：指向 GitHub Releases（.github/workflows/release.yml 在打 v* tag 时自动发布）。
+# 应用内「设置 → 检查更新」会读取此配置（嵌入的 resources/app-update.yml）。
+# 注意：跨平台更新需为每个 OS+架构 产出独立的 latest.yml（CI 矩阵构建会自动处理）。
+publish:
+  - provider: github
+    owner: afdk1991
+    repo: gale-engine
