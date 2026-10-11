@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="js"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>疾风引擎 — 跨平台桌面优化加速引擎</title>
+  <meta name="description" content="疾风引擎：硬件监控与型号规格、进程管理、垃圾清理、启动项管理、游戏模式与系统工具箱，支持 Windows / macOS / Linux（x64 + arm64）。">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta name="color-scheme" content="light dark">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='8'%20fill='%232f7cf6'/%3E%3Cpath%20d='M18%205%20L8%2018%20H14%20L12%2027%20L24%2012%20H17%20Z'%20fill='%23fff'/%3E%3C/svg%3E">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:title" content="疾风引擎 — 跨平台桌面优化加速引擎">
+  <meta property="og:description" content="硬件监控、进程管理、垃圾清理、游戏模式与系统工具箱，支持 Windows / macOS / Linux。">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="疾风引擎 — 跨平台桌面优化加速引擎">
+  <meta name="twitter:description" content="硬件监控、进程管理、垃圾清理、游戏模式与系统工具箱，支持 Windows / macOS / Linux。">
+  <style>
+    :root {
+      --accent: #2f7cf6;
+      --accent-2: #19c3a6;
+      --ink: #0f172a;
+      --ink-2: #475569;
+      --ink-3: #94a3b8;
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --border: #e6ebf2;
+      --nav-h: 64px;
+      --radius: 14px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,.04);
+      --shadow-md: 0 10px 26px rgba(15,23,42,.07);
+      --shadow-accent: 0 8px 20px rgba(47,124,246,.28);
+    }
+    [data-theme="dark"] {
+      --accent: #5b9dff;
+      --accent-2: #2ee0c4;
+      --ink: #e6edf6;
+      --ink-2: #94a3b8;
+      --ink-3: #64748b;
+      --bg: #0a0f1a;
+      --card: #131a28;
+      --border: #1e2a40;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.2);
+      --shadow-md: 0 10px 26px rgba(0,0,0,.3);
+      --shadow-accent: 0 8px 20px rgba(91,157,255,.3);
+    }
+    [data-theme="dark"] .site-header { background: rgba(10,15,26,.82); }
+    [data-theme="dark"] .badge { background: #15233a; border-color: #1e3a5f; }
+    [data-theme="dark"] .req { background: #131a28; border-color: var(--border); }
+    [data-theme="dark"] .dl-tab { background: var(--card); }
+    [data-theme="dark"] .btn-ghost { background: var(--card); }
+    [data-theme="dark"] .card .ico { background: #15233a; }
+    [data-theme="dark"] code { background: #15233a; color: #7ab8ff; }
+    [data-theme="dark"] .faq-item summary::after { color: var(--ink-3); }
+    [data-theme="dark"] .footer-links a { color: var(--accent); }
+    .section-alt { background: #eef2f7; }
+    [data-theme="dark"] .section-alt { background: #0d1422; }
+    [data-theme="dark"] .card pre { background: #0d1422; border: 1px solid var(--border); }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: clip; }
+    html { scroll-behavior: smooth; scroll-padding-top: calc(var(--nav-h) + 16px); color-scheme: light dark; -webkit-text-size-adjust: 100%; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", sans-serif; background: var(--bg); color: var(--ink); line-height: 1.65; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; transition: background .25s, color .25s; }
+    .card, .site-header, .badge, .req, .dl-tab, .btn-ghost, .faq-item { transition: background .25s, border-color .25s, box-shadow .25s; }
+    a { color: inherit; text-decoration: none; }
+    svg, img { display: block; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    .site-header { position: sticky; top: 0; z-index: 50; background: rgba(247,249,252,.82); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--border); }
+    .nav { display: flex; align-items: center; justify-content: space-between; height: var(--nav-h); }
+    .brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 18px; flex: none; }
+    .brand-mark { width: 26px; height: 26px; border-radius: 8px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); flex: none; }
+    .nav-links { display: flex; gap: 22px; font-size: 14px; color: var(--ink-2); min-width: 0; }
+    .nav-links a { padding: 6px 2px; transition: color .15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); }
+    .nav-links a.active { font-weight: 600; }
+
+    .theme-toggle { width: 36px; height: 36px; border-radius: 8px; border: 1px solid var(--border); background: var(--card); cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; flex: none; transition: background .2s, border-color .2s, transform .15s; line-height: 1; }
+    .theme-toggle:hover { border-color: var(--accent); transform: scale(1.05); }
+    .theme-toggle:active { transform: scale(.95); }
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
+
+    .hero { text-align: center; padding: clamp(48px, 9vw, 84px) 0 clamp(40px, 7vw, 56px); }
+    .badge { display: inline-block; font-size: 12px; color: var(--accent); background: #e8f0ff; border: 1px solid #d3e2ff; padding: 4px 12px; border-radius: 999px; margin-bottom: 18px; }
+    .hero h1 { font-size: clamp(30px, 6.2vw, 46px); font-weight: 800; letter-spacing: -.5px; line-height: 1.15; }
+    .hero .grad { background: linear-gradient(135deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .hero p { font-size: clamp(15px, 2.2vw, 17px); color: var(--ink-2); max-width: 640px; margin: 16px auto 0; }
+    .req { display: inline-block; font-size: 12px; color: var(--ink-2); background: #eef2f7; border: 1px solid var(--border); padding: 6px 14px; border-radius: 8px; margin-top: 18px; }
+
+    /* 下载区：平台 Tab + 架构分段器 */
+    .download { margin-top: 30px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .dl-tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .dl-tab { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 18px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--ink-2); transition: all .15s; display: flex; align-items: center; gap: 6px; }
+    .dl-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .dl-tab.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-color: transparent; box-shadow: var(--shadow-accent); }
+    .dl-panel { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow-sm); }
+    .dl-panel .os-name { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+    .dl-panel .os-hint { font-size: 12.5px; color: var(--ink-3); margin-bottom: 16px; }
+    .arch-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .arch-card { flex: 1; min-width: 150px; border: 1px solid var(--border); border-radius: 10px; padding: 14px; display: flex; flex-direction: column; gap: 6px; }
+    .arch-card .arch-label { font-size: 13px; font-weight: 600; color: var(--ink); }
+    .arch-card .arch-desc { font-size: 11.5px; color: var(--ink-3); }
+    .arch-card .btn { padding: 9px 14px; font-size: 13.5px; min-height: 38px; margin-top: 4px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 15px; font-weight: 600; padding: 12px 26px; border-radius: 10px; min-height: 44px; transition: transform .12s, box-shadow .15s, border-color .15s, color .15s; cursor: pointer; }
+    .btn-primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; box-shadow: var(--shadow-accent); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(47,124,246,.34); }
+    .btn-ghost { background: #fff; color: var(--ink); border: 1px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .dl-all { text-align: center; margin-top: 14px; font-size: 12.5px; }
+    .dl-all a { color: var(--accent); font-weight: 600; }
+    .dl-cli { text-align: center; margin-top: 10px; font-size: 12.5px; color: var(--ink-3); }
+    .dl-cli a { color: var(--accent); font-weight: 600; border-bottom: 1px dashed rgba(47,124,246,.45); padding-bottom: 1px; }
+    .dl-cli a:hover { border-bottom-style: solid; }
+
+    main { display: block; }
+    .section { padding: clamp(36px, 6vw, 56px) 0; }
+    .section h2 { font-size: clamp(22px, 4.2vw, 30px); font-weight: 800; text-align: center; }
+    .section .sub { text-align: center; color: var(--ink-2); margin-top: 8px; font-size: 15px; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; transition: box-shadow .15s, transform .15s, border-color .15s; }
+    .card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); border-color: #d6e0ee; }
+    .card .ico { width: 40px; height: 40px; border-radius: 10px; background: #eef4ff; display: flex; align-items: center; justify-content: center; font-size: 20px; margin-bottom: 14px; }
+    .card h3 { font-size: 16px; font-weight: 700; }
+    .card p { font-size: 13.5px; color: var(--ink-2); margin-top: 6px; }
+    /* —— 安装方式：平台 Tab + 命令卡 + 一键复制 —— */
+    .install { margin-top: 30px; }
+    .inst-tabs { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .inst-tab { display: inline-flex; align-items: center; gap: 7px; background: var(--card); border: 1px solid var(--border); border-radius: 999px; padding: 9px 20px; cursor: pointer; font-size: 14px; font-weight: 600; color: var(--ink-2); min-height: 42px; transition: all .16s; }
+    .inst-tab:hover { border-color: var(--accent); color: var(--accent); }
+    .inst-tab.active { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; border-color: transparent; box-shadow: var(--shadow-accent); }
+
+    .inst-panels { margin-top: 20px; }
+    .inst-panel { display: none; grid-template-columns: 1.32fr 1fr; gap: 18px; align-items: start; }
+    .inst-panel.active { display: grid; animation: fadeUp .3s ease; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+    .inst-side { display: flex; flex-direction: column; gap: 18px; }
+
+    .mcard { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; display: flex; flex-direction: column; gap: 13px; transition: box-shadow .16s, border-color .16s, transform .16s; }
+    .mcard:hover { box-shadow: var(--shadow-md); border-color: #d6e0ee; transform: translateY(-2px); }
+    .mcard-head { display: flex; align-items: center; gap: 12px; }
+    .mcard-ico { width: 42px; height: 42px; border-radius: 12px; background: linear-gradient(135deg, #e8f0ff, #e4fbf6); display: grid; place-items: center; font-size: 21px; flex: none; }
+    .mcard-title { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+    .mcard-title h3 { font-size: 16.5px; font-weight: 700; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; line-height: 1.3; }
+    .mcard-sub { font-size: 12px; color: var(--ink-3); font-weight: 600; }
+    .mcard > p { font-size: 13.5px; color: var(--ink-2); }
+    .pill { font-size: 11px; font-weight: 700; padding: 2px 9px; border-radius: 999px; letter-spacing: .02em; flex: none; }
+    .pill-rec { background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; }
+    .pill-alt { background: #eef2f7; color: var(--ink-2); border: 1px solid var(--border); }
+    .meta { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 2px; }
+    .meta span { font-size: 11.5px; color: var(--ink-2); background: #eef2f7; border: 1px solid var(--border); padding: 3px 10px; border-radius: 999px; }
+
+    .cmd { position: relative; background: #0f172a; border-radius: 11px; padding: 12px 14px 13px; }
+    .cmd + .cmd { margin-top: 10px; }
+    .cmd-bar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 7px; }
+    .cmd-tag { font-size: 11.5px; color: #8ba3c7; font-weight: 600; letter-spacing: .03em; }
+    .copy-btn { background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.16); color: #dbe6f5; font-size: 12px; font-weight: 600; padding: 5px 11px; border-radius: 7px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; min-height: 30px; flex: none; transition: background .15s, border-color .15s, color .15s; }
+    .copy-btn:hover { background: rgba(255,255,255,.17); border-color: rgba(255,255,255,.3); }
+    .copy-btn.done { color: #6ee7b7; border-color: rgba(110,231,183,.45); background: rgba(110,231,183,.12); }
+    .cmd pre { background: transparent; color: #e2e8f0; margin: 0; padding: 0; border: 0; font-size: 12.5px; line-height: 1.8; overflow-x: auto; white-space: pre; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .cmd code { background: none; color: inherit; padding: 0; font-size: inherit; word-break: normal; }
+    .cmd .c { color: #7d90ad; }
+    .cmd .k { color: #7ab8ff; }
+    .dl-mini { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+    .dl-mini .btn { padding: 8px 14px; font-size: 13px; min-height: 38px; }
+    .mcard .note { font-size: 12px; color: var(--ink-3); }
+
+    .verify { margin-top: 22px; background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .verify-head { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+    .verify-head h3 { font-size: 16.5px; font-weight: 700; }
+    .steps { counter-reset: s; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .step { border: 1px solid var(--border); border-radius: 11px; padding: 14px 16px; background: #fbfcfe; }
+    .step::before { counter-increment: s; content: counter(s); display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 12.5px; font-weight: 700; margin-bottom: 9px; }
+    .step h4 { font-size: 14px; font-weight: 700; }
+    .step p { font-size: 12.5px; color: var(--ink-2); margin-top: 4px; }
+    [data-theme="dark"] .mcard-ico { background: #15233a; }
+    [data-theme="dark"] .pill-alt,
+    [data-theme="dark"] .meta span { background: #15233a; }
+    [data-theme="dark"] .step { background: #0d1422; }
+
+    .log { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin-top: 30px; max-width: 760px; margin-left: auto; margin-right: auto; }
+    .log-item { border-left: 3px solid var(--accent); padding-left: 16px; margin-bottom: 22px; }
+    .log-item:last-child { margin-bottom: 0; }
+    .log-version { font-weight: 700; font-size: 15px; }
+    .log-date { font-size: 12px; color: var(--ink-3); margin-left: 8px; }
+    .log ul { margin: 8px 0 0 18px; font-size: 13.5px; color: var(--ink-2); }
+    .log li { margin: 3px 0; }
+
+    .footer { text-align: center; color: var(--ink-3); font-size: 13px; padding: 40px 0 56px; border-top: 1px solid var(--border); margin-top: 8px; }
+    code { background: #eef2f7; padding: 1px 6px; border-radius: 5px; font-size: 12.5px; color: #1f3a6e; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; word-break: break-word; }
+    .card pre { background: #0f172a; color: #e2e8f0; border-radius: 8px; padding: 12px 14px; margin: 8px 0; overflow-x: auto; font-size: 12px; line-height: 1.6; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .card pre code { background: none; color: inherit; padding: 0; font-size: inherit; word-break: normal; }
+
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; transition: box-shadow .15s, border-color .15s; }
+    .faq-item[open] { box-shadow: var(--shadow-sm); border-color: #d6e0ee; }
+    .faq-item summary { padding: 16px 20px; font-weight: 600; font-size: 14.5px; cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after { content: '+'; font-size: 20px; color: var(--ink-3); flex: none; transition: transform .2s; }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item summary:hover { color: var(--accent); }
+    .faq-item p { padding: 0 20px 16px; font-size: 13.5px; color: var(--ink-2); line-height: 1.7; }
+
+    .footer-grid { display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+    .footer-links a { color: var(--accent); font-weight: 600; font-size: 14px; transition: opacity .15s; }
+    .beian a { transition: color .15s; }
+    .beian a:hover { color: var(--accent); }
+    .footer-links a:hover { opacity: .7; }
+
+    .to-top { position: fixed; right: 22px; bottom: 22px; width: 44px; height: 44px; border: none; border-radius: 50%; cursor: pointer; z-index: 60; background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: 18px; line-height: 1; display: grid; place-items: center; box-shadow: var(--shadow-accent); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s, transform .2s, visibility .2s; }
+    .to-top.show { opacity: 1; visibility: visible; transform: none; }
+    .to-top:hover { transform: translateY(-2px); }
+
+    .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .5s ease, transform .5s ease; }
+    .js .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .inst-panel.active { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      /* 窄屏导航横向可滑动，避免被裁切 */
+      .nav-links { overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; -webkit-overflow-scrolling: touch; }
+      .nav-links::-webkit-scrollbar { display: none; }
+      .nav-links a { white-space: nowrap; flex: none; }
+    }
+    @media (max-width: 600px) {
+      .wrap { padding: 0 18px; }
+      .grid { grid-template-columns: 1fr; }
+      .nav-links { gap: 14px; font-size: 13px; }
+      .brand { font-size: 16px; }
+      .arch-row { flex-direction: column; }
+      .footer-grid { flex-direction: column; gap: 20px; }
+      .inst-tab { padding: 8px 15px; font-size: 13px; }
+      .mcard { padding: 18px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .card:hover, .btn-primary:hover, .to-top:hover { transform: none; }
+      .js .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+  <script>
+    /* FOUC 预防：在 CSS 加载前同步设置主题 */
+    (function(){try{var t=localStorage.getItem('gale-theme');var d=window.matchMedia('(prefers-color-scheme:dark)').matches;if(t==='dark'||(!t&&d)){document.documentElement.setAttribute('data-theme','dark');}}catch(e){}})();
+  </script>
+</head>
+<body>
+  <header class="site-header" id="top">
+    <nav class="nav wrap" aria-label="主导航">
+      <a href="#top" class="brand" aria-label="返回顶部"><span class="brand-mark" aria-hidden="true"></span> 疾风引擎</a>
+      <div class="nav-links">
+        <a href="#features" class="">功能</a>
+        <a href="#tech" class="">技术</a>
+        <a href="#get" class="">安装</a>
+        <a href="#faq">FAQ</a>
+        <a href="#changelog" class="active">更新日志</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="切换深色模式" title="切换深色模式">
+          <span class="icon-moon" aria-hidden="true">🌙</span>
+          <span class="icon-sun" aria-hidden="true">☀</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="download">
+      <div class="wrap">
+        <span class="badge">v0.1.13 · 全自动升级</span>
+        <h1>让你的电脑 <span class="grad">更快更稳</span></h1>
+        <p>硬件监控与型号规格、进程管理、垃圾清理、游戏模式、网络诊断、服务管理、计划任务与防火墙，集成在一个轻量桌面应用里。支持 Windows / macOS / Linux（x64 + arm64）。</p>
+
+        <div class="download" id="dl">
+          <div class="dl-tabs" role="tablist">
+            <button class="dl-tab active" data-os="windows" role="tab">🪟 Windows</button>
+            <button class="dl-tab" data-os="macos" role="tab">🍎 macOS</button>
+            <button class="dl-tab" data-os="linux" role="tab">🐧 Linux</button>
+          </div>
+          <div class="dl-panel" id="dl-panel"><div class="os-name">Windows</div><div class="os-hint">NSIS 安装包，支持自定义安装目录，双击即可安装</div><div class="arch-row"><div class="arch-card"><div class="arch-label">x64</div><div class="arch-desc">Intel / AMD 64 位</div><a class="btn btn-primary" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-x64-setup.exe" target="_blank" rel="noopener">⬇ 下载</a></div><div class="arch-card"><div class="arch-label">arm64</div><div class="arch-desc">Surface / 骁龙 ARM</div><a class="btn btn-primary" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-arm64-setup.exe" target="_blank" rel="noopener">⬇ 下载</a></div></div></div>
+          <div class="dl-all">不确定选哪个？查看 <a href="https://github.com/afdk1991/gale-engine/releases/latest" target="_blank" rel="noopener">全部下载产物</a></div>
+          <div class="dl-cli">命令行用户？用 <a href="#get">Scoop / Homebrew / AppImage 一键安装 →</a></div>
+        </div>
+        <div class="req">系统要求：Windows 10/11 · macOS 11+ · 主流 Linux（systemd）· 64 位或 ARM64 · 无需联网即可使用</div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="wrap">
+        <h2>核心功能</h2>
+        <p class="sub">十三大模块覆盖日常性能优化全流程，三平台原生支持</p>
+        <div class="grid">
+          <div class="card reveal in"><div class="ico" aria-hidden="true">📊</div><h3>硬件监控</h3><p>实时采集 CPU / 内存 / 磁盘 / 网络负载、温度与电量，每秒刷新。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🔧</div><h3>硬件信息</h3><p>主板 / CPU / 内存 / 显卡 / 显示器 / 硬盘 / 电源 型号规格采集（跨平台）。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">⚙️</div><h3>进程管理</h3><p>查看进程 CPU / 内存占用，结束、挂起 / 恢复进程，调整优先级（系统进程已保护）。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🧹</div><h3>垃圾清理</h3><p>扫描 Temp、回收站与浏览器缓存占用，白名单安全清理，逐项回执、失败隔离。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">⚡</div><h3>启动项管理</h3><p>集中管理开机启动项（Win 注册表 / mac launchd / Linux XDG），一键启用 / 禁用。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🎮</div><h3>游戏模式</h3><p>一键切换高性能模式（Win 电源计划 / mac 防休眠 / Linux CPU 调速器），退出自动还原。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🌐</div><h3>网络诊断</h3><p>Ping 延迟测试（最小 / 平均 / 最大 / 丢包率）与本机网卡信息。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🖥️</div><h3>服务管理</h3><p>查看系统服务状态与启动类型，启动 / 停止、切换自动 / 手动 / 禁用（关键服务已保护）。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">⏰</div><h3>计划任务</h3><p>枚举系统计划任务与运行时间，启用 / 禁用、立即运行、结束运行中任务。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🛡️</div><h3>防火墙</h3><p>配置文件开关（Win NetFirewall / mac pfctl / Linux ufw）+ 规则列表与启用 / 禁用。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🧰</div><h3>系统工具箱</h3><p>刷新 DNS、清空回收站、清空剪贴板、切换深色模式，按平台分发命令，幂等安全。</p></div>
+          <div class="card reveal in"><div class="ico" aria-hidden="true">🕘</div><h3>优化记录</h3><p>每次清理 / 模式切换自动留痕，时间线一目了然。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="tech">
+      <div class="wrap">
+        <h2>技术架构</h2>
+        <p class="sub">Electron 39 + Vue 3 + TypeScript，electron-vite 多进程构建，全跨平台原生命令分发</p>
+        <div class="grid">
+          <div class="card reveal in">
+            <div class="ico" aria-hidden="true">⚡</div>
+            <h3>渲染层</h3>
+            <p>Vue 3 + TypeScript，15 个页面组件，左侧自适应导航（720px 以下收窄为图标栏），主题令牌系统（3 外观 × 6 强调色）。</p>
+          </div>
+          <div class="card reveal in">
+            <div class="ico" aria-hidden="true">🔌</div>
+            <h3>主进程</h3>
+            <p>68 个 IPC handler，preload 桥接为 <code>window.gale</code>（contextIsolation: true），服务层全可注入依赖，纯逻辑可单测。</p>
+          </div>
+          <div class="card reveal in">
+            <div class="ico" aria-hidden="true"> shell</div>
+            <h3>跨平台 PAL</h3>
+            <p><code>shell.ts</code> 平台抽象层，按 <code>process.platform</code> 选择 PowerShell / bash 执行器，13 个 service 全跨平台。</p>
+          </div>
+          <div class="card reveal in">
+            <div class="ico" aria-hidden="true">🛡️</div>
+            <h3>安全设计</h3>
+            <p>所有用户输入（PID / 主机名 / 路径 / 服务名 / 规则名）经字符白名单校验，防 shell 注入；系统关键进程保护拒绝。</p>
+          </div>
+          <div class="card reveal in">
+            <div class="ico" aria-hidden="true">🔄</div>
+            <h3>自动更新</h3>
+            <p>electron-updater 指向 GitHub Releases，各平台独立 <code>latest*.yml</code> 驱动按 OS + 架构拉取对应增量包。</p>
+          </div>
+          <div class="card reveal in">
+            <div class="ico" aria-hidden="true">📦</div>
+            <h3>CI / CD</h3>
+            <p>GitHub Actions 6 矩阵并行构建（win/macos/linux × x64/arm64），推送 <code>v*</code> tag 自动构建发布，558 项自动化测试把关。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="get">
+      <div class="wrap">
+        <h2>多种安装方式</h2>
+        <p class="sub">按平台选择最适合的方式，命令行用户与普通用户都能轻松上手</p>
+        <div class="install">
+          <div class="inst-tabs" role="tablist" aria-label="按平台选择安装方式">
+            <button class="inst-tab active" data-os="windows" role="tab" aria-selected="true">🥄 Windows · Scoop</button>
+            <button class="inst-tab" data-os="macos" role="tab" aria-selected="false">🍺 macOS · Homebrew</button>
+            <button class="inst-tab" data-os="linux" role="tab" aria-selected="false">📦 Linux · AppImage / deb</button>
+          </div>
+
+          <div class="inst-panels">
+            <!-- Windows -->
+            <div class="inst-panel active" data-panel="windows" role="tabpanel" aria-label="Windows 安装方式">
+              <article class="mcard">
+                <div class="mcard-head">
+                  <div class="mcard-ico" aria-hidden="true">🥄</div>
+                  <div class="mcard-title">
+                    <h3>Windows · Scoop <span class="pill pill-rec">命令行首选</span></h3>
+                    <span class="mcard-sub">自动管理版本与升级</span>
+                  </div>
+                </div>
+                <p>命令行用户首选：添加 bucket 后一条命令完成安装，后续升级交给包管理器托管。</p>
+                <div class="cmd">
+                  <div class="cmd-bar"><span class="cmd-tag">PowerShell</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code><span class="c"># 添加 bucket 并安装</span>
+scoop bucket add gale https://github.com/afdk1991/gale-engine
+scoop install gale-engine</code></pre>
+                </div>
+                <div class="cmd">
+                  <div class="cmd-bar"><span class="cmd-tag">升级到最新版</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>scoop update gale-engine</code></pre>
+                </div>
+                <div class="meta"><span>支持 x64 + arm64</span><span>scoop update 即可升级</span><span>无需管理员权限</span></div>
+              </article>
+              <div class="inst-side">
+                <article class="mcard">
+                  <div class="mcard-head">
+                    <div class="mcard-ico" aria-hidden="true">⬇️</div>
+                    <div class="mcard-title">
+                      <h3>直接下载安装包 <span class="pill pill-alt">普通用户</span></h3>
+                      <span class="mcard-sub">双击安装，无需命令行</span>
+                    </div>
+                  </div>
+                  <p>NSIS 安装包，支持自定义安装目录，双击即可完成安装。</p>
+                  <div class="dl-mini">
+                    <a class="btn btn-primary" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-x64-setup.exe" target="_blank" rel="noopener">⬇ x64</a>
+                    <a class="btn btn-ghost" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-arm64-setup.exe" target="_blank" rel="noopener">⬇ arm64</a>
+                  </div>
+                  <p class="note">不确定选哪个？前往 <a href="https://github.com/afdk1991/gale-engine/releases/latest" target="_blank" rel="noopener">GitHub Releases</a> 下载全部产物。</p>
+                </article>
+                <article class="mcard">
+                  <div class="mcard-head">
+                    <div class="mcard-ico" aria-hidden="true">🛠️</div>
+                    <div class="mcard-title">
+                      <h3>本地一键构建 <span class="pill pill-alt">开发者</span></h3>
+                      <span class="mcard-sub">需 Node 环境</span>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <div class="cmd-bar"><span class="cmd-tag">产出 Windows 安装包</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>npm run package:win</code></pre>
+                  </div>
+                  <p class="note">镜像源已默认指向国内 npmmirror，无需翻墙。</p>
+                </article>
+              </div>
+            </div>
+
+            <!-- macOS -->
+            <div class="inst-panel" data-panel="macos" role="tabpanel" aria-label="macOS 安装方式">
+              <article class="mcard">
+                <div class="mcard-head">
+                  <div class="mcard-ico" aria-hidden="true">🍺</div>
+                  <div class="mcard-title">
+                    <h3>macOS · Homebrew <span class="pill pill-rec">命令行首选</span></h3>
+                    <span class="mcard-sub">自动按 CPU 架构选择 DMG</span>
+                  </div>
+                </div>
+                <p>命令行用户首选：Cask 会自动识别芯片架构，拉取对应的 Intel / Apple Silicon DMG。</p>
+                <div class="cmd">
+                  <div class="cmd-bar"><span class="cmd-tag">Terminal</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code><span class="c"># 添加 tap 并安装</span>
+brew tap afdk1991/gale-engine
+brew install --cask gale-engine</code></pre>
+                </div>
+                <div class="cmd">
+                  <div class="cmd-bar"><span class="cmd-tag">升级到最新版</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>brew upgrade --cask gale-engine</code></pre>
+                </div>
+                <div class="meta"><span>Intel + Apple Silicon</span><span>自动匹配架构</span><span>首次打开需右键 → 打开</span></div>
+              </article>
+              <div class="inst-side">
+                <article class="mcard">
+                  <div class="mcard-head">
+                    <div class="mcard-ico" aria-hidden="true">⬇️</div>
+                    <div class="mcard-title">
+                      <h3>直接下载安装包 <span class="pill pill-alt">普通用户</span></h3>
+                      <span class="mcard-sub">拖入 Applications 即用</span>
+                    </div>
+                  </div>
+                  <p>下载 dmg 镜像，打开后把应用拖入 Applications 文件夹即可。</p>
+                  <div class="dl-mini">
+                    <a class="btn btn-primary" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-arm64.dmg" target="_blank" rel="noopener">⬇ Apple Silicon</a>
+                    <a class="btn btn-ghost" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-x64.dmg" target="_blank" rel="noopener">⬇ Intel</a>
+                  </div>
+                  <p class="note">未签名版本首次打开需右键 → 打开，或在 <a href="#faq">FAQ</a> 查看处理方式。</p>
+                </article>
+                <article class="mcard">
+                  <div class="mcard-head">
+                    <div class="mcard-ico" aria-hidden="true">🛠️</div>
+                    <div class="mcard-title">
+                      <h3>本地一键构建 <span class="pill pill-alt">开发者</span></h3>
+                      <span class="mcard-sub">需 Node 环境</span>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <div class="cmd-bar"><span class="cmd-tag">产出 macOS DMG</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>npm run package:mac</code></pre>
+                  </div>
+                  <p class="note">镜像源已默认指向国内 npmmirror，无需翻墙。</p>
+                </article>
+              </div>
+            </div>
+
+            <!-- Linux -->
+            <div class="inst-panel" data-panel="linux" role="tabpanel" aria-label="Linux 安装方式">
+              <article class="mcard">
+                <div class="mcard-head">
+                  <div class="mcard-ico" aria-hidden="true">📦</div>
+                  <div class="mcard-title">
+                    <h3>Linux · AppImage / deb <span class="pill pill-rec">命令行首选</span></h3>
+                    <span class="mcard-sub">免安装即用 / 系统集成</span>
+                  </div>
+                </div>
+                <p>AppImage 免安装即用，deb 适用 Debian/Ubuntu，按发行版二选一。</p>
+                <div class="cmd">
+                  <div class="cmd-bar"><span class="cmd-tag">AppImage · x64 / arm64</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>chmod +x gale-engine-*.AppImage &amp;&amp; ./gale-engine-*.AppImage</code></pre>
+                </div>
+                <div class="cmd">
+                  <div class="cmd-bar"><span class="cmd-tag">deb · Debian / Ubuntu</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>sudo dpkg -i gale-engine-*.deb</code></pre>
+                </div>
+                <div class="meta"><span>支持 x64 + arm64</span><span>AppImage 免安装</span><span>deb 走系统包管理</span></div>
+              </article>
+              <div class="inst-side">
+                <article class="mcard">
+                  <div class="mcard-head">
+                    <div class="mcard-ico" aria-hidden="true">⬇️</div>
+                    <div class="mcard-title">
+                      <h3>直接下载安装包 <span class="pill pill-alt">普通用户</span></h3>
+                      <span class="mcard-sub">下载后赋予执行权限即可</span>
+                    </div>
+                  </div>
+                  <p>AppImage 下载后 <code>chmod +x</code> 双击运行；deb 可用软件中心直接安装。</p>
+                  <div class="dl-mini">
+                    <a class="btn btn-primary" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-x86_64.AppImage" target="_blank" rel="noopener">⬇ AppImage x64</a>
+                    <a class="btn btn-ghost" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-arm64.AppImage" target="_blank" rel="noopener">⬇ AppImage arm64</a>
+                    <a class="btn btn-ghost" href="https://github.com/afdk1991/gale-engine/releases/download/v0.1.13/gale-engine-0.1.13-amd64.deb" target="_blank" rel="noopener">⬇ deb x64</a>
+                  </div>
+                  <p class="note">不确定选哪个？前往 <a href="https://github.com/afdk1991/gale-engine/releases/latest" target="_blank" rel="noopener">GitHub Releases</a> 下载全部产物。</p>
+                </article>
+                <article class="mcard">
+                  <div class="mcard-head">
+                    <div class="mcard-ico" aria-hidden="true">🛠️</div>
+                    <div class="mcard-title">
+                      <h3>本地一键构建 <span class="pill pill-alt">开发者</span></h3>
+                      <span class="mcard-sub">需 Node 环境</span>
+                    </div>
+                  </div>
+                  <div class="cmd">
+                    <div class="cmd-bar"><span class="cmd-tag">产出 AppImage / deb</span><button class="copy-btn" type="button">📋 复制</button></div>
+<pre><code>npm run package:linux</code></pre>
+                  </div>
+                  <p class="note">镜像源已默认指向国内 npmmirror，无需翻墙。</p>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <div class="verify">
+            <div class="verify-head">
+              <div class="mcard-ico" aria-hidden="true">✅</div>
+              <div>
+                <h3>安装与验证</h3>
+                <p style="font-size:13px;color:var(--ink-2);margin-top:2px;">装完按下面三步确认，一分钟跑通</p>
+              </div>
+            </div>
+            <div class="steps">
+              <div class="step">
+                <h4>启动应用</h4>
+                <p>从桌面 / 开始菜单 / Launchpad / 应用菜单启动疾风引擎。</p>
+              </div>
+              <div class="step">
+                <h4>逐项核验</h4>
+                <p>按 <code>docs/smoke-test-checklist.html</code> 核验全部模块功能（154 项，含 106 项可脚本验证）。</p>
+              </div>
+              <div class="step">
+                <h4>开始优化</h4>
+                <p>首页「⚡ 一键优化」跑通全流程，异常可到 GitHub Issues 反馈。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="changelog">
+      <div class="wrap">
+        <h2>更新日志</h2>
+        <p class="sub">v0.1.13 全自动升级：下载完自动重启，无需手动点安装</p>
+        <div class="log reveal in">
+          <div class="log-item">
+            <div><span class="log-version">v0.1.13</span><span class="log-date">2026-10-09</span></div>
+            <ul>
+              <li>依赖安全大版本迁移：Electron 39→44.7.0，实测清零 4 项 high 运行时漏洞（沙箱越界 / 跨源读取等），升级后 typecheck / vitest 575 / build 三门门禁全绿</li>
+              <li>统一平台注入：主进程服务层消除 detectPlatform() 默认参数回落，createGameModeService 改显式注入 platform，可测性提升</li>
+              <li>v0.1.13 发版依赖真实审计数据：GitHub 面板报 14 项告警，npm audit 实测为 10 项（2 high + 8 moderate），以实测为准；8 项 moderate 残留来自 electron-builder 链，稳定通道无修复版，保持 ^26.15.3 不动</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.12</span><span class="log-date">2026-10-06</span></div>
+            <ul>
+              <li>全自动升级 UI 收尾：下载完成后主进程已自动退出并安装重启，界面文案同步对齐</li>
+              <li>状态行改为「已下载，即将自动重启…」，如实反映自动行为，不再暗示还需手动操作</li>
+              <li>主按钮由「立即安装并重启」简化为「立即重启」——安装由主进程自动触发，按钮只是跳过等待</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.11</span><span class="log-date">2026-10-06</span></div>
+            <ul>
+              <li>全自动升级：更新下载完成后延迟 3 秒自动退出并安装重启，无需用户再点「安装」</li>
+              <li>修复提权长任务被 30 秒硬超时误杀：SFC /scannow、DISM /RestoreHealth、winget 安装运行库等数分钟级任务不再被误判失败</li>
+              <li>依赖大版本迁移：Electron 33→39、vitest 3→5、electron-builder 25→26、tar 6→7，并修复 H1–H4 高危与 M1–M9 中危安全告警</li>
+              <li>修正「发现新版本，正在下载…」与实际「可下载更新」自相矛盾的文案</li>
+              <li>558 项自动化测试全绿（31 个测试文件）</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.10</span><span class="log-date">2026-09-17</span></div>
+            <ul>
+              <li>三端自动更新真正打通：macOS 补 zip 目标（electron-updater 只认 zip）、Linux 仅 AppImage 可自更新、deb/rpm 诚实降级并给出升级命令</li>
+              <li>更新入口铺到侧边栏 / 首页 / 设置三处，检查→自动下载→一键安装全自动，带真实进度与失败重试</li>
+              <li>新增「DLL 修复」页面：扫描系统 DLL 与 VC++ 运行库，存在 / 位数不全 / 缺失三态判定，修复统一走提权通道</li>
+              <li>能力库可独立更新：远端清单只可覆盖元信息与编排白名单方法，禁止下发可执行代码，支持应用与回退内置</li>
+              <li>全量代码审查 23 项缺陷修复：严格回执解析根治「假成功 / 静默失败」，脚本注入面收口，启动项禁用可原地恢复</li>
+              <li>498 项自动化测试全绿（29 个测试文件），typecheck 纳入 CI 必过项</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.9</span><span class="log-date">2026-09-16</span></div>
+            <ul>
+              <li>首页「⚡ 一键优化」：按序执行全部可优化项，实时进度、逐项结果与汇总报告，支持取消与失败重试</li>
+              <li>DLL 单项目优化能力库（optlib）：能力可动态装载，支持列清单与独立调用，回传实测释放空间</li>
+              <li>运行时提权通道：设置页「以管理员身份重启」，按需弹 UAC，默认安装不再强制提权</li>
+              <li>磁盘空间实测释放修复：以清理前后空闲字节差为准，新增缩略图缓存清理，回收站按卷清空</li>
+              <li>309 项自动化测试全绿，IPC 共 55 个 handler</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.8</span><span class="log-date">2026-09-15</span></div>
+            <ul>
+              <li>新增「磁盘修复」：各卷空间总览与空间不足预警（已用≥90% 或剩余&lt;10GiB）</li>
+              <li>硬盘空间深度释放：更新缓存/系统临时/缩略图/错误报告/Prefetch + DISM 组件清理/休眠文件</li>
+              <li>硬盘错误检查与在线修复（chkdsk /scan、diskutil），盘符白名单防注入</li>
+              <li>DLL / 系统文件修复：sfc /scannow 与 DISM RestoreHealth（Windows）</li>
+              <li>265 项自动化测试全绿，第 14 个页面、第 14 个跨平台 service</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.7</span><span class="log-date">2026-09-08</span></div>
+            <ul>
+              <li>修复 optimizer 跨平台测试在多环境下的失败（TMPDIR/HOME 固化）</li>
+              <li>文档全面同步至 v0.1.7 跨平台现状（README / roadmap / 平台验证 / CHANGELOG）</li>
+              <li>落地页多平台下载适配（三 Tab + 架构分段 + UA 检测，资产名精确映射）</li>
+              <li>231 项自动化测试全绿</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.4 ~ v0.1.6</span><span class="log-date">2026-09-06~07</span></div>
+            <ul>
+              <li>跨平台架构重写：PAL 平台抽象层（shell.ts 按 OS 选 PowerShell / bash）</li>
+              <li>13 个 service 全跨平台（9 手动 win/unix 分发 + 4 天然跨平台库）</li>
+              <li>新增硬件信息模块（systeminformation 采集 7 类硬件型号，第 13 个页面）</li>
+              <li>6 矩阵 CI（win/macos/linux × x64/arm64），Linux arm64 用 qemu 交叉编译</li>
+              <li>修复 macOS arm64 构建与 CI 产物按 os-arch 隔离</li>
+            </ul>
+          </div>
+          <div class="log-item">
+            <div><span class="log-version">v0.1.0</span><span class="log-date">2026-08-30</span></div>
+            <ul>
+              <li>工程骨架：Electron + Vue 3 + TypeScript（electron-vite 多进程构建）</li>
+              <li>主窗口与占位页面、左侧导航、主题设置模块</li>
+              <li>产出 NSIS 安装包，支持自定义安装目录</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="faq">
+      <div class="wrap">
+        <h2>常见问题</h2>
+        <p class="sub">安装与使用中的高频问题解答</p>
+        <div style="max-width:760px;margin:34px auto 0;">
+          <details class="faq-item reveal in">
+            <summary>Windows 安装时 SmartScreen 提示「未知发布者」怎么办？</summary>
+            <p>这是因为应用未配置代码签名证书。点击「更多信息」→「仍要运行」即可安装。这不影响功能与安全，只是 Windows 对未签名应用的常规提示。配置证书后 CI 会自动签名，提示将消失。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>macOS 打开时提示「无法验证开发者」怎么办？</summary>
+            <p>右键点击应用图标 → 选择「打开」→ 在弹窗中点击「打开」。也可以在终端执行 <code>xattr -d com.apple.quarantine /Applications/疾风引擎.app</code>。配置 Apple Developer 证书后 CI 会自动签名+公证。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>Linux AppImage 双击没反应？</summary>
+            <p>AppImage 需要先赋予执行权限：在终端运行 <code>chmod +x gale-engine-*.AppImage</code>，然后 <code>./gale-engine-*.AppImage</code> 即可启动。也可以在文件管理器中右键 → 属性 → 权限 → 勾选「允许执行」。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>Scoop / Homebrew 安装后如何更新？</summary>
+            <p><strong>Scoop</strong>：运行 <code>scoop update gale-engine</code> 即可升级到最新版。<strong>Homebrew</strong>：运行 <code>brew upgrade --cask gale-engine</code>。两个 manifest 都配置了 <code>checkver</code> / 自动版本检测，新版本发布后即可升级。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>应用支持哪些系统？ARM 设备能用吗？</summary>
+            <p>支持 Windows 10/11、macOS 11+、主流 Linux（需 systemd）。同时支持 x64（Intel/AMD）和 arm64（Apple Silicon / Surface / 树莓派 / ARM 服务器），共 6 个平台组合，CI 全量构建。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>如何从源码本地构建？</summary>
+            <p>克隆仓库后运行 <code>npm install</code> 安装依赖，然后按平台运行 <code>npm run package:win</code> / <code>:mac</code> / <code>:linux</code>。镜像源已默认指向国内 npmmirror，无需翻墙即可下载 electron-builder 二进制依赖。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>应用需要联网吗？</summary>
+            <p>核心功能完全离线运行，无需联网。仅「检查更新」功能需要访问 GitHub Releases（可在设置中关闭自动检查）。</p>
+          </details>
+          <details class="faq-item reveal in">
+            <summary>停止系统服务 / 修改防火墙时提示权限不足？</summary>
+            <p>这些操作需要管理员权限（Windows UAC / macOS root / Linux root）。请以管理员身份运行应用，或使用系统服务管理的替代命令。应用对关键系统服务有保护机制，不会允许停止受保护的服务。</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-grid">
+        <div style="text-align:center;">
+          <div class="brand" style="margin-bottom:10px;justify-content:center;"><span class="brand-mark" aria-hidden="true"></span> 疾风引擎</div>
+          <p style="font-size:13px;color:var(--ink-3);max-width:300px;">跨平台桌面优化加速软件，支持 Windows / macOS / Linux（x64 + arm64）。基于 Electron + Vue 3 构建。</p>
+        </div>
+        <div class="footer-links">
+          <a href="https://gy.mixm.top" target="_blank" rel="noopener">官网</a>
+          <a href="https://github.com/afdk1991/gale-engine" target="_blank" rel="noopener">GitHub 仓库</a>
+          <a href="https://github.com/afdk1991/gale-engine/releases/latest" target="_blank" rel="noopener">最新版本</a>
+          <a href="https://github.com/afdk1991/gale-engine/issues" target="_blank" rel="noopener">问题反馈</a>
+          <a href="https://github.com/afdk1991/gale-engine/blob/master/CHANGELOG.md" target="_blank" rel="noopener">更新日志</a>
+        </div>
+      </div>
+      <div style="margin-top:24px;padding-top:18px;border-top:1px solid var(--border);text-align:center;">
+        <div>v0.1.13 · MIT License · 575 项自动化测试全绿（32 个测试文件）</div>
+        <div style="margin-top:6px;">© 2026 GaleEngine · 仅供学习与个人优化使用</div>
+        <div class="beian" style="margin-top:10px;font-size:12px;color:var(--ink-3);">
+          <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener noreferrer">苏ICP备2025161175号-2</a>
+          <span style="margin:0 8px;">·</span>
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=32072202010511" target="_blank" rel="noopener noreferrer">苏公网安备32072202010511号</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <button class="to-top show" type="button" aria-label="返回顶部" title="返回顶部">↑</button>
+
+  <script>
+    document.documentElement.classList.add('js');
+    (function () {
+      /* —— 主题切换 —— */
+      var root = document.documentElement;
+      var toggle = document.getElementById('themeToggle');
+      function updateToggleLabel() {
+        var isDark = root.getAttribute('data-theme') === 'dark';
+        toggle.setAttribute('aria-label', isDark ? '切换浅色模式' : '切换深色模式');
+        toggle.title = isDark ? '切换浅色模式' : '切换深色模式';
+      }
+      updateToggleLabel();
+      toggle.addEventListener('click', function () {
+        var isDark = root.getAttribute('data-theme') === 'dark';
+        if (isDark) {
+          root.removeAttribute('data-theme');
+          localStorage.setItem('gale-theme', 'light');
+        } else {
+          root.setAttribute('data-theme', 'dark');
+          localStorage.setItem('gale-theme', 'dark');
+        }
+        updateToggleLabel();
+      });
+      /* 监听系统主题变化（用户未手动选择时跟随） */
+      window.matchMedia('(prefers-color-scheme:dark)').addEventListener('change', function (e) {
+        if (!localStorage.getItem('gale-theme')) {
+          if (e.matches) { root.setAttribute('data-theme','dark'); } else { root.removeAttribute('data-theme'); }
+          updateToggleLabel();
+        }
+      });
+
+      var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* —— Logo 点击返回顶部 —— */
+      var brand = document.querySelector('.brand');
+      if (brand) {
+        brand.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        });
+      }
+
+      var V = '0.1.13';
+      var BASE = 'https://github.com/afdk1991/gale-engine/releases/download/v' + V + '/gale-engine-' + V + '-';
+
+      // 资产名映射（exe/dmg 用 x64|arm64，AppImage 用 x86_64|arm64，deb 用 amd64）
+      var ASSETS = {
+        windows: [
+          { arch: 'x64', desc: 'Intel / AMD 64 位', suffix: 'x64-setup.exe' },
+          { arch: 'arm64', desc: 'Surface / 骁龙 ARM', suffix: 'arm64-setup.exe' }
+        ],
+        macos: [
+          { arch: 'x64', desc: 'Intel 芯片', suffix: 'x64.dmg' },
+          { arch: 'arm64', desc: 'Apple Silicon (M1-M4)', suffix: 'arm64.dmg' }
+        ],
+        linux: [
+          { arch: 'x64', desc: 'AppImage · Intel/AMD', suffix: 'x86_64.AppImage' },
+          { arch: 'arm64', desc: 'AppImage · ARM', suffix: 'arm64.AppImage' },
+          { arch: 'deb', desc: 'deb 包 · x64', suffix: 'amd64.deb' }
+        ]
+      };
+
+      var osNames = { windows: 'Windows', macos: 'macOS', linux: 'Linux' };
+      var osHints = {
+        windows: 'NSIS 安装包，支持自定义安装目录，双击即可安装',
+        macos: 'dmg 镜像，拖入 Applications 即用（未签名需右键→打开）',
+        linux: 'AppImage 免安装直接运行（chmod +x）；deb 适用于 Debian/Ubuntu'
+      };
+
+      function renderPanel(os) {
+        var panel = document.getElementById('dl-panel');
+        var list = ASSETS[os] || [];
+        var html = '<div class="os-name">' + (osNames[os] || os) + '</div>';
+        html += '<div class="os-hint">' + (osHints[os] || '') + '</div>';
+        html += '<div class="arch-row">';
+        for (var i = 0; i < list.length; i++) {
+          var a = list[i];
+          html += '<div class="arch-card"><div class="arch-label">' + a.arch + '</div>';
+          html += '<div class="arch-desc">' + a.desc + '</div>';
+          html += '<a class="btn btn-primary" href="' + BASE + a.suffix + '" target="_blank" rel="noopener">⬇ 下载</a>';
+          html += '</div>';
+        }
+        html += '</div>';
+        panel.innerHTML = html;
+      }
+
+      // UA 检测推荐平台 + 架构
+      function detectOS() {
+        var ua = navigator.userAgent || '';
+        if (/Win/.test(ua)) return 'windows';
+        if (/Mac/.test(ua)) return 'macos';
+        if (/Linux/.test(ua)) return 'linux';
+        return 'windows';
+      }
+
+      function detectArch() {
+        // 优先高熵 UA（Chromium）
+        try {
+          if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+            var p = navigator.userAgentData.getHighEntropyValues(['architecture']);
+            if (p && p.then) {
+              p.then(function (r) {
+                if (r && r.architecture === 'arm') highlightArch('arm64');
+              });
+            }
+          }
+        } catch (e) {}
+        // Apple Silicon 判定
+        if (navigator.platform === 'MacIntel' && (navigator.maxTouchPoints || 0) > 2) highlightArch('arm64');
+      }
+
+      function highlightArch(arch) {
+        var cards = document.querySelectorAll('#dl-panel .arch-card');
+        for (var i = 0; i < cards.length; i++) {
+          var label = cards[i].querySelector('.arch-label');
+          if (label && label.textContent.indexOf(arch) === 0) {
+            cards[i].style.borderColor = 'var(--accent)';
+            cards[i].style.boxShadow = '0 0 0 2px rgba(47,124,246,.18)';
+          }
+        }
+      }
+
+      // Tab 切换（Hero 下载区 与 安装方式区 双向联动）
+      var tabs = document.querySelectorAll('.dl-tab');
+      var instTabs = document.querySelectorAll('.inst-tab');
+      var instPanels = document.querySelectorAll('.inst-panel');
+      var currentOS = detectOS();
+
+      function selectOS(os, writeHash) {
+        for (var i = 0; i < tabs.length; i++) {
+          tabs[i].classList.toggle('active', tabs[i].getAttribute('data-os') === os);
+        }
+        for (var j = 0; j < instTabs.length; j++) {
+          var on = instTabs[j].getAttribute('data-os') === os;
+          instTabs[j].classList.toggle('active', on);
+          instTabs[j].setAttribute('aria-selected', on ? 'true' : 'false');
+        }
+        for (var k = 0; k < instPanels.length; k++) {
+          instPanels[k].classList.toggle('active', instPanels[k].getAttribute('data-panel') === os);
+        }
+        renderPanel(os);
+        detectArch();
+        if (writeHash) { try { history.replaceState(null, '', '#get-' + os); } catch (e) {} }
+      }
+
+      function bindTabs(list) {
+        for (var t = 0; t < list.length; t++) {
+          (function (tab) {
+            var os = tab.getAttribute('data-os');
+            tab.addEventListener('click', function () { selectOS(os, true); });
+          })(list[t]);
+        }
+      }
+      bindTabs(tabs);
+      bindTabs(instTabs);
+      selectOS(currentOS);
+
+      /* —— #get-<os> 深链：分享链接可直接定位到对应平台 —— */
+      var INST_OS = { windows: 1, macos: 1, linux: 1 };
+      function applyInstHash(scroll) {
+        var h = (window.location.hash || '').replace(/^#/, '');
+        if (h.indexOf('get-') !== 0) return false;
+        var os = h.slice(4);
+        if (!INST_OS[os]) return false;
+        selectOS(os);
+        if (scroll) {
+          var sec = document.getElementById('get');
+          if (sec) sec.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
+        }
+        return true;
+      }
+      window.addEventListener('hashchange', function () { applyInstHash(true); });
+      // 首屏若带深链则切到对应平台并滚过去（延一帧，等布局稳定再滚，位置更准）
+      if (applyInstHash(false)) {
+        requestAnimationFrame(function () { applyInstHash(true); });
+      }
+
+      /* —— 命令一键复制 —— */
+      function fallbackCopy(text, cb) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed';
+        ta.style.top = '-1000px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); cb(); } catch (err) {}
+        document.body.removeChild(ta);
+      }
+      document.addEventListener('click', function (e) {
+        var btn = e.target && e.target.closest ? e.target.closest('.copy-btn') : null;
+        if (!btn) return;
+        var box = btn.closest('.cmd');
+        var pre = box ? box.querySelector('pre') : null;
+        if (!pre) return;
+        var text = pre.textContent.replace(/\s+$/, '');
+        var done = function () {
+          var old = btn.textContent;
+          btn.classList.add('done');
+          btn.textContent = '✓ 已复制';
+          setTimeout(function () { btn.classList.remove('done'); btn.textContent = old; }, 1600);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
+        } else {
+          fallbackCopy(text, done);
+        }
+      });
+
+      // Reveal on scroll
+      var reveals = document.querySelectorAll('.reveal');
+      if (prefersReduced || !('IntersectionObserver' in window)) {
+        for (var i = 0; i < reveals.length; i++) reveals[i].classList.add('in');
+      } else {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+        reveals.forEach(function (el) { io.observe(el); });
+      }
+
+      // Back to top
+      var toTop = document.querySelector('.to-top');
+      if (toTop) {
+        var onScroll = function () {
+          if (window.scrollY > 480) toTop.classList.add('show');
+          else toTop.classList.remove('show');
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+        toTop.addEventListener('click', function () {
+          window.scrollTo({ top: 0, behavior: prefersReduced ? 'auto' : 'smooth' });
+        });
+      }
+
+      // Scroll spy
+      var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+      var map = {};
+      navLinks.forEach(function (a) {
+        var href = a.getAttribute('href');
+        if (href && href.charAt(0) === '#') map[href.slice(1)] = a;
+      });
+      var sections = Object.keys(map).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+      if ('IntersectionObserver' in window && sections.length) {
+        var spy = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            var link = map[e.target.id];
+            if (!link || !e.isIntersecting) return;
+            navLinks.forEach(function (l) { l.classList.remove('active'); });
+            link.classList.add('active');
+          });
+        }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+        sections.forEach(function (s) { spy.observe(s); });
+      }
+    })();
+  </script>
+
+
+</body></html>

@@ -1,0 +1,43 @@
+{
+  "$schema": "https://raw.githubusercontent.com/ScoopInstaller/Scoop/master/schema.json",
+  "version": "0.1.12",
+  "description": "疾风引擎 - 跨平台系统优化加速软件（硬件监控 / 进程管理 / 垃圾清理 / 游戏模式 / 服务管理 / 防火墙）",
+  "homepage": "https://gy.mixm.top",
+  "license": "MIT",
+  "architecture": {
+    "64bit": {
+      "url": "https://github.com/afdk1991/gale-engine/releases/download/v0.1.12/gale-engine-0.1.12-x64-setup.exe",
+      "hash": "sha256:c897b9515a0dfe202d89a959f3b0ac703071f49dbe8557a6d84ccb9e866ea79c"
+    },
+    "arm64": {
+      "url": "https://github.com/afdk1991/gale-engine/releases/download/v0.1.12/gale-engine-0.1.12-arm64-setup.exe",
+      "hash": "sha256:ef839f25470991794ce7eb7939c1bb747662ede2946bd56f4dab27b96e74fa45"
+    }
+  },
+  "installer": {
+    "script": "Start-Process -FilePath \"$fname\" -ArgumentList '/S' -Wait"
+  },
+  "uninstaller": {
+    "script": "if (Test-Path \"$dir\\uninstall.exe\") { Start-Process -FilePath \"$dir\\uninstall.exe\" -ArgumentList '/S' -Wait }"
+  },
+  "bin": "疾风引擎.exe",
+  "shortcuts": [
+    [
+      "疾风引擎.exe",
+      "疾风引擎"
+    ]
+  ],
+  "checkver": {
+    "github": "https://github.com/afdk1991/gale-engine"
+  },
+  "autoupdate": {
+    "architecture": {
+      "64bit": {
+        "url": "https://github.com/afdk1991/gale-engine/releases/download/v$version/gale-engine-$version-x64-setup.exe"
+      },
+      "arm64": {
+        "url": "https://github.com/afdk1991/gale-engine/releases/download/v$version/gale-engine-$version-arm64-setup.exe"
+      }
+    }
+  }
+}
