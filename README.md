@@ -188,12 +188,19 @@ git tag shared-v1.0.0 && git push origin shared-v1.0.0   # 触发发布
 消费方需配置 `.npmrc`：`@afdk1991:registry=https://npm.pkg.github.com`
 
 ### EdgeOne Makers
-静态站不带 `package.json` 部署（否则 CLI 会跑 `pnpm install` 而本机无 pnpm）：
+线上：`https://ai-server-resources-sm7xw6pm.edgeone.cool`（projectId `makers-n0wldhiwerxe`）
+
+两个必须避开的坑（都已固化进 `deploy-edgeone.sh`）：
+1. **不要用 `.edgeone/` 作部署源**——CLI 把它当构建输出标记目录，部署后线上根为空，首页 404。
+   要用**普通目录名**（脚本用 `_deploy`）。
+2. **部署目录内不能有 `package.json`**——否则 CLI 自动跑 `pnpm install`，本机无 pnpm 直接失败。
+
 ```bash
-cd sites/ai-server-resources
-cp -r *.html assets articles fetched archive .edgeone/   # 构建部署目录
-edgeone makers deploy .edgeone -n ai-server-resources
+cd sites/ai-server-resources && ./deploy-edgeone.sh
 ```
+
+> 默认域 `*.edgeone.cool` 需带 `eo_token` 访问且有效期短；长期公开访问请在
+> EdgeOne 控制台绑定自定义域名（如已备案的 `laal.top` / `mixm.top` 子域）。
 
 ## 整合合并记录（2026-10-14）
 
