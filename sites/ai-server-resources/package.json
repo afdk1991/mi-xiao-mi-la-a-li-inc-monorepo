@@ -1,0 +1,11 @@
+{
+  "name": "@mxm/ai-server-resources",
+  "version": "1.0.0",
+  "private": true,
+  "mxm": {
+    "type": "node",
+    "role": "static-site",
+    "note": "AI/服务器资源站：静态 HTML + assets，独立发布（见 DEPLOY.md），不参与 monorepo 统一构建"
+  },
+  "description": "AI/服务器资源站：大模型原理与算法、训练微调、推理部署、服务器硬件运维、网络存储 五大类资源"
+}

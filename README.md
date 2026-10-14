@@ -39,6 +39,7 @@
 ├─ services/       后端 / 采集 / Python 服务
 │   └─ 项目008采集/        价格采集（CloudBase functions, Python）
 ├─ sites/          WordPress / PHP / 静态站点
+│   ├─ ai-server-resources/ AI/服务器资源站（静态 HTML+assets，独立发布）
 │   ├─ 项目004/            WordPress（wp-config.php）
 │   ├─ conWordPress/       WordPress 配置/容器
 │   └─ gexm/               网站（wp-config.php + Node）
@@ -101,6 +102,7 @@
 | sites | 项目004 | @mxm/site-proj-04 | WordPress/PHP | 部署至 WP 主机 | 完整 WP 站点 |
 | sites | conWordPress | @mxm/site-conwordpress | WordPress/PHP | 部署至 WP 主机 | 配置/容器 |
 | sites | gexm | gexm-platform | WP+Node | `npm run build all`（需先 install） | packages 工作区 |
+| sites | ai-server-resources | @mxm/ai-server-resources | 静态站（Node 构建脚本） | 不参与统一构建（独立发布） | AI/服务器资源站 |
 | tools | scripts | @mxm/tools-scripts | Shell/Py | 无可构建产物 | 部署运维脚本集 |
 | shared | map | @shared/map | TS | `npm run build shared/map` ✅ 已验证 | 统一地图服务 |
 | shared | http | @shared/http | TS | `npm run build shared/http` ✅ 已验证 | 统一请求封装 |
@@ -174,10 +176,10 @@ npm run clean 项目009商品采集     # 清理构建产物（dist/build/out）
 | 7 | 双远程镜像合并（第二轮） | `项目006`（Gitea `root/proj-06`）与 `proj-06`（GitHub `afdk1991/proj-06`）历史分叉、文件集近乎相同（差 2 个文件） | `proj-06` 用本地 remote fetch 后 **merge 至 `3301df1`**（含项目006 全部提交与 `FulfillmentService.php` 等）；项目006 归档 |
 | 8 | 清理近空壳项目 | `proj-00`：69 文件但源码仅 4 个（目录分析脚本 + 日志） | 归档 `_backups/proj-00-20261014` |
 | 9 | 文档库归位 | `cloudbase-adaptation`：3590 文件但源码仅 4 个（文档 / 模板 / offline-docs），非可运行应用 | 移入 `_docs/cloudbase-adaptation-docs`，apps 只保留可运行应用 |
-| 10 | **19 个模块合并为一个项目** | 9 个模块无 `package.json` 身份；根脚本依赖 pnpm（本机没有）；`shared` 包 `tsc` 不在 PATH；无统一编排 | 为 9 个模块创建统一 `@mxm/*` 身份 + 技术栈元数据；根 `package.json` 重写为单一项目入口；新建零依赖编排器 `run.mjs` + `tsc.mjs`；**29 个包统一寻址** |
+| 10 | **20 个模块合并为一个项目** | 9 个模块无 `package.json` 身份；根脚本依赖 pnpm（本机没有）；`shared` 包 `tsc` 不在 PATH；无统一编排 | 为 9 个模块创建统一 `@mxm/*` 身份 + 技术栈元数据；根 `package.json` 重写为单一项目入口；新建零依赖编排器 `run.mjs` + `tsc.mjs`；**29 个包统一寻址** |
 | 11 | **单一验证管线** | 各项目各自验证，无统一命令 | `npm run verify` = typecheck all + build all，按技术栈自动分派，缺依赖明确跳过而非失败；**最终 4✅/0❌ + 9✅/0❌** |
 | 12 | **聚合壳显式化** | 项目01/003/007 是含子包的壳，曾被当作普通 Node 模块 | 标记 `mxm.type=aggregator`，构建时透传说明、不误判缺依赖 |
-| 13 | **README 与实际对齐** | 速查表列出已归档/已合并项目（manju/项目002/项目006/proj-00）、声称 pnpm 编排 | 速查表重写为 19 模块真实清单；构建文档切换到 `run.mjs` 入口 |
+| 13 | **README 与实际对齐** | 速查表列出已归档/已合并项目（manju/项目002/项目006/proj-00）、声称 pnpm 编排 | 速查表重写为 20 模块真实清单；构建文档切换到 `run.mjs` 入口 |
 
 ### 统一接口规范（整合后约定）
 - 所有异步能力统一返回 `ApiResult<T>`（`code === 0` 为成功），不再混用 `{success,msg}` / `{ok,data}` / 裸 data 三种风格。

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>转载合规指南 · 可转载资源清单</title>
+<meta name="description" content="AI 大模型与服务器/计算机技术领域公开可转载资源索引。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><span class="mark">R</span><span>可转载资源清单<small>AI 大模型 · 服务器与计算机技术</small></span></a>
+    <nav class="nav" id="siteNav">
+      <a href="index.html">首页</a>
+      <a href="resources.html">资源库</a>
+      <a href="curated.html">精选 21 项</a>
+      <a href="articles.html">技术文章</a>
+      <a href="content.html">全文阅读</a>
+      <a href="category.html?c=A">分类</a>
+      <a href="compliance.html">合规指南</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="nav-search">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题">🌙</button>
+      <input id="globalSearch" type="search" placeholder="搜索资源…（回车）">
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+<div class="container">
+
+  <p class="breadcrumb"><a href="index.html">首页</a><span>/</span>转载合规指南</p>
+
+  <div class="mb-lg">
+    <h1 class="page-title">转载合规指南</h1>
+    <p class="page-lead">
+      把许可判断变成可执行的流程：先查许可，再分清代码 / 文档 / 权重 / 数据四类客体，最后按模板署名。
+      下表与模板可直接用于内容转载、课程讲义与企业内部分享。
+    </p>
+  </div>
+
+  <section class="panel">
+    <h2>一、判断流程</h2>
+    <div class="flow">
+      <div class="flow-step">
+        <div class="step-no">STEP 01</div>
+        <h4>它有没有显式许可？</h4>
+        <p>找 LICENSE 文件、页面页脚、仓库侧边栏、model card。找不到就是默认版权，一律视为需授权。</p>
+        <div class="ans"><span class="y">有</span> → 进入下一步 ｜ <span class="n">无</span> → 联系作者取得书面授权</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-no">STEP 02</div>
+        <h4>是哪一类许可？</h4>
+        <p>宽松型（MIT/BSD/Apache/CC0/公有领域）、署名型（CC BY）、传染型（CC BY-SA/GFDL/GPL）、限制型（NC/ND/自定义）。</p>
+        <div class="ans"><span class="y">宽松型</span> 自由度最高 ｜ <span class="n">限制型</span> 需逐条核对条款</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-no">STEP 03</div>
+        <h4>客体是什么？</h4>
+        <p>代码、文档、模型权重、数据集、商标 Logo —— 同一个项目里这五者常常是不同许可，不能互相推定。</p>
+        <div class="ans"><span class="y">逐项核对</span> 才是安全做法</div>
+      </div>
+      <div class="flow-step">
+        <div class="step-no">STEP 04</div>
+        <h4>按模板署名并留痕</h4>
+        <p>套用下方对应模板，保留作者、原文链接、许可名称与改动说明；截图或存档当时的许可声明，便于日后举证。</p>
+        <div class="ans"><a href="#tpl">跳到署名模板 ↓</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="matrix">
+    <h2>二、许可合规速查表</h2>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>许可类型</th><th>可商用</th><th>需署名</th><th>衍生需同协议</th><th>可修改</th><th>典型来源</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>CC0 / 公有领域</b></td><td class="ok">✅</td><td class="no">否</td><td class="no">否</td><td class="ok">✅</td><td>SQLite 官方文档、MDN 代码示例、Wikipedia 元数据</td></tr>
+          <tr><td><b>MIT / BSD / PostgreSQL License</b></td><td class="ok">✅</td><td>保留版权与许可文本</td><td class="no">否</td><td class="ok">✅</td><td>llama.cpp、Ollama、ONNX Runtime、nginx 文档</td></tr>
+          <tr><td><b>Apache-2.0</b></td><td class="ok">✅</td><td>保留 LICENSE + NOTICE、标注改动</td><td class="no">否</td><td class="ok">✅</td><td>vLLM、SGLang、Transformers、Qwen3、OLMo 2</td></tr>
+          <tr><td><b>GPL-2.0（文档 / 代码）</b></td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅ 强 copyleft</td><td class="ok">✅</td><td>Linux 内核文档、man-pages</td></tr>
+          <tr><td><b>GFDL 1.3</b></td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅</td><td>Arch Wiki、部分 Debian 文档</td></tr>
+          <tr><td><b>CC BY 4.0</b></td><td class="ok">✅</td><td class="ok">✅</td><td class="no">否</td><td class="ok">✅</td><td>Kubernetes 官方文档、Distill.pub</td></tr>
+          <tr><td><b>CC BY-SA 4.0</b></td><td class="ok">✅</td><td class="ok">✅</td><td class="ok">✅ 衍生须同协议</td><td class="ok">✅</td><td>维基百科、MDN 文档、Red Hat 文档</td></tr>
+          <tr><td><b>CC BY-NC-SA / BY-NC-ND</b></td><td class="no">❌ 仅限非商业</td><td class="ok">✅</td><td class="ok">✅</td><td>ND 变体禁止改写</td><td>阮一峰周刊、部分中文教程与课程</td></tr>
+          <tr><td><b>自定义模型许可</b><br>（Llama Community / Gemma / Qwen Research）</td><td>部分允许，附规模与命名限制</td><td class="ok">✅ 且常含品牌露出要求</td><td>视具体条款</td><td class="ok">✅</td><td>须逐模型核对 model card 与 LICENSE</td></tr>
+          <tr><td><b>arXiv 默认非独占许可</b></td><td class="no">❌ 全文转载需作者授权</td><td>—</td><td>—</td><td class="no">❌</td><td>仅当该版本显式标注 CC BY / CC0 才可自由转载</td></tr>
+          <tr><td><b>默认版权</b><br>（知乎 / CSDN / 商业技术博客）</td><td class="no">❌ 须书面授权</td><td>—</td><td>—</td><td class="no">❌</td><td>站内"转载"按钮或联系作者</td></tr>
+          <tr><td><b>IETF Trust Legal Provisions（RFC）</b></td><td class="ok">✅ 可复制 / 分发 / 翻译全文</td><td class="ok">✅ 注明 IETF 与 RFC 编号</td><td>—</td><td class="no">❌ 不得修改后仍称 RFC</td><td>RFC Editor；文档内代码组件按 Revised BSD</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" id="redline">
+    <h2>三、转载五条红线</h2>
+    <ul class="redline">
+      <li><b>权重开放 ≠ 开源。</b>Meta Llama 4（700M MAU 门槛 + 强制 "Built with Llama" + 衍生模型须以 Llama 开头命名）、Google Gemma 自定义条款、部分 Qwen 尺寸的 Qwen Research License（非商用）——均非 OSI 认可的开源许可，商用前必须逐模型查看 model card。</li>
+      <li><b>arXiv 论文默认不可全文转载。</b>绝大多数 e-print 采用 "arXiv perpetual non-exclusive license"，版权仍在作者 / 出版方；只有摘要页标注了 CC BY / CC BY-SA / CC0 的版本才允许自由转载或再分发。引用观点、重画图表、注明 DOI / arXiv 编号是安全做法。</li>
+      <li><b>商标、Logo、网站外观不在 CC 授权范围内。</b>Mozilla、Red Hat、NVIDIA、Cloudflare 等的品牌标识需单独授权；技术插图中的品牌元素同样如此。</li>
+      <li><b>中文社区内容默认禁止转载。</b>知乎、CSDN、掘金等默认"保留所有权利"，即使注明出处也不等于获得授权；企业技术团队博客通常只开放站内转载机制，商用前须确认。</li>
+      <li><b>数据集的许可独立于模型许可。</b>模型是 Apache-2.0 不代表训练语料可再分发；Common Crawl、The Pile 等由多个子集拼成，需逐子集核对许可证与使用条款。</li>
+    </ul>
+  </section>
+
+  <section class="panel" id="tpl">
+    <h2>四、可复制署名模板</h2>
+
+    <div class="tpl">
+      <div class="tpl-head">
+        <b>CC BY-SA 4.0（维基百科 / MDN 文档 / Red Hat 文档）</b>
+        <button class="btn ghost sm copy" data-target="tpl1">复制</button>
+      </div>
+      <pre class="code" id="tpl1">本文部分内容来自「&lt;文章标题&gt;」（&lt;原文 URL&gt;），
+作者 &lt;作者 / Mozilla Contributors / Wikipedia Contributors&gt;，
+采用 CC BY-SA 4.0 许可发布，本文沿用相同许可。
+（如有改动已在此说明：&lt;改动说明&gt;）</pre>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head">
+        <b>CC BY-NC-SA（阮一峰周刊、部分中文教程）</b>
+        <button class="btn ghost sm copy" data-target="tpl2">复制</button>
+      </div>
+      <pre class="code" id="tpl2">本文转载自《&lt;标题&gt;》（&lt;原文 URL&gt;），作者 &lt;作者&gt;，
+采用「自由转载-非商用-非衍生-保持署名（CC BY-NC-SA）」许可，
+仅作非商业用途，未作演绎修改。</pre>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head">
+        <b>Apache-2.0 / MIT（代码与文档）</b>
+        <button class="btn ghost sm copy" data-target="tpl3">复制</button>
+      </div>
+      <pre class="code" id="tpl3">本文代码 / 内容基于 &lt;项目名&gt;（&lt;仓库 URL&gt;）修改，
+Copyright &lt;年份&gt; &lt;版权方&gt;，以 Apache License 2.0 发布；修改处已标注。
+完整许可文本见 https://www.apache.org/licenses/LICENSE-2.0</pre>
+    </div>
+
+    <div class="tpl">
+      <div class="tpl-head">
+        <b>RFC / 标准文档（IETF Trust Legal Provisions）</b>
+        <button class="btn ghost sm copy" data-target="tpl4">复制</button>
+      </div>
+      <pre class="code" id="tpl4">本节译自 IETF RFC &lt;编号&gt;（&lt;标题&gt;），版权归 IETF Trust，
+按 Trust Legal Provisions 复制与翻译，未作修改。
+原文：https://www.rfc-editor.org/rfc/rfc&lt;编号&gt;</pre>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>五、常见问题</h2>
+    <div class="table-wrap">
+      <table class="table-narrow">
+        <tbody>
+          <tr><th style="width:32%">注明出处就能转载吗？</th><td>不能。署名只是许可的<b>义务之一</b>，不是取得授权的替代品。默认版权内容必须先获得授权。</td></tr>
+          <tr><th>翻译算不算转载？</th><td>算，且构成"改编 / 演绎作品"。CC BY-ND、IETF TLP 明确禁止或限制演绎，RFC 可以翻译但不得再修改。</td></tr>
+          <tr><th>截图论文里的图表可以用吗？</th><td>直接截图通常<b>不构成</b>安全使用（除非该版本是 CC 许可）。更稳妥的做法是读懂后自己重画，并注明"依据 arXiv:XXXX 重绘"。</td></tr>
+          <tr><th>开源模型的输出内容归谁？</th><td>主流许可（Apache-2.0 / MIT / Llama Community）均不主张对输出的权利，但 you are solely accountable —— 责任在使用者。同时输出可能仍受原始训练数据的版权影响，商用内容需谨慎。</td></tr>
+          <tr><th>企业内部分享算商用吗？</th><td>公司内部的培训、内刊、客户交付通常被认定为<b>商业性使用</b>，NC 类许可（CC BY-NC-SA）在此场景下不可用。</td></tr>
+          <tr><th>许可后来变了怎么办？</th><td>以<b>你获取并使用时</b>的版本为准，但新版本的限制一旦生效，后续分发需遵守新条款；arXiv 上的许可是<b>不可撤销</b>的，旧版本沿用旧许可。</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="note">
+    <b>免责声明：</b>本页为整理性参考，不构成法律意见，也不替代具体项目的法务审查。
+    涉及商业发布、跨境分发、出版或大额商业使用时，请咨询专业法务或知识产权顾问。
+  </div>
+
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h5>关于本站</h5>
+        <p>收录 AI 大模型与服务器 / 计算机技术领域公开可得、可自由转载或注明出处即可引用的资源，逐项标注许可与版权状态。</p>
+        <p>当前共 <b id="footTotal">—</b> 项资源，分 8 大类。</p>
+      </div>
+      <div>
+        <h5>浏览</h5>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="resources.html">资源库（全量）</a></li>
+          <li><a href="curated.html">精选 21 项</a></li>
+          <li><a href="articles.html">技术文章</a></li>
+          <li><a href="content.html">全文阅读（全部正文）</a></li>
+          <li><a href="compliance.html">转载合规指南</a></li>
+          <li><a href="about.html">关于与勘误</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>类目速达</h5>
+        <ul>
+          <li><a href="category.html?c=A">A 类目</a></li>
+          <li><a href="category.html?c=B">B 类目</a></li>
+          <li><a href="category.html?c=C">C 类目</a></li>
+          <li><a href="category.html?c=D">D 类目</a></li>
+          <li><a href="category.html?c=E">E 类目</a></li>
+          <li><a href="category.html?c=F">F 类目</a></li>
+          <li><a href="category.html?c=G">G 类目</a></li>
+          <li><a href="category.html?c=H">H 类目</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>合规要点</h5>
+        <ul>
+          <li>权重开放 ≠ 开源</li>
+          <li>arXiv 默认不可全文转载</li>
+          <li>商标 Logo 需单独授权</li>
+          <li>中文社区默认禁转载</li>
+          <li>数据许可独立于模型</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> 可转载资源清单 · 本页为索引性质，不托管任何受版权保护的原文</span>
+      <span>许可信息以各来源官方声明为准</span>
+    </div>
+  </div>
+</footer>
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <header><b id="mdTitle">完整清单（Markdown）</b><button class="btn ghost sm" id="closeBtn">关闭</button></header>
+    <div class="modal-body"><textarea id="mdOut" readonly></textarea></div>
+    <div class="modal-foot">
+      <button class="btn" id="copyBtn">复制到剪贴板</button>
+      <button class="btn ghost" id="dlBtn">下载 .md 文件</button>
+      <span id="copyTip"></span>
+    </div>
+  </div>
+</div>
+<button id="toTop" aria-label="回到顶部">↑</button>
+<script src="assets/data.js"></script>
+<script src="assets/curated.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

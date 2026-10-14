@@ -1,0 +1,363 @@
+INSERT INTO articles (slug, title, category, summary, body, source, source_url, license, original, read_time, updated) VALUES
+('vllm-quickstart','vLLM 官方快速上手：离线推理、OpenAI 兼容服务与分布式部署（Apache-2.0 全文）','C','vLLM 官方文档 Quickstart 全文：离线批量推理、OpenAI 兼容 API 服务器启动、分布式张量并行 / 流水线并行部署，以及常用参数与性能优化要点。','<div class="article-note"><b>来源：</b>vLLM 官方文档（docs.vllm.ai）　·　<b>许可：</b>Apache-2.0（vLLM 官方文档）<br><b>原文链接：</b><a href="https://docs.vllm.ai/en/latest/getting_started/quickstart.html" target="_blank" rel="noopener">https://docs.vllm.ai/en/latest/getting_started/quickstart.html</a></div><h2>Quickstart¶</h2>
+<p>This guide will help you quickly get started with vLLM to perform:</p>
+<ul>
+<li>Offline batched inference</li>
+<li>Online serving</li>
+</ul>
+<h2>Prerequisites¶</h2>
+<ul>
+<li>OS: Linux</li>
+<li>Python: 3.11 -- 3.14</li>
+</ul>
+
+<p>Note</p>
+<p>vLLM also works on macOS with vLLM-Metal for Apple Silicon GPU acceleration. See the GPU installation guide and select the "Apple Silicon" tab.</p>
+
+<h2>Installation¶</h2>
+NVIDIA CUDAAMD ROCmIntel GPUGoogle TPUAscend NPUApple Silicon (Mac)
+
+<p>If you are using NVIDIA GPUs, you can install vLLM using pip directly.</p>
+<p>It''s recommended to use uv, a very fast Python environment manager, to create and manage Python environments. Please follow the documentation to install <code>uv</code>. After installing <code>uv</code>, you can create a new Python environment and install vLLM using the following commands:</p>
+<pre><code>uv venv --python 3.12 --seed
+source .venv/bin/activate
+uv pip install vllm --torch-backend=auto
+vllm download-kernels
+</code></pre>
+<p><code>vllm download-kernels</code> installs precompiled kernels that vLLM otherwise downloads and compiles at startup, which can add several minutes on Hopper and newer GPUs. See the installation guide for details.</p>
+<p><code>uv</code> can automatically select the appropriate PyTorch index at runtime by inspecting the installed CUDA driver version via <code>--torch-backend=auto</code> (or <code>UV_TORCH_BACKEND=auto</code>). To select a specific backend (e.g., <code>cu126</code>)'
+|| ', set <code>--torch-backend=cu126</code> (or <code>UV_TORCH_BACKEND=cu126</code>).</p>
+<p>Another delightful way is to use <code>uv run</code> with <code>--with [dependency]</code> option, which allows you to run commands such as <code>vllm serve</code> without creating any permanent environment:</p>
+<pre><code>uv run --with vllm vllm --help
+</code></pre>
+<p>You can also use conda to create and manage Python environments. You can install <code>uv</code> to the conda environment through <code>pip</code> if you want to manage it within the environment.</p>
+<pre><code>conda create -n myenv python=3.12 -y
+conda activate myenv
+pip install --upgrade uv
+uv pip install vllm --torch-backend=auto
+</code></pre>
+
+<p>If you are using AMD GPUs, you can install vLLM using <code>uv</code>.</p>
+<p>It''s recommended to use uv, as it gives the extra index higher priority than the default index. <code>uv</code> is also a very fast Python environment manager, to create and manage Python environments. Please follow the documentation to install <code>uv</code>. After installing <code>uv</code>, you can create a new Python environment and install vLLM using the following commands:</p>
+<pre><code>uv venv --python 3.12 --seed
+source .venv/bin/activate
+uv pip install vllm --extra-index-url https://wheels.vllm.ai/rocm/
+</code></pre>
+
+<p>Note</p>
+<p>It currently supports Python 3.12, ROCm 7.0 and <code>glibc &gt;= 2.35</code>.</p>
+
+<p>Note</p>
+<p>Note that, previously, docker images were published using AMD''s docker release pipeline and were located <code>rocm/vllm-dev</code>. This is being deprecated by using vLLM''s docker release pipeline.</p>
+
+<p>Tip</p>
+<p>A nightly Docker image is also available as vllm/vllm-openai-rocm:nightly for testing the latest development builds.</p>
+
+<p>vLLM supports'
+|| ' Intel GPUs through the XPU backend. Pre-built XPU wheels will be available soon.</p>
+<p>Official Docker images for Intel GPUs are added to the vLLM release starting from v0.26.0. Nightly Docker image is also available as vllm/vllm-openai-xpu:nightly.</p>
+
+<p>Tip</p>
+<p>For more detailed instructions, including building from source and Docker image setup, please refer to the GPU installation guide and select the "Intel XPU" tab.</p>
+
+<p>To run vLLM on Google TPUs, you need to install the <code>vllm-tpu</code> package.</p>
+<pre><code>uv pip install vllm-tpu
+</code></pre>
+
+<p>Note</p>
+<p>For more detailed instructions, including Docker, installing from source, and troubleshooting, please refer to the vLLM on TPU documentation.</p>
+
+<p>If you are using Ascend NPUs, you can run vLLM through vLLM Ascend, a community-maintained hardware plugin.</p>
+<p>Follow the installation instructions in the vLLM Ascend quick start.</p>
+
+<p>Note</p>
+<p>Ascend setup depends on your NPU hardware and CANN version. For supported versions, Docker images, and troubleshooting, please refer to the vLLM Ascend documentation.</p>
+
+<p>If you are using Apple Silicon Macs, you can use vLLM-Metal for GPU-accelerated inference via Apple''s Metal framework.</p>
+<p>Follow the installation instructions in the vLLM-Metal documentation.</p>
+
+<p>Note</p>
+<p>vLLM-Metal uses MLX instead of PyTorch as the compute backend and requires MLX-optimized models from the mlx-community on Hugging Face.</p>
+
+<p>Tip</p>
+<p>For more detailed instructions, please refer to the GPU installation guide and select the "Apple Silicon" tab.</p>
+
+<p>Note</p>
+<p>For more detail and non-CUDA platforms, please refer to the installation guide for specific instructions on how to install vLLM.</p>
+
+<h2>Offline Batched Inference¶</h2>
+<p>Wi'
+|| 'th vLLM installed, you can start generating texts for list of input prompts (i.e. offline batch inferencing). See the example script: examples/basic/offline_inference/basic.py</p>
+<p>The first line of this example imports the classes LLM and SamplingParams:</p>
+<ul>
+<li>LLM is the main class for running offline inference with vLLM engine.</li>
+<li>SamplingParams specifies the parameters for the sampling process.</li>
+</ul>
+<pre><code>from vllm import LLM, SamplingParams
+</code></pre>
+<p>The next section defines a list of input prompts and sampling parameters for text generation. The sampling temperature is set to <code>0.8</code> and the nucleus sampling probability is set to <code>0.95</code>. You can find more information about the sampling parameters here.</p>
+
+<p>Important</p>
+<p>By default, vLLM will use sampling parameters recommended by model creator by applying the <code>generation_config.json</code> from the Hugging Face model repository if it exists. In most cases, this will provide you with the best results by default if SamplingParams is not specified.</p>
+<p>However, if vLLM''s default sampling parameters are preferred, please set <code>generation_config="vllm"</code> when creating the LLM instance.</p>
+
+<pre><code>prompts = [
+ "Hello, my name is",
+ "The president of the United States is",
+ "The capital of France is",
+ "The future of AI is",
+]
+sampling_params = SamplingParams(temperature=0.8, top_p=0.95)
+</code></pre>
+<p>The LLM class initializes vLLM''s engine and the OPT-125M model for offline inference. The list of supported models can be found here.</p>
+<pre><code>llm = LLM(model="facebook/opt-125m")
+</code></pre>
+
+<p>Note</p>
+<p>By default, vLLM downloads models from Hugging Face. If you would like to use models from ModelScope, set the environment var'
+|| 'iable <code>VLLM_USE_MODELSCOPE</code> before initializing the engine.</p>
+<pre><code>export VLLM_USE_MODELSCOPE=True
+</code></pre>
+
+<p>Now, the fun part! The outputs are generated using <code>llm.generate</code>. It adds the input prompts to the vLLM engine''s waiting queue and executes the vLLM engine to generate the outputs with high throughput. The outputs are returned as a list of <code>RequestOutput</code> objects, which include all of the output tokens.</p>
+<pre><code>outputs = llm.generate(prompts, sampling_params)
+
+for output in outputs:
+ prompt = output.prompt
+ generated_text = output.outputs[0].text
+ print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
+</code></pre>
+
+<p>Note</p>
+<p>The <code>llm.generate</code> method does not automatically apply the model''s chat template to the input prompt. Therefore, if you are using an Instruct model or Chat model, you should manually apply the corresponding chat template to ensure the expected behavior. Alternatively, you can use the <code>llm.chat</code> method and pass a list of messages which have the same format as those passed to OpenAI''s <code>client.chat.completions</code>:</p>
+
+Code
+<pre><code># Using tokenizer to apply chat template
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("/path/to/chat_model")
+messages_list = [
+ [{"role": "user", "content": prompt}]
+ for prompt in prompts
+]
+texts = tokenizer.apply_chat_template(
+ messages_list,
+ tokenize=False,
+ add_generation_prompt=True,
+)
+
+# Generate outputs
+outputs = llm.generate(texts, sampling_params)
+
+# Print the outputs.
+for output in outputs:
+ prompt = output.prompt
+ generated_text = output.outputs[0].text
+ print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
+
+# Using chat interface.
+outputs = llm.chat'
+|| '(messages_list, sampling_params)
+for idx, output in enumerate(outputs):
+ prompt = prompts[idx]
+ generated_text = output.outputs[0].text
+ print(f"Prompt: {prompt!r}, Generated text: {generated_text!r}")
+</code></pre>
+
+<h2>Online Serving¶</h2>
+<p>vLLM can be deployed as a server that implements the OpenAI API protocol. This allows vLLM to be used as a drop-in replacement for applications using OpenAI API.
+By default, it starts the server at <code>http://localhost:8000</code>. You can specify the address with <code>--host</code> and <code>--port</code> arguments. The server currently hosts one model at a time and implements endpoints such as list models, create chat completion, and create completion endpoints.</p>
+<p>Run the following command to start the vLLM server with the Qwen2.5-1.5B-Instruct model:</p>
+<pre><code>vllm serve Qwen/Qwen2.5-1.5B-Instruct
+</code></pre>
+
+<p>Note</p>
+<p>By default, the server uses a predefined chat template stored in the tokenizer.
+You can learn about overriding it here.</p>
+
+<p>Important</p>
+<p>By default, the server applies <code>generation_config.json</code> from the huggingface model repository if it exists. This means the default values of certain sampling parameters can be overridden by those recommended by the model creator.</p>
+<p>To disable this behavior, please pass <code>--generation-config vllm</code> when launching the server.</p>
+
+<p>This server can be queried in the same format as OpenAI API. For example, to list the models:</p>
+<pre><code>curl http://localhost:8000/v1/models
+</code></pre>
+<p>You can pass in the argument <code>--api-key</code> or environment variable <code>VLLM_API_KEY</code> to enable the server to check for API key in the header.
+You can pass multiple keys after <code>--api-key</code>, and the server will a'
+|| 'ccept any of the keys passed, this can be useful for key rotation.</p>
+<h3>OpenAI Completions API with vLLM¶</h3>
+<p>Once your server is started, you can query the model with input prompts:</p>
+<pre><code>curl http://localhost:8000/v1/completions \
+ -H "Content-Type: application/json" \
+ -d ''{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "prompt": "San Francisco is a",
+ "max_tokens": 7,
+ "temperature": 0
+ }''
+</code></pre>
+<p>Since this server is compatible with OpenAI API, you can use it as a drop-in replacement for any applications using OpenAI API. For example, another way to query the server is via the <code>openai</code> Python package:</p>
+
+Code
+<pre><code>from openai import OpenAI
+
+# Modify OpenAI''s API key and API base to use vLLM''s API server.
+openai_api_key = "EMPTY"
+openai_api_base = "http://localhost:8000/v1"
+client = OpenAI(
+ api_key=openai_api_key,
+ base_url=openai_api_base,
+)
+completion = client.completions.create(
+ model="Qwen/Qwen2.5-1.5B-Instruct",
+ prompt="San Francisco is a",
+)
+print("Completion result:", completion)
+</code></pre>
+
+<p>A more detailed client example can be found here: examples/basic/offline_inference/basic.py</p>
+<h3>OpenAI Chat Completions API with vLLM¶</h3>
+<p>vLLM is designed to also support the OpenAI Chat Completions API. The chat interface is a more dynamic, interactive way to communicate with the model, allowing back-and-forth exchanges that can be stored in the chat history. This is useful for tasks that require context or more detailed explanations.</p>
+<p>You can use the create chat completion endpoint to interact with the model:</p>
+<pre><code>curl http://localhost:8000/v1/chat/completions \
+ -H "Content-Type: application/json" \
+ -d ''{
+ "model": "Qwen/Qwen2.5-1.5B-Instruct",
+ "messages": [
+ {"role": "system", "content": "'
+|| 'You are a helpful assistant."},
+ {"role": "user", "content": "Who won the world series in 2020?"}
+ ]
+ }''
+</code></pre>
+<p>Alternatively, you can use the <code>openai</code> Python package:</p>
+
+Code
+<pre><code>from openai import OpenAI
+# Set OpenAI''s API key and API base to use vLLM''s API server.
+openai_api_key = "EMPTY"
+openai_api_base = "http://localhost:8000/v1"
+
+client = OpenAI(
+ api_key=openai_api_key,
+ base_url=openai_api_base,
+)
+
+chat_response = client.chat.completions.create(
+ model="Qwen/Qwen2.5-1.5B-Instruct",
+ messages=[
+ {"role": "system", "content": "You are a helpful assistant."},
+ {"role": "user", "content": "Tell me a joke."},
+ ],
+)
+print("Chat response:", chat_response)
+</code></pre>
+
+<h2>On Attention Backends¶</h2>
+<p>Currently, vLLM supports multiple backends for efficient Attention computation across different platforms and accelerator architectures. It automatically selects the most performant backend compatible with your system and model specifications.</p>
+<p>If desired, you can also manually set the backend of your choice using the <code>--attention-backend</code> CLI argument:</p>
+<pre><code># For online serving
+vllm serve Qwen/Qwen2.5-1.5B-Instruct --attention-backend FLASH_ATTN
+
+# For offline inference
+python script.py --attention-backend FLASHINFER
+</code></pre>
+<p>Some of the available backend options include:</p>
+<ul>
+<li>On NVIDIA CUDA: <code>FLASH_ATTN</code> or <code>FLASHINFER</code>.</li>
+<li>On AMD ROCm: <code>TRITON_ATTN</code>, <code>ROCM_ATTN</code>, <code>ROCM_AITER_FA</code>, <code>ROCM_AITER_UNIFIED_ATTN</code>, <code>TRITON_MLA</code>, <code>ROCM_AITER_MLA</code> or <code>ROCM_AITER_TRITON_MLA</code>.</li>
+<li>On Intel XPU: <code>FLASH_ATTN</code>, <code>TRITON_ATTN</code>, <code>TRITON_MLA</code>, <code>XPU_MLA_SPARSE</code'
+|| '>, <code>TORCH_SDPA</code> or <code>TURBOQUANT</code>.</li>
+</ul>
+
+<p>Tip</p>
+<p>FlashInfer is installed with vLLM, but its precompiled kernels are not. Run <code>vllm download-kernels</code> after installing or upgrading vLLM so they are not downloaded and compiled at startup.</p>
+
+ 
+ 
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ October 10, 2026<div class="reprint">本文正文摘自 <b>vLLM 官方文档（docs.vllm.ai）</b>（Apache-2.0（vLLM 官方文档））。原文：<a href="https://docs.vllm.ai/en/latest/getting_started/quickstart.html" target="_blank" rel="noopener">https://docs.vllm.ai/en/latest/getting_started/quickstart.html</a>。本站仅作转载与整理，版权归原作者所有；如需商用请核对原文当前许可声明。</div>','vLLM 官方文档（docs.vllm.ai）','https://docs.vllm.ai/en/latest/getting_started/quickstart.html','Apache-2.0（vLLM 官方文档）',false,'31 分钟','转载自官方原文'),
+('pytorch-basics','PyTorch 官方教程：Learn the Basics（张量 / DataLoader / 神经网络 / 自动求导 / 优化）','B','PyTorch 官方入门教程全文：张量基础操作与 GPU 加速、自定义 Dataset 与 DataLoader、数据变换、用 nn.Module 构建神经网络、autograd 自动求导、优化循环与模型保存/加载。','<div class="article-note"><b>来源：</b>PyTorch 官方教程（pytorch.org）　·　<b>许可：</b>BSD 3-Clause（PyTorch 官方教程）<br><b>原文链接：</b><a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank" rel="noopener">https://pytorch.org/tutorials/beginner/basics/intro.html</a></div>Rate this Page
+ 
+★
+★
+★
+★
+★
+
+beginner/basics/intro
+
+Run in Google Colab
+Colab
+
+Download Notebook
+Notebook
+
+View on GitHub
+GitHub
+
+<p>Note</p>
+<p>Go to the end
+to download the full example code.</p>
+
+<p><b>Learn the Basics</b> ||
+Quickstart ||
+Tensors ||
+Datasets & DataLoaders ||
+Transforms ||
+Build Model ||
+Autograd ||
+Optimization ||
+Save & Load Model</p>
+
+<h2>Learn the Basics#</h2><p>Created On: Feb 09, 2021 | Last Updated: Jan 20, 2026 | Last Verified: Nov 05, 2024</p>
+<p>Authors:
+Suraj Subramanian,
+Seth Juarez,
+Cassie Breviu,
+Dmitry Soshnikov,
+Ari Bornstein</p>
+<p>Most machine learning workflows involve working with data, creating models, optimizing model
+parameters, and saving the trained models. This tutorial introduces you to a complete ML workflow
+implemented in PyTorch, with links to learn more about each of these concepts.</p>
+<p>We’ll use the FashionMNIST dataset to train a neural network that predicts if an input image belongs
+to one of the following classes: T-shirt/top, Trouser, Pullover, Dress, Coat, Sandal, Shirt, Sneaker,
+Bag, or Ankle boot.</p>
+<p>This tutorial assumes a basic familiarity with Python and Deep Learning concepts.</p>
+
+<h2>Running the Tutorial Code#</h2>
+<p>You can run this tutorial in a couple of ways:</p>
+<ul>
+<li><p><b>In the cloud</b>: This is the easiest way to get started! Each section has a “Run in Google Colab” link at the top, which opens an integrated notebook in Google Colab with the code in a fully-hosted environment.</p></li>
+<li><p><b>Locally</b>: Thi'
+|| 's option requires you to set up PyTorch and TorchVision first on your local machine (installation instructions). Download the notebook or copy the code into your favorite IDE.</p></li>
+</ul>
+
+<h2>How to Use this Guide#</h2>
+<p>If you’re familiar with other deep learning frameworks, check out the 0. Quickstart first
+to quickly familiarize yourself with PyTorch’s API.</p>
+<p>If you’re new to deep learning frameworks, head right into the first section of our step-by-step guide: 1. Tensors.</p>
+
+0. Quickstart
+1. Tensors
+2. Datasets and DataLoaders
+3. Transforms
+4. Build Model
+5. Automatic Differentiation
+6. Optimization Loop
+7. Save, Load and Use Model
+
+<p><code>Download Jupyter notebook: intro.ipynb</code></p>
+
+<p><code>Download Python source code: intro.py</code></p>
+
+<p><code>Download zipped: intro.zip</code></p><div class="reprint">本文正文摘自 <b>PyTorch 官方教程（pytorch.org）</b>（BSD 3-Clause（PyTorch 官方教程））。原文：<a href="https://pytorch.org/tutorials/beginner/basics/intro.html" target="_blank" rel="noopener">https://pytorch.org/tutorials/beginner/basics/intro.html</a>。本站仅作转载与整理，版权归原作者所有；如需商用请核对原文当前许可声明。</div>','PyTorch 官方教程（pytorch.org）','https://pytorch.org/tutorials/beginner/basics/intro.html','BSD 3-Clause（PyTorch 官方教程）',false,'5 分钟','转载自官方原文');

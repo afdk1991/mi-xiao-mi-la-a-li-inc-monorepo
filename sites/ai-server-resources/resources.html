@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>资源库 · 可转载资源清单</title>
+<meta name="description" content="AI 大模型与服务器/计算机技术领域公开可转载资源索引。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><span class="mark">R</span><span>可转载资源清单<small>AI 大模型 · 服务器与计算机技术</small></span></a>
+    <nav class="nav" id="siteNav">
+      <a href="index.html">首页</a>
+      <a href="resources.html">资源库</a>
+      <a href="curated.html">精选 21 项</a>
+      <a href="articles.html">技术文章</a>
+      <a href="content.html">全文阅读</a>
+      <a href="category.html?c=A">分类</a>
+      <a href="compliance.html">合规指南</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="nav-search">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题">🌙</button>
+      <input id="globalSearch" type="search" placeholder="搜索资源…（回车）">
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+<div class="container">
+
+  <p class="breadcrumb"><a href="index.html">首页</a><span>/</span>资源库</p>
+
+  <div class="page-head">
+    <h1 class="page-title">资源库</h1>
+    <p class="page-lead">
+      全量收录，可按关键词、许可等级与类目交叉筛选。点击卡片标题进入详情页查看完整许可说明与获取渠道。
+      支持 URL 参数直达：<code class="mono-sm">resources.html?q=vLLM</code>、
+      <code class="mono-sm">resources.html?c=C</code>、
+      <code class="mono-sm">resources.html?lic=g</code>。
+    </p>
+  </div>
+
+  <div class="toolbar" id="libToolbar">
+    <div class="tb-row">
+      <input type="search" id="libQ" placeholder="搜索名称、关键词、许可、链接…">
+      <span class="tb-label">许可</span>
+      <span class="chip lic-g" data-lic="g">🟢 宽松可商用</span>
+      <span class="chip lic-a" data-lic="a">🟡 需署名 / 有限制</span>
+      <span class="chip lic-r" data-lic="r">🔴 需授权</span>
+      <span class="tb-label">排序</span>
+      <select id="libSort" >
+        <option value="default">按类目顺序</option>
+        <option value="lic">按许可宽松度</option>
+        <option value="name">按名称</option>
+      </select>
+      <button class="btn ghost sm js-export ml-auto" >导出 Markdown</button>
+      <span class="tb-stat" id="libStat"></span>
+    </div>
+    <div class="tb-row" id="libCats"></div>
+  </div>
+
+  <div id="libOut"></div>
+
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h5>关于本站</h5>
+        <p>收录 AI 大模型与服务器 / 计算机技术领域公开可得、可自由转载或注明出处即可引用的资源，逐项标注许可与版权状态。</p>
+        <p>当前共 <b id="footTotal">—</b> 项资源，分 8 大类。</p>
+      </div>
+      <div>
+        <h5>浏览</h5>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="resources.html">资源库（全量）</a></li>
+          <li><a href="curated.html">精选 21 项</a></li>
+          <li><a href="articles.html">技术文章</a></li>
+          <li><a href="content.html">全文阅读（全部正文）</a></li>
+          <li><a href="compliance.html">转载合规指南</a></li>
+          <li><a href="about.html">关于与勘误</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>类目速达</h5>
+        <ul>
+          <li><a href="category.html?c=A">A 类目</a></li>
+          <li><a href="category.html?c=B">B 类目</a></li>
+          <li><a href="category.html?c=C">C 类目</a></li>
+          <li><a href="category.html?c=D">D 类目</a></li>
+          <li><a href="category.html?c=E">E 类目</a></li>
+          <li><a href="category.html?c=F">F 类目</a></li>
+          <li><a href="category.html?c=G">G 类目</a></li>
+          <li><a href="category.html?c=H">H 类目</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>合规要点</h5>
+        <ul>
+          <li>权重开放 ≠ 开源</li>
+          <li>arXiv 默认不可全文转载</li>
+          <li>商标 Logo 需单独授权</li>
+          <li>中文社区默认禁转载</li>
+          <li>数据许可独立于模型</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> 可转载资源清单 · 本页为索引性质，不托管任何受版权保护的原文</span>
+      <span>许可信息以各来源官方声明为准</span>
+    </div>
+  </div>
+</footer>
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <header><b id="mdTitle">完整清单（Markdown）</b><button class="btn ghost sm" id="closeBtn">关闭</button></header>
+    <div class="modal-body"><textarea id="mdOut" readonly></textarea></div>
+    <div class="modal-foot">
+      <button class="btn" id="copyBtn">复制到剪贴板</button>
+      <button class="btn ghost" id="dlBtn">下载 .md 文件</button>
+      <span id="copyTip"></span>
+    </div>
+  </div>
+</div>
+<button id="toTop" aria-label="回到顶部">↑</button>
+<script src="assets/data.js"></script>
+<script src="assets/curated.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
