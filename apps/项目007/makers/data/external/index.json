@@ -1,0 +1,23 @@
+{
+  "provider": "hongguoduanju",
+  "provider_label": "红果短剧",
+  "attribution": "作品与封面版权归红果短剧及权利人所有；本站仅收录公开元数据，默认在本站页面内播放，不存储、不转码视频；免费可播集数以页面标注为准。",
+  "catalogs": [
+    {
+      "category": "ai-drama",
+      "category_label": "AI剧",
+      "url": "/external/ai-drama.json",
+      "total": 989
+    },
+    {
+      "category": "comic-drama",
+      "category_label": "漫剧",
+      "url": "/external/comic-drama.json",
+      "total": 1021
+    }
+  ],
+  "total": 2010,
+  "verified_at": "2026-10-07T16:48:04.298Z",
+  "playable_verified_count": 1996,
+  "verified_scope": "逐集明细 / 免费可播集数 / 更新状态 / 标题 / 封面"
+}

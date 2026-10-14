@@ -1,0 +1,10 @@
+﻿=== RESTART PREVIEW ===
+鉁?Starting Docker Desktop
+21:21:28  daemon ready 29.6.2 after 5s
+21:21:53  containers:
+myp-wp|Up 35 seconds
+myp-pma|Up 35 seconds
+myp-db|Up 36 seconds
+myp-srs|Up 35 seconds
+21:21:58  PREVIEW_UP status=200 len=17885 (after 5s)
+21:21:58  === READY - HOLDING 7200s ===

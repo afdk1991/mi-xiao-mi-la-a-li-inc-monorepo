@@ -1,0 +1,177 @@
+/*
+Theme Name: ZibStyle Child
+Theme URI:  https://example.com/zibstyle-child
+Template:   zibstyle
+Description: ZibStyle 的子主题。在不改动父主题与 WordPress 核心的前提下，扩展企业级 SaaS 聚合看板页面模板、数据源状态展示与 REST 驱动的前端刷新能力。所有扩展均通过动作/过滤器钩子与模板层级实现，父主题与 WordPress 核心可独立升级。
+Author:     WorkBuddy
+Author URI: https://example.com
+Version:    1.0.0
+Requires at least: 6.0
+Requires PHP: 7.4
+License:    GPL-2.0-or-later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: zibstyle-child
+*/
+
+/*
+   许可声明：本子主题以 GPL-2.0-or-later 授权。依 GPLv2「or later」条款，接收方有权
+   选择按 GPLv3 条款接收本作品，从而获得 GPLv3 第 11 条的明示专利授权（GPLv2 正文
+   不含明示专利授权）。完整许可证全文见同目录 LICENSE 文件。
+*/
+
+/* =========================================================
+   子主题自有样式：仅承载「聚合看板」相关组件
+   基础样式由父主题 zibstyle 提供，此处不重复定义
+   ========================================================= */
+
+.zsc-dashboard {
+	margin: 24px 0;
+}
+
+.zsc-dashboard__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 12px;
+	margin-bottom: 20px;
+	padding-bottom: 12px;
+	border-bottom: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.zsc-dashboard__title {
+	margin: 0;
+	font-size: 22px;
+	font-weight: 700;
+}
+
+.zsc-dashboard__meta {
+	font-size: 13px;
+	opacity: 0.7;
+}
+
+.zsc-dashboard__actions {
+	margin-left: auto;
+	display: flex;
+	gap: 8px;
+}
+
+.zsc-btn {
+	display: inline-block;
+	padding: 6px 14px;
+	border: 1px solid rgba(127, 127, 127, 0.35);
+	border-radius: 6px;
+	background: transparent;
+	color: inherit;
+	font-size: 13px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+}
+
+.zsc-btn:hover {
+	border-color: var(--primary, #1e88e5);
+	color: var(--primary, #1e88e5);
+}
+
+.zsc-btn[disabled] {
+	opacity: 0.55;
+	cursor: not-allowed;
+}
+
+/* 数据源分层网格 */
+.zsc-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	gap: 16px;
+}
+
+.zsc-card {
+	padding: 16px;
+	border: 1px solid rgba(127, 127, 127, 0.2);
+	border-radius: 10px;
+	background: rgba(127, 127, 127, 0.04);
+}
+
+.zsc-card__top {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 8px;
+	margin-bottom: 10px;
+}
+
+.zsc-card__label {
+	font-weight: 600;
+	font-size: 15px;
+}
+
+.zsc-badge {
+	padding: 2px 8px;
+	border-radius: 999px;
+	font-size: 12px;
+	line-height: 1.6;
+	white-space: nowrap;
+}
+
+.zsc-badge--ok {
+	background: rgba(56, 249, 215, 0.16);
+	color: #0f9d76;
+}
+
+.zsc-badge--error {
+	background: rgba(255, 107, 107, 0.14);
+	color: #d93025;
+}
+
+.zsc-badge--disabled {
+	background: rgba(127, 127, 127, 0.16);
+	opacity: 0.75;
+}
+
+.zsc-badge--layer {
+	background: rgba(30, 136, 229, 0.12);
+	color: var(--primary, #1e88e5);
+}
+
+.zsc-card__desc {
+	font-size: 13px;
+	opacity: 0.75;
+	margin: 0 0 10px;
+}
+
+.zsc-list {
+	margin: 0;
+	padding-left: 18px;
+	font-size: 13px;
+}
+
+.zsc-list li {
+	margin-bottom: 4px;
+}
+
+.zsc-empty {
+	padding: 24px;
+	text-align: center;
+	opacity: 0.7;
+	border: 1px dashed rgba(127, 127, 127, 0.3);
+	border-radius: 10px;
+}
+
+.zsc-error {
+	margin-top: 8px;
+	font-size: 13px;
+	color: #d93025;
+}
+
+/* 深色模式适配（继承父主题的 cookie 约定） */
+.zsc-dark .zsc-card,
+body.zibstyle-dark .zsc-card {
+	background: rgba(255, 255, 255, 0.04);
+	border-color: rgba(255, 255, 255, 0.14);
+}
+
+@media (max-width: 600px) {
+	.zsc-dashboard__actions {
+		margin-left: 0;
+		width: 100%;
+	}
+}

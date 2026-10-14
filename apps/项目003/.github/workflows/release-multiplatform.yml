@@ -1,0 +1,590 @@
+# ============================================================================
+#  多平台构建与发布 —— 项目003「邮箱聚合平台」
+#
+#  触发：
+#    · 推送 MALLV* 形式的标签（如 MALLV0.0.1）→ 构建并在 GitHub Release 挂载全部产物
+#    · 手动 workflow_dispatch（可勾选 dry_run 空跑 release job，不创建公开 Release）
+#
+#  版本号来源：仓库根 version.json（唯一权威源）。
+#  所有产物文件名都带规范版本号（MALLVx.y.z），并附 verify-artifacts 内容级校验。
+#
+#  ⚠️ 各平台构建必须在对应宿主系统上进行，不能交叉：
+#     Windows 安装包 → windows runner    macOS dmg → macos runner
+#     Linux AppImage → ubuntu runner     iOS ipa   → macos runner
+#     HarmonyOS hap  → 需 DevEco Studio，GitHub 托管 runner 不具备（见文末说明）
+#
+#  ⚠️ 本仓库是 PUBLIC：Release 一创建就对全网可见，失败来不及撤回。
+#     因此 ⑤ release job 在挂载附件前会跑 scripts/release-preflight.mjs 做硬门禁
+#     （残留目录束 / 附件重名 / 伪 ZIP / 0 字节 / 数量体积上限 / 覆盖面）。
+#     凡改动发布链路，先 `gh workflow run release-multiplatform.yml -f dry_run=true`
+#     空跑一遍，全绿再打标签。
+# ============================================================================
+
+name: release-multiplatform
+
+on:
+  push:
+    tags:
+      - 'MALLV*'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: 手动触发原因（仅用于审计）
+        required: false
+        type: string
+      dry_run:
+        description: 空跑 Release 汇总（完整执行附件预检与说明生成，但不创建公开 Release）
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+
+env:
+  NODE_VERSION: '22'
+  GO_VERSION: '1.26'
+  # electron / electron-builder 的二进制走镜像，避免 runner 上拉 GitHub Releases 超时
+  ELECTRON_MIRROR: https://npmmirror.com/mirrors/electron/
+  ELECTRON_BUILDER_BINARIES_MIRROR: https://npmmirror.com/mirrors/electron-builder-binaries/
+  # 未配置证书时不签名（各平台仍可产出可安装/可归档的产物）
+  CSC_IDENTITY_AUTO_DISCOVERY: 'false'
+
+jobs:
+  # ─────────────────────────────────────────────────────────────────────────
+  #  ① 版本一致性门禁 —— 任何构建之前先跑，避免"版本号对不上"的产物进入 Release
+  # ─────────────────────────────────────────────────────────────────────────
+  version-guard:
+    runs-on: ubuntu-latest
+    outputs:
+      canonical: ${{ steps.v.outputs.canonical }}
+      semver: ${{ steps.v.outputs.semver }}
+      code: ${{ steps.v.outputs.code }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 读取 version.json 并校验全部落点
+        id: v
+        run: |
+          set -euo pipefail
+          node scripts/version.mjs sync
+          if ! git diff --quiet; then
+            echo "::error::版本落点与 version.json 不一致（sync 后有改动）。请在本地执行 node scripts/version.mjs sync 并提交。"
+            git --no-pager diff --stat
+            exit 1
+          fi
+          node scripts/version.mjs verify
+          echo "canonical=$(node scripts/version.mjs show --json | node -pe 'JSON.parse(require("fs").readFileSync(0,"utf8")).canonical')" >> "$GITHUB_OUTPUT"
+          echo "semver=$(node scripts/version.mjs show --json | node -pe 'JSON.parse(require("fs").readFileSync(0,"utf8")).semver')" >> "$GITHUB_OUTPUT"
+          echo "code=$(node scripts/version.mjs show --json | node -pe 'JSON.parse(require("fs").readFileSync(0,"utf8")).code')" >> "$GITHUB_OUTPUT"
+
+      - name: 标签与版本号必须一致
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          set -euo pipefail
+          TAG="${GITHUB_REF#refs/tags/}"
+          CANON="${{ steps.v.outputs.canonical }}"
+          if [ "$TAG" != "$CANON" ]; then
+            echo "::error::标签 $TAG 与 version.json 的 $CANON 不一致。"
+            exit 1
+          fi
+          echo "标签与版本号一致：$TAG"
+
+      - name: 校验版本相关脚本本身可运行
+        run: |
+          set -euo pipefail
+          # 没有 dist 时脚本会以明确错误退出（此处只验证它能被解析执行）
+          node --check scripts/version.mjs
+          node --check scripts/sync-web-assets.mjs
+          node --check scripts/make-icon.mjs
+          node --check platforms/mobile/scripts/zip-search.mjs
+          node --check platforms/mobile/scripts/plist.mjs
+          node --check platforms/mobile/scripts/verify-artifacts.mjs
+          node --check scripts/release-preflight.mjs
+
+          # 移动端产物校验的回归自测。
+          # 守的是两个**静默假阴性**陷阱：① APK/AAB/IPA 都是 ZIP，文本条目默认
+          # deflate 压缩，对文件原文 includes('MALLVx.y.z') 必为 false；
+          # ② Xcode 把 Info.plist 重序列化成二进制 plist，文本正则匹配不到
+          # <key>CFBundleVersion</key>。两者的症状都是"包明明打对了却报未检出版本号"，
+          # 且都不会抛异常，靠读代码很难发现 —— 必须用夹具钉死。
+          # 自测自带夹具（纯 Node 现造 ZIP + 内嵌 base64 的 bplist），
+          # 不依赖任何构建产物，也不会碰到 android/ ios/ 脚手架目录。
+          node platforms/mobile/scripts/selftest.mjs
+
+          # Release 附件预检的自测。守的是 release job 的四类"发出来才发现"的情形：
+          # 残留目录束（xcarchive 被拆成几百个附件）、附件重名（静默覆盖）、
+          # 伪 ZIP（打包只写出半个文件）、0 字节/超限。夹具在临时目录现造，
+          # 不依赖任何构建产物。
+          node scripts/release-preflight.mjs --selftest
+
+  # ─────────────────────────────────────────────────────────────────────────
+  #  ② 桌面端 PC 安装包（Windows / macOS / Linux）
+  # ─────────────────────────────────────────────────────────────────────────
+  desktop:
+    needs: version-guard
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            flag: --win
+            name: windows
+          - os: macos-latest
+            flag: --mac
+            name: macos
+          - os: ubuntu-latest
+            flag: --linux
+            name: linux
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/setup-go@v7
+        with:
+          go-version: ${{ env.GO_VERSION }}
+
+      # Linux 出 rpm 需要 rpmbuild
+      - name: 安装 Linux 打包依赖
+        if: matrix.os == 'ubuntu-latest'
+        run: sudo apt-get update && sudo apt-get install -y rpm
+
+      - name: 构建前端 SPA
+        working-directory: email-aggregator-web
+        run: |
+          npm ci || npm install
+          npm run build
+
+      - name: 安装桌面端依赖
+        working-directory: platforms/desktop
+        run: npm ci || npm install
+
+      - name: 打包 ${{ matrix.name }} 安装包
+        working-directory: platforms/desktop
+        run: node scripts/build.mjs ${{ matrix.flag }}
+
+      - name: 校验产物确实携带版本号
+        working-directory: platforms/desktop
+        run: node scripts/verify-artifacts.mjs
+
+      - name: 上传产物
+        uses: actions/upload-artifact@v7
+        with:
+          name: desktop-${{ matrix.name }}-${{ needs.version-guard.outputs.canonical }}
+          path: |
+            platforms/desktop/release/*.exe
+            platforms/desktop/release/*.blockmap
+            platforms/desktop/release/*.dmg
+            platforms/desktop/release/*.zip
+            platforms/desktop/release/*.AppImage
+            platforms/desktop/release/*.deb
+            platforms/desktop/release/*.rpm
+            platforms/desktop/release/*.yml
+          if-no-files-found: error
+
+      # Linux 单二进制（Go 主干）也一并发布，便于自部署
+      - name: 交叉编译 Go 单二进制
+        if: matrix.os == 'ubuntu-latest'
+        working-directory: email-aggregator-go
+        run: |
+          set -euo pipefail
+          mkdir -p release
+          for t in "linux amd64" "linux arm64" "darwin amd64" "darwin arm64" "windows amd64"; do
+            set -- $t
+            ext=""; [ "$1" = "windows" ] && ext=".exe"
+            CGO_ENABLED=0 GOOS=$1 GOARCH=$2 go build -tags webui -ldflags='-s -w' \
+              -o "release/email-aggregator-$1-$2$ext" ./cmd/server
+          done
+          ls -lh release
+
+      - name: 上传 Go 单二进制
+        if: matrix.os == 'ubuntu-latest'
+        uses: actions/upload-artifact@v7
+        with:
+          name: go-server-${{ needs.version-guard.outputs.canonical }}
+          path: email-aggregator-go/release/*
+          if-no-files-found: error
+
+  # ─────────────────────────────────────────────────────────────────────────
+  #  ③ Android（APK / AAB）
+  # ─────────────────────────────────────────────────────────────────────────
+  android:
+    needs: version-guard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # 必须是 JDK 21，不能是 17。
+      # Capacitor 8 的 android 库把编译级别定为 Java 21：
+      #   node_modules/@capacitor/android/capacitor/build.gradle:66-67
+      #     sourceCompatibility JavaVersion.VERSION_21
+      #     targetCompatibility JavaVersion.VERSION_21
+      # 用 JDK 17 时 Gradle 只抛一句没有版本上下文的
+      #   Execution failed for task ':capacitor-android:compileDebugJavaWithJavac'
+      #   > Java compilation initialization error
+      #       error: invalid source release: 21
+      # （实测 run 35120977342，BUILD FAILED in 45s），极易误判成 SDK 或 AGP 问题。
+      # AGP 8.13.0 本身要求 JDK 17+，21 满足；platforms/mobile/scripts/build.mjs
+      # 也加了 JDK 主版本预检，低于 21 直接给出可读错误。
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      # 不再使用 android-actions/setup-android@v3：它会把 runner 自带的
+      # cmdline-tools 换成自己下载的 16.0，随后在 `sdkmanager --licenses` 里失败
+      # （实测 run 35118604475：该步骤退出码 1，且整段日志无任何 ##[error] 注解，
+      #  排查成本极高）。runner 镜像本身已预装完整 Android SDK 且已接受许可，
+      # 这里只用它 + 补齐 Capacitor 8 要求的 compileSdk = 36。
+      - name: 准备 Android SDK（用 runner 预装，仅补缺）
+        run: |
+          set -euo pipefail
+          SDK="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          if [ ! -d "$SDK" ]; then
+            echo "::error::未找到 Android SDK：$SDK"
+            exit 1
+          fi
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          echo "SDK = $SDK"
+
+          SDKMGR="$(find "$SDK/cmdline-tools" -type f -name sdkmanager 2>/dev/null | sort | tail -n1)"
+          if [ -z "$SDKMGR" ]; then
+            echo "::error::$SDK/cmdline-tools 下未找到 sdkmanager"
+            exit 1
+          fi
+          echo "sdkmanager = $SDKMGR"
+
+          # Capacitor 8 的 android 模板（assets/android-template/variables.gradle）
+          # 要求 compileSdkVersion = 36；工具链为 AGP 8.13.0 / Gradle 8.14.3。
+          MISSING=""
+          [ -d "$SDK/platforms/android-36" ] || MISSING="$MISSING platforms;android-36"
+          [ -d "$SDK/build-tools/36.0.0" ] || MISSING="$MISSING build-tools;36.0.0"
+          [ -d "$SDK/platform-tools" ] || MISSING="$MISSING platform-tools"
+
+          if [ -z "$MISSING" ]; then
+            echo "所需 SDK 组件已齐备，跳过安装"
+          else
+            echo "待安装：$MISSING"
+            # 许可已由 runner 镜像接受，这里再跑一次幂等（失败不致命）
+            yes | "$SDKMGR" --licenses > /dev/null 2>&1 || true
+            ok=0
+            for i in 1 2 3; do
+              # shellcheck disable=SC2086
+              if "$SDKMGR" --install $MISSING; then ok=1; break; fi
+              echo "第 ${i} 次 sdkmanager 安装失败，15 秒后重试"
+              sleep 15
+            done
+            if [ "$ok" != "1" ]; then
+              echo "::error::Android SDK 组件安装失败：$MISSING"
+              exit 1
+            fi
+          fi
+
+          "$SDKMGR" --list_installed 2>/dev/null | sed -n '1,40p' || true
+
+      - name: 构建前端 SPA
+        working-directory: email-aggregator-web
+        run: |
+          npm ci || npm install
+          npm run build
+
+      - name: 安装移动端依赖
+        working-directory: platforms/mobile
+        run: npm ci || npm install
+
+      # 必须先让 Capacitor 的 webDir（platforms/mobile/www）就位，再执行 cap add。
+      # 否则 `cap add` 会走 "sync could not run--missing www directory" 分支：
+      # 原生工程虽被建出来，但插件注入与 local.properties 生成全被跳过，
+      # 工程处于半初始化状态（后续只能靠 build.mjs 里的 cap sync 补救）。
+      - name: 准备前端产物（五处同步，含 Capacitor webDir=www）
+        run: node scripts/sync-web-assets.mjs
+
+      - name: 生成 Android 原生工程
+        working-directory: platforms/mobile
+        run: npx cap add android
+
+      # 关键顺序：先 sync 把 versionCode/versionName 写进 build.gradle，
+      # 再 build —— prepare 会做一致性断言，顺序颠倒会直接失败。
+      - name: 下发版本号到原生工程
+        run: |
+          node scripts/version.mjs sync
+          node scripts/version.mjs verify
+
+      - name: 构建 Android 包
+        working-directory: platforms/mobile
+        run: node scripts/build.mjs android --debug
+
+      - name: 校验产物版本号
+        working-directory: platforms/mobile
+        run: node scripts/verify-artifacts.mjs
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: android-${{ needs.version-guard.outputs.canonical }}
+          path: |
+            platforms/mobile/android/app/build/outputs/apk/**/*.apk
+            platforms/mobile/android/app/build/outputs/bundle/**/*.aab
+          if-no-files-found: error
+
+  # ─────────────────────────────────────────────────────────────────────────
+  #  ④ iOS（xcarchive；产出可安装 .ipa 需配置签名证书）
+  # ─────────────────────────────────────────────────────────────────────────
+  ios:
+    needs: version-guard
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 构建前端 SPA
+        working-directory: email-aggregator-web
+        run: |
+          npm ci || npm install
+          npm run build
+
+      - name: 安装移动端依赖
+        working-directory: platforms/mobile
+        run: npm ci || npm install
+
+      # 同 Android：cap add 之前 webDir 必须就位，否则依赖注入被静默跳过。
+      - name: 准备前端产物（五处同步，含 Capacitor webDir=www）
+        run: node scripts/sync-web-assets.mjs
+
+      - name: 生成 iOS 原生工程
+        working-directory: platforms/mobile
+        run: npx cap add ios
+
+      - name: 下发版本号到 Info.plist
+        run: |
+          node scripts/version.mjs sync
+          node scripts/version.mjs verify
+
+      # 刻意不再手写 xcodebuild —— 直接复用 platforms/mobile/scripts/build.mjs。
+      # 原先的裸 xcodebuild 有三处硬缺陷（静态审计发现，均为必挂）：
+      #   ① 缺少 prepare 步骤 → www 从未灌进原生工程，归档出来是个没有 Web 资源的空壳；
+      #   ② 从不执行 `cap sync ios` → 依赖从未解析（CocoaPods 的 pod install 或
+      #      SPM 的包解析），编译期必然缺 Capacitor 模块；
+      #   ③ 硬编码 -workspace App.xcworkspace。Capacitor 8 起默认用 SPM 模板
+      #      （config.js: iosPlatformTemplateArchive = 'ios-spm-template.tar.gz'），
+      #      只生成 App/App.xcodeproj，根本没有顶层 App.xcworkspace。
+      # build.mjs 会做 prepare + cap sync，并按实际形态选 -workspace / -project。
+      # 签名开关必须作为 **xcodebuild 的 build setting** 传入 —— 只写 step env
+      # 在 Xcode 26 上无效：实测 run 35118604475 给了 CODE_SIGNING_ALLOWED=NO
+      # 仍报 `Signing for "App" requires a development team.`。
+      # --unsigned 会显式下发 CODE_SIGNING_ALLOWED=NO / CODE_SIGNING_REQUIRED=NO /
+      # CODE_SIGN_IDENTITY="" / CODE_SIGN_ENTITLEMENTS="" 四个 build setting。
+      - name: 归档（未签名）
+        working-directory: platforms/mobile
+        run: node scripts/build.mjs ios --unsigned
+
+      - name: 校验产物版本号
+        working-directory: platforms/mobile
+        run: node scripts/verify-artifacts.mjs
+
+      # 归档是**目录束**，绝不能直接当 Release 附件。
+      # actions/upload-artifact 会原样保留整棵树，下游 `files: dist/**` 就会把归档
+      # 内部的**每一个**文件（dSYMs、.swiftmodule、framework 分片…）拆成几百个
+      # 独立附件 —— 归档本身反而装不回 Xcode，且失败时 Release 已经建出来了。
+      # 在 macOS 上用原生 ditto 压成单文件：这是 Apple 对 xcarchive 的推荐打包方式，
+      # 能保留符号链接与扩展属性（普通 zip 会丢符号链接，framework 就废了）。
+      - name: 打包归档为单文件
+        working-directory: platforms/mobile/ios/build
+        run: |
+          set -euo pipefail
+          rm -f App.xcarchive.zip
+          if command -v ditto >/dev/null 2>&1; then
+            ditto -c -k --sequesterRsrc --keepParent App.xcarchive App.xcarchive.zip
+          else
+            zip -qry -y App.xcarchive.zip App.xcarchive
+          fi
+          ls -lh App.xcarchive.zip
+          # 立刻自证不是空壳：结构完整（unzip -t 校验每个条目）且含 Info.plist。
+          # 注意先落文件再 grep —— `unzip -l | grep -q` 会在 grep 提前退出时让 unzip
+          # 吃到 SIGPIPE，配合 set -o pipefail 反而把这一步判成失败。
+          unzip -tq App.xcarchive.zip
+          unzip -l App.xcarchive.zip > "$RUNNER_TEMP/p003-xcalist.txt"
+          grep -q 'App\.xcarchive/Info\.plist' "$RUNNER_TEMP/p003-xcalist.txt"
+          echo "归档条目数：$(grep -c 'App\.xcarchive/' "$RUNNER_TEMP/p003-xcalist.txt")"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: ios-${{ needs.version-guard.outputs.canonical }}
+          # 只上传 .zip 单文件。原始目录束留在 runner 上即可 —— zip 里是同样的内容，
+          # 本地解压后就是一个完整可用的 .xcarchive。
+          path: platforms/mobile/ios/build/App.xcarchive.zip
+          if-no-files-found: error
+
+  # ─────────────────────────────────────────────────────────────────────────
+  #  ⑤ 汇总发布
+  #
+  #  打 MALLV* 标签时真实发版；workflow_dispatch 且勾选 dry_run 时**空跑**：
+  #  完整走一遍"下载产物 → 附件预检 → 生成说明"，只跳过最后那一次创建 Release。
+  #
+  #  为什么要有 dry_run：本仓库是 PUBLIC，Release 一创建就对全网可见，附件传错
+  #  来不及撤回。这一层让"从未运行过的发布链路"能在零公开副作用的前提下先验证。
+  #
+  #  发布前硬门禁：scripts/release-preflight.mjs。它挡掉四类"发出来才发现"的情形
+  #  （残留目录束 / 附件重名 / 伪 ZIP / 0 字节与超限），失败即禁止创建 Release。
+  # ─────────────────────────────────────────────────────────────────────────
+  release:
+    needs: [version-guard, desktop, android, ios]
+    if: ${{ startsWith(github.ref, 'refs/tags/') || inputs.dry_run }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/download-artifact@v5
+        with:
+          path: dist
+
+      - name: 下载到的原始产物
+        run: |
+          set -euo pipefail
+          echo "dist 下文件总数（含目录束内部）：$(find dist -type f | wc -l)"
+          du -sh dist
+
+      - name: 附件预检（残留目录束 / 重名 / 伪 ZIP / 数量体积上限）
+        id: pre
+        run: node scripts/release-preflight.mjs --dist dist --flat dist/_assets --manifest dist/ASSETS.txt
+
+      - name: 生成 Release 说明
+        run: |
+          set -euo pipefail
+          {
+            echo "## 邮箱聚合平台 ${{ needs.version-guard.outputs.canonical }}"
+            echo ""
+            echo "| 项 | 值 |"
+            echo "| --- | --- |"
+            echo "| 规范版本号 | \`${{ needs.version-guard.outputs.canonical }}\` |"
+            echo "| 平台合规号 | \`${{ needs.version-guard.outputs.semver }}\` |"
+            echo "| 单调整数码 | \`${{ needs.version-guard.outputs.code }}\` |"
+            echo ""
+            echo "### 附件（$(wc -l < dist/ASSETS.txt | tr -d ' ') 个）"
+            echo ""
+            # 说明里的附件清单直接由预检产出的清单生成，与真正上传的那批文件严格同源，
+            # 不会出现"说明里写了、实际没传"的漂移。
+            awk -F/ '{ printf "  - `%s`\n", $NF }' dist/ASSETS.txt
+            echo ""
+            echo "### 构建说明"
+            echo ""
+            echo "- Windows：NSIS 安装包（x64 / arm64）+ 免安装便携版（x64）"
+            echo "- macOS：dmg + zip（x64 / arm64），未签名"
+            echo "- Linux：AppImage + deb + rpm；另附 Go 主干单二进制（5 个目标平台）"
+            echo "- Android：debug APK（可直装）；Release 需配置签名 keystore"
+            echo "- iOS：未签名 xcarchive（已用 ditto 打包为单文件 .zip）；产出 .ipa 需 Apple 开发者证书"
+            echo "- HarmonyOS：HAP（需 DevEco Studio，自建 runner 的启用方式见工作流文末）"
+            echo ""
+            echo "> 附件清单由 \`scripts/release-preflight.mjs\` 预检产出：已校验无残留目录束、"
+            echo "> 无重名、ZIP 结构完整、数量与体积均在上限内。"
+          } > RELEASE_NOTES.md
+          cat RELEASE_NOTES.md
+
+      - name: 空跑模式（不创建 Release）
+        if: ${{ github.event_name != 'push' }}
+        run: |
+          echo "::notice::dry_run 完成：附件预检与说明生成均已真实执行，但未创建公开 Release。"
+          echo "真实发版请推送 MALLV* 标签（会先经过同一道预检门禁）。"
+          echo "本次将上传的附件数：${{ steps.pre.outputs.count }}"
+
+      - uses: softprops/action-gh-release@v2
+        # 只有标签 push 才真正创建 Release。workflow_dispatch（含带 --ref 指向标签的
+        # 手动触发）一律不创建，避免"手动点一下就把公开 Release 发出去"。
+        if: ${{ github.event_name == 'push' }}
+        with:
+          name: 邮箱聚合平台 ${{ needs.version-guard.outputs.canonical }}
+          body_path: RELEASE_NOTES.md
+          # 用一级通配而非 dist/**：扁平目录里只有文件（预检已断言无子目录、无重名），
+          # 于是无论 action 是否过滤目录都不会误传目录束内容。
+          files: dist/_assets/*
+          draft: false
+          prerelease: false
+
+  # ─────────────────────────────────────────────────────────────────────────
+  #  ⑥ HarmonyOS（HAP）—— 默认跳过，需自建 runner
+  #
+  #  DevEco Studio（hvigor / ohpm / HarmonyOS SDK）无法在 GitHub 托管 runner 上
+  #  合法获取与安装，因此本 job 用 `runs-on: [self-hosted, harmony]`。
+  #
+  #  启用方式（两步，缺第二步 job 会一直排队等一个不存在的 runner）：
+  #    1. 在装有 DevEco Studio 5.0+ 的机器上注册 self-hosted runner，额外打
+  #       `harmony` 标签，并确保 DEVECO_SDK_HOME 已进入 runner 的环境变量；
+  #    2. 仓库 Settings → Secrets and variables → Actions → Variables
+  #       新建变量 HARMONY_RUNNER = true。
+  #  未设置该变量时本 job 立即 skipped，不占用 runner 队列，也不影响 release。
+  #
+  #  刻意不把本 job 放进 release 的 needs：HAP 属可选产物，缺席不应阻断其余五端
+  #  的发布；而 download-artifact 会自然把它的产物一并收进 Release。
+  # ─────────────────────────────────────────────────────────────────────────
+  harmony:
+    needs: version-guard
+    if: vars.HARMONY_RUNNER == 'true'
+    runs-on: [self-hosted, harmony]
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: 构建前端 SPA
+        working-directory: email-aggregator-web
+        run: |
+          npm ci || npm install
+          npm run build
+
+      - name: 准备前端产物（五处同步，含 harmony rawfile/www）
+        run: node scripts/sync-web-assets.mjs
+
+      - name: 下发版本号到鸿蒙工程
+        run: |
+          node scripts/version.mjs sync
+          node scripts/version.mjs verify
+
+      # 不再单独调 prepare.mjs：scripts/build.mjs 内部已经先跑 prepare()
+      # （版本门禁 + 同步 rawfile/www + 生成图标），再调 hvigorw assembleHap。
+      - name: 构建 HAP
+        working-directory: platforms/harmony
+        run: node scripts/build.mjs
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: harmony-${{ needs.version-guard.outputs.canonical }}
+          # 与 scripts/build.mjs 的产物扫描根一致（entry/build/**），
+          # 典型落点：entry/build/default/outputs/default/entry-default-signed.hap
+          path: platforms/harmony/entry/build/**/*.hap
+          if-no-files-found: error
+
+# ============================================================================
+#  HarmonyOS 补充说明
+#
+#  ① 本工作流内的 harmony job 默认关闭（见上文注释的启用方式）。
+#
+#  ② 也可以完全脱离 CI，在本地用 DevEco Studio 打开 platforms/harmony，
+#     执行 Build > Build Hap(s)；或命令行（需先设置 DEVECO_SDK_HOME）：
+#         node scripts/version.mjs sync
+#         node scripts/sync-web-assets.mjs
+#         cd platforms/harmony && node scripts/build.mjs
+#
+#  ③ 安装到真机需要签名。请在 AppScope/build-profile.json5 的 signingConfigs
+#     中填入自己的签名配置（.p12 + .cer + profile），私钥与密码放 CI Secret。
+# ============================================================================

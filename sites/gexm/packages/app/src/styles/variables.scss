@@ -1,0 +1,336 @@
+// ===================================
+// GEXM Design System - Variables
+// 完整的设计系统变量配置
+// ===================================
+
+// ===================================
+// 1. 品牌色彩系统
+// ===================================
+
+// 主色调 - 科技蓝
+$brand-primary: #2563eb;
+$brand-primary-light: #3b82f6;
+$brand-primary-dark: #1d4ed8;
+$brand-primary-alpha-10: rgba(37, 99, 235, 0.1);
+$brand-primary-alpha-20: rgba(37, 99, 235, 0.2);
+
+// 功能色
+$color-success: #10b981;
+$color-success-light: #34d399;
+$color-success-dark: #059669;
+$color-success-alpha-10: rgba(16, 185, 129, 0.1);
+
+$color-warning: #f59e0b;
+$color-warning-light: #fbbf24;
+$color-warning-dark: #d97706;
+$color-warning-alpha-10: rgba(245, 158, 11, 0.1);
+
+$color-danger: #ef4444;
+$color-danger-light: #f87171;
+$color-danger-dark: #dc2626;
+$color-danger-alpha-10: rgba(239, 68, 68, 0.1);
+
+$color-info: #6366f1;
+$color-info-light: #818cf8;
+$color-info-dark: #4f46e5;
+$color-info-alpha-10: rgba(99, 102, 241, 0.1);
+
+// 中性色
+$color-white: #ffffff;
+$color-black: #000000;
+
+// 灰色阶梯
+$gray-50: #f9fafb;
+$gray-100: #f3f4f6;
+$gray-200: #e5e7eb;
+$gray-300: #d1d5db;
+$gray-400: #9ca3af;
+$gray-500: #6b7280;
+$gray-600: #4b5563;
+$gray-700: #374151;
+$gray-800: #1f2937;
+$gray-900: #111827;
+
+// ===================================
+// 2. 语义化颜色
+// ===================================
+
+// 主色
+$primary-color: $brand-primary;
+$primary-color-light: $brand-primary-light;
+$primary-color-dark: $brand-primary-dark;
+
+// uni-app 兼容变量
+$uni-color-primary: $brand-primary;
+$uni-color-success: $color-success;
+$uni-color-warning: $color-warning;
+$uni-color-error: $color-danger;
+$uni-color-info: $color-info;
+
+// 背景色
+$bg-color: $gray-50;
+$bg-color-white: $color-white;
+$bg-color-page: $gray-50;
+$bg-color-gray-light: $gray-50;
+$bg-color-gray: $gray-100;
+$bg-color-section: $color-white;
+
+// 文字色
+$text-color: $gray-900;
+$text-color-primary: $gray-900;
+$text-color-secondary: $gray-600;
+$text-color-tertiary: $gray-500;
+$text-color-placeholder: $gray-400;
+$text-color-disabled: $gray-300;
+$text-color-inverse: $color-white;
+
+// 边框色
+$border-color: $gray-200;
+$border-color-light: $gray-100;
+$border-color-lighter: $gray-50;
+$border-color-extra-light: $gray-50;
+$border-color-dark: $gray-300;
+
+// 阴影色
+$shadow-color: rgba(0, 0, 0, 0.08);
+$shadow-color-light: rgba(0, 0, 0, 0.04);
+$shadow-color-dark: rgba(0, 0, 0, 0.12);
+
+// ===================================
+// 3. 字体系统
+// ===================================
+
+// 字体家族
+$font-family-base: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$font-family-mono: 'SF Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+
+// 字体大小阶梯
+$font-size-xs: 20rpx;
+$font-size-sm: 24rpx;
+$font-size-base: 28rpx;
+$font-size-md: 32rpx;
+$font-size-lg: 36rpx;
+$font-size-xl: 40rpx;
+$font-size-2xl: 48rpx;
+$font-size-3xl: 56rpx;
+
+// 扩展字体大小
+$font-size-4xl: 64rpx;
+$font-size-5xl: 72rpx;
+
+// 行高阶梯
+$line-height-tight: 1.2;
+$line-height-snug: 1.375;
+$line-height-normal: 1.5;
+$line-height-relaxed: 1.625;
+$line-height-loose: 2;
+
+// 字体粗细
+$font-weight-thin: 100;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// ===================================
+// 4. 间距系统 (8px 基准)
+// ===================================
+
+$spacing-unit: 8rpx;
+
+$spacing-0: 0;
+$spacing-1: 4rpx;
+$spacing-2: 8rpx;
+$spacing-3: 12rpx;
+$spacing-4: 16rpx;
+$spacing-5: 20rpx;
+$spacing-6: 24rpx;
+$spacing-8: 32rpx;
+$spacing-10: 40rpx;
+$spacing-12: 48rpx;
+$spacing-16: 64rpx;
+$spacing-20: 80rpx;
+$spacing-24: 96rpx;
+
+// 向后兼容的别名
+$spacing-xs: $spacing-2;
+$spacing-sm: $spacing-4;
+$spacing-base: $spacing-6;
+$spacing-md: $spacing-8;
+$spacing-lg: $spacing-12;
+$spacing-xl: $spacing-16;
+
+// ===================================
+// 5. 圆角系统
+// ===================================
+
+$radius-none: 0;
+$radius-sm: 4rpx;
+$radius-base: 8rpx;
+$radius-md: 12rpx;
+$radius-lg: 16rpx;
+$radius-xl: 20rpx;
+$radius-2xl: 24rpx;
+$radius-full: 9999rpx;
+
+// 向后兼容的别名
+$border-radius-sm: $radius-sm;
+$border-radius-base: $radius-base;
+$border-radius-md: $radius-md;
+$border-radius-lg: $radius-lg;
+$border-radius-round: $radius-full;
+
+// ===================================
+// 6. 阴影系统 (elevation)
+// ===================================
+
+// 无阴影
+$shadow-none: none;
+
+// 微阴影 - 卡片悬浮
+$shadow-xs: 0 1rpx 2rpx 0 rgba(0, 0, 0, 0.05);
+
+// 小阴影 - 卡片默认
+$shadow-sm: 0 2rpx 8rpx 0 rgba(0, 0, 0, 0.06);
+
+// 中阴影 - 悬浮状态
+$shadow-base: 0 4rpx 16rpx 0 rgba(0, 0, 0, 0.08);
+$shadow-md: 0 4rpx 20rpx 0 rgba(0, 0, 0, 0.08);
+
+// 大阴影 - 弹窗、浮层
+$shadow-lg: 0 8rpx 30rpx 0 rgba(0, 0, 0, 0.12);
+
+// 超大阴影 - 模态框
+$shadow-xl: 0 20rpx 50rpx 0 rgba(0, 0, 0, 0.15);
+
+// 内阴影
+$shadow-inner: inset 0 2rpx 4rpx 0 rgba(0, 0, 0, 0.06);
+
+// ===================================
+// 7. 布局尺寸
+// ===================================
+
+// 导航栏高度
+$nav-bar-height: 88rpx;
+$nav-bar-title-size: 34rpx;
+
+// 标签栏高度
+$tab-bar-height: 100rpx;
+$tab-bar-icon-size: 48rpx;
+$tab-bar-text-size: 22rpx;
+
+// 状态栏高度 (iOS/Android 自动获取)
+$status-bar-height: 44rpx;
+
+// 安全区域
+$safe-area-top: constant(safe-area-inset-top);
+$safe-area-top: env(safe-area-inset-top);
+$safe-area-bottom: constant(safe-area-inset-bottom);
+$safe-area-bottom: env(safe-area-inset-bottom);
+$safe-area-left: constant(safe-area-inset-left);
+$safe-area-left: env(safe-area-inset-left);
+$safe-area-right: constant(safe-area-inset-right);
+$safe-area-right: env(safe-area-inset-right);
+
+// 页面内边距
+$page-padding-x: $spacing-6;
+$page-padding-y: $spacing-4;
+
+// 内容区最大宽度
+$content-max-width: 750rpx;
+
+// ===================================
+// 8. 动画系统
+// ===================================
+
+// 动画时长
+$duration-instant: 0ms;
+$duration-fast: 150ms;
+$duration-base: 250ms;
+$duration-slow: 350ms;
+$duration-slower: 500ms;
+
+// 动画缓动函数
+$ease-in: cubic-bezier(0.4, 0, 1, 1);
+$ease-out: cubic-bezier(0, 0, 0.2, 1);
+$ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+$ease-out-in: cubic-bezier(0.4, 0, 0.6, 1);
+$ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+// 向后兼容
+$transition-fast: $duration-fast;
+$transition-base: $duration-base;
+$transition-slow: $duration-slow;
+
+// ===================================
+// 9. Z-Index 层级
+// ===================================
+
+$z-index-base: 1;
+$z-index-dropdown: 100;
+$z-index-sticky: 200;
+$z-index-fixed: 300;
+$z-index-modal-backdrop: 400;
+$z-index-modal: 500;
+$z-index-popover: 600;
+$z-index-tooltip: 700;
+$z-index-toast: 800;
+
+// ===================================
+// 10. 断点系统
+// ===================================
+
+$breakpoint-xs: 320px;
+$breakpoint-sm: 375px;
+$breakpoint-md: 414px;
+$breakpoint-lg: 768px;
+$breakpoint-xl: 1024px;
+$breakpoint-2xl: 1280px;
+
+// ===================================
+// 11. 组件特定变量
+// ===================================
+
+// 按钮
+$button-height-sm: 56rpx;
+$button-height-base: 72rpx;
+$button-height-lg: 88rpx;
+$button-height-xl: 96rpx;
+
+$button-padding-x-sm: 20rpx;
+$button-padding-x-base: 28rpx;
+$button-padding-x-lg: 40rpx;
+
+// 输入框
+$input-height-sm: 64rpx;
+$input-height-base: 80rpx;
+$input-height-lg: 96rpx;
+
+// 卡片
+$card-padding: $spacing-6;
+$card-radius: $radius-lg;
+$card-shadow: $shadow-sm;
+$card-shadow-hover: $shadow-md;
+
+// 单元格
+$cell-padding-x: $spacing-6;
+$cell-padding-y: $spacing-4;
+$cell-font-size: $font-size-base;
+$cell-line-height: $line-height-normal;
+
+// 分割线
+$divider-color: $gray-100;
+$divider-width: 1rpx;
+$divider-margin: $spacing-6;
+
+// ===================================
+// 12. 向后兼容别名
+// ===================================
+
+// 颜色别名 - 兼容旧代码
+$success-color: $color-success;
+$warning-color: $color-warning;
+$danger-color: $color-danger;
+$info-color: $color-info;

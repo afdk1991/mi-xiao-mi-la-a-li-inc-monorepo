@@ -1,0 +1,22 @@
+﻿2026-09-15T19:49:08.4648001+08:00 === compose up ===
+docker : time="2026-09-15T19:49:09+08:00" level=warning msg="D:\\缃戠珯鍏ㄦ爤椤圭洰\\椤圭洰006\\docker-compose.yml: the attribute `
+version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+所在位置 行:447 字符: 1
++ docker compose -f "D:\网站全栈项目\项目006\docker-compose.yml" -p myp006 up - ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time="2026-09-1...tial confusion":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+unable to get image 'phpmyadmin:latest': failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngi
+ne; check if the path is correct and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system canno
+t find the file specified.
+EXITCODE=1
+2026-09-15T19:49:09.8539589+08:00 === ps ===
+docker : failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine; check if the path is correct
+ and if the daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+所在位置 行:450 字符: 1
++ docker compose -p myp006 ps -a *>&1 | Out-File $log -Append -Encoding ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (failed to conne...file specified.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

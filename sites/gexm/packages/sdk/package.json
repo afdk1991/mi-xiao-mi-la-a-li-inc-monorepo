@@ -1,0 +1,65 @@
+{
+  "name": "@gexm/sdk",
+  "version": "1.0.0",
+  "description": "Gexm Cross-Platform Software Development Kit - High-performance, extensible SDK supporting all major computing platforms",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.es.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && vite build",
+    "build:dev": "tsc && vite build --mode development",
+    "build:web": "tsc && vite build --config vite.config.web.ts",
+    "build:mp-weixin": "tsc && vite build --config vite.config.mp-weixin.ts",
+    "build:mp-alipay": "tsc && vite build --config vite.config.mp-alipay.ts",
+    "build:all": "ts-node scripts/build-all.ts",
+    "dev": "vite",
+    "lint": "eslint src/",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "typecheck": "tsc --noEmit",
+    "docs": "typedoc src/",
+    "docs:build": "typedoc src/ --out docs"
+  },
+  "keywords": [
+    "sdk",
+    "cross-platform",
+    "web",
+    "mobile",
+    "desktop",
+    "mini-program",
+    "uni-app",
+    "electron"
+  ],
+  "author": "Gexm Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "crypto-js": "^4.2.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.1",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^26.0.1",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "eslint": "^8.56.0",
+    "jest": "^30.4.2",
+    "ts-jest": "^29.4.11",
+    "typedoc": "^0.25.4",
+    "typescript": "^6.0.3",
+    "vite": "^5.0.12",
+    "vite-plugin-dts": "^3.7.2"
+  },
+  "peerDependencies": {
+    "vue": "^3.3.13"
+  },
+  "files": [
+    "dist/",
+    "src/",
+    "docs/",
+    "README.md",
+    "LICENSE"
+  ]
+}

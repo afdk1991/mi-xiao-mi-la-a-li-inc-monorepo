@@ -1,0 +1,74 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mixmlaal-config
+  namespace: mixmlaal
+  labels:
+    app: mixmlaal-platform
+    environment: production
+  annotations:
+    description: "Configuration for MixMLAAL platform services"
+    version: "1.0.0.0"
+data:
+  # General configuration
+  APP_ENV: "production"
+  LOG_LEVEL: "info"
+  
+  # Service discovery
+  CONSUL_HOST: "consul"
+  CONSUL_PORT: "8500"
+  
+  # Configuration center
+  NACOS_HOST: "nacos"
+  NACOS_PORT: "8848"
+  NACOS_NAMESPACE: "mixmlaal"
+  NACOS_GROUP: "DEFAULT_GROUP"
+  
+  # Message broker
+  KAFKA_HOST: "kafka"
+  KAFKA_PORT: "9092"
+  
+  # Cache
+  REDIS_HOST: "redis"
+  REDIS_PORT: "6379"
+  
+  # Database
+  MYSQL_HOST: "mysql"
+  MYSQL_PORT: "3306"
+  MYSQL_DATABASE: "mixmlaal"
+  MYSQL_USER: "mixmlaal"
+  
+  # Service mesh
+  ISTIO_PROXY_HOST: "istio-proxy"
+  ISTIO_PROXY_PORT: "15006"
+  
+  # MQTT broker for 5G communication
+  MQTT_BROKER: "mqtt://mosquitto:1883"
+  
+  # Smart traffic service configuration
+  TRAFFIC_API_KEY: "your_traffic_api_key"
+  TRAFFIC_UPDATE_INTERVAL: "30"
+  
+  # Supply chain service configuration
+  WAREHOUSE_API_KEY: "your_warehouse_api_key"
+  INVENTORY_UPDATE_INTERVAL: "60"
+  
+  # Operation platform configuration
+  ADMIN_API_KEY: "your_admin_api_key"
+  DASHBOARD_REFRESH_INTERVAL: "5"
+  
+  # Customer service configuration
+  SUPPORT_API_KEY: "your_support_api_key"
+  TICKET_ASSIGNMENT_INTERVAL: "10"
+  
+  # 5G service configuration
+  FIVE_G_API_KEY: "your_5g_api_key"
+  FIVE_G_UPDATE_INTERVAL: "5"
+  
+  # Edge service configuration
+  EDGE_API_KEY: "your_edge_api_key"
+  EDGE_CACHE_SIZE: "100"
+  
+  # Cache service configuration
+  CACHE_TTL: "3600"
+  CACHE_MAX_SIZE: "10000"

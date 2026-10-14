@@ -1,0 +1,46 @@
+{
+	"ios": {
+		"name": "MIXMLAAL"
+	},
+	"android": {
+		"name": "MIXMLAAL"
+	},
+	"common": {
+		"name": "MIXMLAAL",
+		"version": "v0.0.0.4"
+	},
+	"app": {
+		"name": "MIXMLAAL",
+		"fullName": "ミクムラアル"
+	},
+	"portal": {
+		"name": "ポータル"
+	},
+	"social": {
+		"name": "ソーシャル"
+	},
+	"ecommerce": {
+		"name": "ショップ"
+	},
+	"ride": {
+		"name": "ライド"
+	},
+	"payment": {
+		"name": "決済"
+	},
+	"user": {
+		"name": "ユーザー"
+	},
+	"auth": {
+		"name": "認証"
+	},
+	"admin": {
+		"name": "管理者"
+	},
+	"support": {
+		"name": "サポート"
+	},
+	"help": {
+		"name": "ヘルプ"
+	}
+}

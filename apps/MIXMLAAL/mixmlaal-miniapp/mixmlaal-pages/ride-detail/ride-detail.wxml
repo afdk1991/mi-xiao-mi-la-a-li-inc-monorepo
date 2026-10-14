@@ -1,0 +1,114 @@
+<view class="detail-container">
+  <view class="status-section" style="background-color: {{statusColor[order.status]}}">
+    <text class="status-text">{{statusText[order.status]}}</text>
+    <text class="countdown" wx:if="{{countdown > 0}}">{{countdown}}秒后自动取消</text>
+  </view>
+  
+  <view class="driver-section" wx:if="{{order.driver}}">
+    <view class="driver-info">
+      <image class="driver-avatar" src="{{order.driver.avatar || '/assets/images/default-avatar.png'}}" mode="aspectFill"></image>
+      <view class="driver-detail">
+        <text class="driver-name">{{order.driver.name}}</text>
+        <view class="driver-rating">
+          <text class="rating-star">⭐</text>
+          <text class="rating-value">{{order.driver.rating}}</text>
+          <text class="trip-count">{{order.driver.tripCount}}单</text>
+        </view>
+      </view>
+      <view class="driver-actions">
+        <view class="action-item" bindtap="callDriver">
+          <text class="action-icon">📞</text>
+        </view>
+        <view class="action-item" bindtap="openMap">
+          <text class="action-icon">📍</text>
+        </view>
+      </view>
+    </view>
+    
+    <view class="vehicle-info">
+      <text class="vehicle-model">{{order.driver.vehicleModel}}</text>
+      <text class="vehicle-plate">{{order.driver.plateNumber}}</text>
+      <text class="vehicle-color">{{order.driver.vehicleColor}}</text>
+    </view>
+  </view>
+  
+  <view class="route-section">
+    <view class="route-item">
+      <view class="route-dot from"></view>
+      <view class="route-content">
+        <text class="route-label">出发地</text>
+        <text class="route-address">{{order.fromAddress}}</text>
+      </view>
+    </view>
+    
+    <view class="route-line"></view>
+    
+    <view class="route-item">
+      <view class="route-dot to"></view>
+      <view class="route-content">
+        <text class="route-label">目的地</text>
+        <text class="route-address">{{order.toAddress}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="order-info">
+    <view class="info-row">
+      <text class="info-label">订单号</text>
+      <text class="info-value">{{order.orderId}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">车型</text>
+      <text class="info-value">{{order.typeName}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">距离</text>
+      <text class="info-value">{{order.distance}}公里</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">时长</text>
+      <text class="info-value">{{order.duration}}分钟</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">下单时间</text>
+      <text class="info-value">{{order.createTime}}</text>
+    </view>
+  </view>
+  
+  <view class="price-section">
+    <view class="price-row">
+      <text class="price-label">预估费用</text>
+      <text class="price-value">¥{{order.estimatedPrice}}</text>
+    </view>
+    <view class="price-row" wx:if="{{order.actualPrice}}">
+      <text class="price-label">实际费用</text>
+      <text class="price-value actual">¥{{order.actualPrice}}</text>
+    </view>
+  </view>
+  
+  <view class="action-section">
+    <button 
+      class="cancel-btn" 
+      wx:if="{{order.status === 'pending' || order.status === 'accepted'}}"
+      bindtap="cancelOrder"
+    >
+      取消订单
+    </button>
+    
+    <button 
+      class="pay-btn" 
+      wx:if="{{order.status === 'completed' && order.paymentStatus === 'unpaid'}}"
+      bindtap="goToPayment"
+    >
+      去支付 ¥{{order.actualPrice}}
+    </button>
+    
+    <button 
+      class="rate-btn" 
+      wx:if="{{order.status === 'completed' && !order.rated}}"
+      bindtap="rateOrder"
+    >
+      评价行程
+    </button>
+  </view>
+</view>

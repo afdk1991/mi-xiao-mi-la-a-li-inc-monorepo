@@ -1,0 +1,5 @@
+{
+  "name": "daijia-platform",
+  "nodeVersion": "24.18.0",
+  "outputDirectory": "daijia-dist"
+}

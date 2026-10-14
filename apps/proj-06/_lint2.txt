@@ -1,0 +1,4 @@
+﻿LINT D:\网站全栈项目\项目006\myp-theme\index.php :: No syntax errors detected in D:\缃戠珯鍏ㄦ爤椤圭洰\椤圭洰006\myp-theme\index.php
+LINT D:\网站全栈项目\项目006\myp-theme\functions.php :: No syntax errors detected in D:\缃戠珯鍏ㄦ爤椤圭洰\椤圭洰006\myp-theme\functions.php
+LINT D:\网站全栈项目\项目006\myp-theme\archive-myp_product.php :: No syntax errors detected in D:\缃戠珯鍏ㄦ爤椤圭洰\椤圭洰006\myp-theme\archive-myp_product.php
+LINT D:\网站全栈项目\项目006\myp-theme\single-myp_product.php :: No syntax errors detected in D:\缃戠珯鍏ㄦ爤椤圭洰\椤圭洰006\myp-theme\single-myp_product.php

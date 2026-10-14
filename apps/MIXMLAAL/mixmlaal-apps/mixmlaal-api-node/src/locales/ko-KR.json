@@ -1,0 +1,58 @@
+{
+  "common": {
+    "success": "작업 성공",
+    "error": "작업 실패",
+    "notFound": "리소스를 찾을 수 없습니다",
+    "unauthorized": "인증되지 않음",
+    "forbidden": "접근 금지",
+    "internalError": "서버 내부 오류",
+    "badRequest": "요청 매개변수 오류"
+  },
+  "auth": {
+    "loginSuccess": "로그인 성공",
+    "logoutSuccess": "로그아웃 성공",
+    "registerSuccess": "등록 성공",
+    "invalidCredentials": "사용자 이름 또는 비밀번호가 잘못되었습니다",
+    "tokenExpired": "토큰이 만료되었습니다",
+    "tokenInvalid": "토큰이 유효하지 않습니다",
+    "refreshSuccess": "토큰이 성공적으로 갱신되었습니다"
+  },
+  "customer": {
+    "getOrdersSuccess": "주문 목록을 성공적으로 가져왔습니다",
+    "createOrderSuccess": "주문 생성에 성공했습니다",
+    "updateOrderSuccess": "주문 업데이트에 성공했습니다",
+    "deleteOrderSuccess": "주문 삭제에 성공했습니다",
+    "orderNotFound": "주문을 찾을 수 없습니다",
+    "getProfileSuccess": "사용자 정보를 성공적으로 가져왔습니다",
+    "updateProfileSuccess": "사용자 정보 업데이트에 성공했습니다"
+  },
+  "dispatch": {
+    "intelligentDispatchSuccess": "지능형 차량 배치에 성공했습니다",
+    "optimizeRouteSuccess": "경로 최적화에 성공했습니다",
+    "predictOrderVolumeSuccess": "주문량 예측에 성공했습니다",
+    "getStatisticsSuccess": "배치 통계를 성공적으로 가져왔습니다",
+    "getRecommendationsSuccess": "개인화된 추천을 성공적으로 가져왔습니다",
+    "customerServiceSuccess": "지능형 고객 서비스 응답에 성공했습니다"
+  },
+  "blockchain": {
+    "recordLogisticsSuccess": "물류 정보가 성공적으로 기록되었습니다",
+    "queryLogisticsSuccess": "물류 정보를 성공적으로 조회했습니다",
+    "recordPaymentSuccess": "결제 정보가 성공적으로 기록되었습니다",
+    "queryPaymentSuccess": "결제 정보를 성공적으로 조회했습니다",
+    "getBlockchainInfoSuccess": "블록체인 정보를 성공적으로 가져왔습니다"
+  },
+  "5g": {
+    "getVehiclePositionSuccess": "차량 위치를 성공적으로 가져왔습니다",
+    "getOrderStatusSuccess": "주문 상태를 성공적으로 가져왔습니다",
+    "sendDispatchCommandSuccess": "배치 명령이 성공적으로 전송되었습니다"
+  },
+  "validation": {
+    "required": "{field}는 필수입니다",
+    "minLength": "{field} 길이는 최소 {min} 이상이어야 합니다",
+    "maxLength": "{field} 길이는 최대 {max} 이하여야 합니다",
+    "email": "{field}는 유효한 이메일 주소이어야 합니다",
+    "number": "{field}는 숫자여야 합니다",
+    "integer": "{field}는 정수여야 합니다",
+    "positive": "{field}는 양수여야 합니다"
+  }
+}

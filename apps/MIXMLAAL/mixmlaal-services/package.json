@@ -1,0 +1,23 @@
+{
+  "name": "logistics-microservices",
+  "version": "0.0.0.4",
+  "description": "前置仓轻客配送系统微服务架构",
+  "private": true,
+  "workspaces": [
+    "auth-service",
+    "logistics-service",
+    "map-service",
+    "customer-service",
+    "analytics-service",
+    "gateway"
+  ],
+  "scripts": {
+    "start": "npm run start --workspace=gateway",
+    "dev": "npm run dev --workspace=gateway",
+    "build": "npm run build --workspace=auth-service && npm run build --workspace=logistics-service && npm run build --workspace=map-service && npm run build --workspace=customer-service && npm run build --workspace=analytics-service && npm run build --workspace=gateway",
+    "test": "npm run test --workspaces"
+  },
+  "devDependencies": {
+    "lerna": "^6.6.2"
+  }
+}

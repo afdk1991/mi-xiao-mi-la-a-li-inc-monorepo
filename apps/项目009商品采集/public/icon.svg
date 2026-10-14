@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#4f6bed"/>
+      <stop offset="1" stop-color="#3a52cc"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <!-- 地图定位针 -->
+  <path d="M256 96c-70 0-126 56-126 126 0 90 126 194 126 194s126-104 126-194c0-70-56-126-126-126z" fill="#ffffff" opacity="0.95"/>
+  <circle cx="256" cy="222" r="46" fill="#4f6bed"/>
+  <!-- 配送小车 -->
+  <g fill="#ffce3a">
+    <rect x="150" y="356" width="150" height="64" rx="14"/>
+    <rect x="312" y="378" width="58" height="42" rx="10"/>
+  </g>
+  <circle cx="190" cy="430" r="22" fill="#1d2430"/>
+  <circle cx="190" cy="430" r="9" fill="#ffffff"/>
+  <circle cx="338" cy="430" r="22" fill="#1d2430"/>
+  <circle cx="338" cy="430" r="9" fill="#ffffff"/>
+</svg>

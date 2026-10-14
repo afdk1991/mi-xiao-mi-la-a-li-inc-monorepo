@@ -1,0 +1,101 @@
+<view class="detail-container" wx:if="{{product}}">
+  <view class="image-section">
+    <swiper 
+      class="image-swiper" 
+      indicator-dots 
+      autoplay 
+      circular
+      bindchange="onSwiperChange"
+    >
+      <swiper-item wx:for="{{product.images}}" wx:key="*this">
+        <image class="product-image" src="{{item}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+    <view class="image-indicator">
+      <text>{{currentImageIndex + 1}}/{{product.images.length}}</text>
+    </view>
+  </view>
+  
+  <view class="info-section">
+    <view class="price-row">
+      <view class="price">
+        <text class="price-symbol">¥</text>
+        <text class="price-value">{{product.price}}</text>
+      </view>
+      <view class="original-price" wx:if="{{product.originalPrice}}">
+        <text>¥{{product.originalPrice}}</text>
+      </view>
+      <view class="sales">
+        <text>已售 {{product.sales}}</text>
+      </view>
+    </view>
+    
+    <view class="title-row">
+      <text class="product-title">{{product.name}}</text>
+      <view class="share-btn" bindtap="onShareAppMessage">
+        <text class="share-icon">📤</text>
+        <text class="share-text">分享</text>
+      </view>
+    </view>
+    
+    <view class="tag-row" wx:if="{{product.tags && product.tags.length}}">
+      <text class="tag" wx:for="{{product.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+  
+  <view class="spec-section">
+    <view class="spec-row">
+      <text class="spec-label">规格</text>
+      <text class="spec-value">{{product.spec || '默认'}}</text>
+    </view>
+    <view class="spec-row">
+      <text class="spec-label">库存</text>
+      <text class="spec-value">{{product.stock}}件</text>
+    </view>
+    <view class="spec-row">
+      <text class="spec-label">数量</text>
+      <view class="quantity-control">
+        <view class="qty-btn" bindtap="decreaseQuantity">-</view>
+        <input 
+          class="qty-input" 
+          type="number" 
+          value="{{quantity}}"
+          bindinput="onQuantityInput"
+        />
+        <view class="qty-btn" bindtap="increaseQuantity">+</view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="detail-section">
+    <view class="section-title">商品详情</view>
+    <view class="detail-content">
+      <rich-text nodes="{{product.detail}}"></rich-text>
+    </view>
+  </view>
+  
+  <view class="action-bar">
+    <view class="action-left">
+      <view class="action-item">
+        <text class="action-icon">🏠</text>
+        <text class="action-text">首页</text>
+      </view>
+      <view class="action-item">
+        <text class="action-icon">💬</text>
+        <text class="action-text">客服</text>
+      </view>
+      <view class="action-item">
+        <text class="action-icon">🛒</text>
+        <text class="action-text">购物车</text>
+      </view>
+    </view>
+    <view class="action-right">
+      <button class="cart-btn" bindtap="addToCart">加入购物车</button>
+      <button class="buy-btn" bindtap="buyNow">立即购买</button>
+    </view>
+  </view>
+</view>
+
+<view class="loading-container" wx:if="{{isLoading}}">
+  <text>加载中...</text>
+</view>

@@ -1,0 +1,59 @@
+{
+	"pages": [
+		"pages/index/index",
+		"pages/ride/ride",
+		"pages/shop/shop",
+		"pages/cart/cart",
+		"pages/ride-detail/ride-detail",
+		"pages/product-detail/product-detail",
+		"pages/payment/payment",
+		"pages/payment-success/payment-success",
+		"pages/help/help",
+		"pages/feedback/feedback"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#1890ff",
+		"navigationBarTitleText": "MIXMLAAL",
+		"navigationBarTextStyle": "white"
+	},
+	"tabBar": {
+		"color": "#999999",
+		"selectedColor": "#1890ff",
+		"backgroundColor": "#ffffff",
+		"borderStyle": "black",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/ride/ride",
+				"text": "出行"
+			},
+			{
+				"pagePath": "pages/shop/shop",
+				"text": "商城"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"text": "购物车"
+			}
+		]
+	},
+	"networkTimeout": {
+		"request": 10000
+	},
+	"debug": false,
+	"permission": {
+		"scope.userLocation": {
+			"desc": "您的位置信息将用于定位服务"
+		}
+	},
+	"requiredPrivateInfos": [
+		"getLocation",
+		"chooseLocation"
+	],
+	"sitemapLocation": "sitemap.json",
+	"lazyCodeLoading": "requiredComponents"
+}

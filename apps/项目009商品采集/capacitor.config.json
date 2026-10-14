@@ -1,0 +1,9 @@
+{
+  "appId": "com.laal.deliveryrouter",
+  "appName": "配送定位与路径优化",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {}
+}

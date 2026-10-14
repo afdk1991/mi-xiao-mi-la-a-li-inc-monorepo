@@ -1,0 +1,84 @@
+{
+  "name": "@gexm/desktop",
+  "version": "1.0.0",
+  "description": "Gexm 全平台桌面端应用",
+  "main": "src/main/index.js",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development electron .",
+    "build": "electron-builder",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac",
+    "build:linux": "electron-builder --linux"
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "electron-updater": "^6.1.7"
+  },
+  "devDependencies": {
+    "electron": "28.2.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.gexm.desktop",
+    "productName": "Gexm",
+    "directories": {
+      "output": "build-output"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "assets/**"
+    ],
+    "compression": "maximum",
+    "removePackageScripts": true,
+    "npmRebuild": false,
+    "nodeGypRebuild": false,
+    "extraResources": [
+      {
+        "from": "../pc/dist",
+        "to": "app"
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "sign": false
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.productivity",
+      "artifactName": "${productName}-${version}-mac.${ext}",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "assets/entitlements.mac.plist",
+      "entitlementsInherit": "assets/entitlements.mac.plist",
+      "timestamp": "http://timestamp.apple.com/ts0412"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "rpm",
+        "AppImage"
+      ],
+      "icon": "assets/icon.png",
+      "category": "Utility",
+      "artifactName": "${productName}-${version}-linux-${arch}.${ext}",
+      "maintainer": "Gexm Team",
+      "vendor": "Gexm"
+    }
+  }
+}

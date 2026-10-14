@@ -1,0 +1,460 @@
+{
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^gexm-(.*)": "@/components/gexm-$1/index.vue",
+      "^home-(.*)": "@/components/home-$1/index.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/index/index",
+      "style": {
+        "navigationBarTitleText": "首页",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "分类",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {
+        "navigationBarTitleText": "购物车",
+        "navigationStyle": "custom",
+        "enablePullDownRefresh": true
+      }
+    },
+    {
+      "path": "pages/profile/profile",
+      "style": {
+        "navigationBarTitleText": "我的",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/notifications/notifications",
+      "style": {
+        "navigationBarTitleText": "消息通知",
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/login/login",
+      "style": {
+        "navigationStyle": "custom"
+      }
+    },
+    {
+      "path": "pages/register/register",
+      "style": {
+        "navigationBarTitleText": "注册账号"
+      }
+    },
+    {
+      "path": "pages/edit-profile/edit-profile",
+      "style": {
+        "navigationBarTitleText": "编辑资料"
+      }
+    },
+    {
+      "path": "pages/settings/settings",
+      "style": {
+        "navigationBarTitleText": "设置"
+      }
+    },
+    {
+      "path": "pages/about/about",
+      "style": {
+        "navigationBarTitleText": "关于"
+      }
+    },
+    {
+      "path": "pages/test/test",
+      "style": {
+        "navigationBarTitleText": "测试"
+      }
+    }
+  ],
+  "subPackages": [
+    {
+      "root": "pages/product",
+      "pages": [
+        {
+          "path": "list",
+          "style": {
+            "navigationBarTitleText": "商品列表",
+            "navigationStyle": "custom",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "detail",
+          "style": {
+            "navigationBarTitleText": "商品详情",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/search",
+      "pages": [
+        {
+          "path": "search",
+          "style": {
+            "navigationBarTitleText": "搜索",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/order",
+      "pages": [
+        {
+          "path": "order-list",
+          "style": {
+            "navigationBarTitleText": "我的订单",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "order-detail",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "order-confirm",
+          "style": {
+            "navigationBarTitleText": "确认订单",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "logistics-detail",
+          "style": {
+            "navigationBarTitleText": "物流追踪",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/payment",
+      "pages": [
+        {
+          "path": "payment",
+          "style": {
+            "navigationBarTitleText": "支付",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/favorites",
+      "pages": [
+        {
+          "path": "favorites",
+          "style": {
+            "navigationBarTitleText": "我的收藏",
+            "navigationStyle": "custom",
+            "enablePullDownRefresh": true
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/address",
+      "pages": [
+        {
+          "path": "address-list",
+          "style": {
+            "navigationBarTitleText": "收货地址",
+            "navigationStyle": "custom",
+            "enablePullDownRefresh": true
+          }
+        },
+        {
+          "path": "address-edit",
+          "style": {
+            "navigationBarTitleText": "地址编辑",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/member",
+      "pages": [
+        {
+          "path": "member-center",
+          "style": {
+            "navigationBarTitleText": "会员中心",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "points-logs",
+          "style": {
+            "navigationBarTitleText": "积分变动记录",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/coupon",
+      "pages": [
+        {
+          "path": "coupon-list",
+          "style": {
+            "navigationBarTitleText": "优惠券领取中心",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "coupon-mine",
+          "style": {
+            "navigationBarTitleText": "我的优惠券",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/mine",
+      "pages": [
+        {
+          "path": "about",
+          "style": {
+            "navigationBarTitleText": "关于我们"
+          }
+        },
+        {
+          "path": "feedback",
+          "style": {
+            "navigationBarTitleText": "意见反馈"
+          }
+        },
+        {
+          "path": "privacy",
+          "style": {
+            "navigationBarTitleText": "隐私政策"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/chat",
+      "pages": [
+        {
+          "path": "conversations",
+          "style": {
+            "navigationBarTitleText": "消息",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "ai-chat",
+          "style": {
+            "navigationBarTitleText": "AI智能助手",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "chat",
+          "style": {
+            "navigationBarTitleText": "对话",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/checkin",
+      "pages": [
+        {
+          "path": "checkin",
+          "style": {
+            "navigationBarTitleText": "每日签到",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/flash-sale",
+      "pages": [
+        {
+          "path": "flash-sale",
+          "style": {
+            "navigationBarTitleText": "限时秒杀",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/comments",
+      "pages": [
+        {
+          "path": "comments",
+          "style": {
+            "navigationBarTitleText": "留言板",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/review",
+      "pages": [
+        {
+          "path": "review-list",
+          "style": {
+            "navigationBarTitleText": "商品评价",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "review-publish",
+          "style": {
+            "navigationBarTitleText": "发表评价",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/inbox",
+      "pages": [
+        {
+          "path": "inbox-list",
+          "style": {
+            "navigationBarTitleText": "站内信",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "inbox-detail",
+          "style": {
+            "navigationBarTitleText": "消息详情",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    },
+    {
+      "root": "pages/admin",
+      "pages": [
+        {
+          "path": "dashboard",
+          "style": {
+            "navigationBarTitleText": "数据仪表盘",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "product-list",
+          "style": {
+            "navigationBarTitleText": "商品管理",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "product-edit",
+          "style": {
+            "navigationBarTitleText": "编辑商品",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "order-list",
+          "style": {
+            "navigationBarTitleText": "订单管理",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "order-detail",
+          "style": {
+            "navigationBarTitleText": "订单详情",
+            "navigationStyle": "custom"
+          }
+        },
+        {
+          "path": "order-statistics",
+          "style": {
+            "navigationBarTitleText": "订单统计",
+            "navigationStyle": "custom"
+          }
+        }
+      ]
+    }
+  ],
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#409eff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "static/tabbar/home.png",
+        "selectedIconPath": "static/tabbar/home-active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "static/tabbar/category.png",
+        "selectedIconPath": "static/tabbar/category-active.png"
+      },
+      {
+        "pagePath": "pages/cart/cart",
+        "text": "购物车",
+        "iconPath": "static/tabbar/cart.png",
+        "selectedIconPath": "static/tabbar/cart-active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "static/tabbar/profile.png",
+        "selectedIconPath": "static/tabbar/profile-active.png"
+      }
+    ]
+  },
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Gexm",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "backgroundColor": "#F5F7FA"
+  },
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["pages/product", "pages/order"]
+    },
+    "pages/profile/profile": {
+      "network": "all",
+      "packages": ["pages/favorites", "pages/address", "pages/member", "pages/coupon", "pages/mine"]
+    },
+    "pages/product/list": {
+      "network": "all",
+      "packages": ["pages/search"]
+    },
+    "pages/cart/cart": {
+      "network": "all",
+      "packages": ["pages/order"]
+    }
+  },
+  "vueVersion": "3"
+}

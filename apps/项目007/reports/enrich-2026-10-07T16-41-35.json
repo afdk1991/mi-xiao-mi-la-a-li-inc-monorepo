@@ -1,0 +1,583 @@
+{
+ "started_at": "2026-10-07T16:41:35.431Z",
+ "rows": [
+  {
+   "cat": "comic-drama",
+   "id": "hg-7682690565191765016",
+   "sid": "7682690565191765016",
+   "ok": true,
+   "status": 200,
+   "title": "玄武门开局",
+   "cover": "https://p6-novel.byteimg.com/novel-pic/c4c2f04c69c7bfd9e4a514114958d9af~tplv-shrink:640:0.image",
+   "intro": "陈怀安穿越成李建成幕僚陈怀安，开局就是玄武门？本想苟命教书，却靠现代知识助李世民改良盐铁、推行科举、赈灾平乱，硬生生把大唐改成了“人间理想”。科学制盐、活字印刷、打破世家垄断——别人玩权谋，他搞基建。不为权势，只为这盛世百姓能好好活着。",
+   "tags": [
+    "脑洞",
+    "穿越",
+    "逆袭",
+    "古代"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 1000,
+   "episode_total_cnt": 1000,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全1000集",
+   "vid_list_len": 1000,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7682704863133715480",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7682703237736090648",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7682704735203249176",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 1000,
+   "local_title": "玄武门开局",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/c4c2f04c69c7bfd9e4a514114958d9af~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7687961499481934910",
+   "sid": "7687961499481934910",
+   "ok": true,
+   "status": 200,
+   "title": "我本是魔之阴阳魔帝",
+   "cover": "https://p6-novel.byteimg.com/novel-pic/3193aa9b9162ec12aba065f733878df8~tplv-shrink:640:0.image",
+   "intro": "方凌自少年时期踏上修行之路，在广阔天地间结识明月等伙伴，也逐渐接触到更辽阔的宗门世界。一路上，他不断认识自身力量与责任，在一次次历练中坚定内心，与伙伴共同探寻修行真意。随着眼界不断开阔，方凌也从意气少年成长为能够独当一面的修士，开启属于自己的传奇篇章。",
+   "tags": [
+    "玄幻",
+    "修真",
+    "异界"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 1000,
+   "episode_total_cnt": 1000,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全1000集",
+   "vid_list_len": 1000,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7688005499974863934",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7688004293420387390",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7688005582141262910",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 1000,
+   "local_title": "我本是魔之阴阳魔帝",
+   "local_cover": "https://p3-novel.byteimg.com/novel-pic/3193aa9b9162ec12aba065f733878df8~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7687963033422810174",
+   "sid": "7687963033422810174",
+   "ok": true,
+   "status": 200,
+   "title": "创立反卷仙门，弟子越猛我越强：第1季",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/4ed18e4f0573151332b6fc0e6b403e76~tplv-shrink:640:0.image",
+   "intro": "穿越者苏白绑定史上最强宗门系统，在修仙界创立天道宗。一反各大宗门收费压榨的潜规则，入宗免费传顶级仙法、每月还发俸银，先后收下诸葛风、萧灵汐等身怀异禀却出身底层的弟子。宗门从破茅草屋快速崛起，硬刚灵霄宗等老牌势力，吸引无数求仙者投奔，搅动整个修仙界格局。",
+   "tags": [
+    "脑洞",
+    "穿越",
+    "系统",
+    "逆袭",
+    "异界"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 1000,
+   "episode_total_cnt": 1000,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全1000集",
+   "vid_list_len": 1000,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7688008155082542104",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7688008310846409752",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7688008035662318616",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 1000,
+   "local_title": "创立反卷仙门，弟子越猛我越强：第1季",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/4ed18e4f0573151332b6fc0e6b403e76~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7688646466708966462",
+   "sid": "7688646466708966462",
+   "ok": true,
+   "status": 200,
+   "title": "家有五女，穿越来的他连夜搞事业啦",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/6be6de7b80ddc5cb6df225902f3d5823~tplv-shrink:640:0.image",
+   "intro": "本季1000集！陆蘅与祁妙的三搭剧。秦朗不过是出个差的功夫，因为好奇心过重凑了个热闹，不小心被砸重，穿到了古代。他还没反应过来，怀里就被塞了个刚出生的孩子，说是他的女儿，还是第五个孩子，秦朗一脸的懵，这就当爹了？再环顾一下家里，家徒四壁，四处漏风，父母偏心，妻女嗷嗷待哺，真是天崩开局。为了让自己的五个小棉袄过上好日子，秦朗只能连夜搞事业。拉拢兄弟，洗脑偏心父母，对抗大哥大嫂，美食科举，真实小日常。",
+   "tags": [
+    "剧情",
+    "穿越",
+    "逆袭",
+    "古代"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 1000,
+   "episode_total_cnt": 1000,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全1000集",
+   "vid_list_len": 1000,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7688677350598265918",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7688677254292851774",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7688672582165351486",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 1000,
+   "local_title": "家有五女，穿越来的他连夜搞事业啦",
+   "local_cover": "https://p3-novel.byteimg.com/novel-pic/6be6de7b80ddc5cb6df225902f3d5823~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7682248327584287768",
+   "sid": "7682248327584287768",
+   "ok": true,
+   "status": 200,
+   "title": "朕绝无反意第1季",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/ab80216ab5b95140bb5516dbee17b269~tplv-shrink:640:0.image",
+   "intro": "卷王陈砚猝死后穿越大梁，成了举人家的独子，六岁时却发现自己是被抱错的假少爷，只能回到贫苦农户陈家。面对大房独占资源，三房终年劳作的困境，他决定靠科举改变命运。陈砚凭借前世见识苦读经史，从寒门童子一路考取功名，步入朝堂，凭才智化解家族危机与官场暗流。他不忘陈家全族扶持之恩，最终带领族人脱离贫困，让曾经护他读书的人都穿上朱紫官袍。",
+   "tags": [
+    "剧情",
+    "穿越",
+    "逆袭",
+    "古代"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 999,
+   "episode_total_cnt": 999,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全999集",
+   "vid_list_len": 999,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7682250704769010712",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7682251271893421080",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7682253829819075608",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 999,
+   "local_title": "朕绝无反意第1季",
+   "local_cover": "https://p3-novel.byteimg.com/novel-pic/ab80216ab5b95140bb5516dbee17b269~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7682348821573012542",
+   "sid": "7682348821573012542",
+   "ok": true,
+   "status": 200,
+   "title": "作死系统，非要让我去闯祸",
+   "cover": "https://p6-novel.byteimg.com/novel-pic/a02439e7bebcb42116f0d08620f2ab1e~tplv-shrink:640:0.image",
+   "intro": "顾长生一朝穿越，成为京城人人唾弃的纨绔子弟，却意外觉醒“作死系统”。刚登金殿受封状元，系统便发布唯一任务——一炷香内向皇室女子求亲，否则天雷降世！面对三位身份尊贵的公主，顾长生避开所有夺嫡漩涡，转身盯上权倾朝野、冷艳无双的长公主李沧月。所有人都以为他疯了，殊不知这一场看似荒唐的求亲，正让他卷入帝国权谋核心。凭借逆天医术、神秘功法和惊人智慧，他从人人眼中的纨绔，成长为镇压北境、震慑朝堂的绝世帝君。",
+   "tags": [
+    "脑洞",
+    "穿越",
+    "系统",
+    "逆袭",
+    "架空"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 999,
+   "episode_total_cnt": 999,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全999集",
+   "vid_list_len": 999,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7682362469720788030",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7682362873317690430",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7682362661266263102",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 999,
+   "local_title": "作死系统，非要让我去闯祸",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/a02439e7bebcb42116f0d08620f2ab1e~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7686090613598456856",
+   "sid": "7686090613598456856",
+   "ok": true,
+   "status": 200,
+   "title": "我乃京师第一纨绔",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/e5f11086d79b197cb64c17c70943b586~tplv-shrink:640:0.image",
+   "intro": "许闲穿越到大楚，成了太子妃的亲弟弟，仗着太子姐夫撑腰，化身京城头号纨绔。逛教坊司记太子的账，跟权贵硬刚，惹来满朝弹劾，人人都想办他。可太子护着、皇帝还把他当心尖肉。看似不学无术，实则心思通透，破奇案、开镖局搞物流、做糖果生意，一边当摆烂纨绔，一边搅动朝堂风云，轻松诙谐，种田权谋两手抓。",
+   "tags": [
+    "宫廷",
+    "穿越",
+    "古代"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 999,
+   "episode_total_cnt": 999,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全999集",
+   "vid_list_len": 999,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7686137483490249752",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7686131715932163096",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7686132983333407768",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 999,
+   "local_title": "我乃京师第一纨绔",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/e5f11086d79b197cb64c17c70943b586~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7687904284695874622",
+   "sid": "7687904284695874622",
+   "ok": true,
+   "status": 200,
+   "title": "争霸：镇国驸马爷",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/42b4771d176e7bcf62b20ae8c0a78da9~tplv-shrink:640:0.image",
+   "intro": "穿越成大宇第一赘婿的季平安，意外绑定三国英魂系统，从召唤赵云开始，接连收服贾诩、李儒、典韦等文臣猛将。他以文才破西陵、以谋略争兵权、守北境、夺城池，在大宇皇权与四国博弈中步步崛起。经历宫变、征伐与重重算计后，昔日被轻视的驸马终掌天下大势，登基为帝，正式开启争霸四方的帝王之路",
+   "tags": [
+    "脑洞",
+    "穿越",
+    "逆袭",
+    "系统",
+    "架空"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 999,
+   "episode_total_cnt": 999,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全999集",
+   "vid_list_len": 999,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7687912542542236696",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7687908210379869209",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7687907109739973656",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 999,
+   "local_title": "争霸：镇国驸马爷",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/42b4771d176e7bcf62b20ae8c0a78da9~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7687956896539495449",
+   "sid": "7687956896539495449",
+   "ok": true,
+   "status": 200,
+   "title": "绿龙冠冕第一季",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/ab812ab47648af539284d7206fef12ec~tplv-shrink:640:0.image",
+   "intro": "穿越者卡俄斯重生成五色龙巢里唯一的雄性绿雏龙，天生魔法天赋拉满，肉体却天生病弱。龙巢内十五条雌龙各怀心思，霸气红龙阿加莎实力碾压全场，狡黠黑龙安和莽撞绿龙萝娅以及蠢萌白胖胖接连登场。卡俄斯靠着智谋与魔法周旋求生，一边疯狂干饭升级，一边应对魔兽危机。从龙巢内的闹剧，到地下暗河迎战四环巨兽巴魔坎拉，幼龙的惊险成长冒险正式开启。",
+   "tags": [
+    "奇幻",
+    "穿越",
+    "异界"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 897,
+   "episode_total_cnt": 897,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全897集",
+   "vid_list_len": 897,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7687995736629185560",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7687995826366319640",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7687996833523567640",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 897,
+   "local_title": "绿龙冠冕第一季",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/ab812ab47648af539284d7206fef12ec~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7678005588130810942",
+   "sid": "7678005588130810942",
+   "ok": true,
+   "status": 200,
+   "title": "我只想找死，却被奉为九州战神了",
+   "cover": "https://p6-novel.byteimg.com/novel-pic/f69a82c9225a76d120819fd920d821fa~tplv-shrink:640:0.image",
+   "intro": "退伍兵楚骁意外穿越成镇南王府纨绔世子，激活“归途”系统，只要被人杀死，就能回到原世界。为了回家，他一心作死，退婚、闯军营、奔赴边关，哪里危险往哪里冲。谁知每次求死都阴差阳错立下大功，从纨绔恶少一路杀成军中神话。南蛮、金帐、东瀛强敌接连来袭，他越想送死，天下人越把他奉为九州战神。",
+   "tags": [
+    "脑洞",
+    "穿越",
+    "系统",
+    "逆袭",
+    "架空"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 852,
+   "episode_total_cnt": 852,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全852集",
+   "vid_list_len": 852,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7678059581250997273",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7678058966324087833",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7678058586341133337",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 852,
+   "local_title": "我只想找死，却被奉为九州战神了",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/f69a82c9225a76d120819fd920d821fa~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7673067074104593432",
+   "sid": "7673067074104593432",
+   "ok": true,
+   "status": 200,
+   "title": "谁说纨绔不能当状元",
+   "cover": "https://p3-novel.byteimg.com/novel-pic/11cc0d4546645a32992f76061c0bc3a7~tplv-shrink:640:0.image",
+   "intro": "一个花钱买来的状元，竟被皇帝亲自召进朝堂。江小白本想继续当他的纨绔世子，却发现兄长之死疑点重重，侯府早已身陷局中。诗会争锋、殿前互试、权臣博弈、皇室暗局接踵而来。所有人都以为他只是个没脑子的败家子，却不知道，这个最不起眼的纨绔，正在悄悄看穿整盘棋局。",
+   "tags": [
+    "脑洞",
+    "穿越",
+    "逆袭",
+    "架空"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 788,
+   "episode_total_cnt": 788,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全788集",
+   "vid_list_len": 788,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7673071467222797337",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7673071538656005145",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7673070928552545305",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 788,
+   "local_title": "谁说纨绔不能当状元",
+   "local_cover": "https://p3-novel.byteimg.com/novel-pic/11cc0d4546645a32992f76061c0bc3a7~tplv-shrink:640:0.image",
+   "note": ""
+  },
+  {
+   "cat": "comic-drama",
+   "id": "hg-7684111492563602456",
+   "sid": "7684111492563602456",
+   "ok": true,
+   "status": 200,
+   "title": "全民御兽：我只养最凶的龙皇！",
+   "cover": "https://p6-novel.byteimg.com/novel-pic/899834a8d224afa8966b6ef2ba259108~tplv-shrink:640:0.image",
+   "intro": "六年前，神秘灵境吞噬十三支探索队，秦定的父母与白沐雪的父亲从此失踪。六年后，御兽时代降临，秦定觉醒生灵图录，却在人人追逐强大灵兽时，与一条只值三十块一斤的土狗大黑签下同命契。谁也不知道，这条憨狗体内藏着一丝龙血，更拥有“犬化狼、狼化龙”的逆天进化之路。为寻找失踪亲人，也为踏上无人抵达的巅峰，一人一狗从校园起步，向所有轻视与杀意亮出獠牙。",
+   "tags": [
+    "脑洞",
+    "异能",
+    "升级流",
+    "逆袭",
+    "都市"
+   ],
+   "accessible_episode_cnt": 3,
+   "episode_cnt": 770,
+   "episode_total_cnt": 770,
+   "series_status": 1,
+   "update_status": "completed",
+   "update_status_text": "已完结",
+   "episode_right_text": "全770集",
+   "vid_list_len": 770,
+   "episode_list": [
+    {
+     "index": 1,
+     "vid": "7684114235651017753",
+     "title": "第 1 集",
+     "playable": true
+    },
+    {
+     "index": 2,
+     "vid": "7684116618435103769",
+     "title": "第 2 集",
+     "playable": true
+    },
+    {
+     "index": 3,
+     "vid": "7684117157243800601",
+     "title": "第 3 集",
+     "playable": true
+    }
+   ],
+   "claimed": 770,
+   "local_title": "全民御兽：我只养最凶的龙皇！",
+   "local_cover": "https://p6-novel.byteimg.com/novel-pic/899834a8d224afa8966b6ef2ba259108~tplv-shrink:640:0.image",
+   "note": ""
+  }
+ ]
+}

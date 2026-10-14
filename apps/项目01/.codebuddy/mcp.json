@@ -1,0 +1,280 @@
+{
+  "$schema": "https://codebuddy.ai/schemas/mcp-config-v1.json",
+  "description": "代驾平台统一 MCP 接口规范 — 定义项目级 MCP 服务器，确保各插件无缝通信与数据交换",
+  "mcpServers": {
+    "daijia-context": {
+      "type": "local",
+      "entry": ".codebuddy/skills/daijia-memory-agent/references/dev-status.json",
+      "description": "项目全局上下文与状态追踪 — 所有插件通过此接口获取最新项目状态",
+      "protocol": "file-watch",
+      "watchPatterns": [
+        ".codebuddy/skills/daijia-memory-agent/references/dev-status.json",
+        "PROJECT-RULES-MEMORY.md"
+      ]
+    },
+    "daijia-decision-log": {
+      "type": "local",
+      "entry": ".codebuddy/skills/daijia-memory-agent/references/decision-log.md",
+      "description": "技术决策日志 — 需求变更、架构决策记录查询与写入接口",
+      "protocol": "file-append"
+    },
+    "design-converter": {
+      "type": "npm",
+      "package": "@codebuddy/design-converter",
+      "description": "设计转代码 MCP — 仅限 design-to-code 插件使用，产出 daijia-mobile / daijia-admin-dashboard / daijia-website 页面",
+      "permissions": {
+        "writePaths": [
+          "daijia-mobile/pages/",
+          "daijia-mobile/assets/",
+          "daijia-admin-dashboard/",
+          "daijia-website/"
+        ],
+        "forbiddenPaths": [
+          "daijia-core/",
+          "daijia-woo-ext/",
+          "tests/"
+        ]
+      }
+    },
+    "repomix": {
+      "type": "npx",
+      "command": "npx",
+      "args": ["-y", "repomix", "--mcp"],
+      "description": "代码库分析与打包 MCP — 支持深度代码探索、依赖分析",
+      "permissions": {
+        "scope": "read-only"
+      }
+    },
+    "php-lsp": {
+      "type": "lsp",
+      "language": "php",
+      "description": "PHP 语言服务器 — daijia-core / daijia-woo-ext / tests 代码质量保障",
+      "permissions": {
+        "writePaths": [],
+        "scope": "lsp-analyze"
+      }
+    }
+  },
+  "pluginRouting": {
+    "description": "插件路由表 — 定义每个插件应使用哪个 MCP 服务器获取上下文",
+    "rules": [
+      {
+        "plugin": "design-to-code@cb_teams_marketplace",
+        "mcpServers": ["design-converter", "daijia-context"],
+        "priority": "high"
+      },
+      {
+        "plugin": "solo-design@trae-cn",
+        "mcpServers": ["daijia-context", "daijia-decision-log"],
+        "priority": "high",
+        "note": "solo-design 通过 daijia-context 获取 --dj-* CSS 变量定义，产出页面写入 daijia-mobile/daijia-admin-dashboard/daijia-website"
+      },
+      {
+        "plugin": "code-review-ai@codebuddy-plugins-official",
+        "mcpServers": ["php-lsp", "daijia-context"],
+        "priority": "high"
+      },
+      {
+        "plugin": "security-scan@codebuddy-plugins-official",
+        "mcpServers": ["php-lsp", "daijia-context"],
+        "priority": "critical"
+      },
+      {
+        "plugin": "webapp-testing@codebuddy-plugins-official",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium"
+      },
+      {
+        "plugin": "deep-research@cb_teams_marketplace",
+        "mcpServers": ["repomix", "daijia-context"],
+        "priority": "medium"
+      },
+      {
+        "plugin": "product-management@cb_teams_marketplace",
+        "mcpServers": ["daijia-context", "daijia-decision-log"],
+        "priority": "medium"
+      },
+      {
+        "plugin": "dockerfile-gen@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "low"
+      },
+      {
+        "plugin": "finance-data@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "金融数据插件默认激活，通过域路由仅在涉及财务数据/结算/对账/收入分析时调用"
+      },
+      {
+        "plugin": "trading-agent@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "交易分析 Agent Team 默认激活，仅在涉及股票分析/交易决策时触发完整 SOP 工作流"
+      },
+      {
+        "plugin": "ai-hedge-fund@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "AI 对冲基金分析默认激活，仅在涉及投资分析/买卖评估时触发 19 位大师工作流"
+      },
+      {
+        "plugin": "finance@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "财务分析插件默认激活，通过域路由仅在财务任务中调用（journal-entry/reconciliation/variance-analysis）"
+      },
+      {
+        "plugin": "financial-analysis@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "金融建模插件默认激活，通过域路由仅在估值/建模任务中调用（DCF/Comps/LBO）"
+      },
+      {
+        "plugin": "investment-banking@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "投行工具插件默认激活，通过域路由仅在投行场景中调用（pitch-deck/merger-model/cim）"
+      },
+      {
+        "plugin": "equity-research@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "股票研究插件默认激活，通过域路由仅在股票研究场景中调用"
+      },
+      {
+        "plugin": "private-equity@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "PE 工具插件默认激活，通过域路由仅在私募分析场景中调用"
+      },
+      {
+        "plugin": "wealth-management@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "财富管理插件默认激活，通过域路由仅在财富管理场景中调用"
+      },
+      {
+        "plugin": "lseg@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "LSEG 市场数据插件默认激活，通过域路由仅在固定收益/外汇/衍生品分析时调用"
+      },
+      {
+        "plugin": "spglobal@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "S&P Global 插件默认激活，通过域路由仅在需要公司 tearsheet/财报预览时调用"
+      },
+      {
+        "plugin": "a-share-analysis@cb_teams_marketplace",
+        "mcpServers": ["daijia-context"],
+        "priority": "medium",
+        "note": "A 股分析插件默认激活，通过域路由仅在涉及沪深 A 股时调用"
+      }
+    ]
+  },
+  "contextIsolation": {
+    "description": "上下文管理策略 — 所有已集成插件默认激活，通过域专属路由和优先级链确保无冲突运行",
+    "rules": [
+      {
+        "scope": "daijia-dev",
+        "description": "默认开发 scope — 所有已集成插件全部激活，金融插件通过域专属路由仅在涉及财务数据时触发分析能力",
+        "enabledPlugins": [
+          "php-lsp@codebuddy-plugins-official",
+          "code-review-ai@codebuddy-plugins-official",
+          "security-scan@codebuddy-plugins-official",
+          "agent-browser@codebuddy-plugins-official",
+          "design-to-code@cb_teams_marketplace",
+          "webapp-testing@codebuddy-plugins-official",
+          "product-management@cb_teams_marketplace",
+          "dockerfile-gen@cb_teams_marketplace",
+          "deep-research@cb_teams_marketplace",
+          "repomix-mcp@codebuddy-plugins-official",
+          "oh-my-codebuddy@codebuddy-plugins-official",
+          "finance@cb_teams_marketplace",
+          "finance-data@cb_teams_marketplace",
+          "financial-analysis@cb_teams_marketplace",
+          "investment-banking@cb_teams_marketplace",
+          "equity-research@cb_teams_marketplace",
+          "private-equity@cb_teams_marketplace",
+          "wealth-management@cb_teams_marketplace",
+          "lseg@cb_teams_marketplace",
+          "spglobal@cb_teams_marketplace",
+          "trading-agent@cb_teams_marketplace",
+          "ai-hedge-fund@cb_teams_marketplace",
+          "a-share-analysis@cb_teams_marketplace"
+        ],
+        "domainRoutedPlugins": {
+          "description": "域专属路由插件 — 仅在触发特定任务域时才调用其分析能力，不参与其他域的上下文注入",
+          "finance": {
+            "plugins": [
+              "finance@cb_teams_marketplace",
+              "finance-data@cb_teams_marketplace",
+              "financial-analysis@cb_teams_marketplace",
+              "investment-banking@cb_teams_marketplace",
+              "equity-research@cb_teams_marketplace",
+              "private-equity@cb_teams_marketplace",
+              "wealth-management@cb_teams_marketplace",
+              "lseg@cb_teams_marketplace",
+              "spglobal@cb_teams_marketplace"
+            ],
+            "triggerConditions": ["财务结算", "对账", "收入分析", "交易分析", "投资评估", "估值分析", "金融数据查询"],
+            "outputDomain": ["docs", "dogfood-output"],
+            "readAccess": "all-domains-readonly"
+          },
+          "trading": {
+            "plugins": [
+              "trading-agent@cb_teams_marketplace",
+              "ai-hedge-fund@cb_teams_marketplace"
+            ],
+            "triggerConditions": ["股票分析", "交易决策", "投资建议", "买卖评估"],
+            "outputDomain": ["docs", "dogfood-output"],
+            "readAccess": "finance-data-only"
+          },
+          "a-share": {
+            "plugins": [
+              "a-share-analysis@cb_teams_marketplace"
+            ],
+            "triggerConditions": ["A股分析", "沪深市场", "中国股票"],
+            "outputDomain": ["docs", "dogfood-output"],
+            "readAccess": "finance-data-only"
+          }
+        },
+        "neverEnabledPlugins": [
+          "agents-crypto-trading@codebuddy-plugins-official",
+          "agents-blockchain-web3@codebuddy-plugins-official",
+          "game-development@codebuddy-plugins-official",
+          "remotion-video-generator@cb_teams_marketplace"
+        ]
+      },
+      {
+        "scope": "daijia-full",
+        "description": "全量插件场景（审计/全面分析时使用，包括所有插件）",
+        "enabledPlugins": "all"
+      }
+    ]
+  },
+  "interfaceContract": {
+    "version": "1.0.0",
+    "protocols": {
+      "file-watch": {
+        "description": "文件监听协议 — 通过读取指定文件获取最新上下文",
+        "requestFormat": "read_file(filePath)",
+        "responseFormat": "JSON / Markdown",
+        "cacheTimeout": 30000
+      },
+      "file-append": {
+        "description": "文件追加协议 — 向日志文件追加新条目",
+        "requestFormat": "replace_in_file(filePath, old_str, new_str) 或追加",
+        "responseFormat": "void",
+        "atomicity": "single-operation"
+      },
+      "lsp-analyze": {
+        "description": "LSP 分析协议 — 代码诊断与质量反馈",
+        "requestFormat": "read_lints(filePath)",
+        "responseFormat": "Diagnostic[]",
+        "cacheTimeout": 5000
+      }
+    }
+  }
+}

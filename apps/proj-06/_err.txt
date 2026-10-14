@@ -1,0 +1,12 @@
+﻿ Container myp-srs Starting 
+ Container myp-srs Started 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on e
+ndpoint myp-db (5f703e67992d0a9d6acffbe5a6266861cecc785e1f2aef36e9642b5bb31689d5): Bind for 0.0.0.0:3306 failed: port i
+s already allocated
+19:57:23    compose exit=1
+NAME      IMAGE                     COMMAND                   SERVICE      CREATED          STATUS          PORTS
+myp-db    mysql:5.7                 "docker-entrypoint.s鈥?   db           37 seconds ago   Created         
+myp-pma   phpmyadmin:latest         "/docker-entrypoint.鈥?   phpmyadmin   21 seconds ago   Created         
+myp-srs   ossrs/srs:5               "./objs/srs -c conf/鈥?   srs          37 seconds ago   Up 21 seconds   0.0.0.0:1935->1935/tcp, [::]:1935->1935/tcp, 0.0.0.0:1985->1985/tcp, [::]:1985->1985/tcp, 0.0.0.0:8082->8080/tcp, [::]:8082->8080/tcp
+myp-wp    wordpress:php8.0-apache   "docker-entrypoint.s鈥?   wordpress    21 seconds ago   Created         
+19:57:44  STEP3 wait wordpress http

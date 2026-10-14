@@ -1,0 +1,53 @@
+# 依赖
+node_modules/
+
+# 构建产物
+dist/
+release/
+build/
+*.tsbuildinfo
+
+# Vite 临时文件
+vite.config.ts.timestamp-*.mjs
+
+# Android（Capacitor 生成；local.properties 含本机 SDK 路径，属本地环境）
+android/build/
+android/app/build/
+android/.gradle/
+android/local.properties
+# cap sync 复制进来的 Web 产物，属构建产物
+android/app/src/main/assets/public/
+android/capacitor.settings.gradle
+android/capacitor.build.gradle
+android/app/capacitor.build.gradle
+
+# EdgeOne 构建缓存
+.edgeone/
+
+# 本地会话与索引数据（非源码）
+.workbuddy/
+
+# 环境变量（含地图 Key 等凭证，绝不入库）
+.env
+.env.*
+!.env.example
+
+# 编辑器与系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+npm-debug.log*
+
+# Android 签名凭证（不入库）
+android/keystore.properties
+android/app/*.keystore
+android/app/*.jks
+*.keystore
+*.jks
+
+# 部署暂存目录（dist + edge-functions）
+.deploy/

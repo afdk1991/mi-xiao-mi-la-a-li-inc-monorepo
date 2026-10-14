@@ -1,0 +1,10 @@
+{
+  "name": "manju-makers",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Manju EdgeOne Makers deployment",
+  "dependencies": {
+    "@edgeone/pages-blob": "*"
+  }
+}

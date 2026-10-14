@@ -1,0 +1,28 @@
+{
+  "projectId": "b-admin-fullstack",
+  "version": "2.0.0-phase5",
+  "capturedAt": "2026-08-02T23:00:00+08:00",
+  "capturedBy": "mcp-coordinator",
+  "phases": {
+    "completed": ["0_environment", "1_backend_skeleton", "2_database", "3_core_business", "4_backend_tests", "5_frontend_api_integration"],
+    "inProgress": [],
+    "pending": ["6_frontend_ui_polish", "7_e2e_testing", "8_performance_optimization"],
+    "blocked": []
+  },
+  "modules": {
+    "backend": { "routes": 10, "controllers": 8, "services": 11, "validators": 5, "tests": 5 },
+    "frontend": { "pages": 5, "apiModules": 8, "utils": 6, "components": 5 },
+    "database": { "tables": 12, "seedUsers": 3,  "engine": "sql.js (WASM)" }
+  },
+  "ports": { "frontend": 8080, "backend": 3000 },
+  "apiPrefix": "/api/v1",
+  "pendingIssues": [
+    "npm install Windows no Python",
+    "npm run dev startup verification"
+  ],
+  "coordinationFiles": {
+    "plugin-coordination.md": "v2.0.0",
+    "project-context.md": "v2.0.0",
+    "dev-status.json": "v2.0.0"
+  }
+}

@@ -1,0 +1,17 @@
+node_modules/
+dist/
+unpackage/
+packages/app/dist/
+packages/desktop/dist/
+packages/server/dist/
+packages/sdk/dist/
+packages/shared/dist/
+*.min.js
+*.min.css
+coverage/
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+node_modules/

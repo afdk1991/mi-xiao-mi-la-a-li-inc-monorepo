@@ -1,0 +1,25 @@
+<view class="success-container">
+  <view class="success-icon">✓</view>
+  <text class="success-title">支付成功</text>
+  <text class="success-amount">¥{{order.totalPrice}}</text>
+  
+  <view class="order-info" wx:if="{{order}}">
+    <view class="info-row">
+      <text class="info-label">订单号</text>
+      <text class="info-value">{{order.orderId}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">支付方式</text>
+      <text class="info-value">{{order.paymentMethod}}</text>
+    </view>
+    <view class="info-row">
+      <text class="info-label">支付时间</text>
+      <text class="info-value">{{order.paymentTime}}</text>
+    </view>
+  </view>
+  
+  <view class="action-buttons">
+    <button class="detail-btn" bindtap="goToDetail">查看订单</button>
+    <button class="home-btn" bindtap="goToHome">返回首页</button>
+  </view>
+</view>

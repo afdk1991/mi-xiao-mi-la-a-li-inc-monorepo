@@ -1,0 +1,58 @@
+{
+  "common": {
+    "success": "操作成功",
+    "error": "操作失敗",
+    "notFound": "リソースが見つかりません",
+    "unauthorized": "認証されていません",
+    "forbidden": "アクセスが禁止されています",
+    "internalError": "サーバー内部エラー",
+    "badRequest": "リクエストパラメータエラー"
+  },
+  "auth": {
+    "loginSuccess": "ログイン成功",
+    "logoutSuccess": "ログアウト成功",
+    "registerSuccess": "登録成功",
+    "invalidCredentials": "ユーザー名またはパスワードが間違っています",
+    "tokenExpired": "トークンの有効期限が切れています",
+    "tokenInvalid": "トークンが無効です",
+    "refreshSuccess": "トークンの更新に成功しました"
+  },
+  "customer": {
+    "getOrdersSuccess": "注文リストの取得に成功しました",
+    "createOrderSuccess": "注文の作成に成功しました",
+    "updateOrderSuccess": "注文の更新に成功しました",
+    "deleteOrderSuccess": "注文の削除に成功しました",
+    "orderNotFound": "注文が見つかりません",
+    "getProfileSuccess": "ユーザー情報の取得に成功しました",
+    "updateProfileSuccess": "ユーザー情報の更新に成功しました"
+  },
+  "dispatch": {
+    "intelligentDispatchSuccess": "インテリジェント配車に成功しました",
+    "optimizeRouteSuccess": "ルート最適化に成功しました",
+    "predictOrderVolumeSuccess": "注文量予測に成功しました",
+    "getStatisticsSuccess": "配車統計の取得に成功しました",
+    "getRecommendationsSuccess": "パーソナライズされた推奨の取得に成功しました",
+    "customerServiceSuccess": "インテリジェントカスタマーサービスの応答に成功しました"
+  },
+  "blockchain": {
+    "recordLogisticsSuccess": "物流情報の記録に成功しました",
+    "queryLogisticsSuccess": "物流情報の照会に成功しました",
+    "recordPaymentSuccess": "支払い情報の記録に成功しました",
+    "queryPaymentSuccess": "支払い情報の照会に成功しました",
+    "getBlockchainInfoSuccess": "ブロックチェーン情報の取得に成功しました"
+  },
+  "5g": {
+    "getVehiclePositionSuccess": "車両位置の取得に成功しました",
+    "getOrderStatusSuccess": "注文状態の取得に成功しました",
+    "sendDispatchCommandSuccess": "配車コマンドの送信に成功しました"
+  },
+  "validation": {
+    "required": "{field}は必須です",
+    "minLength": "{field}の長さは{min}以上でなければなりません",
+    "maxLength": "{field}の長さは{max}以下でなければなりません",
+    "email": "{field}は有効なメールアドレスでなければなりません",
+    "number": "{field}は数値でなければなりません",
+    "integer": "{field}は整数でなければなりません",
+    "positive": "{field}は正数でなければなりません"
+  }
+}

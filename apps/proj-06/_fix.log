@@ -1,0 +1,12 @@
+﻿docker : [15-Sep-2026 12:23:17 UTC] PHP Warning:  Constant WP_DEBUG already def
+ined in /var/www/html/wp-config.php(122) : eval()'d code on line 1
+所在位置 行:461 字符: 6
++ $s | docker exec -i myp-wp php 2>&1 | Out-File -FilePath $L -Encoding ...
++      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([15-Sep-2026 12... code on line 1 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+siteurl=http://localhost:18080
+home=http://localhost:18080
+htaccess_exists=yes

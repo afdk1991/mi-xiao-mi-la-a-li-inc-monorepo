@@ -1,0 +1,70 @@
+<view class="shop-container">
+  <view class="search-bar">
+    <view class="search-input">
+      <text class="search-icon">🔍</text>
+      <input 
+        placeholder="搜索商品" 
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+        bindconfirm="onSearch"
+      />
+    </view>
+    <view class="cart-btn" bindtap="goToCart">
+      <text class="cart-icon">🛒</text>
+      <view class="cart-badge" wx:if="{{cartCount > 0}}">
+        <text>{{cartCount > 99 ? '99+' : cartCount}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="category-scroll">
+    <scroll-view scroll-x class="category-list">
+      <view 
+        class="category-item {{currentCategory === item.id ? 'active' : ''}}" 
+        wx:for="{{categories}}" 
+        wx:key="id"
+        bindtap="onCategoryChange"
+        data-id="{{item.id}}"
+      >
+        <text>{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <view class="product-list">
+    <view 
+      class="product-item" 
+      wx:for="{{products}}" 
+      wx:key="id"
+      bindtap="onProductClick"
+      data-id="{{item.id}}"
+    >
+      <image class="product-image" src="{{item.image}}" mode="aspectFill"></image>
+      <view class="product-info">
+        <text class="product-name">{{item.name}}</text>
+        <text class="product-desc">{{item.description}}</text>
+        <view class="product-footer">
+          <view class="product-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+          </view>
+          <view class="add-btn" catchtap="addToCart" data-id="{{item.id}}">
+            <text>+</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="loading-tip" wx:if="{{isLoading}}">
+    <text>加载中...</text>
+  </view>
+  
+  <view class="empty-tip" wx:if="{{!isLoading && products.length === 0}}">
+    <text>暂无商品</text>
+  </view>
+  
+  <view class="no-more-tip" wx:if="{{!hasMore && products.length > 0}}">
+    <text>没有更多了</text>
+  </view>
+</view>

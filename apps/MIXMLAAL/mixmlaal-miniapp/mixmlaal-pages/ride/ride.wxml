@@ -1,0 +1,74 @@
+<view class="ride-container">
+  <view class="location-section">
+    <view class="location-item" bindtap="chooseFromLocation">
+      <view class="location-dot from"></view>
+      <view class="location-content">
+        <text class="location-label">出发地</text>
+        <text class="location-address">{{fromLocation.address || '请选择出发地'}}</text>
+      </view>
+    </view>
+    
+    <view class="location-swap" bindtap="swapLocations">
+      <text>⇅</text>
+    </view>
+    
+    <view class="location-item" bindtap="chooseToLocation">
+      <view class="location-dot to"></view>
+      <view class="location-content">
+        <text class="location-label">目的地</text>
+        <text class="location-address">{{toLocation.address || '请选择目的地'}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="ride-types">
+    <view class="type-title">选择车型</view>
+    <view class="type-list">
+      <view 
+        class="type-item {{rideType === item.id ? 'active' : ''}}" 
+        wx:for="{{rideTypes}}" 
+        wx:key="id"
+        bindtap="selectRideType"
+        data-id="{{item.id}}"
+      >
+        <text class="type-icon">{{item.icon}}</text>
+        <text class="type-name">{{item.name}}</text>
+        <text class="type-price">×{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="estimate-section" wx:if="{{estimate}}">
+    <view class="estimate-row">
+      <text class="estimate-label">预估距离</text>
+      <text class="estimate-value">{{estimate.distance}}公里</text>
+    </view>
+    <view class="estimate-row">
+      <text class="estimate-label">预估时长</text>
+      <text class="estimate-value">{{estimate.duration}}分钟</text>
+    </view>
+    <view class="estimate-row highlight">
+      <text class="estimate-label">预估费用</text>
+      <text class="estimate-value">¥{{estimate.price}}</text>
+    </view>
+    <view class="estimate-row">
+      <text class="estimate-label">附近司机</text>
+      <text class="estimate-value">{{nearbyDrivers}}位</text>
+    </view>
+  </view>
+  
+  <view class="tips-section" wx:if="{{!estimate}}">
+    <text class="tips-text">请选择出发地和目的地，我们将为您预估费用</text>
+  </view>
+  
+  <view class="action-section">
+    <button 
+      class="request-btn {{(!fromLocation || !toLocation || isLoading) ? 'disabled' : ''}}" 
+      bindtap="requestRide"
+      loading="{{isLoading}}"
+    >
+      {{isLoading ? '叫车中...' : '立即叫车'}}
+    </button>
+    <text class="history-link" bindtap="goToHistory">历史订单</text>
+  </view>
+</view>

@@ -1,0 +1,47 @@
+﻿# ============================================================================
+#  项目005 — 三层卧式模块化机箱（硬件设计交付项目）忽略规则
+#
+#  真实交付物是【三层卧式模块化机箱_项目完整交付包/】下的 PDF 图纸、
+#  效果图片与 BOM 表格，必须入库。需要排除的是：
+#    · pylibs/ —— 672 个第三方 Python 依赖副本（openpyxl/Pillow/pymupdf/
+#      reportlab/charset_normalizer），可用 requirements.txt 还原，68 MB。
+#    · *.accdb —— Access 数据库二进制，随设计变动、无法 diff。
+# ============================================================================
+
+# ===== 第三方依赖副本（应改用 requirements.txt 管理）=====
+pylibs/
+venv/
+.venv/
+env/
+
+# ===== 环境与凭据 =====
+.env
+.env.local
+**/.env
+*.pem
+*.key
+
+# ===== 二进制数据库与办公临时文件 =====
+*.accdb
+*.mdb
+*.sqlite
+*.sqlite3
+*.db
+~$*.docx
+~$*.xlsx
+~$*.doc
+
+# ===== Python 缓存与日志 =====
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+*.log
+
+# ===== 系统与编辑器临时文件 =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>应用管理 - MIXMLAAL开放平台</title>
+    <meta name="description" content="MIXMLAAL开放平台应用管理，创建和管理您的应用">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        secondary: '#004E89',
+                        accent: '#1A659E'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
+        .app-card { transition: all 0.3s ease; }
+        .app-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/src/portal/portal/index.html" class="flex items-center">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <i class="fa fa-code text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800">MIXMLAAL开放平台</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/src/open/api/index.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-home text-xl"></i>
+                    </a>
+                    <a href="/src/open/api/documentation.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-book text-xl"></i>
+                    </a>
+                    <a href="/src/user/profile/index.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-user text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">应用管理</h2>
+            <button id="createAppBtn" class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-opacity">
+                <i class="fa fa-plus mr-2"></i>创建应用
+            </button>
+        </div>
+
+        <!-- 应用列表 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- 应用卡片 -->
+            <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-1">出行服务应用</h3>
+                            <p class="text-gray-400 text-sm">创建于 2026-03-20</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-400 hover:text-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-500">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">App ID</p>
+                            <p class="font-mono text-sm">APP130007890</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">App Secret</p>
+                            <p class="font-mono text-sm">****************************************************************</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">API Key</p>
+                            <p class="font-mono text-sm">****************************************************************</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">已激活</span>
+                        <button class="text-primary hover:underline text-sm">查看详情</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-1">电商服务应用</h3>
+                            <p class="text-gray-400 text-sm">创建于 2026-03-18</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-400 hover:text-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-500">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">App ID</p>
+                            <p class="font-mono text-sm">APP0987654321</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">App Secret</p>
+                            <p class="font-mono text-sm">****************************************************************</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">API Key</p>
+                            <p class="font-mono text-sm">****************************************************************</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">已激活</span>
+                        <button class="text-primary hover:underline text-sm">查看详情</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6">
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-1">社交服务应用</h3>
+                            <p class="text-gray-400 text-sm">创建于 2026-03-15</p>
+                        </div>
+                        <div class="flex space-x-2">
+                            <button class="text-gray-400 hover:text-primary">
+                                <i class="fa fa-edit"></i>
+                            </button>
+                            <button class="text-gray-400 hover:text-red-500">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="space-y-3 mb-4">
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">App ID</p>
+                            <p class="font-mono text-sm">APP1357924680</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">App Secret</p>
+                            <p class="font-mono text-sm">****************************************************************</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-600 text-sm mb-1">API Key</p>
+                            <p class="font-mono text-sm">****************************************************************</p>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center">
+                        <span class="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">未激活</span>
+                        <button class="text-primary hover:underline text-sm">查看详情</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 创建应用模态框 -->
+    <div id="createAppModal" class="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl w-11/12 max-w-lg">
+            <div class="p-6 border-b">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-semibold">创建应用</h3>
+                    <button id="closeCreateAppModal" class="text-gray-500 hover:text-gray-700">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="p-6">
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-gray-600 mb-2">应用名称</label>
+                        <input type="text" placeholder="请输入应用名称" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-2">应用描述</label>
+                        <textarea rows="3" placeholder="请输入应用描述" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-2">应用类型</label>
+                        <select class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <option value="">请选择应用类型</option>
+                            <option value="ride">出行服务</option>
+                            <option value="ecommerce">电商服务</option>
+                            <option value="social">社交服务</option>
+                            <option value="payment">支付服务</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-gray-600 mb-2">回调地址</label>
+                        <input type="text" placeholder="请输入回调地址" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                    </div>
+                </div>
+                <div class="flex justify-end mt-6">
+                    <button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-opacity-90">
+                        创建应用
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-500 text-sm">
+                <p>&copy; 2026 MIXMLAAL开放平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 创建应用按钮
+        document.getElementById('createAppBtn').addEventListener('click', function() {
+            document.getElementById('createAppModal').classList.remove('hidden');
+        });
+        
+        // 关闭创建应用模态框
+        document.getElementById('closeCreateAppModal').addEventListener('click', function() {
+            document.getElementById('createAppModal').classList.add('hidden');
+        });
+        
+        // 创建应用提交
+        document.querySelector('#createAppModal button.bg-primary').addEventListener('click', function() {
+            alert('应用创建成功！');
+            document.getElementById('createAppModal').classList.add('hidden');
+        });
+    </script>
+</body>
+</html>

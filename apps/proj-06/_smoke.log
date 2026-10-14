@@ -1,0 +1,36 @@
+﻿=== FINAL SMOKE ===
+20:23:52  --- A. routes + static ---
+20:23:52    [200] http://localhost:18080/  len=16698
+20:23:52    [200] http://localhost:18080/products/  len=17885
+20:23:52    [200] http://localhost:18080/product/myp-smartphone-pro/  len=17405
+20:23:52    [200] http://localhost:18080/product-category/digital/  len=17471
+20:23:52    [200] http://localhost:18080/cart/  len=17073
+20:23:52    [200] http://localhost:18080/user-center/  len=17088
+20:23:52    [200] http://localhost:18080/live/  len=17891
+20:23:52    [200] http://localhost:18080/submit/  len=17429
+20:23:52    [200] http://localhost:18080/?s=Smartphone  len=16880
+20:23:52    [200] http://localhost:18080/?myp_sitemap=xml  len=327
+20:23:52    [200] http://localhost:18080/wp-json/myp/v1/live  len=264
+20:23:52    [200] http://localhost:18080/wp-json/myp/v1/cart  len=31
+20:23:52    [200] http://localhost:18080/wp-content/themes/myp-theme/style.css  len=2889
+20:23:52    [200] http://localhost:18080/wp-content/themes/myp-theme/assets/js/main.js  len=1582
+20:23:52    [200] http://localhost:18080/wp-content/themes/myp-theme/assets/js/live.js  len=1794
+20:23:52  --- B. page content checks ---
+20:23:52    products has product-card: True
+20:23:52    products has MYP Smartphone Pro: True
+20:23:52    products has price 3999: True
+20:23:53    detail has price-big: True
+20:23:53    detail has 3999: True
+20:23:53    detail has mypAddCart: True
+20:23:53    detail has stock: True
+20:23:53    cart page has myp-cart-list: True
+20:23:53    live page has myp-live-list: True
+20:23:53    live page has danmu input: True
+20:23:53  --- C. cart interaction (POST /wp-json/myp/v1/cart) ---
+20:23:53    POST cart -> 200 {"code":0,"msg":"\u5df2\u52a0\u5165\u8d2d\u7269\u8f66","data":null}
+20:23:53    GET cart -> {"code":0,"msg":"ok","data":[]}
+20:23:53  --- D. live api ---
+20:23:53    live api: {"code":0,"msg":"ok","data":[{"id":"1","title":"MYP Launch Live","anchor_id":"1","product_id":"0","cover":"","stream_key":"myp_demo_stream_001","play_url":"","status":"living","start_time":"2026-09-15 12:19:23","end_time":null,"created_at":"2026-09-15 12:19:23"}]}
+20:23:53  --- E. php error log ---
+NO_DEBUG_LOG
+20:23:53  === SMOKE COMPLETE ===

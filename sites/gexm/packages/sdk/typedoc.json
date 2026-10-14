@@ -1,0 +1,19 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "entryPoints": ["src/index.ts"],
+  "out": "docs",
+  "name": "GexmSDK API Documentation",
+  "includeVersion": true,
+  "readme": "none",
+  "theme": "default",
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"],
+  "excludeExternals": true,
+  "excludeNotDocumented": false,
+  "categorizeByGroup": true,
+  "navigationLinks": {
+    "GitHub": "https://github.com/gexm/sdk",
+    "NPM": "https://www.npmjs.com/package/@gexm/sdk"
+  },
+  "hideGenerator": false,
+  "sort": ["source-order"]
+}

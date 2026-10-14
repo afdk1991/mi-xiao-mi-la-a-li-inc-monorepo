@@ -1,0 +1,45 @@
+# Prometheus 配置文件
+# MIXMLAAL 监控系统
+
+global:
+  scrape_interval: 15s  # 抓取间隔
+  evaluation_interval: 15s  # 评估间隔
+
+# 告警配置
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets: ['alertmanager:9093']
+
+# 告警规则
+alerting_rules_files:
+  - "rules/*.yml"
+
+# 抓取配置
+scrape_configs:
+  # 抓取 Prometheus 自身的指标
+  - job_name: 'prometheus'
+    static_configs:
+    - targets: ['localhost:9090']
+
+  # 抓取 MIXMLAAL API 服务的指标
+  - job_name: 'mixmlaal-api'
+    static_configs:
+    - targets: ['api:3001']
+    metrics_path: '/metrics'
+    scrape_interval: 10s
+
+  # 抓取 Node Exporter 的系统指标
+  - job_name: 'node'
+    static_configs:
+    - targets: ['node-exporter:9100']
+
+  # 抓取 Redis 指标
+  - job_name: 'redis'
+    static_configs:
+    - targets: ['redis:9121']
+
+  # 抓取 MySQL 指标
+  - job_name: 'mysql'
+    static_configs:
+    - targets: ['mysql-exporter:9104']

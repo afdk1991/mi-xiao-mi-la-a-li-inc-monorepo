@@ -1,0 +1,226 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectName": "代驾平台 (Daijia Platform)",
+  "lastUpdated": "2026-08-02T14:00:00+08:00",
+  "updatedBy": "daijia-orchestrator",
+
+  "domains": {
+    "core-api": {
+      "path": "daijia-core/",
+      "status": "active",
+      "version": "1.0.0/1.1.0",
+      "lastModified": "2026-08-02T00:00:00+08:00",
+      "techStack": "PHP 7.4+, WordPress Plugin API",
+      "keyFiles": {
+        "constants": "includes/class-daijia-constants.php",
+        "auth": "includes/class-daijia-auth.php",
+        "orders": "includes/class-daijia-order.php",
+        "restController": "includes/class-daijia-rest-controller.php",
+        "errorHandler": "includes/class-daijia-error-handler.php",
+        "validator": "includes/class-daijia-validator.php",
+        "logger": "includes/class-daijia-logger.php",
+        "cache": "includes/class-daijia-cache.php"
+      },
+      "endpoints": 30,
+      "errorCodes": 26,
+      "orderStates": ["PENDING", "ACCEPTED", "ONGOING", "COMPLETED", "CANCELLED", "DISPUTE"],
+      "note": "版本号在 daijia-core.php 头部和 README.txt 中不一致 (1.0.0 vs 1.1.0)，需要统一"
+    },
+    "mobile-ui": {
+      "path": "daijia-mobile/",
+      "status": "active",
+      "version": "1.0.0",
+      "lastModified": "2026-07-29T17:28:00+08:00",
+      "techStack": "HTML5 + CSS3 + Vanilla JS, PWA",
+      "designSystem": "solo-design v2026.07.22",
+      "brandPrefix": "dj",
+      "pages": {
+        "passenger-home": { "file": "pages/passenger-home.html", "status": "completed", "completedAt": "2026-07-29" },
+        "driver-orders": { "file": "pages/driver-orders.html", "status": "needs-fix", "completedAt": "2026-07-29", "issues": ["ISSUE-001"] },
+        "member-services": { "file": "pages/member-services.html", "status": "completed", "completedAt": "2026-07-29" }
+      },
+      "pwa": {
+        "manifest": "manifest.json",
+        "serviceWorker": "service-worker.js",
+        "offlineSupported": true,
+        "shortcuts": ["立即叫车", "我的订单", "司机接单"]
+      }
+    },
+    "admin-ui": {
+      "path": "daijia-admin-dashboard/",
+      "status": "active",
+      "version": "1.0.0",
+      "lastModified": "2026-08-01T00:00:00+08:00",
+      "techStack": "HTML5 + CSS3, Liquid Glass UI",
+      "designSystem": "solo-design v2026.07.22",
+      "brandPrefix": "dj",
+      "pages": {
+        "admin-dashboard": { "file": "admin.html", "status": "completed" },
+        "admin-login": { "file": "login.html", "status": "completed" }
+      }
+    },
+    "website": {
+      "path": "daijia-website/",
+      "status": "active",
+      "version": "1.0.0",
+      "lastModified": "2026-07-29T00:00:00+08:00",
+      "techStack": "HTML5 + CSS3, Static",
+      "designSystem": "solo-design v2026.07.22",
+      "designFile": "daijia-website.design"
+    },
+    "woo-ext": {
+      "path": "daijia-woo-ext/",
+      "status": "active",
+      "version": "1.0.0",
+      "lastModified": "2026-07-29T00:00:00+08:00",
+      "techStack": "PHP 7.4+, WooCommerce Extension API",
+      "modules": ["checkout-fields", "order-integration"]
+    },
+    "tests": {
+      "path": "tests/",
+      "status": "active",
+      "totalTests": 7,
+      "lastRun": null,
+      "coverage": {
+        "unit": ["auth", "order", "validator", "cache", "constants", "error-handler"],
+        "integration": ["rest-api"]
+      }
+    }
+  },
+
+  "qualityMetrics": {
+    "lastAudit": "2026-08-02",
+    "securityCompliance": {
+      "total": 13,
+      "passed": 10,
+      "pending": 2,
+      "unknown": 1,
+      "reportPath": "AUDIT-REPORT-20260802.md"
+    },
+    "codeReview": {
+      "lastReview": "2026-08-01",
+      "reportPath": "BROOKS-SWEEP-REPORT-20260801.md"
+    },
+    "lspDiagnostics": {
+      "errors": 0,
+      "warnings": 0,
+      "lastChecked": null
+    },
+    "testResults": {
+      "passed": 0,
+      "failed": 0,
+      "skipped": 0,
+      "lastRun": null
+    }
+  },
+
+  "designTokens": {
+    "source": "daijia-mobile/colors_and_type.css",
+    "brandPrefix": "dj",
+    "primaryColor": "#06b6d4",
+    "fontSans": "Inter, PingFang SC, sans-serif",
+    "fontMono": "SF Mono, JetBrains Mono, monospace",
+    "surfaceDepthModel": "border-first-light-static-cards",
+    "ctaTreatment": "filled-primary-on-light",
+    "lastUpdated": "2026-07-29T17:21:00+08:00"
+  },
+
+  "mcpConfiguration": {
+    "configPath": ".codebuddy/mcp.json",
+    "activeServers": ["daijia-context", "daijia-decision-log", "design-converter", "repomix", "php-lsp"],
+    "contextScope": "daijia-dev",
+    "description": "全插件默认激活，金融插件通过域专属路由在涉及财务/结算/投资任务时触发分析能力",
+    "lastUpdated": "2026-08-02"
+  },
+
+  "memoryAgent": {
+    "skillPath": ".codebuddy/skills/daijia-memory-agent/SKILL.md",
+    "version": "1.1.0",
+    "enabled": true,
+    "description": "v1.1.0 — 新增项目上下文自动注入机制 + 金融插件全激活域路由策略",
+    "lastUpdated": "2026-08-02"
+  },
+
+  "activeConflicts": 0,
+
+  "pluginIntegration": {
+    "totalPlugins": "all-enabled",
+    "financePlugins": {
+      "status": "active",
+      "routing": "domain-routed",
+      "triggerConditions": ["财务结算", "对账", "收入分析", "投资决策", "股票分析", "估值建模", "投行场景", "私募分析", "财富管理", "固定收益/外汇", "公司情报"],
+      "nonTriggerTasks": "金融插件规则不注入非金融任务上下文"
+    }
+  },
+
+  "knownIssues": [
+    {
+      "id": "ISSUE-001",
+      "domain": "mobile-ui",
+      "file": "daijia-mobile/pages/driver-orders.html",
+      "severity": "medium",
+      "description": "mobile-navigation-consistency: bottom nav 缺少 data-nav-key 属性，标签不支持 whitespace-nowrap/truncate",
+      "status": "needs-fix",
+      "reportedAt": "2026-07-29",
+      "reporter": "solo-design validateDesignWorkspace",
+      "validationRuns": 2
+    },
+    {
+      "id": "ISSUE-002",
+      "domain": "core-api",
+      "file": "daijia-core/daijia-core.php",
+      "severity": "low",
+      "description": "版本号不一致: 文件头部声明 1.0.0，README.txt 声明 1.1.0",
+      "status": "needs-fix",
+      "reportedAt": "2026-08-02",
+      "reporter": "daijia-orchestrator"
+    },
+    {
+      "id": "ISSUE-003",
+      "domain": "config",
+      "severity": "low",
+      "description": "全局 MCP 配置 (~/.codebuddy/mcp.json) 中 mcpServers 为空对象，导致 design-converter、repomix-mcp、firebase 等 MCP 依赖插件功能不可用。已在项目级 .codebuddy/mcp.json 中补充",
+      "status": "mitigated",
+      "reportedAt": "2026-08-02",
+      "reporter": "daijia-orchestrator"
+    }
+  ],
+
+  "recentActivity": [
+    {
+      "timestamp": "2026-08-02T14:00:00+08:00",
+      "action": "configuration-update",
+      "domain": "config",
+      "detail": "金融插件从隔离策略改为全激活 + 域路由策略。SKILL.md 升级至 v1.1.0，新增项目上下文自动注入机制和全插件无冲突协作规则",
+      "agent": "daijia-orchestrator"
+    },
+    {
+      "timestamp": "2026-08-02T12:00:00+08:00",
+      "action": "infrastructure-setup",
+      "domain": "config",
+      "detail": "建立 daijia-memory-agent Skill + .codebuddy/mcp.json 项目级 MCP 配置 + daijia-orchestrator Agent",
+      "agent": "daijia-orchestrator"
+    },
+    {
+      "timestamp": "2026-08-02T00:00:00+08:00",
+      "action": "documentation-generated",
+      "domain": "docs",
+      "detail": "生成 PROJECT-RULES-MEMORY.md (全量插件/Agent/MCP 清单)",
+      "agent": "deep-research"
+    },
+    {
+      "timestamp": "2026-08-01T00:00:00+08:00",
+      "action": "code-review-completed",
+      "domain": "core-api",
+      "detail": "Brooks Sweep 代码审查完成，报告: BROOKS-SWEEP-REPORT-20260801.md",
+      "agent": "code-review-ai"
+    },
+    {
+      "timestamp": "2026-07-29T17:28:00+08:00",
+      "action": "page-generation-completed",
+      "domain": "mobile-ui",
+      "detail": "3 个移动端页面由 solo-design 生成: passenger-home, driver-orders, member-services. driver-orders 有 mobile-navigation-consistency 问题待修复",
+      "agent": "solo-design@trae-cn"
+    }
+  ]
+}

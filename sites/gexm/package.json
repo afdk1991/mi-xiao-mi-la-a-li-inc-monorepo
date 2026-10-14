@@ -1,0 +1,95 @@
+{
+  "name": "gexm-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "全平台应用系统 - 统一用户体验和功能一致性",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n SERVER,APP -c magenta,cyan \"npm:dev:server\" \"npm:dev:app-h5\"",
+    "dev:all": "concurrently -k -n SERVER,APP,DESKTOP -c magenta,cyan,blue \"npm:dev:server\" \"npm:dev:app-h5\" \"npm:dev:desktop\"",
+    "dev:server": "npm run dev --workspace=@gexm/server",
+    "dev:app-h5": "npm run dev:h5 --workspace=@gexm/app",
+    "dev:app-mp-weixin": "npm run dev:mp-weixin --workspace=@gexm/app",
+    "dev:app-app": "npm run dev:app --workspace=@gexm/app",
+    "dev:desktop": "npm run dev --workspace=@gexm/desktop",
+    "build:server": "npm run build --workspace=@gexm/server",
+    "build:app-h5": "npm run build:h5 --workspace=@gexm/app",
+    "build:app-mp-weixin": "npm run build:mp-weixin --workspace=@gexm/app",
+    "build:app-app": "npm run build:app --workspace=@gexm/app",
+    "build:desktop": "npm run build --workspace=@gexm/desktop",
+    "lint": "eslint --ext .js,.vue,.ts packages/",
+    "lint:fix": "eslint --ext .js,.vue,.ts packages/ --fix",
+    "format": "prettier --write \"packages/**/*.{js,vue,ts,json,css,scss}\"",
+    "format:check": "prettier --check \"packages/**/*.{js,vue,ts,json,css,scss}\""
+  },
+  "keywords": [
+    "uni-app",
+    "vue3",
+    "express",
+    "electron",
+    "cross-platform"
+  ],
+  "author": "Gexm Team",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "dependencies": {
+    "vue": "3.4.21"
+  },
+  "overrides": {
+    "vue": "3.4.21",
+    "pinia": "2.1.7",
+    "@vue/server-renderer": "3.4.21",
+    "@vue/reactivity": "3.4.21",
+    "@vue/runtime-core": "3.4.21",
+    "@vue/runtime-dom": "3.4.21",
+    "@vue/compiler-sfc": "3.4.21",
+    "@vue/compiler-dom": "3.4.21",
+    "@vue/shared": "3.4.21",
+    "@babel/core": "7.29.7",
+    "@eslint/plugin-kit": "0.3.4",
+    "@intlify/core-base": "9.14.5",
+    "@intlify/message-resolver": "9.1.11",
+    "@intlify/message-compiler": "9.1.11",
+    "@intlify/runtime": "9.1.11"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.29.7",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@eslint/js": "^9.39.4",
+    "@types/express": "^5.0.6",
+    "@types/node": "^26.0.1",
+    "@typescript-eslint/eslint-plugin": "^8.62.0",
+    "@typescript-eslint/parser": "^8.62.0",
+    "concurrently": "^9.2.3",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.39.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "eslint-plugin-vue": "^10.9.2",
+    "globals": "^17.7.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "prettier": "^3.8.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "vue-eslint-parser": "^10.4.1"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.5.6": true,
+    "@scarf/scarf@1.4.0": true,
+    "better-sqlite3@9.6.0": true,
+    "core-js@3.49.0": true,
+    "core-js-pure@3.49.0": true,
+    "electron@28.2.0": true,
+    "esbuild@0.20.2": true,
+    "esbuild@0.21.5": true,
+    "unrs-resolver@1.12.2": true,
+    "vue-demi@0.14.10": true
+  }
+}

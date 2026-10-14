@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/ride/ride",
+    "pages/ride-detail/ride-detail",
+    "pages/shop/shop",
+    "pages/product-detail/product-detail",
+    "pages/cart/cart",
+    "pages/order/order",
+    "pages/payment/payment",
+    "pages/payment-success/payment-success",
+    "pages/user/user",
+    "pages/help/help",
+    "pages/feedback/feedback"
+  ],
+  "window": {
+    "defaultTitle": "MIXMLAAL",
+    "titleBarColor": "#ffffff"
+  },
+  "tabBar": {
+    "textColor": "#999999",
+    "selectedColor": "#488AFF",
+    "backgroundColor": "#ffffff",
+    "items": [
+      {
+        "pagePath": "pages/index/index",
+        "name": "首页"
+      },
+      {
+        "pagePath": "pages/ride/ride",
+        "name": "出行"
+      },
+      {
+        "pagePath": "pages/shop/shop",
+        "name": "商城"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "name": "我的"
+      }
+    ]
+  }
+}

@@ -1,0 +1,9 @@
+﻿=== FINAL RESTART ===
+鉁?Starting Docker Desktop
+23:24:09  daemon ready after 5s
+myp-wp|Up 36 seconds
+myp-pma|Up 37 seconds
+myp-db|Up 36 seconds
+myp-srs|Up 36 seconds
+23:24:40  PREVIEW_UP status=200 after 5s
+23:24:40  === READY - HOLDING 3600s ===

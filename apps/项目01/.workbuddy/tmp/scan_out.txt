@@ -1,0 +1,124 @@
+=== TOP LEVEL (按体积) ===
+model-00001-of-00062.safetensors         file  files=1        5116.8MB  lines=0
+Mi-Xiao-Mi-La-A-Li-Inc                   dir   files=19429    283.8MB  lines=3936854
+    langs: {'PHP': 3507, 'JavaScript': 2940, 'TypeScript': 2197, 'CSS': 1852, 'JSON': 834, 'Markdown': 736}
+    sub: {'08-卫星产品': 17415, '02-后端微服务集群': 826, '06-项目文档层': 487, '01-前端集群': 271, 'dist-pages-build': 141, '03-全平台应用端': 125, '07-公共资源': 56, 'foundation': 21, 'python-fastapi': 21, 'logs': 20, 'secrets': 16, '04-数据库层': 9, 'deploy': 8, '.github': 3}
+.trae                                    dir   files=15       4.9MB  lines=1791
+    langs: {'Markdown': 5, 'JSON': 2, 'JavaScript': 1, 'HTML': 1}
+    sub: {'screenshots': 10, 'documents': 5, 'tmp': 0}
+.edgeone                                 dir   files=110      1.2MB  lines=30483
+    langs: {'PHP': 55, 'HTML': 12, 'JSON': 11, 'Markdown': 9, 'JavaScript': 6, 'CSS': 5}
+    sub: {'assets': 109}
+generated-images                         dir   files=1        1.0MB  lines=0
+网站图标                                     dir   files=50       0.3MB  lines=1464
+    langs: {'Markdown': 4, 'HTML': 4, 'TypeScript': 3, '.conf': 3, 'CSS': 1, 'JavaScript': 1}
+    sub: {'sites': 20, 'favicons': 14, 'deploy': 8, '.workbuddy': 6, 'components': 1}
+.codebuddy                               dir   files=44       0.3MB  lines=6989
+    langs: {'Markdown': 33, 'JSON': 11}
+    sub: {'skills': 24, 'memories': 6, 'plans': 5, 'docs': 2, 'teams': 2, 'agents': 1}
+.workbuddy                               dir   files=16       0.2MB  lines=2265
+    langs: {'Markdown': 13, 'Python': 1, 'JSON': 1}
+    sub: {'memory': 12, 'tmp': 3, 'artifacts': 1}
+.trae-html-share-packages                dir   files=1        0.0MB  lines=0
+    sub: {'mcp-server-guide': 1}
+ark-examples                             dir   files=9        0.0MB  lines=374
+    langs: {'Shell': 2, 'Python': 2, 'Go': 2, 'Java': 2, 'TypeScript': 1}
+    sub: {'ep-20260907191301-8ldks': 9}
+ollama_router.py                         file  files=1        0.0MB  lines=0
+    langs: {'Python': 1}
+.github                                  dir   files=3        0.0MB  lines=470
+    langs: {'YAML': 3}
+    sub: {'workflows': 2}
+backend_dev.log                          file  files=1        0.0MB  lines=0
+ollama_chat.py                           file  files=1        0.0MB  lines=0
+    langs: {'Python': 1}
+API落地总闸审计报告.md                           file  files=1        0.0MB  lines=0
+    langs: {'Markdown': 1}
+gen_missing.py                           file  files=1        0.0MB  lines=0
+    langs: {'Python': 1}
+ollama_chat.js                           file  files=1        0.0MB  lines=0
+    langs: {'JavaScript': 1}
+audit_api.py                             file  files=1        0.0MB  lines=0
+    langs: {'Python': 1}
+scripts                                  dir   files=2        0.0MB  lines=56
+    langs: {'Shell': 1, 'Python': 1}
+render-create.cs                         file  files=1        0.0MB  lines=0
+    langs: {'C#': 1}
+.gitignore                               file  files=1        0.0MB  lines=0
+.editorconfig                            file  files=1        0.0MB  lines=0
+.vscode                                  dir   files=1        0.0MB  lines=4
+    langs: {'JSON': 1}
+.wrangler                                dir   files=1        0.0MB  lines=4
+    langs: {'JSON': 1}
+    sub: {'cache': 1, 'tmp': 0}
+
+=== LANG TOTAL (文件数) ===
+PHP          3562
+JavaScript   2949
+TypeScript   2201
+CSS          1858
+JSON         861
+Markdown     801
+Vue          556
+HTML         289
+Java         92
+SCSS         82
+YAML         55
+Python       40
+LESS         36
+XML          28
+SQL          17
+.conf        10
+Go           8
+Shell        4
+C#           1
+
+=== PROJECT MARKERS (前60) ===
+[d1] Mi-Xiao-Mi-La-A-Li-Inc  -> ['Docker']
+[d2] Mi-Xiao-Mi-La-A-Li-Inc\foundation  -> ['Node/前端']
+[d2] Mi-Xiao-Mi-La-A-Li-Inc\python-fastapi  -> ['Python']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\01-前端集群\ai-saas-frontend  -> ['Node/前端', 'Vite']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\01-前端集群\mixmlaal-frontend  -> ['Node/前端', 'Vite']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\01-前端集群\page-builder-frontend  -> ['Node/前端', 'Vite']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\01-前端集群\portal  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\01-前端集群\web-h5-mobile  -> ['Node/前端', 'Vite']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\01-前端集群\web-vue-pc  -> ['Node/前端', 'Vite']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\ai-saas-backend  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\java-springcloud  -> ['Java/Maven']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-backend  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\node-nest-gateway  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\unified-api-gateway  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\03-全平台应用端\electron-desktop  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\03-全平台应用端\uniapp-mini  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\06-项目文档层\03-配置文件  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\RouteNav  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\b-admin  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\blog-template  -> ['Next.js', 'Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\gexm  -> ['PHP']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\plugin-mcp-system  -> ['Node/前端']
+[d3] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\zhinenglux  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-microservices\mixmlaal-order-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-microservices\mixmlaal-user-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-analytics-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-auth-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-blockchain-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-chatbot-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-kafka-consumer-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-kafka-producer-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-logistics-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-payment-integration-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-search-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-security-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-service-registry  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\02-后端微服务集群\mixmlaal-services\mixmlaal-sms-service  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\RouteNav\client  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\RouteNav\server  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\RouteNav\taro-app  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\daijia\daijiatongxcx  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\daijia\server  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\enterprise-admin-platform\client  -> ['Node/前端', 'Vite']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\enterprise-admin-platform\server  -> ['Node/前端']
+[d4] Mi-Xiao-Mi-La-A-Li-Inc\08-卫星产品\zhinenglux\server  -> ['Node/前端']
+
+elapsed 88.6 sec; JSON -> D:\网站全栈项目\项目01\.workbuddy\tmp\scan_result.json

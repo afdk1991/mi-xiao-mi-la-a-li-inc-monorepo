@@ -1,0 +1,20 @@
+{
+  "name": "配送定位与路径优化",
+  "short_name": "配送导航",
+  "description": "批量客户地址管理、路线最优排序、地图定位与逐步导航",
+  "lang": "zh-CN",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f3f5fa",
+  "theme_color": "#4f6bed",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

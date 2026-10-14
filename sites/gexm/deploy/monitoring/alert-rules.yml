@@ -1,0 +1,142 @@
+groups:
+  - name: gexm-alerts
+    rules:
+      - alert: APIUnavailable
+        expr: up{job="gexm-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: gexm-api
+        annotations:
+          summary: "GEXM API 服务不可用"
+          description: "GEXM API 服务已停止响应超过 1 分钟"
+
+      - alert: HighCPUUsage
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: node-exporter
+        annotations:
+          summary: "CPU 使用率过高"
+          description: "CPU 使用率超过 85%，当前值: {{ $value }}%"
+
+      - alert: CriticalCPUUsage
+        expr: 100 - (avg by (instance) (irate(node_cpu_seconds_total{mode="idle"}[1m])) * 100) > 95
+        for: 2m
+        labels:
+          severity: critical
+          service: node-exporter
+        annotations:
+          summary: "CPU 使用率严重过高"
+          description: "CPU 使用率超过 95%，当前值: {{ $value }}%"
+
+      - alert: HighMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: node-exporter
+        annotations:
+          summary: "内存使用率过高"
+          description: "内存使用率超过 85%，当前值: {{ $value }}%"
+
+      - alert: CriticalMemoryUsage
+        expr: (node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / node_memory_MemTotal_bytes * 100 > 95
+        for: 2m
+        labels:
+          severity: critical
+          service: node-exporter
+        annotations:
+          summary: "内存使用率严重过高"
+          description: "内存使用率超过 95%，当前值: {{ $value }}%"
+
+      - alert: HighDiskUsage
+        expr: 100 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} * 100) > 80
+        for: 10m
+        labels:
+          severity: warning
+          service: node-exporter
+        annotations:
+          summary: "磁盘使用率过高"
+          description: "磁盘使用率超过 80%，当前值: {{ $value }}%"
+
+      - alert: CriticalDiskUsage
+        expr: 100 - (node_filesystem_avail_bytes{mountpoint="/"} / node_filesystem_size_bytes{mountpoint="/"} * 100) > 90
+        for: 5m
+        labels:
+          severity: critical
+          service: node-exporter
+        annotations:
+          summary: "磁盘使用率严重过高"
+          description: "磁盘使用率超过 90%，当前值: {{ $value }}%"
+
+      - alert: HighRequestLatency
+        expr: histogram_quantile(0.95, sum(rate(http_request_duration_seconds_bucket[5m])) by (le)) > 1
+        for: 3m
+        labels:
+          severity: warning
+          service: gexm-api
+        annotations:
+          summary: "API 请求延迟过高"
+          description: "95% 请求延迟超过 1 秒，当前值: {{ $value }}s"
+
+      - alert: HighErrorRate
+        expr: sum(rate(http_requests_total{status="5xx"}[5m])) / sum(rate(http_requests_total[5m])) * 100 > 5
+        for: 2m
+        labels:
+          severity: critical
+          service: gexm-api
+        annotations:
+          summary: "API 错误率过高"
+          description: "5xx 错误率超过 5%，当前值: {{ $value }}%"
+
+      - alert: RedisUnavailable
+        expr: up{job="redis-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: redis-exporter
+        annotations:
+          summary: "Redis 服务不可用"
+          description: "Redis 服务已停止响应超过 1 分钟"
+
+      - alert: HighRedisMemoryUsage
+        expr: redis_used_memory / redis_maxmemory * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: redis-exporter
+        annotations:
+          summary: "Redis 内存使用率过高"
+          description: "Redis 内存使用率超过 80%，当前值: {{ $value }}%"
+
+      - alert: HighRedisConnections
+        expr: redis_connected_clients > 100
+        for: 5m
+        labels:
+          severity: warning
+          service: redis-exporter
+        annotations:
+          summary: "Redis 连接数过高"
+          description: "Redis 连接数超过 100，当前值: {{ $value }}"
+
+      - alert: NginxUnavailable
+        expr: up{job="nginx-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: nginx-exporter
+        annotations:
+          summary: "Nginx 服务不可用"
+          description: "Nginx 服务已停止响应超过 1 分钟"
+
+      - alert: HighNginxConnections
+        expr: nginx_connections_active > 500
+        for: 5m
+        labels:
+          severity: warning
+          service: nginx-exporter
+        annotations:
+          summary: "Nginx 活跃连接数过高"
+          description: "Nginx 活跃连接数超过 500，当前值: {{ $value }}"

@@ -1,0 +1,58 @@
+{
+  "common": {
+    "success": "Operation successful",
+    "error": "Operation failed",
+    "notFound": "Resource not found",
+    "unauthorized": "Unauthorized",
+    "forbidden": "Forbidden",
+    "internalError": "Internal server error",
+    "badRequest": "Bad request"
+  },
+  "auth": {
+    "loginSuccess": "Login successful",
+    "logoutSuccess": "Logout successful",
+    "registerSuccess": "Registration successful",
+    "invalidCredentials": "Invalid username or password",
+    "tokenExpired": "Token expired",
+    "tokenInvalid": "Invalid token",
+    "refreshSuccess": "Token refreshed successfully"
+  },
+  "customer": {
+    "getOrdersSuccess": "Get orders list successful",
+    "createOrderSuccess": "Create order successful",
+    "updateOrderSuccess": "Update order successful",
+    "deleteOrderSuccess": "Delete order successful",
+    "orderNotFound": "Order not found",
+    "getProfileSuccess": "Get user profile successful",
+    "updateProfileSuccess": "Update user profile successful"
+  },
+  "dispatch": {
+    "intelligentDispatchSuccess": "Intelligent dispatch successful",
+    "optimizeRouteSuccess": "Route optimization successful",
+    "predictOrderVolumeSuccess": "Order volume prediction successful",
+    "getStatisticsSuccess": "Get dispatch statistics successful",
+    "getRecommendationsSuccess": "Get personalized recommendations successful",
+    "customerServiceSuccess": "Intelligent customer service response successful"
+  },
+  "blockchain": {
+    "recordLogisticsSuccess": "Logistics information recorded successfully",
+    "queryLogisticsSuccess": "Logistics information queried successfully",
+    "recordPaymentSuccess": "Payment information recorded successfully",
+    "queryPaymentSuccess": "Payment information queried successfully",
+    "getBlockchainInfoSuccess": "Blockchain information obtained successfully"
+  },
+  "5g": {
+    "getVehiclePositionSuccess": "Vehicle position obtained successfully",
+    "getOrderStatusSuccess": "Order status obtained successfully",
+    "sendDispatchCommandSuccess": "Dispatch command sent successfully"
+  },
+  "validation": {
+    "required": "{field} is required",
+    "minLength": "{field} length must be at least {min}",
+    "maxLength": "{field} length must be at most {max}",
+    "email": "{field} must be a valid email address",
+    "number": "{field} must be a number",
+    "integer": "{field} must be an integer",
+    "positive": "{field} must be positive"
+  }
+}

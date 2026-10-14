@@ -1,0 +1,19 @@
+{
+  "src": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/cart/cart",
+    "pages/profile/profile",
+    "pages/product/detail",
+    "pages/login/login"
+  ],
+  "window": {
+    "designWidth": 360,
+    "autoDesignWidth": true,
+    "backgroundColor": "#F5F7FA",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "Gexm",
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default"
+  }
+}

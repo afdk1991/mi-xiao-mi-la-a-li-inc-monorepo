@@ -1,0 +1,10 @@
+﻿=== AUX SERVICES ===
+  [200] http://localhost:18081/ len=19106
+  [200] http://localhost:8082/ len=2982
+--- container states ---
+db|running|Up 6 minutes
+phpmyadmin|running|Up 6 minutes
+srs|running|Up 6 minutes
+wordpress|running|Up 6 minutes
+--- wp fatal/parse errors in apache log ---
+=== DONE ===

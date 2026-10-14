@@ -1,0 +1,90 @@
+﻿=== MYP006 DEPLOY3 ===
+20:18:01  STEP1 start docker engine
+鉁?Starting Docker Desktop
+20:18:35    daemon ready 29.6.2 after 5s
+20:18:35  STEP2 ensure stack up
+docker : time="2026-09-15T20:18:38+08:00" level=warning msg="D:\\缃戠珯鍏ㄦ爤椤圭洰\\椤圭洰006\\docker-compose.preview.yml: the att
+ribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+所在位置 行:462 字符: 1
++ docker compose -f 'D:\网站全栈项目\项目006\docker-compose.preview.yml' -p myp ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time="2026-09-1...tial confusion":String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Container myp-db Running 
+ Container myp-wp Running 
+ Container myp-pma Running 
+ Container myp-srs Running 
+db|running
+phpmyadmin|running
+srs|running
+wordpress|running
+20:19:10  STEP3 wait http
+20:19:14    http 200 after 5s
+20:19:14  STEP4 wp_install
+docker : [15-Sep-2026 12:19:14 UTC] PHP Warning:  Constant WP_DEBUG already defined in /var/www/html/wp-config.php(122)
+ : eval()'d code on line 1
+所在位置 行:492 字符: 7
++ $s1 | docker exec -i myp-wp php 2>&1 | Out-File -FilePath $L -Append  ...
++       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([15-Sep-2026 12... code on line 1:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[15-Sep-2026 12:19:15 UTC] PHP Warning:  Undefined array key "HTTP_HOST" in /var/www/html/wp-includes/functions.php on 
+line 6239
+INSTALL_OK user_id=1
+20:19:18  STEP5 activate
+docker : [15-Sep-2026 12:19:18 UTC] PHP Warning:  Constant WP_DEBUG already defined in /var/www/html/wp-config.php(122)
+ : eval()'d code on line 1
+所在位置 行:511 字符: 7
++ $s2 | docker exec -i myp-wp php 2>&1 | Out-File -FilePath $L -Append  ...
++       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([15-Sep-2026 12... code on line 1:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+PLUGIN: activated
+THEME: myp-theme
+MYP_TABLES: 29
+20:19:22  STEP6 seed
+docker : [15-Sep-2026 12:19:22 UTC] PHP Warning:  Constant WP_DEBUG already defined in /var/www/html/wp-config.php(122)
+ : eval()'d code on line 1
+所在位置 行:553 字符: 7
++ $s3 | docker exec -i myp-wp php 2>&1 | Out-File -FilePath $L -Append  ...
++       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([15-Sep-2026 12... code on line 1:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+CAT: 2
+PRODUCT 4 myp-smartphone-pro
+PRODUCT 5 myp-wireless-earbuds
+PRODUCT 6 myp-smart-watch
+PAGE 7 cart -> page-cart.php
+PAGE 8 user-center -> page-user.php
+PAGE 9 live -> page-live.php
+PAGE 10 submit -> page-submit.php
+LIVE 1
+COUPON 1
+SEED_DONE
+20:19:23  STEP7 smoke
+20:19:25    [404] http://localhost:18080/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/products/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/product/myp-smartphone-pro/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/product-category/digital/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/cart/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/user-center/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/live/  远程服务器返回错误: (404) 未找到。
+20:19:25    [404] http://localhost:18080/submit/  远程服务器返回错误: (404) 未找到。
+20:19:25    [200] http://localhost:18080/?s=Smartphone  len=16844
+20:19:26    [404] http://localhost:18080/?myp_sitemap=xml  远程服务器返回错误: (404) 未找到。
+20:19:26    [200] http://localhost:18080/wp-json/myp/v1/live  len=264
+20:19:26    [200] http://localhost:18080/wp-json/myp/v1/cart  len=31
+20:19:26    [200] http://localhost:18080/wp-content/themes/myp-theme/style.css  len=2889
+20:19:26    [200] http://localhost:18080/wp-content/themes/myp-theme/assets/js/main.js  len=1582
+20:19:26    [200] http://localhost:18080/wp-content/themes/myp-theme/assets/js/live.js  len=1794
+20:19:26  STEP8 body keyword checks
+20:19:26    products body check failed: 远程服务器返回错误: (404) 未找到。
+20:19:26    detail body check failed: 远程服务器返回错误: (404) 未找到。
+20:19:26    live api snippet: {"code":0,"msg":"ok","data":[{"id":"1","title":"MYP Launch Live","anchor_id":"1","product_id":"0","cover":"","stream_key":"myp_demo_stream_001","play_url":"","status":"living","start_time":"2026-09-15 12:19:23","end_time
+20:19:26  STEP9 php error log
+NO_DEBUG_LOG
+20:19:26  === SMOKE DONE - HOLDING 3600s ===

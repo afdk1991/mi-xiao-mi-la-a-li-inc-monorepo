@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>开放平台 - MIXMLAAL</title>
+    <meta name="description" content="MIXMLAAL开放平台，为开发者提供API接口和开发工具">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        secondary: '#004E89',
+                        accent: '#1A659E'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/src/portal/portal/index.html" class="flex items-center">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <i class="fa fa-code text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800">MIXMLAAL开放平台</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/src/open/api/documentation.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-book text-xl"></i>
+                    </a>
+                    <a href="/src/open/api/apps.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-cog text-xl"></i>
+                    </a>
+                    <a href="/src/user/profile/index.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-user text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- 欢迎横幅 -->
+        <div class="gradient-bg rounded-2xl p-8 mb-8 text-white">
+            <h1 class="text-3xl font-bold mb-4">欢迎来到 MIXMLAAL 开放平台</h1>
+            <p class="text-lg mb-6">为开发者提供丰富的API接口和开发工具，助力您构建创新应用</p>
+            <div class="flex space-x-4">
+                <a href="/src/open/api/documentation.html" class="bg-white text-primary px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    <i class="fa fa-book mr-2"></i>查看API文档
+                </a>
+                <a href="/src/open/api/apps.html" class="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">
+                    <i class="fa fa-cog mr-2"></i>管理应用
+                </a>
+            </div>
+        </div>
+
+        <!-- 功能模块 -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+            <!-- API文档 -->
+            <a href="/src/open/api/documentation.html" class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6">
+                    <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-book text-blue-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">API文档</h3>
+                    <p class="text-gray-600">详细的API接口文档，包括接口说明、参数规范和使用示例</p>
+                </div>
+            </a>
+
+            <!-- 应用管理 -->
+            <a href="/src/open/api/apps.html" class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-cog text-green-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">应用管理</h3>
+                    <p class="text-gray-600">创建、管理和监控您的应用，获取API密钥和访问权限</p>
+                </div>
+            </a>
+
+            <!-- 开发者工具 -->
+            <a href="/src/open/api/tools.html" class="card-hover bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="p-6">
+                    <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-tools text-purple-500 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-2">开发者工具</h3>
+                    <p class="text-gray-600">提供API测试工具、SDK下载和开发指南，加速应用开发</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- API概览 -->
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">API概览</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-car text-blue-500"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800">出行服务API</h3>
+                    </div>
+                    <p class="text-gray-600 mb-3">提供网约车、出租车等出行服务的API接口，支持叫车、行程管理和支付功能</p>
+                    <a href="/src/open/api/documentation.html#ride" class="text-primary hover:underline">查看详情</a>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-shopping-bag text-purple-500"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800">电商服务API</h3>
+                    </div>
+                    <p class="text-gray-600 mb-3">提供商品查询、购物车管理、订单处理和支付功能的API接口</p>
+                    <a href="/src/open/api/documentation.html#ecommerce" class="text-primary hover:underline">查看详情</a>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-pink-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-users text-pink-500"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800">社交服务API</h3>
+                    </div>
+                    <p class="text-gray-600 mb-3">提供用户管理、内容分享、评论和点赞等社交功能的API接口</p>
+                    <a href="/src/open/api/documentation.html#social" class="text-primary hover:underline">查看详情</a>
+                </div>
+                <div class="border border-gray-200 rounded-lg p-4">
+                    <div class="flex items-center mb-3">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                            <i class="fa fa-payment text-green-500"></i>
+                        </div>
+                        <h3 class="font-semibold text-gray-800">支付服务API</h3>
+                    </div>
+                    <p class="text-gray-600 mb-3">提供微信支付、支付宝等多种支付方式的API接口，支持安全便捷的支付流程</p>
+                    <a href="/src/open/api/documentation.html#payment" class="text-primary hover:underline">查看详情</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- 开发指南 -->
+        <div class="bg-white rounded-xl shadow-sm p-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">开发指南</h2>
+            <div class="space-y-4">
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 mt-1">1</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">注册开发者账号</h3>
+                        <p class="text-gray-600">在开放平台注册开发者账号，完成实名认证</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 mt-1">2</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">创建应用</h3>
+                        <p class="text-gray-600">创建新应用，获取API密钥和访问权限</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 mt-1">3</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">集成API</h3>
+                        <p class="text-gray-600">参考API文档，集成所需的API接口到您的应用中</p>
+                    </div>
+                </div>
+                <div class="flex items-start">
+                    <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center text-white font-bold mr-4 mt-1">4</div>
+                    <div>
+                        <h3 class="font-semibold text-gray-800 mb-2">测试和上线</h3>
+                        <p class="text-gray-600">在测试环境中验证API功能，通过审核后正式上线</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-500 text-sm">
+                <p>&copy; 2026 MIXMLAAL开放平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

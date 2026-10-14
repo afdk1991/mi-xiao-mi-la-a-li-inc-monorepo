@@ -1,0 +1,22 @@
+// 开发状态追踪 —— 供 Agent 跨会话读取当前进度
+{
+  "project": "b-admin-fullstack",
+  "version": "2.0.0",
+  "lastUpdated": "2026-08-02",
+  "phases": {
+    "0_environment": { "status": "done", "note": "package.json, .env, jest.config.cjs, scripts/dev.js" },
+    "1_backend_skeleton": { "status": "done", "note": "Express app 工厂, config, utils(jwt/password/response), middleware(auth/validate/permission)" },
+    "2_database": { "status": "done", "note": "sql.js 单例, 0001_init.sql (10表), migrate.js, seed.js (admin/manager/user), reset.js" },
+    "3_core_business": { "status": "done", "note": "auth/user/role/permission/menu/dictionary/project/service/workbench/log services + controllers + validators + routes" },
+    "4_backend_tests": { "status": "done", "note": "auth/user/rbac/api/middleware 测试, 5 个测试文件" },
+    "5_frontend_api_integration": { "status": "done", "note": "config.js(apiBase=/api/v1), auth/index.js(JWT管理), endpoints.js(相对路径), request.js(401自动刷新), app.js(启动鉴权), workbench/card/form/list 连接后端" }
+  },
+  "pending": [
+    "npm install 因 Windows 无 Python 失败, 需解决 sql.js 安装",
+    "npm run dev 启动验证"
+  ],
+  "apiPrefix": "/api/v1",
+  "dbEngine": "sql.js (WASM)",
+  "frontendPort": 8080,
+  "backendPort": 3000
+}

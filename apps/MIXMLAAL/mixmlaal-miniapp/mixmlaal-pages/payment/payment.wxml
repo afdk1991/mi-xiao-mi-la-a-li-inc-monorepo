@@ -1,0 +1,45 @@
+<view class="payment-container" wx:if="{{order}}">
+  <view class="order-section">
+    <view class="section-title">订单信息</view>
+    <view class="order-info">
+      <text class="order-id">订单号: {{order.orderId}}</text>
+      <view class="order-amount">
+        <text class="amount-label">支付金额</text>
+        <view class="amount-value">
+          <text class="price-symbol">¥</text>
+          <text class="price-num">{{order.totalPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="method-section">
+    <view class="section-title">选择支付方式</view>
+    <view class="method-list">
+      <view 
+        class="method-item {{selectedMethod === item.id ? 'active' : ''}}" 
+        wx:for="{{paymentMethods}}" 
+        wx:key="id"
+        bindtap="selectPaymentMethod"
+        data-id="{{item.id}}"
+      >
+        <text class="method-icon">{{item.icon}}</text>
+        <text class="method-name">{{item.name}}</text>
+        <view class="method-check">
+          <text wx:if="{{selectedMethod === item.id}}">✓</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="tips-section">
+    <text class="tips-text">• 支付遇到问题？请联系客服</text>
+    <text class="tips-text">• 余额不足？请先充值</text>
+  </view>
+  
+  <view class="action-section">
+    <button class="pay-btn" bindtap="pay" loading="{{isLoading}}">
+      确认支付 ¥{{order.totalPrice}}
+    </button>
+  </view>
+</view>

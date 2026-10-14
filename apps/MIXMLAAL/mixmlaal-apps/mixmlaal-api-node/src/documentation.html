@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API文档 - MIXMLAAL开放平台</title>
+    <meta name="description" content="MIXMLAAL开放平台API文档，详细的接口说明和使用示例">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B35',
+                        secondary: '#004E89',
+                        accent: '#1A659E'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%); }
+        .code-block { background-color: #f1f5f9; border-radius: 0.5rem; padding: 1rem; font-family: monospace; overflow-x: auto; }
+        .api-card { transition: all 0.3s ease; }
+        .api-card:hover { transform: translateY(-4px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- 顶部导航 -->
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <a href="/src/portal/portal/index.html" class="flex items-center">
+                        <div class="w-10 h-10 gradient-bg rounded-lg flex items-center justify-center mr-3">
+                            <i class="fa fa-code text-white"></i>
+                        </div>
+                        <span class="text-xl font-bold text-gray-800">MIXMLAAL开放平台</span>
+                    </a>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="/src/open/api/index.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-home text-xl"></i>
+                    </a>
+                    <a href="/src/open/api/apps.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-cog text-xl"></i>
+                    </a>
+                    <a href="/src/user/profile/index.html" class="text-gray-600 hover:text-primary">
+                        <i class="fa fa-user text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 主内容 -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-2xl font-bold text-gray-800">API文档</h2>
+            <div class="relative">
+                <input type="text" placeholder="搜索API..." class="pl-10 pr-4 py-2 bg-gray-100 rounded-full w-64 focus:outline-none focus:ring-2 focus:ring-primary">
+                <i class="fa fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+            </div>
+        </div>
+
+        <!-- API分类导航 -->
+        <div class="bg-white rounded-xl shadow-sm p-4 mb-6">
+            <div class="flex flex-wrap gap-4">
+                <a href="#overview" class="px-4 py-2 bg-primary text-white rounded-full text-sm">概览</a>
+                <a href="#ride" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200">出行服务API</a>
+                <a href="#ecommerce" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200">电商服务API</a>
+                <a href="#social" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200">社交服务API</a>
+                <a href="#payment" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200">支付服务API</a>
+                <a href="#auth" class="px-4 py-2 bg-gray-100 text-gray-600 rounded-full text-sm hover:bg-gray-200">认证API</a>
+            </div>
+        </div>
+
+        <!-- API概览 -->
+        <div id="overview" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">API概览</h3>
+            <p class="text-gray-600 mb-4">MIXMLAAL开放平台提供丰富的API接口，支持开发者构建各种应用。所有API接口都需要使用API密钥进行认证，确保接口调用的安全性。</p>
+            
+            <div class="mb-6">
+                <h4 class="font-semibold text-gray-800 mb-2">认证方式</h4>
+                <p class="text-gray-600 mb-3">使用API密钥进行认证，将API密钥添加到请求头中：</p>
+                <div class="code-block">
+                    <pre>Authorization: Bearer YOUR_API_KEY</pre>
+                </div>
+            </div>
+            
+            <div class="mb-6">
+                <h4 class="font-semibold text-gray-800 mb-2">API基础URL</h4>
+                <div class="code-block">
+                    <pre>https://api.mixmlaal.com/v1</pre>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold text-gray-800 mb-2">响应格式</h4>
+                <p class="text-gray-600 mb-3">所有API接口返回JSON格式数据：</p>
+                <div class="code-block">
+                    <pre>{
+  "status": "success",
+  "data": { ... },
+  "message": "操作成功"
+}</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- 出行服务API -->
+        <div id="ride" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">出行服务API</h3>
+            <p class="text-gray-600 mb-6">提供网约车、出租车等出行服务的API接口，支持叫车、行程管理和支付功能。</p>
+            
+            <div class="space-y-6">
+                <!-- 叫车接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">叫车接口</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">POST</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/ride/order</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "start_location": {
+    "latitude": 39.9042,
+    "longitude": 116.4074,
+    "address": "北京市海淀区中关村大街1号"
+  },
+  "end_location": {
+    "latitude": 39.9153,
+    "longitude": 116.4074,
+    "address": "北京市朝阳区建国路88号"
+  },
+  "car_type": "express", // express, premium, luxury, taxi
+  "passenger_count": 1
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "order_id": "ORD13000",
+    "estimated_price": 35,
+    "estimated_time": 15
+  },
+  "message": "叫车成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 行程状态接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">行程状态接口</h4>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">GET</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/ride/order/{order_id}</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "order_id": "ORD13000",
+    "status": "confirmed", // pending, confirmed, arrived, in_progress, completed, cancelled
+    "driver": {
+      "id": "DRV13000",
+      "name": "张师傅",
+      "rating": 4.8,
+      "car_number": "京A12345"
+    },
+    "estimated_arrival_time": 5
+  },
+  "message": "获取行程状态成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 电商服务API -->
+        <div id="ecommerce" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">电商服务API</h3>
+            <p class="text-gray-600 mb-6">提供商品查询、购物车管理、订单处理和支付功能的API接口。</p>
+            
+            <div class="space-y-6">
+                <!-- 商品列表接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">商品列表接口</h4>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">GET</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/shop/products</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "category": "electronics",
+  "page": 1,
+  "limit": 20,
+  "sort": "price:asc"
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "products": [
+      {
+        "id": "PRO13000",
+        "name": "高品质无线蓝牙耳机",
+        "price": 199,
+        "stock": 100,
+        "category": "electronics",
+        "image": "https://example.com/product1.jpg"
+      },
+      ...
+    ],
+    "total": 100,
+    "page": 1,
+    "limit": 20
+  },
+  "message": "获取商品列表成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 购物车接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">购物车接口</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">POST</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/shop/cart</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "product_id": "PRO13000",
+  "quantity": 1
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "cart_id": "CRT13000",
+    "items": [
+      {
+        "product_id": "PRO13000",
+        "name": "高品质无线蓝牙耳机",
+        "price": 199,
+        "quantity": 1
+      }
+    ],
+    "total": 199
+  },
+  "message": "添加到购物车成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 社交服务API -->
+        <div id="social" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">社交服务API</h3>
+            <p class="text-gray-600 mb-6">提供用户管理、内容分享、评论和点赞等社交功能的API接口。</p>
+            
+            <div class="space-y-6">
+                <!-- 用户关注接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">用户关注接口</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">POST</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/user/follow</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "user_id": "USR13000"
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "follower_id": "CURRENT_USER_ID",
+    "following_id": "USR13000",
+    "status": "following"
+  },
+  "message": "关注成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 内容点赞接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">内容点赞接口</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">POST</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/social/like</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "content_id": "CNT13000",
+  "content_type": "article"
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "user_id": "CURRENT_USER_ID",
+    "content_id": "CNT13000",
+    "status": "liked",
+    "like_count": 90
+  },
+  "message": "点赞成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 支付服务API -->
+        <div id="payment" class="bg-white rounded-xl shadow-sm p-6 mb-8">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">支付服务API</h3>
+            <p class="text-gray-600 mb-6">提供微信支付、支付宝等多种支付方式的API接口，支持安全便捷的支付流程。</p>
+            
+            <div class="space-y-6">
+                <!-- 创建支付订单接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">创建支付订单接口</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">POST</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/payment/order</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "order_id": "ORD13000",
+  "amount": 35,
+  "payment_method": "wechat", // wechat, alipay
+  "return_url": "https://example.com/return"
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "payment_id": "PAY13000",
+    "payment_url": "https://pay.weixin.qq.com/pay?order=...",
+    "expires_at": "2026-03-26T14:30:00Z"
+  },
+  "message": "创建支付订单成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 查询支付状态接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">查询支付状态接口</h4>
+                        <span class="px-3 py-1 bg-blue-100 text-blue-600 text-xs rounded-full">GET</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/payment/order/{payment_id}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "payment_id": "PAY13000",
+    "order_id": "ORD13000",
+    "amount": 35,
+    "status": "completed", // pending, completed, failed
+    "paid_at": "2026-03-26T14:30:00Z"
+  },
+  "message": "查询支付状态成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 认证API -->
+        <div id="auth" class="bg-white rounded-xl shadow-sm p-6">
+            <h3 class="text-xl font-bold text-gray-800 mb-4">认证API</h3>
+            <p class="text-gray-600 mb-6">提供用户认证和API密钥管理的API接口。</p>
+            
+            <div class="space-y-6">
+                <!-- 获取API密钥接口 -->
+                <div class="api-card border border-gray-200 rounded-lg p-4">
+                    <div class="flex justify-between items-center mb-4">
+                        <h4 class="font-semibold text-gray-800">获取API密钥接口</h4>
+                        <span class="px-3 py-1 bg-green-100 text-green-600 text-xs rounded-full">POST</span>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">接口地址：</p>
+                        <div class="code-block">
+                            <pre>/api/v1/auth/api-key</pre>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <p class="text-gray-600 mb-2">请求参数：</p>
+                        <div class="code-block">
+                            <pre>{
+  "app_id": "APP13000",
+  "app_secret": "YOUR_APP_SECRET"
+}</pre>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-gray-600 mb-2">响应示例：</p>
+                        <div class="code-block">
+                            <pre>{
+  "status": "success",
+  "data": {
+    "api_key": "YOUR_API_KEY",
+    "expires_at": "2027-03-26T14:30:00Z"
+  },
+  "message": "获取API密钥成功"
+}</pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 底部 -->
+    <footer class="bg-white border-t mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center text-gray-500 text-sm">
+                <p>&copy; 2026 MIXMLAAL开放平台. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

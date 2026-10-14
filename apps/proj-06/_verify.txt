@@ -1,0 +1,7 @@
+﻿[200] http://localhost:18080/
+[200] http://localhost:18080/products/
+[200] http://localhost:18080/product/myp-smartphone-pro/
+[200] http://localhost:18080/cart/
+[200] http://localhost:18080/live/
+[200] http://localhost:18080/wp-json/myp/v1/live
+[200] http://localhost:18080/wp-content/themes/myp-theme/style.css

@@ -1,0 +1,86 @@
+﻿# ============================================================================
+#  项目003 — 邮箱聚合平台（Go 主干 + React 前端 + Electron/鸿蒙/移动端）忽略规则
+#
+#  ⚠️ 曾误入库 23445 个文件，主要是 .gopath / .gocache 两处 Go 模块与构建缓存
+#     （含 42 MB 的 vmlinux 测试数据、多个 37 MB 的依赖 zip、若干 .exe 测试件）。
+#     本文件必须同时覆盖【顶层】与【email-aggregator-go/ 内嵌套】两份同名缓存。
+# ============================================================================
+
+# ===== 依赖 =====
+node_modules/
+**/node_modules/
+
+# ===== Go 模块缓存与构建缓存（严禁入库）=====
+.gopath/
+.gocache/
+**/.gopath/
+**/.gocache/
+**/vendor/
+bin/
+**/bin/*.exe
+**/bin/*.exe~
+
+# ===== 环境与部署凭据（绝不入库）=====
+.env
+.env.local
+.env.*.local
+**/.env
+**/.env.production
+**/.env.keycloak
+**/.env.keycloak-prod
+!**/.env.example
+!**/.env.*.example
+.edgeone/
+.wrangler/
+
+# ===== 编译产物与二进制（严禁入库）=====
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+dist/
+build/
+out/
+*.appimage
+*.AppImage
+*.dmg
+*.deb
+*.msix
+*.hap
+*.tsbuildinfo
+
+# ===== 前端与子平台构建产物 =====
+email-aggregator-web/dist/
+platforms/desktop/build/
+platforms/desktop/release/
+platforms/desktop/dist/
+platforms/desktop/node_modules/
+platforms/mobile/build/
+platforms/mobile/dist/
+platforms/mobile/node_modules/
+platforms/harmony/build/
+platforms/harmony/.preview/
+platforms/harmony/oh_modules/
+platforms/harmony/**/build/
+
+# ===== 日志、CI 缓存与临时文件 =====
+*.log
+.ci-logs/
+.tmp_q/
+.tmp_att/
+shots/
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ===== 系统与编辑器临时文件 =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

@@ -1,0 +1,1 @@
+﻿2026-07-12 02:19:43 [[32minfo[39m]: Database initialized successfully {"service":"gexm-server"}

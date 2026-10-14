@@ -1,0 +1,36 @@
+﻿=== ps ===
+docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDesk
+topLinuxEngine; check if the path is correct and if the daemon is running: open
+ //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+所在位置 行:447 字符: 8
++ $o += (& docker ps -a --filter 'name=myp-' --format '{{.Names}}|{{.St ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (failed to conne...file specified. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+=== wp logs (tail 40) ===
+docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDesk
+topLinuxEngine; check if the path is correct and if the daemon is running: open
+ //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+所在位置 行:449 字符: 8
++ $o += (& docker logs --tail 40 myp-wp 2>&1 | Out-String)
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (failed to conne...file specified. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+=== db logs (tail 15) ===
+docker.exe : failed to connect to the docker API at npipe:////./pipe/dockerDesk
+topLinuxEngine; check if the path is correct and if the daemon is running: open
+ //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+所在位置 行:451 字符: 8
++ $o += (& docker logs --tail 15 myp-db 2>&1 | Out-String)
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (failed to conne...file specified. 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+

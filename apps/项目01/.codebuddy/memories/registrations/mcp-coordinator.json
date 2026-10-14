@@ -1,0 +1,16 @@
+{
+  "type": "agent-registration",
+  "agentId": "mcp-coordinator",
+  "agentType": "coordinator",
+  "skillId": "mcp-coordinator",
+  "displayName": "MCP Coordination Hub",
+  "description": "Global multi-agent orchestration for B Admin project",
+  "capabilities": ["agent-registry", "protocol-governance", "state-management", "plugin-integration", "version-sync", "memory-bus-management"],
+  "permissionLevel": "coordinator",
+  "dataAccess": { "database": "read-write", "api": "read-write", "files": "read-write" },
+  "outputFormat": { "type": "coordination-documents", "extensions": [".md", ".json"], "location": ".codebuddy/" },
+  "status": "active",
+  "registeredAt": "2026-08-02T23:00:00+08:00",
+  "contactChannel": "memory-bus",
+  "heartbeatInterval": "PT5M"
+}

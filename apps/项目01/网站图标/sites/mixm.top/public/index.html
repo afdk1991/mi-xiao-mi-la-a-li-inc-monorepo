@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>米小米 · mixm.top —— MIXMLAAL 统一平台</title>
+  <meta name="description" content="米小米（MixM）—— MIXMLAAL 统一平台官网，连接电商、会员、AI、CRM、本地生活等 34 大行业场景的一体化数字化基座。" />
+  <meta name="keywords" content="米小米,mixm.top,MIXMLAAL,统一平台,数字化,SaaS" />
+  <meta name="theme-color" content="#F59E0B" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="stylesheet" href="/assets/app.css" />
+</head>
+<body>
+  <div id="root">
+    <!-- 顶部导航 -->
+    <header class="nav">
+      <div class="nav-inner">
+        <a class="brand" href="/">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 64 64" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="32" cy="32" r="28" fill="#FBBF24"/>
+              <path d="M32 14 C34 22 38 27 46 29 C38 31 34 36 32 44 C30 36 26 31 18 29 C26 27 30 22 32 14 Z M32 18 C30 24 26 27 20 28 C26 29 30 32 32 38 C34 32 38 29 44 28 C38 27 34 24 32 18 Z" fill="#FFFFFF"/>
+            </svg>
+          </span>
+          <span class="brand-text">米小米<span class="brand-dot">·</span>mixm.top</span>
+        </a>
+        <nav class="nav-links" aria-label="主导航">
+          <a href="#overview">平台概览</a>
+          <a href="#modules">能力矩阵</a>
+          <a href="#features">平台特性</a>
+          <a href="#open">开放平台</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-badge">MIXMLAAL 统一平台 · 一体化数字化基座</div>
+        <h1 class="hero-title">米小米，<em>连接一切业务</em>的数字化平台</h1>
+        <p class="hero-sub">
+          电商 / 会员 / AI / CRM / 本地生活 / OA / 财务…… 一个账户、一套微服务底座，
+          覆盖 <strong id="heroModuleCount">34</strong> 大行业场景，让每一个想法都能快速落地。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#modules">探索平台能力</a>
+          <a class="btn btn-ghost" href="#open">成为开发者</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><span class="stat-num" id="statModules">34</span><span class="stat-label">行业模块</span></div>
+          <div class="stat"><span class="stat-num" id="statVersion">8.0</span><span class="stat-label">平台版本</span></div>
+          <div class="stat"><span class="stat-num" id="statApi">/api</span><span class="stat-label">开放接口</span></div>
+          <div class="stat"><span class="stat-num" id="statUp">Live</span><span class="stat-label">运行状态</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 平台概览 -->
+    <section class="section" id="overview">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">OVERVIEW</span>
+          <h2 class="section-title">平台概览</h2>
+          <p class="section-desc">MIXMLAAL 统一平台以微服务集群 + 统一网关为底座，为多行业提供开箱即用的数字化能力。</p>
+        </div>
+        <div class="overview-grid">
+          <div class="ov-card ov-primary">
+            <div class="ov-num">01</div>
+            <h3>统一底座</h3>
+            <p>统一账户、统一权限、统一消息与数据层，业务模块即插即用。</p>
+          </div>
+          <div class="ov-card">
+            <div class="ov-num">02</div>
+            <h3>微服务集群</h3>
+            <p>Go 网关 + Java 服务 + Python AI + Node API，各司其职、独立扩展。</p>
+          </div>
+          <div class="ov-card">
+            <div class="ov-num">03</div>
+            <h3>WaaS 生态</h3>
+            <p>开放 API 与开发者工具，让 ISV 与生态伙伴基于平台快速构建应用。</p>
+          </div>
+          <div class="ov-card">
+            <div class="ov-num">04</div>
+            <h3>可观测运营</h3>
+            <p>全链路可观测（OTel / Jaeger），数据、财务、考勤、项目一目了然。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 能力矩阵（34 行业模块，来自平台 API 根路由） -->
+    <section class="section section-alt" id="modules">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">INDUSTRIES</span>
+          <h2 class="section-title">能力矩阵 · 行业覆盖</h2>
+          <p class="section-desc">34 大行业场景由平台 API 实时提供 <span class="api-state" id="apiState">检测中…</span></p>
+        </div>
+        <div class="module-grid" id="moduleGrid">
+          <!-- 由 app.js 渲染 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 功能模块（来自平台 API /api/modules，含状态） -->
+    <section class="section" id="featureModules">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">FEATURE MODULES</span>
+          <h2 class="section-title">核心功能模块</h2>
+          <p class="section-desc">由平台接口 <code>/api/modules</code> 实时返回，状态实时同步 <span class="api-state" id="apiState2">检测中…</span></p>
+        </div>
+        <div class="fm-grid" id="fmGrid">
+          <!-- 由 app.js 渲染 -->
+        </div>
+      </div>
+    </section>
+
+    <!-- 平台特性 -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-tag">FEATURES</span>
+          <h2 class="section-title">平台特性</h2>
+        </div>
+        <div class="feature-grid">
+          <div class="feat">
+            <span class="feat-ico">🔐</span>
+            <h3>统一安全</h3>
+            <p>统一鉴权、审计与合规，备案站点身份清晰。</p>
+          </div>
+          <div class="feat">
+            <span class="feat-ico">🧩</span>
+            <h3>模块化</h3>
+            <p>34 大行业模块自由组合，按需启用、快速交付。</p>
+          </div>
+          <div class="feat">
+            <span class="feat-ico">🤖</span>
+            <h3>AI 内嵌</h3>
+            <p>AI 工具、AI 智库与智能助手贯穿各业务场景。</p>
+          </div>
+          <div class="feat">
+            <span class="feat-ico">🌐</span>
+            <h3>多端触达</h3>
+            <p>PC / 移动 / 小程序 / 独立站多端一体的体验。</p>
+          </div>
+          <div class="feat">
+            <span class="feat-ico">📈</span>
+            <h3>数据驱动</h3>
+            <p>财务、CRM、进销存、项目等多维数据实时呈现。</p>
+          </div>
+          <div class="feat">
+            <span class="feat-ico">🚀</span>
+            <h3>快速上线</h3>
+            <p>从想法到上线，全程平台化、少写重复代码。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 开放平台 CTA -->
+    <section class="section cta" id="open">
+      <div class="container cta-inner">
+        <h2>加入米小米开放生态</h2>
+        <p>开放 API、开发者工具与文档，与 MIXMLAAL 一起构建下一代的行业数字化应用。</p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href="/api/modules" target="_blank" rel="noopener noreferrer">访问开放接口</a>
+          <a class="btn btn-ghost" href="/site.webmanifest" target="_blank" rel="noopener noreferrer">PWA 安装</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 页脚（备案） -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <span class="footer-brand">米小米 · mixm.top</span>
+        <span class="footer-spacer"></span>
+        <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">苏ICP备2025161175号-2</a>
+        <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=32072202010511" target="_blank" rel="noopener noreferrer">苏公网安备32072202010511号</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/assets/app.js"></script>
+</body>
+</html>

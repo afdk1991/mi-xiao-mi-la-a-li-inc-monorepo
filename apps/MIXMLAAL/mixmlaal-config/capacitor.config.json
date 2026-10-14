@@ -1,0 +1,56 @@
+{
+  "appId": "com.mixmlaal.app",
+  "appName": "MixmLaal",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0,
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffff"
+    },
+    "Camera": {
+      "saveToGallery": true,
+      "android": {
+        "cameraPermission": "Allow MixmLaal to access your camera"
+      },
+      "ios": {
+        "cameraPermission": "Allow MixmLaal to access your camera"
+      }
+    },
+    "Geolocation": {
+      "requestPermission": true,
+      "android": {
+        "locationPermission": "Allow MixmLaal to access your location"
+      },
+      "ios": {
+        "locationPermission": "Allow MixmLaal to access your location"
+      }
+    },
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    },
+    "Storage": {
+      "name": "mixmlaal_storage"
+    }
+  },
+  "ios": {
+    "supportsTablet": true,
+    "infoPlist": {
+      "NSCameraUsageDescription": "MixmLaal needs access to your camera to take photos",
+      "NSLocationWhenInUseUsageDescription": "MixmLaal needs access to your location to provide location-based services",
+      "UIBackgroundModes": ["fetch", "remote-notification"]
+    }
+  },
+  "android": {
+    "allowMixedContent": true,
+    "gradlePlugins": [],
+    "namespace": "com.mixmlaal.app",
+    "useLegacyBridge": false
+  },
+  "electron": {
+    "appId": "com.mixmlaal.electron",
+    "name": "MixmLaal",
+    "platform": "windows"
+  }
+}

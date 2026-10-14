@@ -1,0 +1,310 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs
+dist/
+build/
+.output/
+.unpackage/
+unpackage/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Runtime data
+*.sqlite
+*.sqlite3
+*.db
+*.db-shm
+*.db-wal
+data/
+
+# Environment variables - 通配符覆盖所有 env 变体，仅保留 .env.example
+.env
+.env.*
+!.env.example
+!**/.env.example
+!**/.env.production.example
+!**/.env.testing.example
+infra/.env
+packages/server/.env
+packages/server/.env.production
+packages/server/.env.postgres
+
+# WordPress 敏感配置（含 salts、数据库密码）
+wp-config.php
+wp-config-local.php
+wp-config-sample.php.bak
+
+# 历史遗留归档目录（不再参与版本控制）
+_legacy_root/
+_legacy/
+_responsive_test/
+responsive-test/
+preview/
+test-results/
+.snapshots/
+
+# 私钥与证书目录（多目录覆盖）
+PEM_Privatekey/
+certs/
+Tomcat8_4/conf/certs/
+Tomcat8_5+/conf/certs/
+*.pem
+*.crt
+*.cer
+*.key
+*.pfx
+*.jks
+*.keystore
+*.truststore
+*.p12
+
+# 数据库备份与导出
+*.sql
+*.sql.gz
+*.dump
+*.db
+backups/
+data/backups/
+packages/server/data/
+
+# 打包产物（部署/分发用的压缩包，不应提交到仓库）
+*.zip
+*.rar
+*.7z
+*.tar.gz
+*.tgz
+deploy/dist/
+
+# 日志目录
+packages/server/logs/
+packages/server/.pid/
+
+# 临时分析脚本
+.tmp_*.ps1
+.tmp_*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Electron
+out/
+release/
+
+# Cache
+.cache/
+.temp/
+.tmp/
+.eslintcache
+
+# PM2
+.pid/
+
+# Server dist
+packages/server/dist/
+
+# SDK dist
+packages/sdk/dist/
+packages/sdk/docs/
+
+# Shared dist
+packages/shared/dist/
+
+# App dist
+packages/app/dist/
+
+# Desktop dist
+packages/desktop/dist/
+
+# Uploads
+packages/server/uploads/
+
+# SSL certificates
+*.pem
+*.crt
+*.key
+*.pfx
+*.jks
+certs/
+PEM_Privatekey/
+
+# Backup files
+*.bak
+*.backup
+
+# Generated files
+*.min.js
+*.min.css
+
+# Trae IDE
+.trae/
+
+# Package manager lockfiles (keep only npm)
+pnpm-lock.yaml
+yarn.lock
+
+# ============================================================
+# 历史遗留目录（Apache/IIS/Tomcat/Haproxy/Nginx 等旧服务器配置）
+# 这些目录已不再使用，但生产环境暂不删除，仅从 Git 中排除
+# ============================================================
+IIS/
+Tomcat8_4/
+Tomcat8_5+/
+Haproxy/
+Nginx/
+
+# ============================================================
+# 历史遗留与冗余目录（响应式测试、预览）
+# ============================================================
+_responsive_test/
+responsive-test/
+preview/
+test-results/
+.snapshots/
+
+# ============================================================
+# 根目录临时脚本与日志（archive/scan/integrate 等）
+# ============================================================
+_archive_*.log
+_archive_*.ps1
+_archive_*.ps1.gbk.bak
+_integrate_*.log
+_integrate_*.ps1
+lint-output.log
+test-output.log
+test-results.log
+test-results.txt
+test_output.txt
+
+# ============================================================
+# 根目录测试脚本（生产环境不应部署）
+# ============================================================
+/test.php
+/test-theme.php
+/test_api.js
+/test_frontend.js
+/test-module-route.php
+/test-output.log
+/verify-fixes.js
+/verify-server.js
+/api-test.php
+/db-test.php
+/simple-db-test.php
+/simple-test.php
+/check-mysql.php
+/hello.php
+
+# ============================================================
+# 根目录冗余 HTML 文件（IDE 未命名草稿）
+# ============================================================
+/未命名*.html
+/未命名*.html
+/index.html
+
+# ============================================================
+# 根目录冗余图片与临时资产
+# ============================================================
+/2258c750-8e77-491d-8f56-908c3199f57e.jpg
+/screenshot.png
+
+# ============================================================
+# 根目录调试与一次性修复脚本
+# ============================================================
+/activate_theme.php
+/activate_theme_simple.php
+/api-test.php
+/audit-modules.php
+/clean-theme-dir.sh
+/compress-wordpress.bat
+/fix_function_conflict.php
+/fix_images.sh
+/fix_theme.php
+/insert-community-data.php
+/recreate-community.php
+/reset-pass.php
+/setup-*.php
+/simple-*.php
+
+# ============================================================
+# 其他敏感配置文件
+# ============================================================
+.user.ini
+license.txt
+readme.html
+
+# ============================================================
+# 根目录双重主题冗余文件（实际主题在 wp-content/themes/mixm-laal/）
+# 根目录的主题文件不会被 WordPress 加载，仅作为历史保留
+# 注意：index.php 是 WordPress 主入口文件，必须保留，不能忽略！
+# ============================================================
+/functions.php
+/header.php
+/footer.php
+/sidebar.php
+/style.css
+/404.php
+/content.php
+/content-page.php
+/page.php
+
+# === 鐩綍姊崇悊娓呯悊瑙勫垯(2026-07-21 鏂板)===
+
+# 鏍圭洰褰?PHP 璋冭瘯鑴氭湰(涓€娆℃€?闃插洖娼?
+/final-test.php
+/final_verify.php
+/check_tables.php
+/check_crawler_tables.php
+/find_all_tables.php
+/create_tables.php
+/create_missing_crawler_tables.php
+/db_final.php
+/admin-verify.php
+/enable-debug.php
+
+# 鏍圭洰褰曡瘖鏂枃浠?/_diag_mixm_funcs.txt
+
+# 鏍圭洰褰?PHP 璇硶妫€鏌ュ伐鍏?/check-php-syntax.bat
+/check-php-syntax.ps1
+
+# 鏍圭洰褰曚慨澶嶆埅鍥?褰掓。鍚?
+/0[1-8]-*.png
+/plugins-all-*.png
+/plugins-final.png
+/frontend-all-plugins*.png
+/frontend-final.png
+/screenshot.png
+/灞忓箷鎴浘_*
+
+# 鏍圭洰褰曚簩杩涘埗褰掓。
+/api.laal.top_*.tar.gz
+/e2beb408-*.doc
+/difyctl-*-checksums.txt
+
+# 鏍圭洰褰曟壒澶勭悊鑴氭湰(宸茬Щ鍒?scripts/)
+/deploy.bat
+/docker-wp.ps1
+/install.sh
+
+# 褰掓。鐩綍(涓嶅弬涓庣増鏈帶鍒?
+/_archive/
+
+# 鏍圭洰褰曢仐鐣欐湇鍔″櫒閰嶇疆鐩綍(鍐椾綑鍓湰,鍘熺増鍦?certs/)
+/Apache/
+/IIS/
+/Haproxy/
+/Nginx/
+/Tomcat8_4/
+/Tomcat8_5+/
+/PEM_Privatekey/

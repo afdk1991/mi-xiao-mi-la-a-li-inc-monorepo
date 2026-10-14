@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目005机箱 · 全项目通读可视化</title>
+<style>
+  :root{
+    --primary:#2F5496; --secondary:#D6E4F0; --accent:#C00000;
+    --light:#F2F6FB; --gray:#404040; --line:#C9D6E8; --ok:#2E7D32; --warn:#B26A00;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:"Microsoft YaHei","微软雅黑",system-ui,sans-serif;background:#F5F7FA;color:#222;line-height:1.6;padding:24px 16px 60px;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  header.hero{background:linear-gradient(135deg,#2F5496 0%,#1E3A6E 100%);color:#fff;border-radius:14px;padding:30px 34px;margin-bottom:22px;}
+  header.hero h1{font-size:26px;font-weight:700;letter-spacing:1px;}
+  header.hero p.sub{margin-top:8px;font-size:14px;opacity:.9;}
+  header.hero .tags{margin-top:14px;display:flex;flex-wrap:wrap;gap:8px;}
+  header.hero .tag{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:3px 14px;font-size:12.5px;}
+  .concl{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+  .concl .card{background:#fff;border:1px solid var(--line);border-left:5px solid var(--primary);border-radius:10px;padding:14px 16px;}
+  .concl .card b{font-size:15px;color:var(--primary);display:block;}
+  .concl .card span{font-size:13px;color:#555;}
+  .concl .card.warn{border-left-color:var(--accent);}
+  .concl .card.warn b{color:var(--accent);}
+  section{background:#fff;border:1px solid var(--line);border-radius:12px;padding:22px 26px;margin-bottom:22px;}
+  section h2{font-size:18px;color:var(--primary);border-bottom:2px solid var(--secondary);padding-bottom:8px;margin-bottom:16px;}
+  section h2 .en{font-size:12px;color:#8aa2c8;font-weight:400;margin-left:8px;}
+  .flow{display:flex;align-items:stretch;gap:0;flex-wrap:wrap;justify-content:center;}
+  .flow .node{background:var(--light);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:150px;max-width:220px;flex:1;}
+  .flow .node h3{font-size:14px;color:var(--primary);margin-bottom:6px;}
+  .flow .node ul{list-style:none;font-size:12.5px;color:#444;}
+  .flow .node ul li{padding:2px 0;}
+  .flow .arrow{align-self:center;color:var(--primary);font-size:26px;padding:0 10px;}
+  .flow .arrow.small{font-size:18px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;margin-top:6px;}
+  th{background:var(--primary);color:#fff;padding:7px 10px;text-align:left;font-weight:600;}
+  td{border:1px solid var(--line);padding:6px 10px;vertical-align:top;}
+  tr:nth-child(even) td{background:#FAFCFF;}
+  .pill{display:inline-block;border-radius:12px;padding:1px 10px;font-size:12px;font-weight:600;}
+  .pill.ok{background:#E6F4EA;color:var(--ok);}
+  .pill.warn{background:#FFF3E0;color:var(--warn);}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .vs{background:var(--light);border:1px solid var(--line);border-radius:10px;padding:14px 18px;}
+  .vs h3{font-size:15px;margin-bottom:8px;}
+  .vs.v1 h3{color:#8A6D1A;} .vs.v2 h3{color:var(--primary);}
+  .vs ul{list-style:none;font-size:13px;}
+  .vs ul li{padding:3px 0;border-bottom:1px dashed #D8E2EF;}
+  .vs ul li:last-child{border-bottom:none;}
+  .vs .note{font-size:12px;color:#777;margin-top:8px;}
+  .costbar{margin:10px 0;}
+  .costbar .lbl{font-size:13px;font-weight:600;margin-bottom:4px;display:flex;justify-content:space-between;}
+  .costbar .track{background:#EDF1F7;border-radius:6px;height:18px;position:relative;overflow:hidden;}
+  .costbar .track .fill{position:absolute;top:0;left:0;height:100%;border-radius:6px;}
+  .costbar .track .fill.detail{background:#B4C7E8;}
+  .costbar .track .fill.summary{background:var(--primary);}
+  .legend{font-size:12px;color:#555;margin-top:8px;}
+  .legend i{display:inline-block;width:14px;height:10px;border-radius:3px;margin:0 4px 0 10px;vertical-align:-1px;}
+  .gapmark{color:var(--accent);font-weight:700;}
+  .issues{counter-reset:iss;}
+  .issues .item{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--line);align-items:flex-start;}
+  .issues .item:last-child{border-bottom:none;}
+  .issues .num{flex:0 0 26px;height:26px;border-radius:50%;background:var(--secondary);color:var(--primary);font-weight:700;text-align:center;line-height:26px;font-size:13px;}
+  .issues .item.hi .num{background:var(--accent);color:#fff;}
+  .issues .body{flex:1;}
+  .issues .body b{font-size:14px;}
+  .issues .body p{font-size:12.5px;color:#555;margin-top:2px;}
+  .trae{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:14px;}
+  .trae .t{background:var(--light);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center;}
+  .trae .t b{font-size:22px;color:var(--primary);display:block;}
+  .trae .t span{font-size:12px;color:#666;}
+  .mcpcat{font-size:12.5px;}
+  .mcpcat h4{font-size:13px;color:var(--primary);margin:10px 0 4px;}
+  .mcpcat ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px;}
+  .mcpcat li{background:#F0F4FA;border:1px solid var(--line);border-radius:12px;padding:2px 10px;font-size:12px;}
+  footer{text-align:center;font-size:12px;color:#999;margin-top:10px;}
+  @media (max-width:760px){
+    .concl,.grid2{grid-template-columns:1fr;}
+    .trae{grid-template-columns:repeat(2,1fr);}
+    .flow .arrow{transform:rotate(90deg);padding:4px 0;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>项目005机箱 · 全项目通读可视化</h1>
+  <p class="sub">三层卧式模块化机箱 · 工业设计交付项目 | 2026-09-17 全量扫描：源码 4 脚本 + 交付包 20 文件 + TRAE 扩展生态</p>
+  <div class="tags">
+    <span class="tag">当前版本 V2 紧凑型 200×350×350</span>
+    <span class="tag">10 份 PDF 已核验 V2.0</span>
+    <span class="tag">9 张渲染图（实为 JPEG）</span>
+    <span class="tag">TRAE 插件 103 · 技能 90+ · MCP 45</span>
+  </div>
+</header>
+
+<div class="concl">
+  <div class="card"><b>项目性质</b><span>工业设计交付项目，非软件工程。核心资产是交付包，由 4 个 Python 脚本 + pylibs 便携依赖生成。</span></div>
+  <div class="card warn"><b>关键缺陷</b><span>成本数据自相矛盾：BOM 明细合计 1574~1714 元 vs 汇总页 1400~1540 元，差 174.4 元。</span></div>
+  <div class="card"><b>版本演进</b><span>V1 大尺寸版（450×360×400）已废弃且产物被 V2 覆盖，仅存源码；V1/V2 输出路径未隔离。</span></div>
+</div>
+
+<section>
+  <h2>产出链路<span class="en">Generation Pipeline</span></h2>
+  <div class="flow">
+    <div class="node">
+      <h3>① 生成脚本（4 个）</h3>
+      <ul>
+        <li>generate_bom.py（V1，已废弃）</li>
+        <li>generate_bom_v2.py（V2）</li>
+        <li>generate_pdfs.py（V1，已废弃）</li>
+        <li>generate_pdfs_v2.py（V2）</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node">
+      <h3>② 便携依赖 pylibs/</h3>
+      <ul>
+        <li>reportlab 5.0.1 → 10 份 PDF</li>
+        <li>openpyxl 3.1.5 → BOM Excel</li>
+        <li>pymupdf / PIL 等辅助</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node">
+      <h3>③ 交付包（20 文件）</h3>
+      <ul>
+        <li>01_设计文档：4 PDF</li>
+        <li>02_加工图纸：2 PDF</li>
+        <li>03_效果图片：9 图</li>
+        <li>04_BOM与成本：1 XLSX + 1 PDF</li>
+        <li>05_生产执行：3 PDF</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>交付包结构<span class="en">20 files · 已全部核验</span></h2>
+  <table>
+    <tr><th>目录</th><th>文件</th><th>核验结果</th></tr>
+    <tr><td>01_设计文档</td><td>通用基准 / 架构说明 / 亚克力评估 / SKU矩阵</td><td><span class="pill ok">4/4 通过（V2.0）</span></td></tr>
+    <tr><td>02_加工图纸</td><td>量产版亚克力件 / 概念版亚克力件加工图汇总</td><td><span class="pill ok">2/2 通过（V2.0）</span></td></tr>
+    <tr><td>03_效果图片</td><td>核心渲染 5 张 + 版本对比 2 张 + 工程说明 2 张</td><td><span class="pill warn">9 张全部 .png 实为 JPEG；4 张形态与文档冲突</span></td></tr>
+    <tr><td>04_BOM与成本</td><td>BOM分版清单（4版本）.xlsx + 成本对比与报价参考.pdf</td><td><span class="pill warn">成本口径差 174.4 元</span></td></tr>
+    <tr><td>05_生产执行</td><td>打样执行清单 / 整机组装工艺卡 / 出厂验收标准</td><td><span class="pill ok">3/3 通过（V2.0）</span></td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>V1 → V2 版本演进对比<span class="en">V2 为当前有效版本</span></h2>
+  <div class="grid2">
+    <div class="vs v1">
+      <h3>V1 大尺寸版（已废弃，仅存源码）</h3>
+      <ul>
+        <li>整机：450×360×400mm，SPCC 1.5mm</li>
+        <li>存储：12 盘位热插拔（3.5寸×12）</li>
+        <li>计算：双 30×30 主板 + 双全高显卡</li>
+        <li>电源：双 ATX 冗余独立隔舱</li>
+        <li>散热：6 进 3 出 120mm 风扇</li>
+        <li>成本（汇总口径）：2700~3770 元</li>
+      </ul>
+      <div class="note">⚠ 产物已被 V2 静默覆盖，仅脚本保留。</div>
+    </div>
+    <div class="vs v2">
+      <h3>V2 紧凑型（当前有效）</h3>
+      <ul>
+        <li>整机：200×350×350mm，SPCC 1.2mm</li>
+        <li>存储：2×3.5寸 + 2×2.5寸</li>
+        <li>计算：ITX 单主板 + 全高双槽显卡</li>
+        <li>电源：单 ATX（86mm 高）</li>
+        <li>散热：3 进 2 出 5 个 120mm 风扇，三层独立风道</li>
+        <li>成本（汇总口径）：1400~2020 元</li>
+      </ul>
+      <div class="note">✅ 交付包全部产物均已核验为 V2.0（副标题 / 尺寸标注一致）。</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>四版本成本：明细口径 vs 汇总口径<span class="en">低值对比 · 差异 174.4 元</span></h2>
+  <div class="costbar">
+    <div class="lbl"><span>全金属标准版</span><span>明细 1574~1714 ｜ 汇总 1400~1540 <span class="gapmark">差 174.4</span></span></div>
+    <div class="track"><div class="fill detail" style="width:82%;"></div><div class="fill summary" style="width:73%;"></div></div>
+  </div>
+  <div class="costbar">
+    <div class="lbl"><span>方案A 基础透明款</span><span>明细 1616~1726 ｜ 汇总 1442~1570 <span class="gapmark">差 174.4</span></span></div>
+    <div class="track"><div class="fill detail" style="width:84%;"></div><div class="fill summary" style="width:75%;"></div></div>
+  </div>
+  <div class="costbar">
+    <div class="lbl"><span>方案B 透明定制款</span><span>明细 1661~1771 ｜ 汇总 1487~1615 <span class="gapmark">差 174.4</span></span></div>
+    <div class="track"><div class="fill detail" style="width:87%;"></div><div class="fill summary" style="width:77%;"></div></div>
+  </div>
+  <div class="costbar">
+    <div class="lbl"><span>概念展示版</span><span>明细 1995~2195 ｜ 汇总 1793~2020 <span class="gapmark">差 202.4</span></span></div>
+    <div class="track"><div class="fill detail" style="width:100%;"></div><div class="fill summary" style="width:90%;"></div></div>
+  </div>
+  <div class="legend"><i style="background:var(--primary);"></i>汇总口径（320/620/280 手写估算）<i style="background:#B4C7E8;"></i>明细口径（逐项累加 371.2/765.2/258）——汇总页未由明细计算生成，属系统性缺陷</div>
+</section>
+
+<section>
+  <h2>已知问题清单<span class="en">6 项</span></h2>
+  <div class="issues">
+    <div class="item hi"><div class="num">1</div><div class="body"><b>成本数据自相矛盾（高）</b><p>BOM 明细逐项累加 1574~1714 元，汇总页与 PDF 报价写 1400~1540 元，差 174.4 元；汇总页分类数字为手写估算，未与明细对齐。</p></div></div>
+    <div class="item hi"><div class="num">2</div><div class="body"><b>9 张 .png 实为 JPEG（中）</b><p>全部图片 magic 为 0xFFD8FF，扩展名错误，部分排版/印刷软件会报错。</p></div></div>
+    <div class="item hi"><div class="num">3</div><div class="body"><b>渲染图与设计文档形态冲突（中）</b><p>03 整机外观图、两版对比图左图、打样验收图为立式侧透 RGB 电竞风，而文档定义为「三层卧式」内藏式抽屉 + 哑光黑/银喷塑；图为 AI 生成渲染，非工程渲染。</p></div></div>
+    <div class="item"><div class="num">4</div><div class="body"><b>V1/V2 输出路径未隔离 + 空文件残留（低）</b><p>两代脚本写同一 BASE_DIR 导致 V2 覆盖 V1；Database1.accdb 为空库（仅系统表）；新建 Word 文档 0 字节。</p></div></div>
+    <div class="item hi"><div class="num">5</div><div class="body"><b>电源隔舱细节图标注「高450mm」（中）</b><p>05_电源隔舱与理线细节图 OCR 标注 450mm，与 V2 规格 350mm 冲突，疑似 V1 尺寸残留。</p></div></div>
+    <div class="item"><div class="num">6</div><div class="body"><b>命名与文字质量问题（低）</b><p>产品矩阵图第 4 格标注「模块识别色+灯效优化」而非「概念展示版」；亚克力爆炸图、打样验收图存在 AI 生成文字乱码。</p></div></div>
+  </div>
+</section>
+
+<section>
+  <h2>TRAE 扩展生态<span class="en">.trae-cn · 约 530 MB</span></h2>
+  <div class="trae">
+    <div class="t"><b>8</b><span>编辑器扩展（VSCode 系）</span></div>
+    <div class="t"><b>103</b><span>远程插件目录（90+ 启用）</span></div>
+    <div class="t"><b>90+</b><span>技能（本地 100 + 市场 90）</span></div>
+    <div class="t"><b>45</b><span>项目005 MCP 连接器</span></div>
+    <div class="t"><b>12</b><span>项目级 MCP 目录</span></div>
+  </div>
+  <div class="grid2">
+    <div class="mcpcat">
+      <h4>项目005 启用的 MCP 连接器（按类别）</h4>
+      <ul>
+        <li>integrated_code_mode</li>
+      </ul>
+      <h4>法律（北大法宝 pkulaw）</h4>
+      <ul><li>案件资讯</li><li>法律智能检索</li><li>合规审查</li><li>合同起草</li><li>知识产权</li></ul>
+      <h4>金融行情</h4>
+      <ul><li>东方财富</li><li>通达信 TDX</li><li>iFinD 金融数据 ×7</li><li>财报解读 ×8</li><li>全链路股票分析 ×9</li><li>行业研究员 ×8</li></ul>
+    </div>
+    <div class="mcpcat">
+      <h4>效率 / 数据 / 协作</h4>
+      <ul><li>Context7</li><li>Chrome DevTools</li><li>天眼查</li><li>腾讯文档 doc/sheet/slide</li><li>Gitee</li></ul>
+      <h4>编辑器扩展（8 个）</h4>
+      <ul><li>Python / Debugpy / Python-Envs</li><li>BasedPyright 类型检查</li><li>Intelephense PHP</li><li>PHP Debug</li><li>Rainbow CSV</li><li>Coding Copilot（腾讯云）</li></ul>
+      <h4>内置与记忆</h4>
+      <ul><li>内置技能：TRAE-security-review</li><li>用户上传技能：crossplatform-service-migration</li><li>项目005 会话记忆：2026-09-17（本报告同日）</li></ul>
+    </div>
+  </div>
+</section>
+
+<footer>报告详见同目录《项目005机箱_全项目通读报告.md》 · 数据来源：全量文件读取与产物核验</footer>
+</div>
+</body>
+</html>

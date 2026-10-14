@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: mixmlaal
+  labels:
+    name: mixmlaal
+    environment: production
+    app: mixmlaal-platform
+  annotations:
+    description: "Namespace for MixMLAAL platform services"
+    created-by: "devops-team"
+    version: "1.0.0.0"

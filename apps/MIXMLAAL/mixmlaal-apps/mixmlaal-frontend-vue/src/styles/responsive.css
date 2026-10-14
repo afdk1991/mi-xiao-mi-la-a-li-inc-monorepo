@@ -1,0 +1,374 @@
+/**
+ * 响应式配置
+ * 版本: v1.0.0.0
+ * 说明: 统一的响应式设计配置，确保所有访问端的一致性
+ */
+
+/* 响应式断点变量 */
+:root {
+  /* 断点定义 */
+  --breakpoint-xs: 480px;
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  /* 容器最大宽度 */
+  --container-max-width-sm: 640px;
+  --container-max-width-md: 768px;
+  --container-max-width-lg: 1024px;
+  --container-max-width-xl: 1280px;
+  --container-max-width-2xl: 1536px;
+  
+  /* 容器内边距 */
+  --container-padding-xs: 1rem;
+  --container-padding-sm: 1.5rem;
+  --container-padding-md: 2rem;
+  --container-padding-lg: 2.5rem;
+  --container-padding-xl: 3rem;
+  
+  /* 网格列数 */
+  --grid-columns-sm: 2;
+  --grid-columns-md: 3;
+  --grid-columns-lg: 4;
+  --grid-columns-xl: 6;
+  --grid-columns-2xl: 8;
+  
+  /* 间距调整 */
+  --spacing-adjustment-sm: 0.8;
+  --spacing-adjustment-md: 1.0;
+  --spacing-adjustment-lg: 1.2;
+  --spacing-adjustment-xl: 1.4;
+  
+  /* 响应式性能优化 */
+  --touch-target-min-size: 44px;
+  --scrollbar-width: 6px;
+}
+
+/* 响应式容器 - 优化性能 */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--container-padding-xs);
+  padding-right: var(--container-padding-xs);
+  contain: layout style;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: var(--container-max-width-sm);
+    padding-left: var(--container-padding-sm);
+    padding-right: var(--container-padding-sm);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: var(--container-max-width-md);
+    padding-left: var(--container-padding-md);
+    padding-right: var(--container-padding-md);
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: var(--container-max-width-lg);
+    padding-left: var(--container-padding-lg);
+    padding-right: var(--container-padding-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: var(--container-max-width-xl);
+    padding-left: var(--container-padding-xl);
+    padding-right: var(--container-padding-xl);
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: var(--container-max-width-2xl);
+  }
+}
+
+/* 响应式网格 */
+.grid {
+  display: grid;
+  gap: 1rem;
+}
+
+/* 移动端网格 */
+.grid-cols-1 {
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+
+/* 小屏幕网格 */
+@media (min-width: 640px) {
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .sm\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .sm\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* 中等屏幕网格 */
+@media (min-width: 768px) {
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .md\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .md\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .md\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+}
+
+/* 大屏幕网格 */
+@media (min-width: 1024px) {
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .lg\:grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+/* 超大屏幕网格 */
+@media (min-width: 1280px) {
+  .xl\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .xl\:grid-cols-6 {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .xl\:grid-cols-8 {
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+  }
+}
+
+/* 响应式显示/隐藏 */
+.hidden {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .sm\:block {
+    display: block;
+  }
+  .sm\:hidden {
+    display: none;
+  }
+  .sm\:flex {
+    display: flex;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:block {
+    display: block;
+  }
+  .md\:hidden {
+    display: none;
+  }
+  .md\:flex {
+    display: flex;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:block {
+    display: block;
+  }
+  .lg\:hidden {
+    display: none;
+  }
+  .lg\:flex {
+    display: flex;
+  }
+}
+
+/* 响应式间距 */
+@media (max-width: 640px) {
+  .space-y-4 > * + * {
+    margin-top: 0.8rem;
+  }
+  .space-x-4 > * + * {
+    margin-left: 0.8rem;
+  }
+}
+
+/* 响应式字体大小 */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  h2 {
+    font-size: 1.25rem;
+  }
+  h3 {
+    font-size: 1.125rem;
+  }
+  p {
+    font-size: 0.875rem;
+  }
+}
+
+/* 响应式导航 */
+.mobile-nav {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-nav {
+    display: flex;
+  }
+  
+  .desktop-nav {
+    display: none;
+  }
+}
+
+/* 响应式表单 */
+@media (max-width: 640px) {
+  .form-input {
+    padding: 0.75rem;
+    font-size: 0.875rem;
+  }
+  
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* 响应式卡片 */
+@media (max-width: 640px) {
+  .card {
+    padding: 1rem;
+  }
+  
+  .card-title {
+    font-size: 1rem;
+  }
+}
+
+/* 响应式图片 */
+.img-responsive {
+  max-width: 100%;
+  height: auto;
+}
+
+/* 响应式安全区 */
+.safe-area {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  padding-left: env(safe-area-inset-left, 0px);
+  padding-right: env(safe-area-inset-right, 0px);
+}
+
+/* 响应式触摸目标 - 优化移动设备体验 */
+@media (hover: none) and (pointer: coarse) {
+  .touch-target {
+    min-height: var(--touch-target-min-size);
+    min-width: var(--touch-target-min-size);
+    cursor: pointer;
+  }
+  
+  /* 优化按钮触摸目标 */
+  button, a {
+    min-height: var(--touch-target-min-size);
+    min-width: var(--touch-target-min-size);
+  }
+  
+  /* 优化表单元素触摸目标 */
+  input, select, textarea {
+    min-height: var(--touch-target-min-size);
+  }
+}
+
+/* 响应式滚动条 - 优化性能 */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    width: var(--scrollbar-width);
+    height: var(--scrollbar-width);
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: var(--color-gray-100);
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-gray-400);
+    border-radius: calc(var(--scrollbar-width) / 2);
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-gray-500);
+  }
+  
+  /* 优化滚动性能 */
+  * {
+    overscroll-behavior: contain;
+  }
+  
+  /* 禁用水平滚动 */
+  body {
+    overflow-x: hidden;
+  }
+}
+
+/* 响应式动画性能 */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* 高对比度模式 */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #0066cc;
+    --color-secondary: #008800;
+    --color-danger: #cc0000;
+  }
+  
+  body {
+    color: black;
+    background-color: white;
+  }
+}
+
+/* 深色模式响应式调整 */
+@media (prefers-color-scheme: dark) {
+  @media (max-width: 640px) {
+    body {
+      background-color: var(--color-gray-900);
+    }
+    
+    .card {
+      background-color: var(--color-gray-800);
+    }
+  }
+}

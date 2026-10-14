@@ -1,0 +1,83 @@
+<view class="index-container">
+  <view class="header">
+    <view class="header-content">
+      <view class="logo-section">
+        <image class="logo" src="/assets/images/logo.png" mode="aspectFit"></image>
+        <text class="app-name">MIXMLAAL</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="banner-section">
+    <swiper class="banner-swiper" indicator-dots autoplay circular>
+      <swiper-item wx:for="{{banners}}" wx:key="id" bindtap="onBannerTap" data-url="{{item.url}}">
+        <image class="banner-image" src="{{item.image}}" mode="aspectFill"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  
+  <view class="service-section">
+    <view class="service-grid">
+      <view 
+        class="service-item" 
+        wx:for="{{services}}" 
+        wx:key="id"
+        bindtap="onServiceTap"
+        data-path="{{item.path}}"
+      >
+        <text class="service-icon">{{item.icon}}</text>
+        <text class="service-name">{{item.name}}</text>
+        <text class="service-desc">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="quick-ride-section">
+    <view class="section-header">
+      <text class="section-title">快速叫车</text>
+      <text class="section-more" bindtap="goToRide">更多 ›</text>
+    </view>
+    <view class="quick-actions">
+      <view 
+        class="action-card" 
+        wx:for="{{quickActions}}" 
+        wx:key="id"
+        bindtap="onQuickRide"
+        data-id="{{item.id}}"
+      >
+        <text class="action-icon">{{item.icon}}</text>
+        <text class="action-name">{{item.name}}</text>
+        <text class="action-price">{{item.price}}</text>
+      </view>
+    </view>
+  </view>
+  
+  <view class="hot-section" wx:if="{{hotProducts.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">热门商品</text>
+      <text class="section-more" bindtap="goToShop">更多 ›</text>
+    </view>
+    <view class="product-grid">
+      <view 
+        class="product-card" 
+        wx:for="{{hotProducts}}" 
+        wx:key="id"
+        bindtap="goToProduct"
+        data-id="{{item.id}}"
+      >
+        <image class="product-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="product-info">
+          <text class="product-name">{{item.name}}</text>
+          <view class="product-price">
+            <text class="price-symbol">¥</text>
+            <text class="price-value">{{item.price}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <text class="footer-text">© 2024 MIXMLAAL · 让出行更美好</text>
+  </view>
+</view>

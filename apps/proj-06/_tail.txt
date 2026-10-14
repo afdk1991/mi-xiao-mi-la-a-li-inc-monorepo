@@ -1,0 +1,21 @@
+﻿19:53:01  STEP1 start docker engine
+19:53:32  STEP2 docker compose up -d --build
+    + FullyQualifiedErrorId : NativeCommandError
+ Image mysql:5.7 Pulled 
+ Image wordpress:php8.0-apache Pulled 
+ Image ossrs/srs:5 Pulled 
+ Image phpmyadmin:latest Pulled 
+ Network myp006_default Created 
+ Volume myp006_wp_uploads Created 
+ Volume myp006_db_data Created 
+ Container myp-db Created 
+ Container myp-srs Created 
+ Container myp-pma Created 
+ Container myp-wp Created 
+ Container myp-srs Started 
+Error response from daemon: failed to set up container networking: driver failed programming external connectivity on e
+NAME      IMAGE                     COMMAND                   SERVICE      CREATED          STATUS          PORTS
+myp-db    mysql:5.7                 "docker-entrypoint.s鈥?   db           37 seconds ago   Created         
+myp-pma   phpmyadmin:latest         "/docker-entrypoint.鈥?   phpmyadmin   21 seconds ago   Created         
+myp-wp    wordpress:php8.0-apache   "docker-entrypoint.s鈥?   wordpress    21 seconds ago   Created         
+19:57:44  STEP3 wait wordpress http

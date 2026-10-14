@@ -1,0 +1,17 @@
+<view class="product-card" bindtap="onProductClick">
+  <image class="product-image" src="{{product.image}}" mode="aspectFill"></image>
+  <view class="product-info">
+    <text class="product-name">{{product.name}}</text>
+    <text class="product-desc">{{product.description}}</text>
+    <view class="product-footer">
+      <view class="product-price">
+        <text class="price-symbol">¥</text>
+        <text class="price-value">{{product.price}}</text>
+        <text class="price-original" wx:if="{{product.originalPrice}}">¥{{product.originalPrice}}</text>
+      </view>
+      <view class="add-cart-btn" catchtap="onAddCart">
+        <text>+</text>
+      </view>
+    </view>
+  </view>
+</view>

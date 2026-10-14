@@ -1,0 +1,249 @@
+# API Gateway配置文件
+
+http:
+  port: 80
+
+admin:
+  port: 9876
+  hostname: localhost
+
+apiEndpoints:
+  users:
+    path: '/api/v1/users/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  auth:
+    path: '/api/v1/auth/**'
+    methods: ['GET', 'POST']
+  orders:
+    path: '/api/v1/orders/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  payment:
+    path: '/api/v1/payment/**'
+    methods: ['GET', 'POST']
+  map:
+    path: '/api/v1/map/**'
+    methods: ['GET', 'POST']
+  ai:
+    path: '/api/v1/ai/**'
+    methods: ['GET', 'POST']
+  notification:
+    path: '/api/v1/notification/**'
+    methods: ['GET', 'POST']
+  shop:
+    path: '/api/v1/shop/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  coupons:
+    path: '/api/v1/coupons/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  integrated:
+    path: '/api/v1/integrated/**'
+    methods: ['GET', 'POST']
+  housekeeping:
+    path: '/api/v1/housekeeping/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  education:
+    path: '/api/v1/education/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  health:
+    path: '/api/v1/health/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  travel:
+    path: '/api/v1/travel/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  membership:
+    path: '/api/v1/membership/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  marketing:
+    path: '/api/v1/marketing/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  recommendation:
+    path: '/api/v1/recommendation/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  customer:
+    path: '/api/v1/customer/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+  data:
+    path: '/api/v1/data/**'
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+
+serviceEndpoints:
+  userService:
+    url: 'http://user-service:3000'
+  orderService:
+    url: 'http://order-service:3001'
+  paymentService:
+    url: 'http://payment-service:3002'
+  mapService:
+    url: 'http://map-service:3003'
+  aiService:
+    url: 'http://ai-service:3004'
+  notificationService:
+    url: 'http://notification-service:3005'
+  shopService:
+    url: 'http://shop-service:3006'
+  couponService:
+    url: 'http://coupon-service:3007'
+  integratedService:
+    url: 'http://integrated-service:3008'
+  housekeepingService:
+    url: 'http://housekeeping-service:3005'
+  educationService:
+    url: 'http://education-service:3006'
+  healthService:
+    url: 'http://health-service:3007'
+  travelService:
+    url: 'http://travel-service:3008'
+  membershipService:
+    url: 'http://membership-service:3009'
+  marketingService:
+    url: 'http://marketing-service:3010'
+  recommendationService:
+    url: 'http://recommendation-service:3011'
+  customerService:
+    url: 'http://customer-service:3012'
+  dataService:
+    url: 'http://data-service:3013'
+
+policies:
+  - cors
+  - expression
+  - key-auth
+  - log
+  - oauth2
+  - proxy
+  - rate-limit
+
+pipelines:
+  users:
+    apiEndpoints: 
+      - users
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  auth:
+    apiEndpoints:
+      - auth
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: userService
+  orders:
+    apiEndpoints:
+      - orders
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: orderService
+  payment:
+    apiEndpoints:
+      - payment
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: paymentService
+  map:
+    apiEndpoints:
+      - map
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: mapService
+  ai:
+    apiEndpoints:
+      - ai
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: aiService
+  notification:
+    apiEndpoints:
+      - notification
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: notificationService
+  shop:
+    apiEndpoints:
+      - shop
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: shopService
+  coupons:
+    apiEndpoints:
+      - coupons
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: couponService
+  integrated:
+    apiEndpoints:
+      - integrated
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: integratedService
+  housekeeping:
+    apiEndpoints:
+      - housekeeping
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: housekeepingService
+  education:
+    apiEndpoints:
+      - education
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: educationService
+  health:
+    apiEndpoints:
+      - health
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: healthService
+  travel:
+    apiEndpoints:
+      - travel
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: travelService
+  membership:
+    apiEndpoints:
+      - membership
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: membershipService
+  marketing:
+    apiEndpoints:
+      - marketing
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: marketingService
+  recommendation:
+    apiEndpoints:
+      - recommendation
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: recommendationService
+  customer:
+    apiEndpoints:
+      - customer
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: customerService
+  data:
+    apiEndpoints:
+      - data
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: dataService

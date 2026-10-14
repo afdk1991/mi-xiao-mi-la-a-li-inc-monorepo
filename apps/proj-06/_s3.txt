@@ -1,0 +1,22 @@
+﻿--- containers publishing 8080/8081 ---
+
+myp-srs :: 0.0.0.0:1935->1935/tcp, [::]:1935->1935/tcp, 0.0.0.0:1985->1985/tcp,
+ [::]:1985->1985/tcp, 0.0.0.0:8082->8080/tcp, [::]:8082->8080/tcp
+ea-keycloak-b :: 8080/tcp, 8443/tcp, 9000/tcp
+ea-keycloak-a :: 8080/tcp, 8443/tcp, 9000/tcp
+mixmlaal-wp-gateway-go :: 0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+mixmlaal-wp-service-java :: 0.0.0.0:8081->8081/tcp, [::]:8081->8081/tcp, 0.0.0.
+0:50051->50051/tcp, [::]:50051->50051/tcp
+
+
+
+--- 18080 free? ---
+18080 occupied=False
+--- pid 34672 ---
+
+Name        Id
+----        --
+wslrelay 34672
+
+
+

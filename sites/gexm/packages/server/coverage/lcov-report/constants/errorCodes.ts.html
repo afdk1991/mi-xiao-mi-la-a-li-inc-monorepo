@@ -1,0 +1,451 @@
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Code coverage report for constants/errorCodes.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+    
+<body>
+<div class='wrapper'>
+    <div class='pad1'>
+        <h1><a href="../index.html">All files</a> / <a href="index.html">constants</a> errorCodes.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">38.09% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>8/21</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>0/18</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">0% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>0/3</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">40% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>8/20</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
+        <template id="filterTemplate">
+            <div class="quiet">
+                Filter:
+                <input type="search" id="fileSearch">
+            </div>
+        </template>
+    </div>
+    <div class='status-line low'></div>
+    <pre><table class="coverage">
+<tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
+<a name='L2'></a><a href='#L2'>2</a>
+<a name='L3'></a><a href='#L3'>3</a>
+<a name='L4'></a><a href='#L4'>4</a>
+<a name='L5'></a><a href='#L5'>5</a>
+<a name='L6'></a><a href='#L6'>6</a>
+<a name='L7'></a><a href='#L7'>7</a>
+<a name='L8'></a><a href='#L8'>8</a>
+<a name='L9'></a><a href='#L9'>9</a>
+<a name='L10'></a><a href='#L10'>10</a>
+<a name='L11'></a><a href='#L11'>11</a>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a>
+<a name='L15'></a><a href='#L15'>15</a>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a>
+<a name='L44'></a><a href='#L44'>44</a>
+<a name='L45'></a><a href='#L45'>45</a>
+<a name='L46'></a><a href='#L46'>46</a>
+<a name='L47'></a><a href='#L47'>47</a>
+<a name='L48'></a><a href='#L48'>48</a>
+<a name='L49'></a><a href='#L49'>49</a>
+<a name='L50'></a><a href='#L50'>50</a>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a>
+<a name='L104'></a><a href='#L104'>104</a>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export interface ErrorDetail {
+  code: number
+  message: string
+  httpStatus: number
+}
+&nbsp;
+export interface ErrorMap {
+  [key: string]: ErrorDetail
+}
+&nbsp;
+export const GENERAL_ERRORS: ErrorMap = {
+  UNKNOWN_ERROR: { code: 1000, message: '未知错误', httpStatus: 500 },
+  INVALID_PARAMETER: { code: 1001, message: '参数错误', httpStatus: 400 },
+  MISSING_PARAMETER: { code: 1002, message: '缺少必需参数', httpStatus: 400 },
+  INVALID_FORMAT: { code: 1003, message: '格式错误', httpStatus: 400 },
+  RESOURCE_NOT_FOUND: { code: 1004, message: '资源不存在', httpStatus: 404 },
+  RESOURCE_CONFLICT: { code: 1005, message: '资源冲突', httpStatus: 409 },
+  OPERATION_FAILED: { code: 1006, message: '操作失败', httpStatus: 500 },
+  SERVICE_UNAVAILABLE: { code: 1007, message: '服务暂不可用', httpStatus: 503 },
+  INTERNAL_ERROR: { code: 1008, message: '服务器内部错误', httpStatus: 500 },
+}
+&nbsp;
+export const AUTH_ERRORS: ErrorMap = {
+  UNAUTHORIZED: { code: 2001, message: '未登录或登录已过期', httpStatus: 401 },
+  INVALID_TOKEN: { code: 2002, message: '无效的认证令牌', httpStatus: 401 },
+  TOKEN_EXPIRED: { code: 2003, message: '认证令牌已过期', httpStatus: 401 },
+  INVALID_CREDENTIALS: { code: 2004, message: '用户名或密码错误', httpStatus: 401 },
+  FORBIDDEN: { code: 2005, message: '无权限访问', httpStatus: 403 },
+  ACCOUNT_DISABLED: { code: 2006, message: '账号已被禁用', httpStatus: 403 },
+  ACCOUNT_LOCKED: { code: 2007, message: '账号已被锁定', httpStatus: 403 },
+}
+&nbsp;
+export const BUSINESS_ERRORS: ErrorMap = {
+  USERNAME_EXISTS: { code: 3001, message: '用户名已存在', httpStatus: 409 },
+  EMAIL_EXISTS: { code: 3002, message: '邮箱已被使用', httpStatus: 409 },
+  PHONE_EXISTS: { code: 3003, message: '手机号已被使用', httpStatus: 409 },
+  INVALID_USERNAME: { code: 3004, message: '用户名格式不正确', httpStatus: 400 },
+  INVALID_PASSWORD: { code: 3005, message: '密码格式不正确', httpStatus: 400 },
+&nbsp;
+  CONVERSATION_NOT_FOUND: { code: 3101, message: '会话不存在', httpStatus: 404 },
+  CONVERSATION_ACCESS_DENIED: { code: 3102, message: '无权限访问该会话', httpStatus: 403 },
+  CANNOT_CHAT_WITH_SELF: { code: 3103, message: '不能和自己聊天', httpStatus: 400 },
+  AI_SERVICE_ERROR: { code: 3104, message: 'AI 服务暂时不可用', httpStatus: 503 },
+&nbsp;
+  PRODUCT_NOT_FOUND: { code: 3201, message: '商品不存在', httpStatus: 404 },
+  PRODUCT_OFF_SHELF: { code: 3202, message: '商品已下架', httpStatus: 400 },
+  INSUFFICIENT_STOCK: { code: 3203, message: '库存不足', httpStatus: 400 },
+&nbsp;
+  ORDER_NOT_FOUND: { code: 3301, message: '订单不存在', httpStatus: 404 },
+  ORDER_CANNOT_CANCEL: { code: 3302, message: '订单无法取消', httpStatus: 400 },
+  ORDER_ALREADY_PAID: { code: 3303, message: '订单已支付', httpStatus: 400 },
+&nbsp;
+  PAYMENT_FAILED: { code: 3401, message: '支付失败', httpStatus: 500 },
+  PAYMENT_TIMEOUT: { code: 3402, message: '支付超时', httpStatus: 408 },
+  PAYMENT_CANCELLED: { code: 3403, message: '支付已取消', httpStatus: 400 },
+  PAYMENT_NOT_FOUND: { code: 3404, message: '支付记录不存在', httpStatus: 404 },
+  INSUFFICIENT_BALANCE: { code: 3405, message: '余额不足', httpStatus: 400 },
+  PAYMENT_SIGN_VERIFY_FAILED: { code: 3406, message: '支付验签失败', httpStatus: 400 },
+  PAYMENT_ALREADY_PROCESSED: { code: 3407, message: '支付已处理', httpStatus: 400 },
+  PAYMENT_INVALID_METHOD: { code: 3408, message: '无效的支付方式', httpStatus: 400 },
+  PAYMENT_INVALID_STATUS: { code: 3409, message: '支付状态无效', httpStatus: 400 },
+&nbsp;
+  FLASH_SALE_NOT_STARTED_OR_ENDED: { code: 3801, message: '秒杀活动未开始或已结束', httpStatus: 400 },
+  FLASH_SALE_NOT_STARTED: { code: 3802, message: '秒杀活动尚未开始', httpStatus: 400 },
+  FLASH_SALE_ENDED: { code: 3803, message: '秒杀活动已结束', httpStatus: 400 },
+  FLASH_SALE_LIMIT_EXCEEDED: { code: 3804, message: '超出限购数量', httpStatus: 400 },
+}
+&nbsp;
+export const RESOURCE_ERRORS: ErrorMap = {
+  FILE_TOO_LARGE: { code: 4001, message: '文件过大', httpStatus: 413 },
+  FILE_TYPE_NOT_ALLOWED: { code: 4002, message: '文件类型不允许', httpStatus: 400 },
+  FILE_UPLOAD_FAILED: { code: 4003, message: '文件上传失败', httpStatus: 500 },
+  FILE_NOT_FOUND: { code: 4004, message: '文件不存在', httpStatus: 404 },
+}
+&nbsp;
+export const SECURITY_ERRORS: ErrorMap = {
+  RATE_LIMIT_EXCEEDED: { code: 6001, message: '请求过于频繁', httpStatus: 429 },
+  SUSPICIOUS_ACTIVITY: { code: 6002, message: '检测到可疑行为', httpStatus: 403 },
+  CSRF_TOKEN_INVALID: { code: 6003, message: 'CSRF 令牌无效', httpStatus: 403 },
+  CSRF_TOKEN_MISSING: { code: 6004, message: 'CSRF 令牌缺失', httpStatus: 403 },
+  XSS_ATTACK_DETECTED: { code: 6005, message: '检测到 XSS 攻击', httpStatus: 403 },
+  SQL_INJECTION_DETECTED: { code: 6006, message: '检测到 SQL 注入攻击', httpStatus: 403 },
+  INVALID_REQUEST_ORIGIN: { code: 6007, message: '无效的请求来源', httpStatus: 403 },
+}
+&nbsp;
+export type ErrorType = 'GENERAL' | 'AUTH' | 'BUSINESS' | 'RESOURCE' | 'SECURITY'
+&nbsp;
+export const ERROR_CODE_RANGES: Record&lt;ErrorType, [number, number]&gt; = {
+  GENERAL: [1000, 1999],
+  AUTH: [2000, 2999],
+  BUSINESS: [3000, 3999],
+  RESOURCE: [4000, 4999],
+  SECURITY: [6000, 6999],
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >getErrorDetail(</span>code: number): ErrorDetail {
+  const allErrors: ErrorMap = <span class="cstat-no" title="statement not covered" >{</span>
+    ...GENERAL_ERRORS,
+    ...AUTH_ERRORS,
+    ...BUSINESS_ERRORS,
+    ...RESOURCE_ERRORS,
+    ...SECURITY_ERRORS,
+  }
+&nbsp;
+  const found = <span class="cstat-no" title="statement not covered" >Object.values(allErrors).find(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >err.code === code)</span></span>
+<span class="cstat-no" title="statement not covered" >  return found || GENERAL_ERRORS.UNKNOWN_ERROR</span>
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >getErrorType(</span>code: number): ErrorType {
+<span class="cstat-no" title="statement not covered" >  if (code &gt;= 2000 &amp;&amp; code &lt; 3000) {</span>
+<span class="cstat-no" title="statement not covered" >    return 'AUTH'</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (code &gt;= 3000 &amp;&amp; code &lt; 4000) {</span>
+<span class="cstat-no" title="statement not covered" >    return 'BUSINESS'</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (code &gt;= 4000 &amp;&amp; code &lt; 5000) {</span>
+<span class="cstat-no" title="statement not covered" >    return 'RESOURCE'</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (code &gt;= 6000 &amp;&amp; code &lt; 7000) {</span>
+<span class="cstat-no" title="statement not covered" >    return 'SECURITY'</span>
+  }
+<span class="cstat-no" title="statement not covered" >  return 'GENERAL'</span>
+}</pre></td></tr></table></pre>
+
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            <div class='footer quiet pad2 space-top1 center small'>
+                Code coverage generated by
+                <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
+                at 2026-07-11T18:22:43.692Z
+            </div>
+        <script src="../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../sorter.js"></script>
+        <script src="../block-navigation.js"></script>
+    </body>
+</html>
+    

@@ -1,0 +1,119 @@
+### Mi-Xiao-Mi-La-A-Li-Inc 顶层条目
+  [DIR ] .git
+  [DIR ] .github
+  [FILE] .gitignore  (952 B)
+  [DIR ] 01-前端集群
+  [DIR ] 02-后端微服务集群
+  [DIR ] 03-全平台应用端
+  [DIR ] 04-数据库层
+  [DIR ] 05-部署运维层
+  [DIR ] 06-项目文档层
+  [DIR ] 07-公共资源
+  [DIR ] 08-卫星产品
+  [FILE] CODE_WIKI.md  (90027 B)
+  [FILE] Dockerfile  (1021 B)
+  [FILE] README.md  (1804 B)
+  [DIR ] deploy
+  [DIR ] dist-pages-build
+  [FILE] ecosystem.config.cjs  (5684 B)
+  [DIR ] foundation
+  [DIR ] logs
+  [FILE] push-now.ps1  (4499 B)
+  [FILE] push-to-github.ps1  (5786 B)
+  [DIR ] python-fastapi
+  [FILE] render.yaml  (448 B)
+  [DIR ] secrets
+  [FILE] 模块开发进度审查报告_20260909.md  (22384 B)
+  [FILE] 项目开发进度审查报告_20260909.md  (19575 B)
+
+### 二级目录明细（排除依赖目录）
+
+[01-前端集群]  代码文件=268  行数=75273  语言=[('TS', 151), ('Vue', 76), ('JSON', 18), ('JS', 7), ('HTML', 6)]
+   - ai-saas-frontend                       files=18     lines=3911     [('Vue', 9), ('TS', 4), ('JSON', 2), ('HTML', 1)]
+   - mixmlaal-frontend                      files=126    lines=44279    [('TS', 115), ('JSON', 4), ('JS', 4), ('HTML', 1)]
+   - page-builder-frontend                  files=18     lines=2957     [('Vue', 9), ('TS', 5), ('JSON', 2), ('HTML', 1)]
+   - portal                                 files=4      lines=1554     [('JSON', 2), ('HTML', 1), ('JS', 1)]
+   - web-h5-mobile                          files=56     lines=11679    [('Vue', 29), ('TS', 18), ('JSON', 4), ('SCSS', 3)]
+   - web-vue-pc                             files=46     lines=10893    [('Vue', 29), ('TS', 9), ('JSON', 4), ('HTML', 1)]
+
+[02-后端微服务集群]  代码文件=760  行数=102610  语言=[('JS', 530), ('TS', 98), ('JSON', 95), ('Java', 30), ('YAML', 4)]
+   - _archive                               files=490    lines=46557    [('JS', 422), ('JSON', 68)]
+   - ai-saas-backend                        files=9      lines=6393     [('JS', 7), ('JSON', 2)]
+   - java-springcloud                       files=32     lines=1274     [('Java', 30), ('XML', 1), ('YAML', 1)]
+   - mixmlaal-backend                       files=92     lines=15964    [('TS', 87), ('JSON', 3), ('YAML', 1), ('JS', 1)]
+   - mixmlaal-microservices                 files=43     lines=6933     [('JS', 39), ('JSON', 2), ('MD', 1), ('YAML', 1)]
+   - mixmlaal-services                      files=72     lines=7540     [('JS', 59), ('JSON', 13)]
+   - node-nest-gateway                      files=16     lines=15342    [('TS', 11), ('JSON', 4), ('YAML', 1)]
+   - unified-api-gateway                    files=4      lines=2055     [('JSON', 2), ('MD', 1), ('JS', 1)]
+
+[03-全平台应用端]  代码文件=80  行数=9748  语言=[('JSON', 33), ('JS', 30), ('Vue', 12), ('HTML', 1), ('TS', 1)]
+   - electron-desktop                       files=12     lines=1544     [('Vue', 6), ('JS', 2), ('HTML', 1), ('JSON', 1)]
+   - flutter-app                            files=1      lines=57       [('YAML', 1)]
+   - mixmlaal-miniapp                       files=58     lines=5997     [('JSON', 29), ('JS', 28), ('MD', 1)]
+   - uniapp-mini                            files=9      lines=2150     [('Vue', 6), ('JSON', 3)]
+
+[04-数据库层]  代码文件=8  行数=2429  语言=[('SQL', 7), ('MD', 1)]
+   - db-doc                                 files=1      lines=213      [('MD', 1)]
+   - mysql-sql                              files=7      lines=2216     [('SQL', 7)]
+   - redis-data                             files=0      lines=0        []
+
+[06-项目文档层]  代码文件=365  行数=137695  语言=[('MD', 352), ('HTML', 8), ('JS', 3), ('JSON', 2)]
+   - 00-根目录归档-Mi平台文档                        files=13     lines=4744     [('MD', 13)]
+   - 01-项目文档                                files=152    lines=57399    [('MD', 152)]
+   - 03-配置文件                                files=2      lines=32       [('JSON', 2)]
+   - 07-代码与工具                               files=3      lines=486      [('JS', 3)]
+   - 10-API与接口                              files=3      lines=2109     [('MD', 3)]
+   - 11-架构设计                                files=12     lines=3772     [('MD', 11), ('HTML', 1)]
+   - 12-业务方案                                files=13     lines=5858     [('MD', 13)]
+   - 13-技术实现                                files=12     lines=3880     [('MD', 12)]
+   - 14-代码开发                                files=10     lines=2109     [('MD', 10)]
+   - 15-性能优化                                files=4      lines=1676     [('MD', 4)]
+   - 16-测试验收                                files=2      lines=1249     [('MD', 2)]
+   - 17-开源协议                                files=1      lines=134      [('MD', 1)]
+   - 18-项目完成报告                              files=39     lines=6898     [('MD', 39)]
+   - 19-服务清单                                files=1      lines=377      [('MD', 1)]
+   - 20-归档-旧快照                              files=8      lines=6739     [('HTML', 7), ('MD', 1)]
+   - mixmlaal-docs                          files=68     lines=27221    [('MD', 68)]
+
+[07-公共资源]  代码文件=52  行数=12032  语言=[('JS', 37), ('JSON', 7), ('TS', 4), ('Vue', 3), ('CSS', 1)]
+   - mixmlaal-assets                        files=17     lines=6537     [('JS', 16), ('CSS', 1)]
+   - mixmlaal-config                        files=4      lines=285      [('JS', 3), ('JSON', 1)]
+   - mixmlaal-i18n                          files=6      lines=156      [('JSON', 6)]
+   - mixmlaal-shared                        files=21     lines=4887     [('JS', 18), ('Vue', 3)]
+
+[08-卫星产品]  代码文件=11511  行数=3572974  语言=[('PHP', 3507), ('JS', 2243), ('TS', 1934), ('CSS', 1796), ('JSON', 671)]
+   - RouteNav                               files=542    lines=126270   [('TS', 443), ('MD', 46), ('JS', 23), ('JSON', 16)]
+   - b-admin                                files=61     lines=16695    [('JS', 42), ('JSON', 6), ('MD', 5), ('CSS', 4)]
+   - blog-template                          files=108    lines=13985    [('TS', 40), ('JS', 31), ('HTML', 22), ('JSON', 11)]
+   - daijia                                 files=418    lines=152745   [('JS', 223), ('Vue', 62), ('PHP', 41), ('MD', 30)]
+   - enterprise-admin-platform              files=143    lines=29508    [('TS', 127), ('JSON', 9), ('JS', 3), ('MD', 1)]
+   - gexm                                   files=7104   lines=2197328  [('PHP', 1966), ('JS', 1515), ('TS', 1185), ('CSS', 968)]
+   - plugin-mcp-system                      files=65     lines=16293    [('TS', 58), ('JSON', 4), ('MD', 2), ('JS', 1)]
+   - wordpress-saas                         files=2978   lines=975590   [('PHP', 1500), ('CSS', 806), ('JS', 402), ('JSON', 170)]
+   - zhinenglux                             files=92     lines=44560    [('TS', 75), ('JSON', 7), ('JS', 3), ('MD', 2)]
+
+[foundation]  代码文件=16  行数=5704  语言=[('TS', 9), ('JSON', 4), ('YAML', 1), ('MD', 1), ('JS', 1)]
+   - config                                 files=3      lines=143      [('JSON', 2), ('JS', 1)]
+   - src                                    files=8      lines=2917     [('TS', 8)]
+
+[python-fastapi]  代码文件=15  行数=2008  语言=[('Py', 14), ('MD', 1)]
+   - .pytest_cache                          files=1      lines=8        [('MD', 1)]
+   - app                                    files=11     lines=1653     [('Py', 11)]
+   - data                                   files=0      lines=0        []
+   - tests                                  files=2      lines=228      [('Py', 2)]
+
+[deploy]  代码文件=1  行数=38  语言=[('SH', 1)]
+
+[secrets]  代码文件=0  行数=0  语言=[]
+   - laal-top                               files=0      lines=0        []
+
+[dist-pages-build]  代码文件=140  行数=1030  语言=[('JS', 84), ('CSS', 51), ('HTML', 5)]
+   - github-pages                           files=0      lines=0        []
+   - site                                   files=140    lines=1030     [('JS', 84), ('CSS', 51), ('HTML', 5)]
+
+### 根目录散文件（顶层 .md / .json / .yml）
+  CODE_WIKI.md  (90027 B)
+  README.md  (1804 B)
+  render.yaml  (448 B)
+  模块开发进度审查报告_20260909.md  (22384 B)
+  项目开发进度审查报告_20260909.md  (19575 B)

@@ -1,0 +1,54 @@
+directories:
+  output: nsis-output
+  buildResources: build
+appId: com.gexm.desktop
+productName: Gexm
+files:
+  - filter:
+      - src/**/*
+      - package.json
+asar: true
+asarUnpack:
+  - assets/**
+compression: maximum
+removePackageScripts: true
+npmRebuild: false
+nodeGypRebuild: false
+extraResources:
+  - from: ../pc/dist
+    to: app
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  sign: false
+  forceCodeSigning: false
+nsis:
+  oneClick: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  perMachine: false
+mac:
+  target:
+    - dmg
+    - zip
+  icon: assets/icon.icns
+  category: public.app-category.productivity
+  artifactName: ${productName}-${version}-mac.${ext}
+  hardenedRuntime: true
+  gatekeeperAssess: false
+  entitlements: assets/entitlements.mac.plist
+  entitlementsInherit: assets/entitlements.mac.plist
+  timestamp: http://timestamp.apple.com/ts0412
+linux:
+  target:
+    - deb
+    - rpm
+    - AppImage
+  icon: assets/icon.png
+  category: Utility
+  artifactName: ${productName}-${version}-linux-${arch}.${ext}
+  maintainer: Gexm Team
+  vendor: Gexm
+electronVersion: 28.2.0

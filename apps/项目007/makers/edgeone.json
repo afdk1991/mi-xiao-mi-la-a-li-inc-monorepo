@@ -1,0 +1,13 @@
+{
+  "name": "manju",
+  "nodeVersion": "22.11.0",
+  "installCommand": "npm install",
+  "outputDirectory": "static",
+  "cloudFunctions": {
+    "regions": {
+      "mainland": ["ap-guangzhou"]
+    },
+    "includeFiles": ["data/**"],
+    "maxDuration": 30
+  }
+}

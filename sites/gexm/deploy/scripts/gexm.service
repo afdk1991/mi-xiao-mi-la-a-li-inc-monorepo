@@ -1,0 +1,39 @@
+[Unit]
+Description=Gexm Server - E-commerce Backend Service
+Documentation=https://docs.gexm.com
+After=network.target redis.target
+Wants=redis.target
+
+[Service]
+Type=forking
+User=deploy
+Group=deploy
+WorkingDirectory=/var/www/gexm/production/packages/server
+Environment=NODE_ENV=production
+EnvironmentFile=/var/www/gexm/production/packages/server/.env.production
+
+ExecStart=/usr/local/bin/pm2 start ecosystem.config.js --env production
+ExecStop=/usr/local/bin/pm2 stop gexm-server
+ExecReload=/usr/local/bin/pm2 reload gexm-server
+ExecRestart=/usr/local/bin/pm2 restart gexm-server
+
+Restart=on-failure
+RestartSec=5
+RestartPreventExitStatus=0
+
+KillMode=mixed
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+NoNewPrivileges=true
+
+LimitNOFILE=65535
+LimitNPROC=4096
+
+SyslogIdentifier=gexm-server
+
+[Install]
+WantedBy=multi-user.target

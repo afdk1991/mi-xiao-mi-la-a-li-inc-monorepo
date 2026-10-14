@@ -1,0 +1,12 @@
+﻿archive-myp_product.php
+footer.php
+functions.php
+header.php
+page-cart.php
+page-live.php
+page-submit.php
+page-user.php
+search.php
+single-myp_product.php
+taxonomy-myp_product_cat.php
+taxonomy-myp_product_tag.php

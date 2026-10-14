@@ -1,0 +1,54 @@
+﻿# ============================================================================
+#  项目006 — WordPress 电商插件(myp-core) + 主题(myp-theme) 忽略规则
+#
+#  入库内容：myp-core/ 与 myp-theme/ 的 PHP 源码、docker-compose 编排、
+#  README 与评审文档。排除：诊断脚本产生的临时输出、打包 zip、运行时数据。
+#
+#  ⚠️ myp-core.zip / myp-theme.zip 是源码打包产物，可由源码重新生成，不入库。
+# ============================================================================
+
+# ===== 依赖 =====
+node_modules/
+**/node_modules/
+vendor/
+
+# ===== 环境与数据库凭据（绝不入库）=====
+.env
+.env.local
+.env.*.local
+**/.env
+!**/.env.example
+
+# ===== 打包产物（可由源码重新生成）=====
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+*.rar
+
+# ===== 诊断脚本临时输出（_ 开头的调试残留）=====
+_*.txt
+_*.log
+_*.json
+_*.html
+_dockerboot.log
+
+# ===== WordPress 运行时产物 =====
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+*.sql
+*.log
+
+# ===== Python / PHP 缓存 =====
+__pycache__/
+*.pyc
+.cache/
+
+# ===== 系统与编辑器临时文件 =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

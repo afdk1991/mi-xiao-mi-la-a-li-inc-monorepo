@@ -1,0 +1,6 @@
+{
+  "name": "mixmlaal-fullstack",
+  "nodeVersion": "24.18.0",
+  "outputDirectory": "mixmlaal-dist",
+  "buildCommand": "node -e \"console.log('static deploy, skip build')\""
+}

@@ -1,0 +1,102 @@
+name: Deploy full app to EdgeOne (Pages + Cloud Functions)
+
+# 推送 main 分支时自动构建并部署「整个项目」到 EdgeOne：
+#   前端静态资源（web/index.html, app.js, style.css）+ Python 云函数（/api/health, /api/search）
+# 两者在同一个 Makers 项目中同域部署，前端直接 fetch('/api/search')，无需跨域。
+# 不使用 Docker：完整源码流水，由 GitHub Actions 构建 + EdgeOne CLI 部署。
+# 2026-09-23：priceprobe-full 已从 EdgeOne 控制台删除，
+# 部署目标切回仍存活的 price-collector-demo（含云函数），作为唯一生产站。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Write CPS credentials into price_collector/_cps_config.py
+        # EdgeOne 云函数运行时不注入 GitHub Secrets，这里在构建时把凭据写成
+        # 模块级常量，部署包随代码上传。未配置的平台留空字符串。
+        env:
+          TB_APPKEY: ${{ secrets.PC_CPS_TB_APPKEY }}
+          TB_SECRET: ${{ secrets.PC_CPS_TB_SECRET }}
+          TB_ADZONE: ${{ secrets.PC_CPS_TB_ADZONE }}
+          JD_APPKEY: ${{ secrets.PC_CPS_JD_APPKEY }}
+          JD_SECRET: ${{ secrets.PC_CPS_JD_SECRET }}
+        run: |
+          cat > price_collector/_cps_config.py <<EOF
+          # Auto-generated at build time from GitHub Secrets. Do not edit.
+          TB_APPKEY = "${TB_APPKEY}"
+          TB_SECRET = "${TB_SECRET}"
+          TB_ADZONE = "${TB_ADZONE}"
+          JD_APPKEY = "${JD_APPKEY}"
+          JD_SECRET = "${JD_SECRET}"
+          EOF
+          echo "written (values hidden)"
+
+      - name: Assemble full Makers project (static + cloud-functions)
+        # build_deploy.py 仅依赖 Python 标准库：
+        # 把 web 前端 + price_collector 采集包 + cloud-functions 组装到 deploy/
+        run: |
+          python build_deploy.py
+          echo "--- deploy/ 结构校验 ---"
+          find deploy -type f | sort
+
+      - name: Install EdgeOne CLI (connector build)
+        # 必须使用连接器专属版本 1.6.17-beta.1：其内置 skills 后端，
+        # 公开 latest(1.6.40) 无该源会导致 token 无效。
+        # 用 npm install -g 而非 npx，避免 npx 的 npm 内部 bug。
+        run: npm install -g edgeone@1.6.17-beta.1
+
+      - name: Deploy full app to EdgeOne
+        env:
+          EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}
+          PAGES_SOURCE: skills
+        # makers deploy 同时部署静态文件与 cloud-functions（同域）
+        # --json 输出供"项目守卫"解析 ProjectId；部署失败则本步直接失败（已带 -e）
+        run: edgeone makers deploy ./deploy -n price-collector-demo -t "$EDGEONE_API_TOKEN" --json > deploy_out.json
+
+      - name: Project guard (禁止新建 / 改名项目)
+        env:
+          EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}
+          PAGES_SOURCE: skills
+        run: |
+          python - <<'PY'
+          import json, re, sys
+          EXPECT = "makers-w8in1esdzuub"
+          pid = None
+          try:
+              raw = open("deploy_out.json", encoding="utf-8").read()
+              m = re.search(r'"[Pp]rojectId"\s*:\s*"([^"]+)"', raw)
+              if m:
+                  pid = m.group(1)
+          except Exception:
+              pass
+          if not pid:
+              try:
+                  pid = json.load(open(".edgeone/project.json"))["ProjectId"]
+              except Exception:
+                  pass
+          print("解析到 ProjectId:", pid)
+          if pid is None:
+              print("⚠️ 无法解析 ProjectId，跳过硬性拦截（仅告警）")
+              sys.exit(0)
+          assert pid == EXPECT, (
+              f"项目守卫失败：期望 {EXPECT}，实际 {pid}"
+              f"（疑似新建或改名项目，已阻断部署）"
+          )
+          print("✅ 项目守卫通过：", pid)
+          PY

@@ -1,0 +1,19 @@
+{
+	"name": "saas-aggregator/aggregator",
+	"title": "SaaS 聚合器",
+	"category": "widgets",
+	"icon": "dashboard",
+	"description": "将多个第三方数据源（网关状态、业务核心、AI 洞察、决策分析、合规审计）聚合展示。",
+	"textdomain": "saas-aggregator",
+	"editorScript": "file:./assets/block.js",
+	"attributes": {
+		"source": {
+			"type": "string",
+			"default": "all"
+		},
+		"limit": {
+			"type": "number",
+			"default": 5
+		}
+	}
+}

@@ -1,0 +1,46 @@
+{
+	"ios": {
+		"name": "MIXMLAAL"
+	},
+	"android": {
+		"name": "MIXMLAAL"
+	},
+	"common": {
+		"name": "MIXMLAAL",
+		"version": "v0.0.0.4"
+	},
+	"app": {
+		"name": "MIXMLAAL",
+		"fullName": "MIXMLAAL"
+	},
+	"portal": {
+		"name": "Portal"
+	},
+	"social": {
+		"name": "Social"
+	},
+	"ecommerce": {
+		"name": "Shop"
+	},
+	"ride": {
+		"name": "Ride"
+	},
+	"payment": {
+		"name": "Payment"
+	},
+	"user": {
+		"name": "User"
+	},
+	"auth": {
+		"name": "Auth"
+	},
+	"admin": {
+		"name": "Admin"
+	},
+	"support": {
+		"name": "Support"
+	},
+	"help": {
+		"name": "Help"
+	}
+}

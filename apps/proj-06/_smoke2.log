@@ -1,0 +1,17 @@
+﻿=== COOKIE SESSION TEST ===
+--- cart with persistent cookie session ---
+  POST: 200 {"code":0,"msg":"\u5df2\u52a0\u5165\u8d2d\u7269\u8f66","data":null}
+  GET (same session): {"code":0,"msg":"ok","data":[{"id":"2","user_id":"0","session_key":"3151c2b6d1d26a083f2da6b155fffa48","product_id":"4","quantity":"2","added_at":"2026-09-15 12:24:26","post_title":"MYP Smartphone Pro","price":"3999"}]}
+--- homepage content probe ---
+  home has product-card: False
+  home has "no content" placeholder: False
+  hero snippet: myp-hero"><h1>欢迎来到 MYP Mall</h1></div>
+
+<div class="container">
+	
+									<article style="background:#fff;padding:20px;
+--- SEO head check on product detail ---
+  has wp_head scripts: True
+  has theme style link: True
+  has main.js: True
+=== DONE ===

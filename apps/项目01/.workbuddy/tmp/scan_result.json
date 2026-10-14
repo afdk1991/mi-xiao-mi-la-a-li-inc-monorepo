@@ -1,0 +1,805 @@
+{
+ "root": "D:\\网站全栈项目\\项目01",
+ "top": {
+  "model-00001-of-00062.safetensors": {
+   "type": "file",
+   "files": 1,
+   "mb": 5116.8,
+   "code_lines": 0,
+   "top_langs": {},
+   "subdirs": {}
+  },
+  "Mi-Xiao-Mi-La-A-Li-Inc": {
+   "type": "dir",
+   "files": 19429,
+   "mb": 283.8,
+   "code_lines": 3936854,
+   "top_langs": {
+    "PHP": 3507,
+    "JavaScript": 2940,
+    "TypeScript": 2197,
+    "CSS": 1852,
+    "JSON": 834,
+    "Markdown": 736
+   },
+   "subdirs": {
+    "08-卫星产品": 17415,
+    "02-后端微服务集群": 826,
+    "06-项目文档层": 487,
+    "01-前端集群": 271,
+    "dist-pages-build": 141,
+    "03-全平台应用端": 125,
+    "07-公共资源": 56,
+    "foundation": 21,
+    "python-fastapi": 21,
+    "logs": 20,
+    "secrets": 16,
+    "04-数据库层": 9,
+    "deploy": 8,
+    ".github": 3
+   }
+  },
+  ".trae": {
+   "type": "dir",
+   "files": 15,
+   "mb": 4.9,
+   "code_lines": 1791,
+   "top_langs": {
+    "Markdown": 5,
+    "JSON": 2,
+    "JavaScript": 1,
+    "HTML": 1
+   },
+   "subdirs": {
+    "screenshots": 10,
+    "documents": 5,
+    "tmp": 0
+   }
+  },
+  ".edgeone": {
+   "type": "dir",
+   "files": 110,
+   "mb": 1.2,
+   "code_lines": 30483,
+   "top_langs": {
+    "PHP": 55,
+    "HTML": 12,
+    "JSON": 11,
+    "Markdown": 9,
+    "JavaScript": 6,
+    "CSS": 5
+   },
+   "subdirs": {
+    "assets": 109
+   }
+  },
+  "generated-images": {
+   "type": "dir",
+   "files": 1,
+   "mb": 1.0,
+   "code_lines": 0,
+   "top_langs": {},
+   "subdirs": {}
+  },
+  "网站图标": {
+   "type": "dir",
+   "files": 50,
+   "mb": 0.3,
+   "code_lines": 1464,
+   "top_langs": {
+    "Markdown": 4,
+    "HTML": 4,
+    "TypeScript": 3,
+    ".conf": 3,
+    "CSS": 1,
+    "JavaScript": 1
+   },
+   "subdirs": {
+    "sites": 20,
+    "favicons": 14,
+    "deploy": 8,
+    ".workbuddy": 6,
+    "components": 1
+   }
+  },
+  ".codebuddy": {
+   "type": "dir",
+   "files": 44,
+   "mb": 0.3,
+   "code_lines": 6989,
+   "top_langs": {
+    "Markdown": 33,
+    "JSON": 11
+   },
+   "subdirs": {
+    "skills": 24,
+    "memories": 6,
+    "plans": 5,
+    "docs": 2,
+    "teams": 2,
+    "agents": 1
+   }
+  },
+  ".workbuddy": {
+   "type": "dir",
+   "files": 16,
+   "mb": 0.2,
+   "code_lines": 2265,
+   "top_langs": {
+    "Markdown": 13,
+    "Python": 1,
+    "JSON": 1
+   },
+   "subdirs": {
+    "memory": 12,
+    "tmp": 3,
+    "artifacts": 1
+   }
+  },
+  ".trae-html-share-packages": {
+   "type": "dir",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {},
+   "subdirs": {
+    "mcp-server-guide": 1
+   }
+  },
+  "ark-examples": {
+   "type": "dir",
+   "files": 9,
+   "mb": 0.0,
+   "code_lines": 374,
+   "top_langs": {
+    "Shell": 2,
+    "Python": 2,
+    "Go": 2,
+    "Java": 2,
+    "TypeScript": 1
+   },
+   "subdirs": {
+    "ep-20260907191301-8ldks": 9
+   }
+  },
+  "ollama_router.py": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "Python": 1
+   },
+   "subdirs": {}
+  },
+  ".github": {
+   "type": "dir",
+   "files": 3,
+   "mb": 0.0,
+   "code_lines": 470,
+   "top_langs": {
+    "YAML": 3
+   },
+   "subdirs": {
+    "workflows": 2
+   }
+  },
+  "backend_dev.log": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {},
+   "subdirs": {}
+  },
+  "ollama_chat.py": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "Python": 1
+   },
+   "subdirs": {}
+  },
+  "API落地总闸审计报告.md": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "Markdown": 1
+   },
+   "subdirs": {}
+  },
+  "gen_missing.py": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "Python": 1
+   },
+   "subdirs": {}
+  },
+  "ollama_chat.js": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "JavaScript": 1
+   },
+   "subdirs": {}
+  },
+  "audit_api.py": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "Python": 1
+   },
+   "subdirs": {}
+  },
+  "scripts": {
+   "type": "dir",
+   "files": 2,
+   "mb": 0.0,
+   "code_lines": 56,
+   "top_langs": {
+    "Shell": 1,
+    "Python": 1
+   },
+   "subdirs": {}
+  },
+  "render-create.cs": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {
+    "C#": 1
+   },
+   "subdirs": {}
+  },
+  ".gitignore": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {},
+   "subdirs": {}
+  },
+  ".editorconfig": {
+   "type": "file",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 0,
+   "top_langs": {},
+   "subdirs": {}
+  },
+  ".vscode": {
+   "type": "dir",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 4,
+   "top_langs": {
+    "JSON": 1
+   },
+   "subdirs": {}
+  },
+  ".wrangler": {
+   "type": "dir",
+   "files": 1,
+   "mb": 0.0,
+   "code_lines": 4,
+   "top_langs": {
+    "JSON": 1
+   },
+   "subdirs": {
+    "cache": 1,
+    "tmp": 0
+   }
+  }
+ },
+ "lang_total": {
+  "PHP": 3562,
+  "JavaScript": 2949,
+  "TypeScript": 2201,
+  "CSS": 1858,
+  "JSON": 861,
+  "Markdown": 801,
+  "Vue": 556,
+  "HTML": 289,
+  "Java": 92,
+  "SCSS": 82,
+  "YAML": 55,
+  "Python": 40,
+  "LESS": 36,
+  "XML": 28,
+  "SQL": 17,
+  ".conf": 10,
+  "Go": 8,
+  "Shell": 4,
+  "C#": 1
+ },
+ "projects": [
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc",
+   "depth": 1,
+   "kinds": [
+    "Docker"
+   ],
+   "markers": [
+    "Dockerfile"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\foundation",
+   "depth": 2,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\python-fastapi",
+   "depth": 2,
+   "kinds": [
+    "Python"
+   ],
+   "markers": [
+    "requirements.txt"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\01-前端集群\\ai-saas-frontend",
+   "depth": 3,
+   "kinds": [
+    "Node/前端",
+    "Vite"
+   ],
+   "markers": [
+    "package.json",
+    "vite.config.ts"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\01-前端集群\\mixmlaal-frontend",
+   "depth": 3,
+   "kinds": [
+    "Node/前端",
+    "Vite"
+   ],
+   "markers": [
+    "package.json",
+    "vite.config.ts"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\01-前端集群\\page-builder-frontend",
+   "depth": 3,
+   "kinds": [
+    "Node/前端",
+    "Vite"
+   ],
+   "markers": [
+    "package.json",
+    "vite.config.ts"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\01-前端集群\\portal",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\01-前端集群\\web-h5-mobile",
+   "depth": 3,
+   "kinds": [
+    "Node/前端",
+    "Vite"
+   ],
+   "markers": [
+    "package.json",
+    "vite.config.ts"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\01-前端集群\\web-vue-pc",
+   "depth": 3,
+   "kinds": [
+    "Node/前端",
+    "Vite"
+   ],
+   "markers": [
+    "package.json",
+    "vite.config.ts"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\ai-saas-backend",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\java-springcloud",
+   "depth": 3,
+   "kinds": [
+    "Java/Maven"
+   ],
+   "markers": [
+    "pom.xml"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-backend",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\node-nest-gateway",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\unified-api-gateway",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\03-全平台应用端\\electron-desktop",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\03-全平台应用端\\uniapp-mini",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\06-项目文档层\\03-配置文件",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\RouteNav",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\b-admin",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\blog-template",
+   "depth": 3,
+   "kinds": [
+    "Next.js",
+    "Node/前端"
+   ],
+   "markers": [
+    "next.config.js",
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\gexm",
+   "depth": 3,
+   "kinds": [
+    "PHP"
+   ],
+   "markers": [
+    "composer.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\plugin-mcp-system",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\zhinenglux",
+   "depth": 3,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-microservices\\mixmlaal-order-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-microservices\\mixmlaal-user-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-analytics-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-auth-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-blockchain-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-chatbot-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-kafka-consumer-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-kafka-producer-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-logistics-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-payment-integration-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-search-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-security-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-service-registry",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\02-后端微服务集群\\mixmlaal-services\\mixmlaal-sms-service",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\RouteNav\\client",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\RouteNav\\server",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\RouteNav\\taro-app",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\daijia\\daijiatongxcx",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\daijia\\server",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\enterprise-admin-platform\\client",
+   "depth": 4,
+   "kinds": [
+    "Node/前端",
+    "Vite"
+   ],
+   "markers": [
+    "package.json",
+    "vite.config.ts"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\enterprise-admin-platform\\server",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  },
+  {
+   "path": "Mi-Xiao-Mi-La-A-Li-Inc\\08-卫星产品\\zhinenglux\\server",
+   "depth": 4,
+   "kinds": [
+    "Node/前端"
+   ],
+   "markers": [
+    "package.json"
+   ]
+  }
+ ],
+ "warnings": [],
+ "elapsed_sec": 88.6
+}

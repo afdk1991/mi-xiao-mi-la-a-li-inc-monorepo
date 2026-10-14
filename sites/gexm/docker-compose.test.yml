@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  postgres-test:
+    image: postgres:15-alpine
+    container_name: gexm-pg-test
+    environment:
+      POSTGRES_DB: gexm_test
+      POSTGRES_USER: gexm
+      POSTGRES_PASSWORD: gexm_test_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - pg-test-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gexm -d gexm_test"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pg-test-data:

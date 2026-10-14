@@ -1,0 +1,58 @@
+﻿# ============================================================================
+#  项目01 — Mi-Xiao-Mi-La-A-Li-Inc 外层仓库忽略规则
+#  外层仓库只承载：编辑器扩展配置(.codebuddy/.trae/.workbuddy/.vscode)、
+#  站点图标资产(网站图标/)、Ark 示例(ark-examples/)、以及指向内层 monorepo
+#  的 gitlink(Mi-Xiao-Mi-La-A-Li-Inc)。内层仓库有独立的 .gitignore。
+# ============================================================================
+
+# ===== 依赖 =====
+node_modules/
+**/node_modules/
+
+# ===== 环境与部署凭据（绝不入库）=====
+.env
+.env.local
+.env.*.local
+**/.env
+.edgeone/
+.wrangler/
+**/secrets/
+*.pem
+*.key
+*.pfx
+*.p12
+*.jks
+
+# ===== 大模型权重（单文件曾达 5.00 GB，严禁入库）=====
+*.safetensors
+*.gguf
+*.ckpt
+*.pt
+*.pth
+*.onnx
+model-*-of-*/
+
+# ===== 构建产物 =====
+dist/
+build/
+out/
+.next/
+.vite/
+.turbo/
+*.tsbuildinfo
+
+# ===== 日志与缓存 =====
+*.log
+logs/
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ===== 系统与编辑器临时文件 =====
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~

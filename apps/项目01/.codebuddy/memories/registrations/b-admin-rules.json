@@ -1,0 +1,17 @@
+{
+  "type": "agent-registration",
+  "agentId": "b-admin-rules",
+  "agentType": "domain",
+  "skillId": "b-admin-rules",
+  "displayName": "B Admin Project Rules Enforcer",
+  "description": "Enforces all B Admin project mandatory conventions including code style, API standards, database rules, and frontend conventions",
+  "capabilities": ["code-generation", "code-review", "database-ops", "api-development", "frontend-development", "error-recovery", "testing"],
+  "permissionLevel": "domain",
+  "dataAccess": { "database": "read-write", "api": "read-write", "files": "read-write" },
+  "outputFormat": { "type": "project-code", "extensions": [".js", ".html", ".css"], "location": "server/ and b-admin/" },
+  "status": "active",
+  "registeredAt": "2026-08-02T23:00:00+08:00",
+  "contactChannel": "memory-bus",
+  "heartbeatInterval": "PT5M",
+  "parentSkill": "mcp-coordinator"
+}

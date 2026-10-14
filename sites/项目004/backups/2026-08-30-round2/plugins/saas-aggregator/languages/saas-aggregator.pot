@@ -1,0 +1,373 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: SaaS Aggregator 1.0.0\n"
+"Report-Msgid-Bugs-To: https://example.com\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: saas-aggregator\n"
+
+#: includes/providers/class-provider-ai-insights.php:37
+#: saas-aggregator.php:121
+msgid "AI 洞察"
+msgstr ""
+
+#: includes/class-settings.php:245
+msgid "API Key"
+msgstr ""
+
+#: includes/class-settings.php:249
+msgid "API Secret"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:77
+msgid "API 网关可用性"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:95
+msgid "Celery 队列积压"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:43
+msgid "Go 接入层：API 网关健康、限流、WebSocket/SSE 实时通道状态。"
+msgstr ""
+
+#: saas-aggregator.php:110
+msgid "Go 接入层：API 网关健康、限流、实时通道状态。"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:43
+#: saas-aggregator.php:116
+msgid "Java 应用层：订单、账务、权限等强一致业务数据。"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:89
+msgid "P99 网关延迟"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:44
+#: saas-aggregator.php:122
+msgid "Python 智能层：LLM/RAG 检索增强生成与决策辅助。"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:94
+msgid "RAG 引用溯源合规"
+msgstr ""
+
+#: includes/class-settings.php:38
+msgid "SaaS 聚合器"
+msgstr ""
+
+#: includes/class-settings.php:37
+#: includes/class-settings.php:173
+msgid "SaaS 聚合器设置"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:101
+msgid "WebSocket 活跃连接"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:107
+msgid "qwen-plus / 本地 llama3"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:78
+msgid "↑ 14.2%"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:78
+msgid "三级（已测评）"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:36
+#: saas-aggregator.php:115
+msgid "业务核心"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:77
+msgid "今日订单数"
+msgstr ""
+
+#: includes/class-settings.php:186
+msgid "全局设置"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:95
+msgid "全部回答均带引用来源"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:90
+msgid "全链路覆盖"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:36
+#: saas-aggregator.php:127
+msgid "决策分析"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:90
+msgid "分布式事务成功率"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:83
+msgid "功能模块使用 Top1"
+msgstr ""
+
+#: includes/class-settings.php:193
+msgid "各数据源未单独设置时使用的缓存秒数。"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:36
+#: saas-aggregator.php:133
+msgid "合规审计"
+msgstr ""
+
+#: includes/class-settings.php:175
+msgid "在此填写各第三方数据源的接口地址与密钥，插件将聚合展示并统一管理。未配置且开启演示模式时，展示示例数据。"
+msgstr ""
+
+#: includes/class-frontend.php:121
+msgid "安全合规"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:43
+#: saas-aggregator.php:134
+msgid "安全合规层：等保、脱敏、审计留痕与权限状态。"
+msgstr ""
+
+#: includes/class-settings.php:151
+msgid "安全校验失败。"
+msgstr ""
+
+#: examples/integration-example.php:46
+msgid "实时服务状态（示例）"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:89
+msgid "审计日志完整性"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:82
+msgid "客户流失风险预警"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:101
+msgid "密钥轮转状态"
+msgstr ""
+
+#: includes/class-settings.php:216
+msgid "将接口错误写入 error_log（密钥已脱敏）"
+msgstr ""
+
+#: includes/class-frontend.php:118
+msgid "应用层 · Java"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:89
+msgid "异常事件（近 24h）"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:83
+msgid "当前 QPS（单机）"
+msgstr ""
+
+#: includes/class-settings.php:277
+msgid "当第三方接口返回变更但缓存未过期时，可手动清空以立即刷新。"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:100
+msgid "待人工复核的生成内容"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:84
+msgid "待对账金额"
+msgstr ""
+
+#: includes/class-frontend.php:117
+msgid "接入层 · Go"
+msgstr ""
+
+#: includes/class-api-client.php:77
+msgid "接口地址不合法。"
+msgstr ""
+
+#: includes/class-settings.php:237
+msgid "接口基地址"
+msgstr ""
+
+#: includes/class-settings.php:241
+msgid "接口路径"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:83
+msgid "敏感字段脱敏覆盖率"
+msgstr ""
+
+#: includes/class-frontend.php:120
+msgid "数据层"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:43
+#: saas-aggregator.php:128
+msgid "数据层：ClickHouse 聚合分析与 Celery 决策看板。"
+msgstr ""
+
+#: includes/class-frontend.php:123
+msgid "数据源"
+msgstr ""
+
+#: includes/class-settings.php:223
+msgid "数据源配置"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:84
+msgid "数据看板"
+msgstr ""
+
+#: templates/aggregator-view.php:33
+msgid "数据获取失败："
+msgstr ""
+
+#: includes/class-frontend.php:119
+msgid "智能层 · Python"
+msgstr ""
+
+#: includes/class-frontend.php:92
+msgid "暂无启用的数据源。请到「设置 → SaaS 聚合器」配置。"
+msgstr ""
+
+#: includes/class-provider-manager.php:123
+msgid "暂无数据。"
+msgstr ""
+
+#: includes/class-cache.php:117
+msgid "未知错误。"
+msgstr ""
+
+#: includes/class-api-client.php:156
+msgid "未配置接口基地址（base_url）。"
+msgstr ""
+
+#: includes/class-settings.php:207
+msgid "未配置真实接口时返回示例数据（便于预览与测试）"
+msgstr ""
+
+#: includes/class-settings.php:165
+msgid "权限不足。"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:102
+msgid "权限校验异常"
+msgstr ""
+
+#: templates/aggregator-view.php:53
+msgid "查看"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:106
+msgid "模型调用（私有化网关）"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:102
+msgid "正常（KMS 托管）"
+msgstr ""
+
+#: includes/class-settings.php:197
+msgid "每源展示条数"
+msgstr ""
+
+#: includes/providers/class-provider-business-core.php:96
+msgid "活跃租户数"
+msgstr ""
+
+#: includes/class-settings.php:273
+msgid "清空全部聚合缓存"
+msgstr ""
+
+#: includes/class-settings.php:203
+msgid "演示模式"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:88
+msgid "知识库问答命中率"
+msgstr ""
+
+#: examples/integration-example.php:53
+msgid "示例：对接 GitHub 公开 rate_limit 接口，验证真实第三方数据接入。"
+msgstr ""
+
+#: includes/class-settings.php:253
+msgid "租户 ID"
+msgstr ""
+
+#: includes/class-api-client.php:125
+msgid "第三方接口返回异常状态：%d"
+msgstr ""
+
+#: includes/class-api-client.php:136
+msgid "第三方接口返回的数据不是合法 JSON。"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:77
+msgid "等保 2.0 等级"
+msgstr ""
+
+#: includes/class-settings.php:180
+msgid "缓存已清空。"
+msgstr ""
+
+#: includes/class-settings.php:257
+msgid "缓存时长（秒）"
+msgstr ""
+
+#: includes/class-settings.php:270
+msgid "缓存管理"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:36
+#: saas-aggregator.php:109
+msgid "网关状态"
+msgstr ""
+
+#: includes/class-settings.php:212
+msgid "记录错误日志"
+msgstr ""
+
+#: includes/class-settings.php:133
+msgid "设置已保存。"
+msgstr ""
+
+#: includes/class-provider-interface.php:166
+msgid "该数据源未配置接口地址，且未开启演示模式。"
+msgstr ""
+
+#: includes/class-api-client.php:116
+msgid "请求第三方接口失败：%s"
+msgstr ""
+
+#: includes/providers/class-provider-compliance.php:95
+msgid "越权访问拦截"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:77
+msgid "近 7 日营收趋势"
+msgstr ""
+
+#: includes/providers/class-provider-gateway-status.php:95
+msgid "限流触发次数（近 1h）"
+msgstr ""
+
+#: includes/providers/class-provider-analytics.php:101
+msgid "预测：下月续费率"
+msgstr ""
+
+#: includes/providers/class-provider-ai-insights.php:83
+msgid "高：12 家租户本周活跃度下降 >30%"
+msgstr ""
+
+#: includes/class-settings.php:190
+msgid "默认缓存时长（秒）"
+msgstr ""
+

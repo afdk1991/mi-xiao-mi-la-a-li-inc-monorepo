@@ -1,0 +1,72 @@
+﻿--- down old stack ---
+docker.exe :  Container myp-srs Stopping 
+所在位置 行:447 字符: 8
++ $o += (& docker compose -p myp006 down -v 2>&1 | Out-String)
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ( Container myp-srs Stopping :Stri 
+   ng) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Container myp-wp Stopping 
+ Container myp-pma Stopping 
+ Container myp-wp Stopped 
+ Container myp-wp Removing 
+ Container myp-pma Stopped 
+ Container myp-pma Removing 
+ Container myp-pma Removed 
+ Container myp-wp Removed 
+ Container myp-db Stopping 
+ Container myp-db Stopped 
+ Container myp-db Removing 
+ Container myp-db Removed 
+ Container myp-srs Stopped 
+ Container myp-srs Removing 
+ Container myp-srs Removed 
+ Network myp006_default Removing 
+ Volume myp006_db_data Removing 
+ Volume myp006_wp_uploads Removing 
+ Volume myp006_wp_uploads Removed 
+ Volume myp006_db_data Removed 
+ Network myp006_default Removed 
+
+--- up preview stack ---
+docker.exe : time="2026-09-15T20:04:28+08:00" level=warning msg="D:\\缃戠珯鍏ㄦ爤椤圭洰\
+\椤圭洰006\\docker-compose.preview.yml: the attribute `version` is obsolete, it wi
+ll be ignored, please remove it to avoid potential confusion"
+所在位置 行:450 字符: 8
++ $o += (& docker compose -f 'D:\网站全栈项目\项目006\docker-compose.preview.ym ...
++        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (time="2026-09-1...tial confusion" 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+ Network myp006_default Creating 
+ Network myp006_default Created 
+ Volume myp006_wp_uploads Creating 
+ Volume myp006_wp_uploads Created 
+ Volume myp006_db_data Creating 
+ Volume myp006_db_data Created 
+ Container myp-db Creating 
+ Container myp-srs Creating 
+ Container myp-db Created 
+ Container myp-wp Creating 
+ Container myp-pma Creating 
+ Container myp-srs Created 
+ Container myp-pma Created 
+ Container myp-wp Created 
+ Container myp-srs Starting 
+ Container myp-db Starting 
+ Container myp-srs Started 
+ Container myp-db Started 
+ Container myp-wp Starting 
+ Container myp-pma Starting 
+ Container myp-pma Started 
+ Container myp-wp Started 
+
+EXIT=0
+--- ps ---
+db|running|Up 31 seconds
+phpmyadmin|running|Up 30 seconds
+srs|running|Up 31 seconds
+wordpress|running|Up 30 seconds
+

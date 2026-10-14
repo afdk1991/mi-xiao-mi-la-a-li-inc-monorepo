@@ -1,0 +1,21 @@
+{
+  "app": {
+    "signingConfigs": [],
+    "compileSdkVersion": 12,
+    "productFlavors": []
+  },
+  "modules": [
+    {
+      "name": "entry",
+      "srcPath": "./src/main",
+      "targets": [
+        {
+          "name": "default",
+          "applyPlugins": [
+            "@ohos/hvigor-ohos-plugin"
+          ]
+        }
+      ]
+    }
+  ]
+}
