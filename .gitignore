@@ -16,7 +16,8 @@ release/
 __pycache__/
 .venv/
 .wrangler/
-.edgeone/
+.edgeone/*
+!.edgeone/project.json   # EdgeOne 项目绑定文件（link 生成），必须入库防 CLI 另建项目
 .workbuddy/tmp/
 
 # Secrets / env
