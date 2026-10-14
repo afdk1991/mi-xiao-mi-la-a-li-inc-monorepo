@@ -9,7 +9,7 @@
 
 | 形态 | 位置 | 用途 | 特点 |
 |---|---|---|---|
-| **源码站（多页）** | `index.html` `resources.html` `category.html` `resource.html` `compliance.html` `curated.html` `about.html` + `assets/` | 日常维护、修改数据、扩展功能 | 模块化、改一处（`assets/data.js`）全站生效；需带 `assets/` 目录一起部署 |
+| **源码站（多页）** | `index.html` `resources.html` `category.html` `resource.html` `compliance.html` `curated.html` `articles.html` `article.html` `content.html` `about.html` `admin.html` + `assets/` | 日常维护、修改数据、扩展功能 | 数据来自 CloudBase 云端数据库（经 `assets/cloud.js` 异步拉取），管理后台 `admin.html` 提供 CRUD；需带 `assets/` 目录一起部署 |
 | **单文件分发版** | `dist/index.html` | 一键分发、离线打开、转载附件、任意静态托管 | 零外部依赖，CSS/JS/数据全部内联，双击即可运行；由 `build-dist.js` 从源码构建 |
 
 > 二者**并存互补**：源码用于"改"，单文件用于"发"。不要手工编辑 `dist/index.html`，改动请在源码进行后重新构建。
@@ -93,12 +93,14 @@ node ui-audit.js          # 多断点溢出/字号/触控目标诊断：0 问题
 
 ```
 ai-server-resources/
-├─ index/resources/category/resource/compliance/curated/about.html   ← 源码站（7 页，维护用）
+├─ index/resources/category/resource/compliance/curated/articles/article/content/about/admin.html  ← 源码站（11 页，维护用）
 ├─ assets/
 │   ├─ style.css            ← 设计系统（令牌化分层）
-│   ├─ app.js              ← 渲染/筛选/导出逻辑（原始版）
-│   ├─ data.js             ← 79 项资源（唯一数据源）
-│   └─ curated.js          ← 21 项精选（唯一数据源）
+│   ├─ app.js              ← 渲染/筛选/导出逻辑（消费云端数据）
+│   ├─ cloud.js            ← 云后端桥接层：拉取云端数据 + 登录/评论/收藏/后台鉴权
+│   ├─ admin.js            ← 管理后台 CRUD 逻辑（受 admins 表保护）
+│   ├─ data.js / curated.js ← 离线快照数据源（仅供 dist 单文件版内联，线上由云端替代）
+│   └─ articles/           ← 13 篇文章正文静态文件（<slug>.html，CMS 模式）
 ├─ dist/index.html         ← ✅ 单文件分发版（发布用，内联+压缩）
 ├─ articles/               ← 5 篇原创可转载正文 + README
 ├─ RESOURCES.md            ← 全量清单（Markdown）
@@ -109,6 +111,8 @@ ai-server-resources/
 ├─ smoke-test.js / ui-verify.js / ui-audit.js / dist-verify.js / render-check.js  ← 回归与验证
 └─ archive/                ← 历史归档（验证截图等）
 ```
+
+> **云端后端**：分类 / 资源 / 文章元数据存于 CloudBase 云端数据库（应用 `wbapp_mYNHWXRnPgPBADbe6e552T`），线上各页通过 `assets/cloud.js` 经官方 SDK 异步拉取；用户登录、评论、收藏与管理后台 CRUD 均受 RLS 行级安全策略保护。文章正文以 `assets/articles/<slug>.html` 静态文件承载（CMS 模式），数据库仅存元数据。`data.js` / `curated.js` 仅用于生成离线 `dist/` 单文件版，线上不再依赖本地数据源。
 
 ---
 

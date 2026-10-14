@@ -1019,3 +1019,89 @@ input:read-only:not(:disabled),textarea:read-only:not(:disabled){
   .stat-card .num{font-size:var(--fs-2xl);}
   #toTop{right:var(--sp-3);}
 }
+
+/* ==========================================================================
+   09 后台组件（管理后台 admin.html / admin.js 专用）
+   全部走设计令牌变量，自动适配浅色 / 深色主题
+   ========================================================================== */
+.wb-msg{
+  margin:0 0 var(--sp-4);
+  padding:var(--sp-3) var(--sp-4);
+  border-radius:10px;
+  font-size:var(--fs-sm);
+  background:var(--surface-2);
+  color:var(--text-2);
+  border:1px solid var(--border);
+}
+.wb-msg.ok{background:var(--green-bg);color:var(--green-fg);border-color:var(--green-bd);}
+.wb-msg.err{background:var(--red-bg);color:var(--red-fg);border-color:var(--red-bd);}
+
+.wb-gate{margin-top:var(--sp-4);}
+.wb-gate-card{
+  max-width:560px;
+  margin:0 auto;
+  padding:var(--sp-8);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  box-shadow:var(--shadow);
+  text-align:center;
+}
+.wb-gate-card h3{margin:0 0 var(--sp-3);font-size:var(--fs-2xl);}
+.wb-gate-card p{margin:0 0 var(--sp-5);color:var(--text-2);line-height:var(--lh-snug);}
+.wb-gate-note{margin-top:var(--sp-4);font-size:var(--fs-xs);color:var(--text-3);}
+.wb-gate-note code{background:var(--surface-3);padding:1px 6px;border-radius:6px;font-size:var(--fs-xs);}
+
+.wb-panel{margin-top:var(--sp-4);}
+.wb-admin-toolbar{
+  display:flex;flex-wrap:wrap;gap:var(--sp-3);
+  margin-bottom:var(--sp-6);
+}
+.wb-admin-block{
+  margin-bottom:var(--sp-8);
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:var(--sp-5);
+}
+.wb-admin-block h3{margin:0 0 var(--sp-4);font-size:var(--fs-xl);}
+.wb-admin-tbody{overflow-x:auto;}   /* 窄屏表格横向滚动 */
+
+.wb-admin-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:var(--fs-sm);
+  color:var(--text);
+}
+.wb-admin-table th,
+.wb-admin-table td{
+  padding:var(--sp-3) var(--sp-4);
+  text-align:left;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+.wb-admin-table thead th{
+  background:var(--surface-3);
+  color:var(--text-2);
+  font-weight:var(--fw-semibold);
+  position:sticky;top:0;
+}
+.wb-admin-table tbody tr:nth-child(even){background:var(--surface-2);}
+.wb-admin-table tbody tr:hover{background:var(--accent-soft);}
+.wb-admin-table button{
+  padding:4px 10px;
+  font-size:var(--fs-xs);
+  border:1px solid var(--border-strong);
+  border-radius:8px;
+  background:var(--surface);
+  color:var(--text);
+  cursor:pointer;
+}
+.wb-admin-table button:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+.wb-admin-table .note{padding:var(--sp-4);color:var(--text-3);}
+
+@media (max-width:560px){
+  .wb-gate-card{padding:var(--sp-6) var(--sp-5);}
+  .wb-admin-block{padding:var(--sp-4);}
+  .wb-admin-toolbar .btn{flex:1 1 100%;}
+}

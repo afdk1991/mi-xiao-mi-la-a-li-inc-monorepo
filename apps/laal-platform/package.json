@@ -1,0 +1,14 @@
+{
+  "name": "@mxm/laal-platform",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mi-Xiao-Mi-La-A-Li-Inc 全栈平台（WordPress zibstyle + node-api + 多前端集群）",
+  "mxm": {
+    "type": "aggregator",
+    "group": "apps",
+    "note": "聚合壳：真实子包位于 Mi-Xiao-Mi-La-A-Li-Inc/ 下（01-前端集群、08-卫星产品等），各自独立构建"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('聚合模块：请进入 Mi-Xiao-Mi-La-A-Li-Inc/ 各子目录构建（见 README 速查表）')\""
+  }
+}

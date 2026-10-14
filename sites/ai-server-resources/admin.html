@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>管理后台 · 可转载资源清单</title>
+<meta name="description" content="AI 大模型与服务器/计算机技术资源站管理后台（受 admins 表保护）。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><span class="mark">R</span><span>可转载资源清单<small>AI 大模型 · 服务器与计算机技术</small></span></a>
+    <nav class="nav" id="siteNav">
+      <a href="index.html">首页</a>
+      <a href="resources.html">资源库</a>
+      <a href="curated.html">精选 21 项</a>
+      <a href="articles.html">技术文章</a>
+      <a href="content.html">全文阅读</a>
+      <a href="category.html?c=A">分类</a>
+      <a href="compliance.html">合规指南</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="nav-search">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题">🌙</button>
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+<div class="container">
+
+  <section class="section">
+    <div class="section-head">
+      <div>
+        <h2>管理后台</h2>
+        <p class="sub">分类 / 资源 / 文章元数据的云端增删改查（受 admins 表保护）</p>
+      </div>
+    </div>
+
+    <div id="adminMsg" class="wb-msg"></div>
+
+    <!-- 网关：未登录 / 非管理员时显示 -->
+    <div id="adminGate" class="wb-gate">
+      <div class="wb-gate-card">
+        <h3>需要管理员权限</h3>
+        <p>本页用于维护站点数据。请使用已被标记为管理员的账号登录；若你本人即站点拥有者，可在登录后申请认领管理员身份。</p>
+        <button type="button" class="btn" id="adminEnterBtn">登录 / 进入后台</button>
+        <p class="wb-gate-note">提示：数据修改会实时写入云端数据库，并同步到全站页面。</p>
+      </div>
+    </div>
+
+    <!-- 面板：管理员可见 -->
+    <div id="adminPanel" class="wb-panel" style="display:none;">
+      <div class="wb-admin-toolbar">
+        <button type="button" class="btn" id="addCat">+ 新增分类</button>
+        <button type="button" class="btn" id="addRes">+ 新增资源</button>
+        <button type="button" class="btn" id="addArt">+ 新增文章</button>
+      </div>
+
+      <div class="wb-admin-block">
+        <h3>分类（Categories）</h3>
+        <div id="tabCategories" class="wb-admin-tbody"></div>
+      </div>
+
+      <div class="wb-admin-block">
+        <h3>资源（Resources）</h3>
+        <div id="tabResources" class="wb-admin-tbody"></div>
+      </div>
+
+      <div class="wb-admin-block">
+        <h3>文章元数据（Articles）</h3>
+        <div id="tabArticles" class="wb-admin-tbody"></div>
+        <p class="wb-gate-note">文章的完整正文仍以静态文件 <code>assets/articles/&lt;slug&gt;.html</code> 维护，此处仅管理标题、摘要、分类等元数据。</p>
+      </div>
+    </div>
+  </section>
+
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> 可转载资源清单 · 管理后台</span>
+      <span><a href="index.html">返回站点首页 →</a></span>
+    </div>
+  </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="assets/cloud.js"></script>
+<script src="assets/admin.js"></script>
+</body>
+</html>

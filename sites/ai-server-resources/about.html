@@ -100,7 +100,7 @@
           <tr><th>category.html?c=A</th><td>分类详情页：单类目全量条目、许可分布与上下类目翻页</td></tr>
           <tr><th>resource.html?id=A1</th><td>资源详情页：完整许可说明、获取渠道、同类资源与转载前检查清单</td></tr>
           <tr><th>compliance.html</th><td>合规指南：判断流程、速查表、五条红线、四套可复制署名模板、常见问题</td></tr>
-          <tr><th>assets/data.js</th><td>唯一数据源（79 条记录），各页面统一引用</td></tr>
+          <tr><th>CloudBase 云端数据库</th><td>分类 / 资源 / 文章元数据唯一数据源（79 条 / 8 类），各页面经 assets/cloud.js 异步拉取；admin.html 提供后台 CRUD</td></tr>
           <tr><th>assets/app.js</th><td>渲染、筛选、导出 Markdown 与通用交互</td></tr>
           <tr><th>RESOURCES.md</th><td>Markdown 版全量清单，由 build-md.js 从 data.js 生成，供直接转载使用</td></tr>
         </tbody>
@@ -112,7 +112,7 @@
     <h2>更新日志</h2>
     <ul class="redline">
       <li><b>2026-10-13 · v1.0</b>：完成首版收录（79 项 / 8 类），建立许可三级标注体系与合规速查表、五条红线、署名模板。</li>
-      <li><b>2026-10-13 · 站点化</b>：由单页升级为多页站点，新增资源库检索、分类页、资源详情页与合规指南页；数据抽离为 assets/data.js 单一数据源。</li>
+      <li><b>2026-10-13 · 站点化</b>：由单页升级为多页站点，新增资源库检索、分类页、资源详情页与合规指南页；数据迁移至 CloudBase 云端数据库，前端通过 SDK 异步拉取。</li>
       <li><b>2026-10-13 · 精选清单 v1.0</b>：新增「精选 21 项」页面与 <code class="mono-sm">CURATED.md</code>，面向内容平台转载场景，六类分组、逐项含许可结论与风险点，5 项标注「需核实」；同步修正 Red Hat（CC BY-SA 3.0）、PostgreSQL License、Annotated Transformer（MIT）、SQLite 文档等许可表述。</li>
       <li><b>2026-10-13 · UI v2</b>：样式表重构为令牌化分层体系（设计令牌 / 基础 / 布局 / 工具类 / 组件 / 状态 / 响应式）；建立字号阶梯（最小 12px）、4px 间距阶梯与统一栅格（min() 防窄屏溢出）；补齐键盘焦点、禁用态、加载态、骨架屏与 prefers-reduced-motion；收敛 46 处内联样式为公共类；新增 6 档断点（1200 / 1024 / 900 / 760 / 560 / 400），窄屏表格附滑动提示。</li>
     </ul>
@@ -125,8 +125,8 @@
       请按下列方式处理：
     </p>
     <ul class="redline">
-      <li><b>许可变更</b>：以来源方最新 LICENSE 为准，修改 <code class="mono-sm">assets/data.js</code> 中对应条目的 <code class="mono-sm">l</code> 与 <code class="mono-sm">lic</code> 字段即可全站生效。</li>
-      <li><b>新增条目</b>：在 data.js 中按 <code class="mono-sm">{cat,name,type,l,lic,desc,who,links}</code> 结构追加，ID 会自动生成。</li>
+      <li><b>许可变更</b>：以来源方最新 LICENSE 为准，通过管理后台（admin.html）修改对应条目的许可字段即可全站生效。</li>
+      <li><b>新增条目</b>：通过管理后台（admin.html）「+ 新增资源」表单按统一结构追加，ID 会自动生成。</li>
       <li><b>重新导出</b>：修改数据后运行 <code class="mono-sm">node build-md.js</code> 同步生成 RESOURCES.md。</li>
       <li><b>链接失效</b>：优先替换为官方镜像或归档链接，避免直接删除导致编号 ID 变化影响外链。</li>
     </ul>
@@ -202,7 +202,8 @@
   </div>
 </div>
 <button id="toTop" aria-label="回到顶部">↑</button>
-<script src="assets/data.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="assets/cloud.js"></script>
 <script src="assets/curated.js"></script>
 <script src="assets/app.js"></script>
 </body>

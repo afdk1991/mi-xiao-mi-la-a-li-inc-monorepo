@@ -5,8 +5,8 @@
 (function () {
   'use strict';
 
-  var CATS = window.CATS;
-  var RESOURCES = window.RESOURCES;
+  var CATS = window.CATS || {};
+  var RESOURCES = window.RESOURCES || [];
   var LIC_LABEL = { g: '宽松可商用', a: '需署名/有限制', r: '需授权/禁止转载' };
   var LIC_MD = { g: '🟢 宽松可商用', a: '🟡 需署名 / 有限制', r: '🔴 需授权 / 禁止转载' };
   var CAT_ORDER = Object.keys(CATS);
@@ -618,6 +618,10 @@
 
     el.innerHTML = '<div class="detail-grid"><div class="detail-main">' + main + '</div>'
       + '<aside>' + side + '</aside></div>';
+    // 收藏 + 评论（全栈：用户隔离，云端存储）
+    if (window.CLOUD && window.CLOUD.articleExtras) {
+      window.CLOUD.articleExtras.render(el, id);
+    }
   }
 
   /* ---------- 全文阅读：一次性渲染全部文章的完整正文（非卡片清单） ---------- */
@@ -832,14 +836,24 @@
   document.addEventListener('DOMContentLoaded', function () {
     setupCommon();
     setupExport();
-    initHome();
-    initLibrary();
-    initCategory();
-    initResource();
-    initCurated();
-    initArticles();
-    initArticle();
-    initFullContent();
+    // 数据来自云端：先加载，再渲染（失败也用兜底空数据渲染，保证页面不白屏）
+    var renderAll = function () {
+      // 云端数据已就位：重新定序分类（CATS 为就地填充的同一引用）
+      CAT_ORDER = Object.keys(CATS);
+      initHome();
+      initLibrary();
+      initCategory();
+      initResource();
+      initCurated();
+      initArticles();
+      initArticle();
+      initFullContent();
+    };
+    if (window.CLOUD && window.CLOUD.data) {
+      window.CLOUD.data.load().then(renderAll, renderAll);
+    } else {
+      renderAll();
+    }
   });
 
   window.SITE = {

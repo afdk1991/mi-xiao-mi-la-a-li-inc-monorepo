@@ -1,0 +1,16 @@
+{
+  "name": "@mxm/chassis-bom-tool",
+  "version": "1.0.0",
+  "private": true,
+  "description": "项目005 三层卧式模块化机箱交付包（BOM 生成 / PDF 生成，Python）",
+  "mxm": {
+    "type": "python",
+    "group": "apps",
+    "note": "generate_bom_v2.py / generate_pdfs_v2.py + pylibs；无 Node 依赖"
+  },
+  "scripts": {
+    "build": "python -m compileall -q .",
+    "bom": "python generate_bom_v2.py",
+    "pdf": "python generate_pdfs_v2.py"
+  }
+}
