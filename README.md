@@ -2,7 +2,7 @@
 
 > 本目录是 **F:\网站全栈项目** 与 **E:\04_个人项目\github所有仓库项目** 经合并、去重、重组后的**一个项目**（单体仓库 monorepo）。
 > 生成时间：2026-10-13 ｜ **代码级整合：2026-10-14** ｜ **单一项目化：2026-10-14**（见末尾「整合合并记录」）
-> 项目身份：`mi-xiao-mi-la-a-li-inc-monorepo` ｜ 模块数：**19 个顶层模块**（apps 11 + services 1 + sites 3 + tools 1 + shared 3），
+> 项目身份：`mi-xiao-mi-la-a-li-inc-monorepo` ｜ 模块数：**20 个顶层模块**（apps 11 + services 1 + sites 4 + tools 1 + shared 3），
 > 含嵌套子包共 **29 个可寻址包**，全部归入**一个** `package.json` + **一个**入口 `run.mjs` 统一编排。
 > 已合并/归档：5 对 F/E 镜像、`manju`→`manju`、`项目002`→`gale-engine`、`项目006`→`myp-live-mall`、
 > 内嵌 `mixmlaal` 副本、近空壳 `proj-00`；`cloudbase-adaptation`（文档库）移入 `_docs/`。
@@ -81,7 +81,7 @@
 - **跨项目共享**：`tools/devops-scripts` 提供统一部署脚本；`shared/{map,http,config}` 为**已抽取**的公共库（统一地图服务 / 请求封装 / 配置加载），不再只是预留。
 - **数据/服务依赖**：`price-crawler`（采集）与 `delivery-router`（配送）均为 CloudBase 函数，彼此独立。
 
-## 应用速查表（19 个顶层模块 / 29 个可寻址包）
+## 应用速查表（20 个顶层模块 / 30 个可寻址包）
 
 > 全部模块可用 `npm run list`（或 `node run.mjs list`）实时查看；构建/类型检查用 `npm run build <模块>` / `npm run typecheck <模块>`。
 
@@ -160,6 +160,40 @@ npm run clean delivery-router     # 清理构建产物（dist/build/out）
 - ✅ gale-engine 合并：fast-forward 至 `6891277`，含 `项目002`（Gitea）全部提交，工作树干净。
 - ✅ myp-live-mall 合并：merge 至 `3301df1`，含 `项目006`（Gitea）全部提交。
 - ✅ 同源收敛：全仓扫描无 `项目0XX`/`proj-XX` 配对残留、无 `myp-theme`/`myp-core` 内嵌副本。
+
+## 三平台上架（GitHub / GitHub Packages / EdgeOne Makers）
+
+| 平台 | 目标 | 形态 |
+|---|---|---|
+| **GitHub** | `afdk1991/mi-xiao-mi-la-a-li-inc-monorepo`（private） | 单一仓库，默认分支 `master` |
+| **GitHub Packages** | `@afdk1991/shared-map`、`@afdk1991/shared-http`、`@afdk1991/shared-config` | 3 个包，由 CI 用 `GITHUB_TOKEN` 发布 |
+| **EdgeOne Makers** | `ai-server-resources`（静态资源站） | 直接上传 `.edgeone/` 目录，免构建 |
+
+### GitHub
+```bash
+git remote add origin https://github.com/afdk1991/mi-xiao-mi-la-a-li-inc-monorepo.git
+git push -u origin master
+```
+> 推送前已用 `filter-branch` 从**全部历史**剔除 `_backups/`（含 226MB 的 `.git.bak` pack），
+> 否则 GitHub 会按单文件 100MB 硬限直接拒收。
+
+### GitHub Packages
+三个共享包已去掉 `private`、改 scope 为 `@afdk1991/*`、加 `files` / `publishConfig`。
+发布走 CI（`.github/workflows/publish-packages.yml`）：
+
+```bash
+git tag shared-v1.0.0 && git push origin shared-v1.0.0   # 触发发布
+# 或在 Actions 里手动 workflow_dispatch
+```
+消费方需配置 `.npmrc`：`@afdk1991:registry=https://npm.pkg.github.com`
+
+### EdgeOne Makers
+静态站不带 `package.json` 部署（否则 CLI 会跑 `pnpm install` 而本机无 pnpm）：
+```bash
+cd sites/ai-server-resources
+cp -r *.html assets articles fetched archive .edgeone/   # 构建部署目录
+edgeone makers deploy .edgeone -n ai-server-resources
+```
 
 ## 整合合并记录（2026-10-14）
 
