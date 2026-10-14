@@ -1,0 +1,35 @@
+name: Publish shared packages
+
+# 发布 shared/{map,http,config} 三个共享库到 GitHub Packages。
+# 触发：手动 dispatch，或推送 shared-v* 标签。
+# 鉴权：使用 GITHUB_TOKEN（在 workflow 中授予 packages:write），无需用户额外 token。
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - 'shared-v*'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        pkg: [map, http, config]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@afdk1991'
+
+      - name: Publish @afdk1991/shared-${{ matrix.pkg }}
+        working-directory: shared/${{ matrix.pkg }}
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
