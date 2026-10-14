@@ -16,8 +16,8 @@ release/
 __pycache__/
 .venv/
 .wrangler/
-.edgeone/*
-!.edgeone/project.json   # EdgeOne 项目绑定文件（link 生成），必须入库防 CLI 另建项目
+**/.edgeone/*                    # 任意层级的 EdgeOne 部署产物（CLI 会把站点副本塞进来）
+!**/.edgeone/project.json        # 例外：项目绑定文件必须入库，防 CLI 另建项目
 .workbuddy/tmp/
 
 # Secrets / env

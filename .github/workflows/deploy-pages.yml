@@ -1,0 +1,45 @@
+name: Deploy site to GitHub Pages
+
+# 把 sites/ai-server-resources 的静态内容发布到 gh-pages 分支。
+# 采用「白名单复制」而非整目录发布：站点目录里有 .env 与构建脚本（*.js / package.json），
+# 整目录发布会把这些一并推到公开 Pages，存在信息暴露风险。
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'sites/ai-server-resources/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build publish dir (whitelist)
+        run: |
+          set -e
+          SRC=sites/ai-server-resources
+          rm -rf _pages && mkdir -p _pages
+          cp $SRC/*.html _pages/ || true
+          for d in assets articles fetched archive curated; do
+            [ -d "$SRC/$d" ] && cp -r "$SRC/$d" _pages/ || true
+          done
+          rm -f _pages/package.json
+          echo "publish files: $(find _pages -type f | wc -l)"
+          test -f _pages/index.html || { echo "index.html missing"; exit 1; }
+
+      - name: Push to gh-pages
+        run: |
+          cd _pages
+          git init -q
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Deploy ai-server-resources to GitHub Pages ($GITHUB_SHA)"
+          git push --force \
+            https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git \
+            HEAD:gh-pages
