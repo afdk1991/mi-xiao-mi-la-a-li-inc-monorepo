@@ -796,6 +796,20 @@
       }
     });
 
+    // 首页百度式大搜索框：回车 或 点击「搜索资源」均跳转资源库
+    var hs = document.getElementById('heroSearch');
+    if (hs) {
+      var goHero = function () {
+        var v = hs.value.trim();
+        window.location.href = 'resources.html' + (v ? '?q=' + encodeURIComponent(v) : '');
+      };
+      hs.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); goHero(); }
+      });
+      var bdForm = document.getElementById('bdSearch');
+      if (bdForm) bdForm.addEventListener('submit', function (e) { e.preventDefault(); goHero(); });
+    }
+
     // 回到顶部
     var tt = document.getElementById('toTop');
     if (tt) {

@@ -31,19 +31,33 @@
 <main class="site-main">
 <section class="hero">
   <div class="container">
-    <span class="eyebrow">2026 版 · 持续维护</span>
-    <h1>AI 大模型与服务器 / 计算机技术<br>可转载资源清单</h1>
+    <div class="bd-brand">
+      <span class="bd-logo">R</span><span class="bd-name">可转载资源清单</span>
+    </div>
+    <h1>AI 大模型与服务器 / 计算机技术 · 可转载资源索引</h1>
     <p class="lead">
       系统收录公开可得、可自由转载或注明出处即可引用的技术资源，覆盖大模型原理、训练微调、推理部署、
-      服务器运维、网络存储与数据集基准。每一项都标注<b>类型、主要内容、适合人群、获取渠道与许可版权状态</b>，
-      并明确区分「宽松可商用」「需署名 / 有限制」「需授权 / 禁止转载」三个等级。
+      服务器运维、网络存储与数据集基准；每一项都标注类型、主要内容、适合人群、获取渠道与许可版权状态。
     </p>
+    <form class="bd-search" id="bdSearch" autocomplete="off">
+      <input id="heroSearch" type="search" placeholder="搜索资源、类目、许可…" aria-label="搜索资源">
+      <button class="bd-btn" type="submit">搜索资源</button>
+    </form>
+    <div class="bd-hot">
+      <span class="bd-hot-label">热门：</span>
+      <a href="resources.html?q=%E5%A4%A7%E6%A8%A1%E5%9E%8B">大模型原理</a>
+      <a href="resources.html?q=%E5%BE%AE%E8%B0%83">训练微调</a>
+      <a href="resources.html?q=vLLM">推理部署</a>
+      <a href="resources.html?q=Docker">服务器运维</a>
+      <a href="resources.html?q=RFC">网络协议</a>
+      <a href="resources.html?q=%E6%95%B0%E6%8D%AE%E9%9B%86">数据集</a>
+    </div>
+    <div class="stat-row" id="homeStats"></div>
     <div class="hero-actions">
-      <a class="btn" href="resources.html">浏览全部资源 →</a>
+      <a class="btn" href="resources.html">浏览全部资源</a>
       <a class="btn ghost" href="compliance.html">转载合规指南</a>
       <button class="btn ghost js-export">导出 Markdown</button>
     </div>
-    <div class="stat-row" id="homeStats"></div>
   </div>
 </section>
 
