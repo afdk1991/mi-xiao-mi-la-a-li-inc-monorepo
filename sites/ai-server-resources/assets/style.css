@@ -1105,3 +1105,145 @@ input:read-only:not(:disabled),textarea:read-only:not(:disabled){
   .wb-admin-block{padding:var(--sp-4);}
   .wb-admin-toolbar .btn{flex:1 1 100%;}
 }
+
+/* ==========================================================================
+   10 视觉增强（统一现代化视觉语言）
+   参考主流全栈 / 开发者工具站（Vercel / Linear / Supabase 等）的克制留白、
+   微妙渐变与层次感。本段不新增任何 DOM 结构、不改写已有 class 名，
+   仅对既有组件叠加统一的视觉增强，因此不会影响 JS 动态渲染结果。
+   ========================================================================== */
+
+/* —— 品牌渐变与主题感知环境光 ——
+   为浅色 / 深色分别定义极低透明度的品牌辉光，让纯色背景产生纵深，
+   避免大块留白发「平」。辉光颜色随 --accent 自动切换，双主题均协调。 */
+:root{
+  --grad:linear-gradient(135deg,var(--accent),#7aa8ff);
+  --bg-glow-a:radial-gradient(62% 50% at 100% 0%, rgba(47,109,246,.06), transparent 60%);
+  --bg-glow-b:radial-gradient(52% 44% at 0% 8%, rgba(109,155,255,.05), transparent 55%);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg-glow-a:radial-gradient(62% 50% at 100% 0%, rgba(91,146,255,.12), transparent 60%);
+    --bg-glow-b:radial-gradient(52% 44% at 0% 8%, rgba(91,146,255,.08), transparent 55%);
+  }
+}
+[data-theme="dark"]{
+  --bg-glow-a:radial-gradient(62% 50% at 100% 0%, rgba(91,146,255,.12), transparent 60%);
+  --bg-glow-b:radial-gradient(52% 44% at 0% 8%, rgba(91,146,255,.08), transparent 55%);
+}
+body{
+  background-color:var(--bg);
+  background-image:var(--bg-glow-a),var(--bg-glow-b);
+  background-repeat:no-repeat;
+  background-attachment:fixed;
+}
+
+/* —— 标题层级：锚点跳转不被吸顶导航遮挡 + 现代文本平衡 ——
+   text-wrap:balance / pretty 在不支持的浏览器中静默忽略，无副作用。 */
+:where(h1,h2,h3,h4){scroll-margin-top:84px;}
+h1,h2,h3{text-wrap:balance;}
+p,li{text-wrap:pretty;}
+
+/* —— 区块 / 面板 / 页头标题：左侧强调竖条，统一视觉节奏 —— */
+.section-head h2,
+.page-title{
+  position:relative;padding-left:14px;
+}
+.section-head h2::before,
+.page-title::before{
+  content:"";position:absolute;left:0;top:.2em;bottom:.2em;width:3px;border-radius:3px;
+  background:var(--grad);
+}
+.panel h2,.panel h3{
+  position:relative;padding-left:14px;
+}
+.panel h2::before,.panel h3::before{
+  content:"";position:absolute;left:0;top:.22em;bottom:.22em;width:3px;border-radius:3px;
+  background:var(--grad);
+}
+
+/* —— Hero 升级 ——
+   第三团底部辉光补足对称；标题在支持的浏览器中以品牌渐变呈现（不支持则回退实色）；
+   眉标增加脉动圆点，强化「持续维护」的活跃感。 */
+.hero::before{
+  background:
+    radial-gradient(58% 78% at 12% -5%, rgba(47,109,246,.14), transparent 60%),
+    radial-gradient(52% 70% at 96% 8%, rgba(109,155,255,.16), transparent 60%),
+    radial-gradient(46% 58% at 50% 122%, rgba(47,109,246,.10), transparent 60%);
+}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .hero h1{
+    background:linear-gradient(118deg, var(--text) 34%, var(--accent) 128%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+}
+.hero .eyebrow{display:inline-flex;align-items:center;gap:7px;}
+.hero .eyebrow::before{
+  content:"";width:7px;height:7px;border-radius:50%;flex:none;
+  background:var(--accent);box-shadow:0 0 0 4px var(--accent-soft);
+}
+
+/* —— 按钮：更克制的渐变辉光 + 悬浮微抬升 —— */
+.btn{
+  box-shadow:0 1px 2px rgba(24,32,48,.10), 0 6px 16px rgba(47,109,246,.16);
+}
+.btn:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 10px rgba(24,32,48,.12), 0 12px 28px rgba(47,109,246,.26);
+}
+
+/* —— 卡片：顶边渐变描边（悬浮展开），强化层次与「可交互」暗示 —— */
+.card,.cat-card{position:relative;overflow:hidden;}
+.card::after,.cat-card::after{
+  content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:var(--grad);transform:scaleX(0);transform-origin:left;opacity:.92;
+  transition:transform var(--dur-3) var(--ease);
+}
+.card:hover::after,.cat-card:hover::after{transform:scaleX(1);}
+
+/* —— 栅格：略增呼吸感（桌面） —— */
+.grid,.cat-grid{gap:var(--sp-5);}
+
+/* —— 统计卡：微渐变表面 + 顶部强调线 —— */
+.stat-card{
+  position:relative;display:flex;flex-direction:column;justify-content:center;gap:2px;
+  min-height:98px;
+  background:linear-gradient(180deg, rgba(47,109,246,.05), rgba(47,109,246,0) 72%), var(--surface);
+}
+.stat-card::before{
+  height:3px;opacity:1;
+  background:linear-gradient(90deg,var(--accent),var(--accent-dark));
+}
+
+/* —— 页脚：顶部渐变分隔线，呼应品牌 —— */
+.site-footer{position:relative;}
+.site-footer::before{
+  content:"";position:absolute;left:0;right:0;top:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:.45;
+}
+
+/* —— 品牌标识：增加微妙投影，更立体 —— */
+.brand .mark{box-shadow:0 2px 8px rgba(47,109,246,.35);}
+
+/* —— 索引徽标统一为品牌渐变，呼应全站视觉语言 —— */
+.cat-card .idx,.idx-tag,.note-item .nidx{
+  background:var(--grad);box-shadow:0 2px 6px rgba(47,109,246,.28);
+}
+
+/* —— 移动端导航面板：玻璃态，更现代 —— */
+@media (max-width:760px){
+  .nav{
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    background:color-mix(in srgb, var(--surface) 86%, transparent);
+  }
+  .grid,.cat-grid{gap:var(--sp-4);}      /* 窄屏回到紧凑间距 */
+}
+
+/* —— 减少动效偏好：关闭新增位移与渐变描边动画 —— */
+@media (prefers-reduced-motion:reduce){
+  .btn:hover{transform:none;}
+  .card::after,.cat-card::after{transition:none;}
+  .hero .eyebrow::before{box-shadow:0 0 0 2px var(--accent-soft);}
+}

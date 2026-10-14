@@ -40,3 +40,17 @@ Thumbs.db
 *.exe~
 *.bak
 .gopath/
+
+# Local backups / git bundles (not source, huge)
+_backups/
+*.bundle
+
+# Electron / desktop build outputs (regenerable, huge — must not be in git)
+**/win-unpacked/
+**/electron-output/
+**/build-output/
+**/dist-win*/
+**/dist-electron/
+
+# Vendored WordPress download archive (re-download, not source)
+sites/ardot-audit/_dist/
