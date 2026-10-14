@@ -56,3 +56,6 @@ _backups/
 # Vendored WordPress download archive (re-download, not source)
 sites/ardot-audit/_dist/
 _deploy/
+.workbuddy/
+*.genie
+sites/ai-server-resources/archive/verify-*.png

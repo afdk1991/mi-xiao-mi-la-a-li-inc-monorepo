@@ -96,7 +96,8 @@
         // resources → 现有形状（就地填充，保持 app.js 持有的引用）
         var RES = (resR.data || []).map(function (r) {
           return {
-            id: r.id, cat: r.cat, name: r.name, type: r.type,
+            // 云端 resources.id 为 bigint 自增主键；前端（排序、详情页链接、后台 eq）一律按字符串处理
+            id: String(r.id), cat: r.cat, name: r.name, type: r.type,
             l: r.license_level, lic: r.license, desc: r.description,
             who: r.audience, links: Array.isArray(r.links) ? r.links : []
           };
