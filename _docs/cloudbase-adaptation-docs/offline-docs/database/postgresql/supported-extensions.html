@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-database/postgresql/supported-extensions" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">支持的扩展 | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/database/postgresql/supported-extensions"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="支持的扩展 | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="本文列出 CloudBase PostgreSQL 当前提供的扩展。扩展支持范围、版本和权限要求可能随实例版本变化，请以实际数据库查询结果和控制台展示为准。"><meta data-rh="true" property="og:description" content="本文列出 CloudBase PostgreSQL 当前提供的扩展。扩展支持范围、版本和权限要求可能随实例版本变化，请以实际数据库查询结果和控制台展示为准。"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/database/postgresql/supported-extensions"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/database/postgresql/supported-extensions" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/database/postgresql/supported-extensions" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/database/postgresql/supported-extensions" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"支持的扩展","item":"https://docs.cloudbase.net/database/postgresql/supported-extensions"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/assets/css/styles.84763893.css">
+<script src="/assets/js/runtime~main.13eb34e7.js" defer="defer"></script>
+<script src="/assets/js/main.38956b3f.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="关闭" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/quick-start/">快速开始</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">基础能力</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">核心能力</a></li><li><a aria-current="page" class="dropdown__link nav-icon-database dropdown__link--active" href="/database/postgresql/initialization">数据库</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/storage/introduce">云存储</a></li><li><a class="dropdown__link nav-icon-zap" href="/cloud-function/introduce">云函数</a></li><li><a class="dropdown__link nav-icon-cloud" href="/run/introduction">云托管</a></li><li><a class="dropdown__link nav-icon-globe" href="/hosting/introduce">静态网站托管</a></li><li><a class="dropdown__link nav-icon-log-in" href="/authentication-v2/auth/introduce">身份认证</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/ai/introduce">AI 接入</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/integration/introduce">集成中心</a></li><li><a href="#" class="dropdown__link navbar-category">平台管理</a></li><li><a class="dropdown__link nav-icon-network" href="/service/introduce">HTTP 网关</a></li><li><a class="dropdown__link nav-icon-eye" href="/envconfig/intro">环境配置</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/logger/introduce">日志监控</a></li><li><a class="dropdown__link" href="/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">开发工具</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/ai/cloudbase-ai-toolkit/">AI 开发工具</a></li><li><a class="dropdown__link" href="/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">解决方案</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/solutions/cloudbase-platform-edition/overview">平台集成方案</a></li><li><a class="dropdown__link" href="/solutions/vibe-coding-platform/overview">VibeCoding 方案</a></li><li><a class="dropdown__link" href="/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">API参考</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDK 文档</a></li><li><a class="dropdown__link" href="/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">接口文档</a></li><li><a class="dropdown__link" href="/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/error-code/basic">错误码</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多资源</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/changelog/">更新日志</a></li><li><a class="dropdown__link" href="/faq/">常见问题</a></li><li><a class="dropdown__link" href="/practices/introduce">最佳实践</a></li><li><a class="dropdown__link" href="/quick-start/migration/">迁移指南</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">价格文档</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">博客</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">关注公众号领福利</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">前往控制台</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>简体中文</a><ul class="dropdown__menu"><li><a href="/database/postgresql/supported-extensions" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-Hans">简体中文</a></li><li><a href="/en/database/postgresql/supported-extensions" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索 (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_mhZE"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Y1UP menuWithAnnouncementBar_fPny"><div class="sidebar-switcher"><div class="sidebar-switcher-group-title">数据库</div><div class="sidebar-switcher-control"><button class="sidebar-switcher-current" type="button"><span class="sidebar-switcher-label">PostgreSQL</span><svg width="12" height="12" viewBox="0 0 12 12" fill="none" class="sidebar-switcher-arrow"><path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div></div><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">PostgreSQL 数据库</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/initialization"><span>概述</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">基础入门</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/connecting-to-postgresql"><span>连接数据库</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/import-data"><span>导入数据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/secure-data"><span>安全访问</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">使用数  据库：基础</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/tables"><span>表、视图与数据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/arrays"><span>数组</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/data-index"><span>索引管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/foreign-key"><span>外键配置</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/http/relate-query"><span>关联关系查询</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/json"><span>JSON 与非结构化数据</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/full-text-search"><span>全文检索</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item sidebar-external"><a class="menu__link" tabindex="0" href="/http-api/pgdb/postgresql-restful-api"><span>通过 HTTP API 访问</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">使用数据库：进阶</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/enums"><span>枚举类型</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/functions"><span>数据库函数</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/triggers"><span>触发器</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/transactions"><span>事务</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/connection-management"><span>连接管理</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">权限与安全</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/data-permission"><span>基础权限</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/roles"><span>角色与权限</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">配置、优化与运维</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/query-optimization"><span>查询优化</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/logs-monitoring"><span>日志与监控</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/database-management"><span>数据库管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/backup"><span>备份与回档</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/errorcode"><span>错误码</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active" tabindex="0">扩展</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/extensions"><span>扩展管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/database/postgresql/supported-extensions"><span>支持的扩展</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/pg-doc"><span>pg_doc Document 插件</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/pgvector"><span>pgvector</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/tencentdb-scf"><span>tencentdb_scf</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">框架与工具</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/framework-quickstarts/pg/mp"><span>微信小程序</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/framework-quickstarts/pg/react"><span>React</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/framework-quickstarts/pg/vue"><span>Vue</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/nodejs-cloud-function"><span>Node.js 与云函数</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/dmc-data-manage"><span>DMC 数据库管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item sidebar-external"><a class="menu__link" tabindex="0" href="/cli-v1/db/postgresql/management"><span>通过 CLI 使用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item sidebar-external"><a class="menu__link" tabindex="0" href="/recipes/add-rag-with-pgvector-cloudbase"><span>pgvector RAG</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">故障排查</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/troubleshooting/"><span>故障排查概览</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/troubleshooting/common-errors"><span>常见错误速查</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/troubleshooting/connection"><span>连接失败</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/troubleshooting/permission"><span>权限与 RLS 问题</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/troubleshooting/schema-cache"><span>Schema Cache 问题</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/troubleshooting/backup-restore"><span>备份与恢复问题</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/database/postgresql/faq"><span>常见问题</span></a></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">PostgreSQL 数据库</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">扩展</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">支持的扩展</span></li></ul></nav></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>支持的扩展</h1></header>
+<p>本文列出 CloudBase PostgreSQL 当前提供的扩展。扩展支持范围、版本和权限要求可能随实例版本变化，请以实际数据库查询结果和控制台展示为准。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="extension-overview">扩展总览<a href="#extension-overview" class="hash-link" aria-label="扩展总览的直接链接" title="扩展总览的直接链接" translate="no">​</a></h2>
+<table><thead><tr><th>扩展</th><th>版本</th><th>功能</th></tr></thead><tbody><tr><td><a href="#address-standardizer"><code>address_standardizer</code></a></td><td>3.5.0</td><td>地址解析和标准化，常用于地理编码前的数据清洗。</td></tr><tr><td><a href="#address-standardizer-data-us"><code>address_standardizer_data_us</code></a></td><td>3.5.0</td><td>美国地址标准化示例数据集。</td></tr><tr><td><a href="#age"><code>age</code></a></td><td>1.5.0</td><td>Apache AGE 图数据库能力，可在 PostgreSQL 中处理图数据。</td></tr><tr><td><a href="#amcheck"><code>amcheck</code></a></td><td>1.4</td><td>检查索引和关系完整性，适合低层数据一致性诊断。</td></tr><tr><td><a href="#autoinc"><code>autoinc</code></a></td><td>1.0</td><td>通过触发器自动维护自增字段。</td></tr><tr><td><a href="#bloom"><code>bloom</code></a></td><td>1.0</td><td>Bloom 索引访问方法，适合多列等值过滤的签名索引。</td></tr><tr><td><a href="#bool-plperl"><code>bool_plperl</code></a></td><td>1.0</td><td>在 bool 与 PL/Perl 之间做类型转换。</td></tr><tr><td><a href="#btree-gin"><code>btree_gin</code></a></td><td>1.3</td><td>为常见 B-tree 数据类型提供 GIN 索引支持。</td></tr><tr><td><a href="#btree-gist"><code>btree_gist</code></a></td><td>1.7</td><td>为常见 B-tree 数据类型提供 GiST 索引支持。</td></tr><tr><td><a href="#chkpass"><code>chkpass</code></a></td><td>1.0</td><td>自动加密密码的数据类型。</td></tr><tr><td><a href="#citext"><code>citext</code></a></td><td>1.6</td><td>大小写不敏感的文本类型。</td></tr><tr><td><a href="#cos-fdw"><code>cos_fdw</code></a></td><td>1.0</td><td>访问腾讯云 COS 平面文件的外部数据封装器。</td></tr><tr><td><a href="#count-distinct"><code>count_distinct</code></a></td><td>3.0.2</td><td>COUNT(DISTINCT ...) 的替代聚合实现，可配合 HashAggregate 使用。</td></tr><tr><td><a href="#cube"><code>cube</code></a></td><td>1.5</td><td>多维立方体数据类型。</td></tr><tr><td><a href="#dblink"><code>dblink</code></a></td><td>1.2</td><td>从当前数据库连接并查询其他 PostgreSQL 数据库。</td></tr><tr><td><a href="#decoderbufs"><code>decoderbufs</code></a></td><td>0.1.0</td><td>使用 Protocol Buffer 格式输出 WAL 变更的逻辑解码插件。</td></tr><tr><td><a href="#dict-int"><code>dict_int</code></a></td><td>1.0</td><td>整数全文检索字典模板。</td></tr><tr><td><a href="#dict-xsyn"><code>dict_xsyn</code></a></td><td>1.0</td><td>扩展同义词全文检索字典模板。</td></tr><tr><td><a href="#earthdistance"><code>earthdistance</code></a></td><td>1.2</td><td>计算地球表面大圆距离。</td></tr><tr><td><a href="#fuzzystrmatch"><code>fuzzystrmatch</code></a></td><td>1.2</td><td>字符串相似度和距离计算。</td></tr><tr><td><a href="#hll"><code>hll</code></a></td><td>2.18</td><td>HyperLogLog 数据类型，适合近似去重统计。</td></tr><tr><td><a href="#hstore"><code>hstore</code></a></td><td>1.8</td><td>键值对集合数据类型。</td></tr><tr><td><a href="#hstore-plperl"><code>hstore_plperl</code></a></td><td>1.0</td><td>在 hstore 与 PL/Perl 之间做类型转换。</td></tr><tr><td><a href="#hypopg"><code>hypopg</code></a></td><td>1.4.1</td><td>创建假设索引，用于评估索引效果而不真正建索引。</td></tr><tr><td><a href="#imgsmlr"><code>imgsmlr</code></a></td><td>1.0</td><td>图片相似度模块。</td></tr><tr><td><a href="#insert-username"><code>insert_username</code></a></td><td>1.0</td><td>跟踪表数据变更用户。</td></tr><tr><td><a href="#intagg"><code>intagg</code></a></td><td>1.1</td><td>整数聚合与枚举扩展，已过时。</td></tr><tr><td><a href="#intarray"><code>intarray</code></a></td><td>1.5</td><td>一维整数数组的函数、操作符和索引支持。</td></tr><tr><td><a href="#isn"><code>isn</code></a></td><td>1.2</td><td>国际产品编号标准相关数据类型。</td></tr><tr><td><a href="#jsonb-plperl"><code>jsonb_plperl</code></a></td><td>1.0</td><td>在 jsonb 与 PL/Perl 之间做类型转换。</td></tr><tr><td><a href="#lo"><code>lo</code></a></td><td>1.1</td><td>Large Object 维护能力。</td></tr><tr><td><a href="#ltree"><code>ltree</code></a></td><td>1.3</td><td>层级树状结构路径数据类型。</td></tr><tr><td><a href="#moddatetime"><code>moddatetime</code></a></td><td>1.0</td><td>自动维护最后修改时间。</td></tr><tr><td><a href="#mysql-fdw"><code>mysql_fdw</code></a></td><td>1.2</td><td>查询 MySQL 服务的外部数据封装器。</td></tr><tr><td><a href="#pageinspect"><code>pageinspect</code></a></td><td>1.12</td><td>低层检查数据库页面内容。</td></tr><tr><td><a href="#pg-bigm"><code>pg_bigm</code></a></td><td>1.2</td><td>基于 bigram 的文本相似度和索引搜索。</td></tr><tr><td><a href="#pg-buffercache"><code>pg_buffercache</code></a></td><td>1.5</td><td>查看共享缓冲区缓存内容。</td></tr><tr><td><a href="#pg-cron"><code>pg_cron</code></a></td><td>1.6</td><td>PostgreSQL 内部任务调度器。</td></tr><tr><td><a href="#pg-freespacemap"><code>pg_freespacemap</code></a></td><td>1.2</td><td>检查空闲空间映射。</td></tr><tr><td><a href="#pg-hashids"><code>pg_hashids</code></a></td><td>1.3</td><td>Hashids 编码能力。</td></tr><tr><td><a href="#pg-hint-plan"><code>pg_hint_plan</code></a></td><td>1.7.0</td><td>为查询优化器提供 hint。</td></tr><tr><td><a href="#pg-ivm"><code>pg_ivm</code></a></td><td>1.11</td><td>增量维护物化视图。</td></tr><tr><td><a href="#pg-jieba"><code>pg_jieba</code></a></td><td>1.1.1</td><td>中文全文检索分词解析器。</td></tr><tr><td><a href="#pg-partman"><code>pg_partman</code></a></td><td>4.7.4</td><td>按时间或 ID 管理分区表。</td></tr><tr><td><a href="#pg-prewarm"><code>pg_prewarm</code></a></td><td>1.2</td><td>预热关系数据到缓存。</td></tr><tr><td><a href="#pg-repack"><code>pg_repack</code></a></td><td>1.5.2</td><td>以较低锁影响重整表和索引。</td></tr><tr><td><a href="#pg-similarity"><code>pg_similarity</code></a></td><td>1.0</td><td>相似度查询支持。</td></tr><tr><td><a href="#pg-sphere"><code>pg_sphere</code></a></td><td>1.5.1</td><td>球面对象、函数、操作符和索引支持。</td></tr><tr><td><a href="#pg-squeeze"><code>pg_squeeze</code></a></td><td>1.9</td><td>移除关系中的未使用空间。</td></tr><tr><td><a href="#pg-stat-log"><code>pg_stat_log</code></a></td><td>1.0</td><td>跟踪 SQL 运行时执行统计。</td></tr><tr><td><a href="#pg-stat-statements"><code>pg_stat_statements</code></a></td><td>1.11</td><td>跟踪 SQL 计划与执行统计。</td></tr><tr><td><a href="#pg-surgery"><code>pg_surgery</code></a></td><td>1.0</td><td>对损坏关系执行低层修复操作。</td></tr><tr><td><a href="#pg-trgm"><code>pg_trgm</code></a></td><td>1.6</td><td>基于 trigram 的文本相似度和索引搜索 。</td></tr><tr><td><a href="#pg-visibility"><code>pg_visibility</code></a></td><td>1.2</td><td>检查可见性映射和页级可见性信息。</td></tr><tr><td><a href="#pg-walinspect"><code>pg_walinspect</code></a></td><td>1.1</td><td>检查 WAL 内容。</td></tr><tr><td><a href="#pgagent"><code>pgagent</code></a></td><td>4.2</td><td>PostgreSQL 任务调度器。</td></tr><tr><td><a href="#pgaudit"><code>pgaudit</code></a></td><td>17.0</td><td>审计日志能力。</td></tr><tr><td><a href="#pgcrypto"><code>pgcrypto</code></a></td><td>1.3</td><td>加密、摘要和随机值函数。</td></tr><tr><td><a href="#pglogical"><code>pglogical</code></a></td><td>2.4.5</td><td>PostgreSQL 逻辑复制。</td></tr><tr><td><a href="#pglogical-origin"><code>pglogical_origin</code></a></td><td>1.0.0</td><td>PostgreSQL 9.4 升级兼容占位扩展。</td></tr><tr><td><a href="#pgrouting"><code>pgrouting</code></a></td><td>3.6.2</td><td>pgRouting 路由计算扩展。</td></tr><tr><td><a href="#pgrowlocks"><code>pgrowlocks</code></a></td><td>1.2</td><td>显示行级锁信息。</td></tr><tr><td><a href="#pgstattuple"><code>pgstattuple</code></a></td><td>1.5</td><td>显示 tuple 级统计信息。</td></tr><tr><td><a href="#pldbgapi"><code>pldbgapi</code></a></td><td>1.1</td><td>PL/pgSQL 服务端调试支持。</td></tr><tr><td><a href="#plperl"><code>plperl</code></a></td><td>1.0</td><td>PL/Perl 过程语言。</td></tr><tr><td><a href="#plpgsql"><code>plpgsql</code></a></td><td>1.0</td><td>PL/pgSQL 过程语言。</td></tr><tr><td><a href="#pltcl"><code>pltcl</code></a></td><td>1.0</td><td>PL/Tcl 过程语言。</td></tr><tr><td><a href="#plv8"><code>plv8</code></a></td><td>3.2.3</td><td>受信任 PL/JavaScript(v8) 过程语言。</td></tr><tr><td><a href="#postgis"><code>postgis</code></a></td><td>3.5.0</td><td>PostGIS 几何和地理空间类型与函数。</td></tr><tr><td><a href="#postgis-raster"><code>postgis_raster</code></a></td><td>3.5.0</td><td>PostGIS 栅格类型和函数。</td></tr><tr><td><a href="#postgis-sfcgal"><code>postgis_sfcgal</code></a></td><td>3.5.0</td><td>PostGIS SFCGAL 函数。</td></tr><tr><td><a href="#postgis-tiger-geocoder"><code>postgis_tiger_geocoder</code></a></td><td>3.5.0</td><td>PostGIS tiger 地理编码和反向地理编码。</td></tr><tr><td><a href="#postgis-topology"><code>postgis_topology</code></a></td><td>3.5.0</td><td>PostGIS 拓扑空间类型和函数。</td></tr><tr><td><a href="#postgres-fdw"><code>postgres_fdw</code></a></td><td>1.1</td><td>查询远程 PostgreSQL 服务的外部数据封装器。</td></tr><tr><td><a href="#rdkit"><code>rdkit</code></a></td><td>4.7.0</td><td>化学信息学能力。</td></tr><tr><td><a href="#rds-server-handler"><code>rds_server_handler</code></a></td><td>1.0</td><td>TencentDB PostgreSQL 服务处理扩展。</td></tr><tr><td><a href="#refint"><code>refint</code></a></td><td>1.0</td><td>实现引用完整性的函数，已过时。</td></tr><tr><td><a href="#roaringbitmap"><code>roaringbitmap</code></a></td><td>0.5</td><td>Roaring Bitmap 支持。</td></tr><tr><td><a href="#rum"><code>rum</code></a></td><td>1.3</td><td>RUM 索引访问方法。</td></tr><tr><td><a href="#seg"><code>seg</code></a></td><td>1.4</td><td>线段或浮点区间数据类型。</td></tr><tr><td><a href="#sequential-uuids"><code>sequential_uuids</code></a></td><td>1.0.2</td><td>生成顺序 UUID。</td></tr><tr><td><a href="#smlar"><code>smlar</code></a></td><td>1.0</td><td>一维数组相似度计算。</td></tr><tr><td><a href="#sslinfo"><code>sslinfo</code></a></td><td>1.2</td><td>SSL 证书信息。</td></tr><tr><td><a href="#starrocks-fdw"><code>starrocks_fdw</code></a></td><td>1.2</td><td>查询 StarRocks 服务的外部数据封装器。</td></tr><tr><td><a href="#tablefunc"><code>tablefunc</code></a></td><td>1.0</td><td>整表操作函数，包括 crosstab。</td></tr><tr><td><a href="#tcn"><code>tcn</code></a></td><td>1.0</td><td>触发式变更通知。</td></tr><tr><td><a href="#tencentdb-ai"><code>tencentdb_ai</code></a></td><td>1.3</td><td>腾讯云数据  库 AI 扩展，可集成 prompt、embedding 等 AI 能力。</td></tr><tr><td><a href="#tencentdb-failover-slot"><code>tencentdb_failover_slot</code></a></td><td>1.1</td><td>故障切换 slot 相关函数。</td></tr><tr><td><a href="#tencentdb-scf"><code>tencentdb_scf</code></a></td><td>1.0</td><td>安全受控调用 CloudBase 云函数，支持同步/异步调用、配合 pg_cron 定时触发。</td></tr><tr><td><a href="#tencentdb-index-advisor"><code>tencentdb_index_advisor</code></a></td><td>1.0</td><td>TencentDB PostgreSQL 查询和工作负载级索引顾问。</td></tr><tr><td><a href="#tencentdb-serverless"><code>tencentdb_serverless</code></a></td><td>1.0</td><td>serverless 模式支持扩展。</td></tr><tr><td><a href="#tencentdb-sql-throttling"><code>tencentdb_sql_throttling</code></a></td><td>1.0</td><td>跟踪 SQL 计划与执行统计。</td></tr><tr><td><a href="#tencentdb-superuser"><code>tencentdb_superuser</code></a></td><td>1.1</td><td>升级支持扩展。</td></tr><tr><td><a href="#tencentdb-system-stat"><code>tencentdb_system_stat</code></a></td><td>1.0</td><td>跟踪 SQL 执行统计。</td></tr><tr><td><a href="#tencentdb-wal-stat"><code>tencentdb_wal_stat</code></a></td><td>1.0</td><td>按关系聚合 WAL 统计。</td></tr><tr><td><a href="#timescaledb"><code>timescaledb</code></a></td><td>2.23.0</td><td>时序数据扩展，支持高吞吐写入和复杂查询。</td></tr><tr><td><a href="#topn"><code>topn</code></a></td><td>2.6.0</td><td>Top-N JSONB 类型。</td></tr><tr><td><a href="#tsm-system-rows"><code>tsm_system_rows</code></a></td><td>1.0</td><td>按行数限制的 TABLESAMPLE 方法。</td></tr><tr><td><a href="#tsm-system-time"><code>tsm_system_time</code></a></td><td>1.0</td><td>按时间限制的 TABLESAMPLE 方法。</td></tr><tr><td><a href="#unaccent"><code>unaccent</code></a></td><td>1.1</td><td>移除重音字符的全文检索字典。</td></tr><tr><td><a href="#uuid-ossp"><code>uuid-ossp</code></a></td><td>1.1</td><td>生成 UUID。</td></tr><tr><td><a href="#vector"><code>vector</code></a></td><td>0.8.2</td><td>向量数据类型和 ivfflat、hnsw 索引方法。</td></tr><tr><td><a href="#vectorscale"><code>vectorscale</code></a></td><td>0.9.0</td><td>用于向量搜索的 diskann 访问方法。</td></tr><tr><td><a href="#xml2"><code>xml2</code></a></td><td>1.1</td><td>XPath 查询和 XSLT 支持。</td></tr><tr><td><a href="#zhparser"><code>zhparser</code></a></td><td>2.2</td><td>中文全文检索解析器。</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="usage-guidance">使用建议<a href="#usage-guidance" class="hash-link" aria-label="使用建议的直接链接" title="使用建议的直接链接" translate="no">​</a></h2>
+<ul>
+<li class="">本文采用扩展总览加单项说明的方式组织，便于按功能查找扩展。CloudBase PostgreSQL 的扩展支持范围以当前实例查询结果为准。</li>
+<li class="">使用扩展前，建议先在测试环境验证权限、性能、备份恢复和跨环境迁移影响。</li>
+<li class="">FDW、调度、审计、复制、过程语言、低层诊断等扩展通常需要更严格的权限治理。</li>
+<li class="">扩展提供的是数据库能力，不建议把低层诊断、复制、调度或外部数据访问能力直接暴露给前端。</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="extension-details">扩展介绍<a href="#extension-details" class="hash-link" aria-label="扩展介绍的直接链接" title="扩展介绍的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="address-standardizer">address_standardizer<a href="#address-standardizer" class="hash-link" aria-label="address_standardizer的直接链接" title="address_standardizer的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>address_standardizer</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/Extras.html">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：地址解析和标准化，常用于地理编码前的数据清洗。</li>
+<li class=""><strong>使用说明</strong>：在导入用户地址、门店地址或物流地址后，可先用该扩展把自由文本地址拆解为街道、城市、邮编等结构化字段，再进入地理编码或地址匹配流程。</li>
+<li class=""><strong>注意事项</strong>：地址解析依赖规则和数据集，建议对目标国家或地区做样本校验；不要把解析结果直接作为唯一地址校验依据。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="address-standardizer-data-us">address_standardizer_data_us<a href="#address-standardizer-data-us" class="hash-link" aria-label="address_standardizer_data_us的直接链接" title="address_standardizer_data_us的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>address_standardizer_data_us</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/Extras.html">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：美国地址标准化示例数据集。</li>
+<li class=""><strong>使用说明</strong>：配合 address_standardizer 处理美国地址样例或美国地址标准化验证，适合演示、测试和美国地址数据清洗。</li>
+<li class=""><strong>注意事项</strong>：该数据集面向美国地址，不适合作为中国或其他地区地址标准化规则；跨地区业务应准备本地化规则和测试集。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="age">age<a href="#age" class="hash-link" aria-label="age的直接链接" title="age的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>age</code></li>
+<li class=""><strong>版本</strong>：1.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://age.apache.org/overview/">Apache AGE 官网</a></li>
+<li class=""><strong>功能</strong>：Apache AGE 图数据库能力，可在 PostgreSQL 中处理图数据。</li>
+<li class=""><strong>使用说明</strong>：用于在 PostgreSQL 中建模图结构，例如用户关系、知识图谱、依赖关系和路径查询。适合需要图遍历和关系推理的场景。</li>
+<li class=""><strong>注意事项</strong>：图查询模型与传统关系模型不同，引入前应确认查询语言、索引方式和备份恢复流程；复杂图遍历可能带来较高计算成本。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="amcheck">amcheck<a href="#amcheck" class="hash-link" aria-label="amcheck的直接链接" title="amcheck的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>amcheck</code></li>
+<li class=""><strong>版本</strong>：1.4</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/amcheck.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：检查索引和关系完整性，适合低层数据一致性诊断。</li>
+<li class=""><strong>使用说明</strong>：在怀疑索引损坏、关系页异常或需要做低层一致性巡检时使用，通过校验函数检查 B-tree 等结构。</li>
+<li class=""><strong>注意事项</strong>：该扩展偏底层诊断，通常由 DBA 或运维人员使用；校验大对象可能消耗 IO，建议在低峰期执行。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="autoinc">autoinc<a href="#autoinc" class="hash-link" aria-label="autoinc的直接链接" title="autoinc的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>autoinc</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：通过触发器自动维护自增字段。</li>
+<li class=""><strong>使用说明</strong>：用于旧表或兼容场景中通过触发器为字段生成递增值。新表优先使用 identity、serial 或序列。</li>
+<li class=""><strong>注意事项</strong>：触发器自增容易隐藏写入逻辑，新项目不建议优先使用；并发写入场景应确认唯一性和事务行为。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bloom">bloom<a href="#bloom" class="hash-link" aria-label="bloom的直接链接" title="bloom的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>bloom</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/bloom.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：Bloom 索引访问方法，适合多列等值过滤的签名索引。</li>
+<li class=""><strong>使用说明</strong>：当查询经常按多个列组合做等值过滤，且不适合建立大量组合 B-tree 索引时，可考虑 Bloom 索引。</li>
+<li class=""><strong>注意事项</strong>：Bloom 索引存在误判，需要回表复查；它不适合范围查询，也不一定替代精确 B-tree 组合索引。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bool-plperl">bool_plperl<a href="#bool-plperl" class="hash-link" aria-label="bool_plperl的直接链接" title="bool_plperl的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>bool_plperl</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/plperl-funcs.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：在 bool 与 PL/Perl 之间做类型转换。</li>
+<li class=""><strong>使用说明</strong>：在 PL/Perl 函数需要处理 PostgreSQL boolean 类型时使用，让过程语言函数能正确读写 bool 值。</li>
+<li class=""><strong>注意事项</strong>：过程语言扩展会扩大数据库内可执行逻辑范围，应  限制函数创建权限并避免在前端可调用函数中执行不受控逻辑。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="btree-gin">btree_gin<a href="#btree-gin" class="hash-link" aria-label="btree_gin的直接链接" title="btree_gin的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>btree_gin</code></li>
+<li class=""><strong>版本</strong>：1.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/btree-gin.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：为常见 B-tree 数据类型提供 GIN 索引支持。</li>
+<li class=""><strong>使用说明</strong>：在一个 GIN 索引中组合普通标量字段与数组、全文检索或 JSONB 字段时使用，减少多索引组合成本。</li>
+<li class=""><strong>注意事项</strong>：GIN 索引写入成本较高；如果只是普通等值或范围查询，优先使用 B-tree。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="btree-gist">btree_gist<a href="#btree-gist" class="hash-link" aria-label="btree_gist的直接链接" title="btree_gist的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>btree_gist</code></li>
+<li class=""><strong>版本</strong>：1.7</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/btree-gist.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：为常见 B-tree 数据类型提供 GiST 索引支持。</li>
+<li class=""><strong>使用说明</strong>：在 GiST 索引或排他约束中使用普通标量类型，例如时间区间冲突检测、范围约束和空间数据组合约束。</li>
+<li class=""><strong>注意事项</strong>：GiST 索引适合特定操作符族；普通排序和等值查询仍优先考虑 B-tree。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="chkpass">chkpass<a href="#chkpass" class="hash-link" aria-label="chkpass的直接链接" title="chkpass的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>chkpass</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/9/chkpass.html">PostgreSQL 历史文档</a></li>
+<li class=""><strong>功能</strong>：自动加密密码的数据类型。</li>
+<li class=""><strong>使用说明</strong>：用于兼容旧系统中数据库内密码字段的自动加密存储。新应用通常应使用专门的认证服务和成熟密码哈希方案。</li>
+<li class=""><strong>注意事项</strong>：该扩展已不适合作为现代认证体系的首选；不要自行设计登录密码存储方案。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="citext">citext<a href="#citext" class="hash-link" aria-label="citext的直接链接" title="citext的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>citext</code></li>
+<li class=""><strong>版本</strong>：1.6</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/citext.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：大小写不敏感的文本类型。</li>
+<li class=""><strong>使用说明</strong>：用于邮箱、用户名、标签等大小写不敏感字段，避免每次查询都写 lower(column) 比较。</li>
+<li class=""><strong>注意事项</strong>：使用 citext 前要确认唯一性语义，例如邮箱是否需要大小写不敏感唯一约束；排序和本地化规则仍需测试。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cos-fdw">cos_fdw<a href="#cos-fdw" class="hash-link" aria-label="cos_fdw的直接链接" title="cos_fdw的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>cos_fdw</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/47390">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：访问腾讯云 COS 平面文件的外部数据封装器。</li>
+<li class=""><strong>使用说明</strong>：用于把 COS 中的结构化文件映射为外部表，适合低频数据导入、分析或临时查询。</li>
+<li class=""><strong>注意事项</strong>：FDW 查询受外部存储、网络和文件格式影响，不建议承载高频在线交易查询；注意 COS 访问凭据管理。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="count-distinct">count_distinct<a href="#count-distinct" class="hash-link" aria-label="count_distinct的直接链接" title="count_distinct的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>count_distinct</code></li>
+<li class=""><strong>版本</strong>：3.0.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://pgxn.org/dist/count_distinct/">PGXN</a></li>
+<li class=""><strong>功能</strong>：COUNT(DISTINCT ...) 的替代聚合实现，可配合 HashAggregate 使用。</li>
+<li class=""><strong>使用说明</strong>：在大规模聚合去重统计中用于优化 count distinct 的执行方式，适合分析类查询。</li>
+<li class=""><strong>注意事项</strong>：效果依赖数据分布和执行计划，上线前应对比 EXPLAIN ANALYZE；不要盲目替换所有 COUNT(DISTINCT)。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cube">cube<a href="#cube" class="hash-link" aria-label="cube的直接链接" title="cube的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>cube</code></li>
+<li class=""><strong>版本</strong>：1.5</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/cube.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：多维立方体数据类型。</li>
+<li class=""><strong>使用说明</strong>：用于多维点、范围和相似度计算，常与 GiST 索引配合处理简单向量或多维数据。</li>
+<li class=""><strong>注意事项</strong>：复杂向量检索优先考虑 vector/vectorscale；cube 更适合较低维的几何或多维数值场景。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dblink">dblink<a href="#dblink" class="hash-link" aria-label="dblink的直接链接" title="dblink的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>dblink</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/dblink.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：从当前数据库连接并查询其他 PostgreSQL 数据库。</li>
+<li class=""><strong>使用说明</strong>：用于跨 PostgreSQL 数据库执行查询或迁移少量数据，可在函数或 SQL 中拉取远端结果。</li>
+<li class=""><strong>注意事项</strong>：连接信息和凭据需要严格保护；跨库查询不适合高频业务路径，网络波动会直接影响查询稳定性。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="decoderbufs">decoderbufs<a href="#decoderbufs" class="hash-link" aria-label="decoderbufs的直接链接" title="decoderbufs的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>decoderbufs</code></li>
+<li class=""><strong>版本</strong>：0.1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/debezium/postgres-decoderbufs">GitHub</a></li>
+<li class=""><strong>功能</strong>：使用 Protocol Buffer 格式输出 WAL 变更的逻辑解码插件。</li>
+<li class=""><strong>使用说明</strong>：用于逻辑复制或变更数据捕获，将 WAL 变化编码为 Protocol Buffer 供下游消费。</li>
+<li class=""><strong>注意事项</strong>：需要理解复制槽、WAL 保留和消费延迟；下游长期不消费可能导致 WAL 积压。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dict-int">dict_int<a href="#dict-int" class="hash-link" aria-label="dict_int的直接链接" title="dict_int的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>dict_int</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/dict-int.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：整数全文检索字典模板。</li>
+<li class=""><strong>使用说明</strong>：用于全文检索配置中处理整数 token，例如商品编号、版本号、分类编码等数字词项。</li>
+<li class=""><strong>注意事项</strong>：全文检索字典需要和 text search configuration 配套配置；修改分词策略后应重建或刷新相关索引。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dict-xsyn">dict_xsyn<a href="#dict-xsyn" class="hash-link" aria-label="dict_xsyn的直接链接" title="dict_xsyn的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>dict_xsyn</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/dict-xsyn.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：扩展同义词全文检索字典模板。</li>
+<li class=""><strong>使用说明</strong>：用于全文检索中的同义词扩展，例如品牌别名、业务术语别名或多写法匹配。</li>
+<li class=""><strong>注意事项</strong>：同义词字典会影响召回范围，应通过样本查询验证误召回；词库维护需要纳入发布流程。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="earthdistance">earthdistance<a href="#earthdistance" class="hash-link" aria-label="earthdistance的直接链接" title="earthdistance的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>earthdistance</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/earthdistance.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：计算地球表面大圆距离。</li>
+<li class=""><strong>使用说明</strong>：用于经纬度点之间的距离计算、附近门店筛选和粗粒度地理范围查询，常与 cube 配合使用。</li>
+<li class=""><strong>注意事项</strong>：地球距离计算依赖坐标合法性；复杂 GIS 查询、投影和空间索引建议使用 PostGIS。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="fuzzystrmatch">fuzzystrmatch<a href="#fuzzystrmatch" class="hash-link" aria-label="fuzzystrmatch的直接链接" title="fuzzystrmatch的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>fuzzystrmatch</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/fuzzystrmatch.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：字符串相似度和距离计算。</li>
+<li class=""><strong>使用说明</strong>：用于拼写纠错、模糊匹配、音近匹配或数据清洗中的近似字符串比较。</li>
+<li class=""><strong>注意事项</strong>：相似度计算可能较耗 CPU；在线查询应限制候选集，避免对大表全量逐行计算。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hll">hll<a href="#hll" class="hash-link" aria-label="hll的直接链接" title="hll的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>hll</code></li>
+<li class=""><strong>版本</strong>：2.18</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/citusdata/postgresql-hll">GitHub</a></li>
+<li class=""><strong>功能</strong>：HyperLogLog 数据类型，适合近似去重统计。</li>
+<li class=""><strong>使用说明</strong>：用于 UV、独立用户数、去重设备数等大规模近似统计，降低精确 distinct   的成本。</li>
+<li class=""><strong>注意事项</strong>：HLL 是近似结果，不适合财务、库存、结算等需要精确计数的场景。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hstore">hstore<a href="#hstore" class="hash-link" aria-label="hstore的直接链接" title="hstore的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>hstore</code></li>
+<li class=""><strong>版本</strong>：1.8</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/hstore.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：键值对集合数据类型。</li>
+<li class=""><strong>使用说明</strong>：用于存储简单 key-value 属性，例如稀疏配置、标签属性和兼容旧系统数据。</li>
+<li class=""><strong>注意事项</strong>：新项目通常优先考虑 jsonb；如果需要复杂嵌套结构，hstore 不如 jsonb 灵活。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hstore-plperl">hstore_plperl<a href="#hstore-plperl" class="hash-link" aria-label="hstore_plperl的直接链接" title="hstore_plperl的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>hstore_plperl</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/hstore.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：在 hstore 与 PL/Perl 之间做类型转换。</li>
+<li class=""><strong>使用说明</strong>：在 PL/Perl 函数中处理 hstore 字段时使用，让函数能读取和返回 hstore 数据。</li>
+<li class=""><strong>注意事项</strong>：结合过程语言使用时，应限制函数创建和执行权限，避免把复杂业务脚本放入数据库。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hypopg">hypopg<a href="#hypopg" class="hash-link" aria-label="hypopg的直接链接" title="hypopg的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>hypopg</code></li>
+<li class=""><strong>版本</strong>：1.4.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/HypoPG/hypopg">GitHub</a></li>
+<li class=""><strong>功能</strong>：创建假设索引，用于评估索引效果而不真正建索引。</li>
+<li class=""><strong>使用说明</strong>：用于索引设计阶段评估某个索引是否可能改善查询计划，适合查询优化和索引评审。</li>
+<li class=""><strong>注意事项</strong>：假设索引不会真实加速查询，只影响规划评估；最终仍需创建真实索引并压测验证。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="imgsmlr">imgsmlr<a href="#imgsmlr" class="hash-link" aria-label="imgsmlr的直接链接" title="imgsmlr的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>imgsmlr</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/postgrespro/imgsmlr">GitHub</a></li>
+<li class=""><strong>功能</strong>：图片相似度模块。</li>
+<li class=""><strong>使用说明</strong>：用于在数据库内进行图片相似度比较或相似图片检索的实验性/专用场景。</li>
+<li class=""><strong>注意事项</strong>：图片特征存储和相似度计算可能占用较多资源；大规模图片检索通常建议使用专门向量检索方案。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="insert-username">insert_username<a href="#insert-username" class="hash-link" aria-label="insert_username的直接链接" title="insert_username的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>insert_username</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：跟踪表数据变更用户。</li>
+<li class=""><strong>使用说明</strong>：用于通过触发器记录插入或修改数据的数据库用户名，适合审计字段自动填充。</li>
+<li class=""><strong>注意事项</strong>：记录的是数据库会话用户，不一定等同于业务用户；前端用户身份应结合 auth.uid() 或业务 user_id。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="intagg">intagg<a href="#intagg" class="hash-link" aria-label="intagg的直接链接" title="intagg的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>intagg</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/intagg.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：整数聚合与枚举扩展，已过时。</li>
+<li class=""><strong>使用说明</strong>：用于兼容旧 SQL 中的整数聚合函数。新查询优先使用 PostgreSQL 内置聚合和数组函数。</li>
+<li class=""><strong>注意事项</strong>：该扩展已过时，不建议在新业务中引入。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="intarray">intarray<a href="#intarray" class="hash-link" aria-label="intarray的直接链接" title="intarray的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>intarray</code></li>
+<li class=""><strong>版本</strong>：1.5</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/intarray.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：一维整数数组的函数、操作符和索引支持。</li>
+<li class=""><strong>使用说明</strong>：用于整数数组的包含、交集、排序、去重和索引查询，适合标签 ID、分类 ID 等整数集合。</li>
+<li class=""><strong>注意事项</strong>：数组适合小规模集合；如果集合元素需要独立权限、统计或  关联，建议拆成关联表。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="isn">isn<a href="#isn" class="hash-link" aria-label="isn的直接链接" title="isn的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>isn</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/isn.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：国际产品编号标准相关数据类型。</li>
+<li class=""><strong>使用说明</strong>：用于 ISBN、EAN、UPC、ISMN 等国际编号的格式校验和存储。</li>
+<li class=""><strong>注意事项</strong>：只适合标准编号字段；导入历史数据前应处理格式不一致和非法编号。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="jsonb-plperl">jsonb_plperl<a href="#jsonb-plperl" class="hash-link" aria-label="jsonb_plperl的直接链接" title="jsonb_plperl的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>jsonb_plperl</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/datatype-json.html#DATATYPE-JSON-TRANSFORMS">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：在 jsonb 与 PL/Perl 之间做类型转换。</li>
+<li class=""><strong>使用说明</strong>：在 PL/Perl 函数中处理 jsonb 字段时使用，适合已有 Perl 数据处理逻辑迁移。</li>
+<li class=""><strong>注意事项</strong>：过程语言中的 JSON 处理逻辑应保持简单；复杂转换建议放在应用层或批处理任务中。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lo">lo<a href="#lo" class="hash-link" aria-label="lo的直接链接" title="lo的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>lo</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/lo.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：Large Object 维护能力。</li>
+<li class=""><strong>使用说明</strong>：用于维护 PostgreSQL Large Object，适合兼容老系统的大对象存储。</li>
+<li class=""><strong>注意事项</strong>：新业务通常不建议把大文件放入数据库；优先使用云存储，并在数据库中保存文件 URL 或元数据。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ltree">ltree<a href="#ltree" class="hash-link" aria-label="ltree的直接链接" title="ltree的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>ltree</code></li>
+<li class=""><strong>版本</strong>：1.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/ltree.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：层级树状结构路径数据类型。</li>
+<li class=""><strong>使用说明</strong>：用于组织架构、分类树、路径权限、菜单树等层级路径查询。</li>
+<li class=""><strong>注意事项</strong>：层级路径更新可能影响子树；设计路径格式和索引前应考虑节点移动频率。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="moddatetime">moddatetime<a href="#moddatetime" class="hash-link" aria-label="moddatetime的直接链接" title="moddatetime的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>moddatetime</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：自动维护最后修改时间。</li>
+<li class=""><strong>使用说明</strong>：用于通过触发器自动更新 updated_at 字段，减少应用层重复赋值。</li>
+<li class=""><strong>注意事项</strong>：触发器会增加写入时的隐式逻辑；需要在数据修复和批量导入时确认是否符合预期。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mysql-fdw">mysql_fdw<a href="#mysql-fdw" class="hash-link" aria-label="mysql_fdw的直接链接" title="mysql_fdw的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>mysql_fdw</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/EnterpriseDB/mysql_fdw">GitHub</a></li>
+<li class=""><strong>功能</strong>：查询 MySQL 服务的外部数据封装器。</li>
+<li class=""><strong>使用说明</strong>：用于从 PostgreSQL 查询 MySQL 表，适合迁移、对账、低频联邦查询或过渡期集成。</li>
+<li class=""><strong>注意事项</strong>：跨库查询依赖 MySQL 可用性和网络稳定性；高频业务读写建议同步数据或迁移到本地表。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pageinspect">pageinspect<a href="#pageinspect" class="hash-link" aria-label="pageinspect的直接链接" title="pageinspect的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pageinspect</code></li>
+<li class=""><strong>版本</strong>：1.12</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pageinspect.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：低层检查数据库页面内容。</li>
+<li class=""><strong>使用说明</strong>：用于检查表、索引页面的底层结构，辅助诊断损坏、膨胀或存储异常。</li>
+<li class=""><strong>注意事项</strong>：该扩展面向 DBA 诊断，不建议普通业务账号使用；错误解读底层信息可能导致误判。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-bigm">pg_bigm<a href="#pg-bigm" class="hash-link" aria-label="pg_bigm的直接链接" title="pg_bigm的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_bigm</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/pgbigm/pg_bigm">GitHub</a></li>
+<li class=""><strong>功能</strong>：基于 bigram 的文本相似度和索引搜索。</li>
+<li class=""><strong>使用说明</strong>：用于中文、日文等语言的双字词相似度搜索和模糊匹配。</li>
+<li class=""><strong>注意事项</strong>：效果依赖语料和查询模式；需要和 pg_trgm、zhparser、pg_jieba 对比后选择。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-buffercache">pg_buffercache<a href="#pg-buffercache" class="hash-link" aria-label="pg_buffercache的直接链接" title="pg_buffercache的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_buffercache</code></li>
+<li class=""><strong>版本</strong>：1.5</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgbuffercache.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：查看共享缓冲区缓存内容。</li>
+<li class=""><strong>使用说明</strong>：用于观察哪些关系页占用了 shared buffer，辅助分析缓存命中和热点表。</li>
+<li class=""><strong>注意事项</strong>：读取到的缓存内容是瞬时视图，不能替代长期监控；查询结果可能较底层。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-cron">pg_cron<a href="#pg-cron" class="hash-link" aria-label="pg_cron的直接链接" title="pg_cron的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_cron</code></li>
+<li class=""><strong>版本</strong>：1.6</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/citusdata/pg_cron">GitHub</a></li>
+<li class=""><strong>功能</strong>：PostgreSQL 内部任务调度器。</li>
+<li class=""><strong>使用说明</strong>：用于在数据库  内定时执行 SQL，例如定期汇总、清理过期数据、刷新统计表。</li>
+<li class=""><strong>注意事项</strong>：定时任务运行在数据库侧，避免执行长任务或外部依赖；任务失败告警和审计需要单独设计。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-freespacemap">pg_freespacemap<a href="#pg-freespacemap" class="hash-link" aria-label="pg_freespacemap的直接链接" title="pg_freespacemap的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_freespacemap</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgfreespacemap.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：检查空闲空间映射。</li>
+<li class=""><strong>使用说明</strong>：用于分析表和索引页中的空闲空间，辅助判断膨胀和维护需求。</li>
+<li class=""><strong>注意事项</strong>：属于低层诊断工具，通常配合 vacuum、repack 或统计信息使用。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-hashids">pg_hashids<a href="#pg-hashids" class="hash-link" aria-label="pg_hashids的直接链接" title="pg_hashids的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_hashids</code></li>
+<li class=""><strong>版本</strong>：1.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/iCyberon/pg_hashids">GitHub</a></li>
+<li class=""><strong>功能</strong>：Hashids 编码能力。</li>
+<li class=""><strong>使用说明</strong>：用于把数字 ID 编码为较短、非连续外显 ID，适合 URL 或公开编号展示。</li>
+<li class=""><strong>注意事项</strong>：Hashids 不是加密，不应作为安全授权依据；内部仍应使用真实主键和权限校验。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-hint-plan">pg_hint_plan<a href="#pg-hint-plan" class="hash-link" aria-label="pg_hint_plan的直接链接" title="pg_hint_plan的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_hint_plan</code></li>
+<li class=""><strong>版本</strong>：1.7.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://pg-hint-plan.readthedocs.io/">项目文档</a></li>
+<li class=""><strong>功能</strong>：为查询优化器提供 hint。</li>
+<li class=""><strong>使用说明</strong>：用于在特殊场景下通过 hint 影响执行计划，辅助处理优化器选择不佳的 SQL。</li>
+<li class=""><strong>注意事项</strong>：hint 会增加 SQL 与执行计划耦合，应作为最后手段；优先通过索引、统计信息和 SQL 改写优化。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-ivm">pg_ivm<a href="#pg-ivm" class="hash-link" aria-label="pg_ivm的直接链接" title="pg_ivm的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_ivm</code></li>
+<li class=""><strong>版本</strong>：1.11</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/sraoss/pg_ivm">GitHub</a></li>
+<li class=""><strong>功能</strong>：增量维护物化视图。</li>
+<li class=""><strong>使用说明</strong>：用于让物化视图在基础表变更时增量更新，适合预聚合和派生数据维护。</li>
+<li class=""><strong>注意事项</strong>：增量维护会增加写入成本；基础表高频写入时需评估总体吞吐。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-jieba">pg_jieba<a href="#pg-jieba" class="hash-link" aria-label="pg_jieba的直接链接" title="pg_jieba的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_jieba</code></li>
+<li class=""><strong>版本</strong>：1.1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/jaiminpan/pg_jieba">GitHub</a></li>
+<li class=""><strong>功能</strong>：中文全文检索分词解析器 。</li>
+<li class=""><strong>使用说明</strong>：用于中文文本分词和全文检索，适合文章、工单、商品名称等中文搜索。</li>
+<li class=""><strong>注意事项</strong>：分词词典和业务术语会影响搜索效果；上线前应使用真实语料测试召回和排序。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-partman">pg_partman<a href="#pg-partman" class="hash-link" aria-label="pg_partman的直接链接" title="pg_partman的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_partman</code></li>
+<li class=""><strong>版本</strong>：4.7.4</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/pgpartman/pg_partman">GitHub</a></li>
+<li class=""><strong>功能</strong>：按时间或 ID 管理分区表。</li>
+<li class=""><strong>使用说明</strong>：用于自动创建和维护分区，适合日志、订单、事件、时序数据等持续增长大表。</li>
+<li class=""><strong>注意事项</strong>：分区键选择会影响查询和维护成本；上线前应规划保留策略和归档策略。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-prewarm">pg_prewarm<a href="#pg-prewarm" class="hash-link" aria-label="pg_prewarm的直接链接" title="pg_prewarm的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_prewarm</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgprewarm.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：预热关系数据到缓存。</li>
+<li class=""><strong>使用说明</strong>：用于重启或冷启动后把热点表/索引预加载到缓存，降低首次查询抖动。</li>
+<li class=""><strong>注意事项</strong>：预热会占用 IO 和缓存空间；只对明确热点对象使用。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-repack">pg_repack<a href="#pg-repack" class="hash-link" aria-label="pg_repack的直接链接" title="pg_repack的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_repack</code></li>
+<li class=""><strong>版本</strong>：1.5.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://reorg.github.io/pg_repack/">项目主页</a></li>
+<li class=""><strong>功能</strong>：以较低锁影响重整表和索引。</li>
+<li class=""><strong>使用说明</strong>：用于清理表或索引膨胀，在线重整物理存储，降低维护窗口压力。</li>
+<li class=""><strong>注意事项</strong>：操作期间会额外占用磁盘和资源；大表执行前需确认空间、锁和回滚计划。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-similarity">pg_similarity<a href="#pg-similarity" class="hash-link" aria-label="pg_similarity的直接链接" title="pg_similarity的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_similarity</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/eulerto/pg_similarity">GitHub</a></li>
+<li class=""><strong>功能</strong>：相似度查询支持。</li>
+<li class=""><strong>使用说明</strong>：用于多种字符串相似度算法的比较和搜索，适合数据清洗、去重和模糊匹配。</li>
+<li class=""><strong>注意事项</strong>：相似度算法需要结合业务阈值调优；大表直接计算可能很慢。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-sphere">pg_sphere<a href="#pg-sphere" class="hash-link" aria-label="pg_sphere的直接链接" title="pg_sphere的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_sphere</code></li>
+<li class=""><strong>版本</strong>：1.5.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://pgsphere.github.io/">项目主页</a></li>
+<li class=""><strong>功能</strong>：球面对象、函数、操作符和索引支持。</li>
+<li class=""><strong>使用说明</strong>：用于天文、地理球面坐标和球面距离/区域计算。</li>
+<li class=""><strong>注意事项</strong>：通用地理业务优先评估 PostGIS；球面模型和坐标单位需要严格校验。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-squeeze">pg_squeeze<a href="#pg-squeeze" class="hash-link" aria-label="pg_squeeze的直接链接" title="pg_squeeze的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_squeeze</code></li>
+<li class=""><strong>版本</strong>：1.9</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/cybertec-postgresql/pg_squeeze">GitHub</a></li>
+<li class=""><strong>功能</strong>：移除关系中的未使用空间。</li>
+<li class=""><strong>使用说明</strong>：用于在线清理表膨胀、回收空间，适合持续更新/删除后空间浪费明显的表。</li>
+<li class=""><strong>注意事项</strong>：维护过程会消耗资源并影响写入，应在低峰期执行并监控锁等待。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-stat-log">pg_stat_log<a href="#pg-stat-log" class="hash-link" aria-label="pg_stat_log的直接链接" title="pg_stat_log的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_stat_log</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/75121">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：跟踪 SQL 运行时执行统计。</li>
+<li class=""><strong>使用说明</strong>：用于查看 SQL 运行时统计和性能诊断，辅助定位高耗时或高频 SQL。</li>
+<li class=""><strong>注意事项</strong>：统计视图用于诊断，不应作为业务功能依赖；查询统计信息时注意权限和数据敏感性。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-stat-statements">pg_stat_statements<a href="#pg-stat-statements" class="hash-link" aria-label="pg_stat_statements的直接链接" title="pg_stat_statements的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_stat_statements</code></li>
+<li class=""><strong>版本</strong>：1.11</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgstatstatements.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：跟踪 SQL 计划与执行统计。</li>
+<li class=""><strong>使用说明</strong>：用于聚合查看 SQL 调用次数、耗时、行数和计划信息，是定位慢查询和高频 SQL 的常用工具。</li>
+<li class=""><strong>注意事项</strong>：需要定期结合业务上下文解读；归一化 SQL 可能隐藏具体参数差异。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-surgery">pg_surgery<a href="#pg-surgery" class="hash-link" aria-label="pg_surgery的直接链接" title="pg_surgery的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_surgery</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgsurgery.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：对损坏关系执行低层修复操作。</li>
+<li class=""><strong>使用说明</strong>：用于极端情况下对损坏关系进行低层修复。</li>
+<li class=""><strong>注意事项</strong>：高风险诊断修复工具，仅应由熟悉 PostgreSQL 存储结构的人员在备份后使用。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-trgm">pg_trgm<a href="#pg-trgm" class="hash-link" aria-label="pg_trgm的直接链接" title="pg_trgm的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_trgm</code></li>
+<li class=""><strong>版本</strong>：1.6</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgtrgm.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：基于 trigram 的文本相似度和索引搜索。</li>
+<li class=""><strong>使用说明</strong>：用于模糊搜索、相似文本排序、LIKE/ILIKE 加速，适合名称、标题、邮箱等短文本。</li>
+<li class=""><strong>注意事项</strong>：GIN/GiST trigram 索引会增加写入成本；中文搜索可能需要与 pg_bigm、zhparser 或 pg_jieba 对比。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-visibility">pg_visibility<a href="#pg-visibility" class="hash-link" aria-label="pg_visibility的直接链接" title="pg_visibility的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_visibility</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgvisibility.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：检查可见性映射和页级可见性信息。</li>
+<li class=""><strong>使用说明</strong>：用于分析 visibility map，辅助 vacuum、索引仅扫描和表维护诊断。</li>
+<li class=""><strong>注意事项</strong>：偏底层维护工具，不适合业务查询路径；结果需要结合 vacuum 和统计信息理解。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-walinspect">pg_walinspect<a href="#pg-walinspect" class="hash-link" aria-label="pg_walinspect的直接链接" title="pg_walinspect的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pg_walinspect</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgwalinspect.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：检查 WAL 内容。</li>
+<li class=""><strong>使用说明</strong>：用于分析 WAL 记录，辅助复制、恢复和写入放大诊断。</li>
+<li class=""><strong>注意事项</strong>：WAL 检查涉及底层日志信息，通常用于运维排查；注意数据敏感性。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgagent">pgagent<a href="#pgagent" class="hash-link" aria-label="pgagent的直接链接" title="pgagent的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pgagent</code></li>
+<li class=""><strong>版本</strong>：4.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/pgadmin-org/pgagent">GitHub</a></li>
+<li class=""><strong>功能</strong>：PostgreSQL 任务调度器。</li>
+<li class=""><strong>使用说明</strong>：用于管理定时 SQL 任务和作业流程，适合数据库内定期维护或报表任务。</li>
+<li class=""><strong>注意事项</strong>：调度任务失败、重试和权限需要单独治理；复杂编排建议使用外部任务系统。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgaudit">pgaudit<a href="#pgaudit" class="hash-link" aria-label="pgaudit的直接链接" title="pgaudit的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pgaudit</code></li>
+<li class=""><strong>版本</strong>：17.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/pgaudit/pgaudit">GitHub</a></li>
+<li class=""><strong>功能</strong>：审计日志能力。</li>
+<li class=""><strong>使用说明</strong>：用于记录数据库访问和操作审计，满足合规、追踪和安全分析需求。</li>
+<li class=""><strong>注意事项</strong>：审计日志可能显著增加日志量；用于合规审计前应设计采集、留存、脱敏和告警策略。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgcrypto">pgcrypto<a href="#pgcrypto" class="hash-link" aria-label="pgcrypto的直接链接" title="pgcrypto的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pgcrypto</code></li>
+<li class=""><strong>版本</strong>：1.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgcrypto.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：加密、摘要和随机值函数。</li>
+<li class=""><strong>使用说明</strong>：用于生成随机值、哈希摘要、UUID、加密/解密等数据库内安全辅助能力。</li>
+<li class=""><strong>注意事项</strong>：不要把数据库内加密函数当作完整密钥管理系统；密钥和敏感数据应使用专门的密钥管理策略。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pglogical">pglogical<a href="#pglogical" class="hash-link" aria-label="pglogical的直接链接" title="pglogical的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pglogical</code></li>
+<li class=""><strong>版本</strong>：2.4.5</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/2ndQuadrant/pglogical">GitHub</a></li>
+<li class=""><strong>功能</strong>：PostgreSQL 逻辑复制。</li>
+<li class=""><strong>使用说明</strong>：用于表级逻辑复制、跨库同步、迁移或双写过渡场景。</li>
+<li class=""><strong>注意事项</strong>：复制槽和订阅需要持续监控；复制延迟或中断可能导致 WAL 积压和数据不一致。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pglogical-origin">pglogical_origin<a href="#pglogical-origin" class="hash-link" aria-label="pglogical_origin的直接链接" title="pglogical_origin的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pglogical_origin</code></li>
+<li class=""><strong>版本</strong>：1.0.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/2ndQuadrant/pglogical">GitHub</a></li>
+<li class=""><strong>功能</strong>：PostgreSQL 9.4 升级兼容占位扩展。</li>
+<li class=""><strong>使用说明</strong>：用于兼容从旧版本 PostgreSQL 升级或迁移时的 pglogical origin 依赖。</li>
+<li class=""><strong>注意事项</strong>：通常不作为新业务功能直接使用；仅在迁移兼容需要时保留。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgrouting">pgrouting<a href="#pgrouting" class="hash-link" aria-label="pgrouting的直接链接" title="pgrouting的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pgrouting</code></li>
+<li class=""><strong>版本</strong>：3.6.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://docs.pgrouting.org/latest/en/">pgRouting 文档</a></li>
+<li class=""><strong>功能</strong>：pgRouting 路由计算扩展。</li>
+<li class=""><strong>使用说明</strong>：用于道路网络、路径规划、最短路径和图路由分析，通常结合 PostGIS 数据使用。</li>
+<li class=""><strong>注意事项</strong>：路由图数据质量直接影响结果；大规模路径计算应评估索引、预处理和计算成本。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgrowlocks">pgrowlocks<a href="#pgrowlocks" class="hash-link" aria-label="pgrowlocks的直接链接" title="pgrowlocks的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pgrowlocks</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgrowlocks.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：显示行级锁信息。</li>
+<li class=""><strong>使用说明</strong>：用于排查行锁等待、事务阻塞和并发写入冲突。</li>
+<li class=""><strong>注意事项</strong>：查询锁信息可能需要较高权限；只作为诊断工具，不应放入业务查询。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgstattuple">pgstattuple<a href="#pgstattuple" class="hash-link" aria-label="pgstattuple的直接链接" title="pgstattuple的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pgstattuple</code></li>
+<li class=""><strong>版本</strong>：1.5</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pgstattuple.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：显示 tuple 级统计信息。</li>
+<li class=""><strong>使用说明</strong>：用于检查表和索引膨胀、死元组比例和空间浪费。</li>
+<li class=""><strong>注意事项</strong>：扫描对象可能消耗 IO；大表建议低峰期执行，并结合 autovacuum 和 repack 策略。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pldbgapi">pldbgapi<a href="#pldbgapi" class="hash-link" aria-label="pldbgapi的直接链接" title="pldbgapi的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pldbgapi</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/EnterpriseDB/pldebugger">GitHub</a></li>
+<li class=""><strong>功能</strong>：PL/pgSQL 服务端调试支持。</li>
+<li class=""><strong>使用说明</strong>：用于调试 PL/pgSQL 函数，辅助开发复杂数据库过程逻辑。</li>
+<li class=""><strong>注意事项</strong>：调试能力不应开放给普通业务角色；生产环境使用前需评估权限和安全影响。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="plperl">plperl<a href="#plperl" class="hash-link" aria-label="plperl的直接链接" title="plperl的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>plperl</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/plperl.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：PL/Perl 过程语言。</li>
+<li class=""><strong>使用说明</strong>：用于在数据库函数中编写 Perl 逻辑，适合迁移已有 Perl 数据处理代码。</li>
+<li class=""><strong>注意事项</strong>：过程语言会扩大数据库执行面；新项目应优先使用 SQL/PLpgSQL 或应用层逻辑。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="plpgsql">plpgsql<a href="#plpgsql" class="hash-link" aria-label="plpgsql的直接链接" title="plpgsql的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>plpgsql</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/plpgsql.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：PL/pgSQL 过程语言。</li>
+<li class=""><strong>使用说明</strong>：用于编写 PostgreSQL 函数、触发器和过程逻辑，是数据库函数开发的常用语言。</li>
+<li class=""><strong>注意事项</strong>：函数逻辑应保持清晰可测试；复杂业务编排仍建议放在服务端应用中。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pltcl">pltcl<a href="#pltcl" class="hash-link" aria-label="pltcl的直接链接" title="pltcl的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>pltcl</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/pltcl.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：PL/Tcl 过程语言。</li>
+<li class=""><strong>使用说明</strong>：用于在数据库函数中编写 Tcl 逻辑，适合兼容已有 Tcl 脚本。</li>
+<li class=""><strong>注意事项</strong>：仅建议兼容历史系统使用；需要严格限制函数创建权限。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="plv8">plv8<a href="#plv8" class="hash-link" aria-label="plv8的直接链接" title="plv8的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>plv8</code></li>
+<li class=""><strong>版本</strong>：3.2.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://plv8.github.io/">PLV8 文档</a></li>
+<li class=""><strong>功能</strong>：受信任 PL/JavaScript(v8) 过程语言。</li>
+<li class=""><strong>使用说明</strong>：用于在数据库内编写 JavaScript 函数，适合少量数据转换或兼容已有 JS 逻辑。</li>
+<li class=""><strong>注意事项</strong>：JavaScript 运行在数据库进程内，复杂逻辑可能影响稳定性；不建议承载业务编排。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis">postgis<a href="#postgis" class="hash-link" aria-label="postgis的直接链接" title="postgis的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>postgis</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：PostGIS 几何和地理空间类型与函数。</li>
+<li class=""><strong>使用说明</strong>：用于地理围栏、附近搜索、空间相交、轨迹分析、地图业务等空间查询。</li>
+<li class=""><strong>注意事项</strong>：空间索引、坐标系和几何合法性非常重要；复杂空间查询上线前需压测。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-raster">postgis_raster<a href="#postgis-raster" class="hash-link" aria-label="postgis_raster的直接链接" title="postgis_raster的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>postgis_raster</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：PostGIS 栅格类型和函数。</li>
+<li class=""><strong>使用说明</strong>：用于栅格数据处理，例如遥感、地形、影像瓦片等空间栅格  分析。</li>
+<li class=""><strong>注意事项</strong>：栅格数据体积通常较大，应评估存储、IO 和备份成本。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-sfcgal">postgis_sfcgal<a href="#postgis-sfcgal" class="hash-link" aria-label="postgis_sfcgal的直接链接" title="postgis_sfcgal的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>postgis_sfcgal</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：PostGIS SFCGAL 函数。</li>
+<li class=""><strong>使用说明</strong>：用于高级几何运算和 3D 空间能力，补充 PostGIS 的复杂几何处理。</li>
+<li class=""><strong>注意事项</strong>：高级几何计算可能较耗 CPU；需确认数据合法性和性能边界。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-tiger-geocoder">postgis_tiger_geocoder<a href="#postgis-tiger-geocoder" class="hash-link" aria-label="postgis_tiger_geocoder的直接链接" title="postgis_tiger_geocoder的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>postgis_tiger_geocoder</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/Extras.html">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：PostGIS tiger 地理编码和反向地理编码。</li>
+<li class=""><strong>使用说明</strong>：用于美国 TIGER 数据集相关地理编码和反向地理编码。</li>
+<li class=""><strong>注意事项</strong>：主要面向美国地址数据；非美国地区业务不应依赖该扩展。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-topology">postgis_topology<a href="#postgis-topology" class="hash-link" aria-label="postgis_topology的直接链接" title="postgis_topology的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>postgis_topology</code></li>
+<li class=""><strong>版本</strong>：3.5.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://postgis.net/docs/Topology.html">PostGIS 文档</a></li>
+<li class=""><strong>功能</strong>：PostGIS 拓扑空间类型和函数。</li>
+<li class=""><strong>使用说明</strong>：用于维护拓扑关系，例如边、面、节点之间的拓扑一致性。</li>
+<li class=""><strong>注意事项</strong>：拓扑模型维护成本高，适合 GIS 专业场景；普通位置查询通常使用 PostGIS geometry/geography 即可。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgres-fdw">postgres_fdw<a href="#postgres-fdw" class="hash-link" aria-label="postgres_fdw的直接链接" title="postgres_fdw的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>postgres_fdw</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/postgres-fdw.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：查询远程 PostgreSQL 服务的外部数据封装器。</li>
+<li class=""><strong>使用说明</strong>：用于跨 PostgreSQL 实例查询、迁移、数据联邦或灰度迁移验证。</li>
+<li class=""><strong>注意事项</strong>：远程查询受网络和远端负载影响；需要管理 user mapping 和远程权限。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rdkit">rdkit<a href="#rdkit" class="hash-link" aria-label="rdkit的直接链接" title="rdkit的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>rdkit</code></li>
+<li class=""><strong>版本</strong>：4.7.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.rdkit.org/docs/Cartridge.html">RDKit 文档</a></li>
+<li class=""><strong>功能</strong>：化学信息学能力。</li>
+<li class=""><strong>使用说明</strong>：用于分子结构、指纹、相似度和化学检索，适合药物研发和化学数据管理。</li>
+<li class=""><strong>注意事项</strong>：属于专业领域扩展，数据模型和索引设计需要结合化学信息学规则验证。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rds-server-handler">rds_server_handler<a href="#rds-server-handler" class="hash-link" aria-label="rds_server_handler的直接链接" title="rds_server_handler的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>rds_server_handler</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/75121">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：TencentDB PostgreSQL 服务处理扩展。</li>
+<li class=""><strong>使用说明</strong>：用于 TencentDB PostgreSQL 服务侧处理能力，通常服务于托管数据库内部运维或兼容场景。</li>
+<li class=""><strong>注意事项</strong>：一般不作为业务开发接口使用；使用前应确认控制台和产品文档支持边界。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="refint">refint<a href="#refint" class="hash-link" aria-label="refint的直接链接" title="refint的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>refint</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：实现引用完整性的函数，已过时。</li>
+<li class=""><strong>使用说明</strong>：用于兼容旧系统中的引用完整性触发器逻辑。新项目应使用标准 foreign key。</li>
+<li class=""><strong>注意事项</strong>：已过时，不建议新业务使用；迁移旧表时应逐步替换为原生约束。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="roaringbitmap">roaringbitmap<a href="#roaringbitmap" class="hash-link" aria-label="roaringbitmap的直接链接" title="roaringbitmap的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>roaringbitmap</code></li>
+<li class=""><strong>版本</strong>：0.5</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/ChenHuajun/pg_roaringbitmap">GitHub</a></li>
+<li class=""><strong>功能</strong>：Roaring Bitmap 支持。</li>
+<li class=""><strong>使用说明</strong>：用于高效存储和计算大规模整数集合，适合人群包、标签集合和位图分析。</li>
+<li class=""><strong>注意事项</strong>：位图适合分析类集合运算，不适合替代明细表的事务读写。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rum">rum<a href="#rum" class="hash-link" aria-label="rum的直接链接" title="rum的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>rum</code></li>
+<li class=""><strong>版本</strong>：1.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/postgrespro/rum">GitHub</a></li>
+<li class=""><strong>功能</strong>：RUM 索引访问方法。</li>
+<li class=""><strong>使用说明</strong>：用于全文检索和倒排索引增强，支持排名、位置等更复杂检索能力。</li>
+<li class=""><strong>注意事项</strong>：RUM 索引维护成本可能高于 GIN；写入频繁表需评估性能。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="seg">seg<a href="#seg" class="hash-link" aria-label="seg的直接链接" title="seg的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>seg</code></li>
+<li class=""><strong>版本</strong>：1.4</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/seg.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：线段或浮点区间数据类型。</li>
+<li class=""><strong>使用说明</strong>：用于表达一维区间、线段或不确定数值范围。</li>
+<li class=""><strong>注意事项</strong>：只适合特定数值范围模型；通用范围类型可优先评估 PostgreSQL 原生 range 类型。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sequential-uuids">sequential_uuids<a href="#sequential-uuids" class="hash-link" aria-label="sequential_uuids的直接链接" title="sequential_uuids的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>sequential_uuids</code></li>
+<li class=""><strong>版本</strong>：1.0.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://pgxn.org/dist/sequential_uuids/">PGXN</a></li>
+<li class=""><strong>功能</strong>：生成顺序 UUID。</li>
+<li class=""><strong>使用说明</strong>：用于生成更适合索引写入局部性的 UUID，降低随机 UUID 对 B-tree 的页分裂影响。</li>
+<li class=""><strong>注意事项</strong>：顺序 UUID 可能暴露生成顺序特征；对外 ID 仍需结合业务安全要求评估。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="smlar">smlar<a href="#smlar" class="hash-link" aria-label="smlar的直接链接" title="smlar的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>smlar</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/jirutka/smlar">GitHub</a></li>
+<li class=""><strong>功能</strong>：一维数组相似度计算。</li>
+<li class=""><strong>使用说明</strong>：用于数组之间的相似度比较，例如标签相似、推荐候选召回和集合去重。</li>
+<li class=""><strong>注意事项</strong>：数组相似度计算前应控制候选范围；大表全量比较成本较高。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sslinfo">sslinfo<a href="#sslinfo" class="hash-link" aria-label="sslinfo的直接链接" title="sslinfo的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>sslinfo</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/sslinfo.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：SSL 证书信息。</li>
+<li class=""><strong>使用说明</strong>：用于查看当前连接的 SSL 证书和加密信息，辅助连接安全诊断。</li>
+<li class=""><strong>注意事项</strong>：该扩展用于诊断连接安全，不应作为应用层鉴权依据。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="starrocks-fdw">starrocks_fdw<a href="#starrocks-fdw" class="hash-link" aria-label="starrocks_fdw的直接链接" title="starrocks_fdw的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>starrocks_fdw</code></li>
+<li class=""><strong>版本</strong>：1.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/111197">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：查询 StarRocks 服务的外部数据封装器。</li>
+<li class=""><strong>使用说明</strong>：用于从 PostgreSQL 访问 StarRocks 数据，适合联邦查询、迁移验证或分析集成。</li>
+<li class=""><strong>注意事项</strong>：外部查询依赖 StarRocks 服务稳定性；大规模分析应在专用分析链路中完成。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tablefunc">tablefunc<a href="#tablefunc" class="hash-link" aria-label="tablefunc的直接链接" title="tablefunc的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tablefunc</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/tablefunc.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：整表操作函数 ，包括 crosstab。</li>
+<li class=""><strong>使用说明</strong>：用于交叉表、透视表和特定整表转换，适合报表和分析查询。</li>
+<li class=""><strong>注意事项</strong>：透视结构通常依赖固定列集合；动态报表建议在应用层或 BI 工具中处理。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tcn">tcn<a href="#tcn" class="hash-link" aria-label="tcn的直接链接" title="tcn的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tcn</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/tcn.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：触发式变更通知。</li>
+<li class=""><strong>使用说明</strong>：用于通过触发器发送表变更通知，适合轻量数据变更感知。</li>
+<li class=""><strong>注意事项</strong>：通知不是可靠消息队列；高可靠事件处理建议使用专门消息系统或业务事件表。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-ai">tencentdb_ai<a href="#tencentdb-ai" class="hash-link" aria-label="tencentdb_ai的直接链接" title="tencentdb_ai的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_ai</code></li>
+<li class=""><strong>版本</strong>：1.3</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/116227">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：腾讯云数据库 AI 扩展，可集成 prompt、embedding 等 AI 能力。</li>
+<li class=""><strong>使用说明</strong>：用于在数据库侧调用或集成 AI 能力，例如生成 embedding、处理 prompt 或构建智能查询辅助。</li>
+<li class=""><strong>注意事项</strong>：AI 调用可能产生额外延迟和成本；敏感数据进入模型前需评估合规和脱敏。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-failover-slot">tencentdb_failover_slot<a href="#tencentdb-failover-slot" class="hash-link" aria-label="tencentdb_failover_slot的直接链接" title="tencentdb_failover_slot的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_failover_slot</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/122497">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：故障切换 slot 相关函数。</li>
+<li class=""><strong>使用说明</strong>：用于故障切换场景下复制槽相关处理，服务于高可用和复制链路维护。</li>
+<li class=""><strong>注意事项</strong>：通常由数据库运维使用；错误操作可能影响复制或 WAL 保留。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-scf">tencentdb_scf<a href="#tencentdb-scf" class="hash-link" aria-label="tencentdb_scf的直接链接" title="tencentdb_scf的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_scf</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>功能</strong>：安全受控调用 CloudBase 云函数。通过 SQL 发起同步/异步 POST 请求到 CloudBase 云函数网关，支持配合 pg_cron 实现数据库定时任务与触发器场景，同时通过 URL 收敛、checkurl 校验和敏感请求头过滤避免 SSRF 与网络穿透风险。</li>
+<li class=""><strong>使用说明</strong>：使用前需要安装 <code>pgcrypto</code> 和 <code>tencentdb_scf</code> 扩展，配置 CloudBase 环境 ID 和 API Key。同步调用适合需要即时结果的短任务场景，异步调用适合定时任务、触发器和批量处理等不需要阻塞主流程的场景。返回值 BIGINT 类型的请求 ID，可通过 <code>tencentdb_scf_result(req_id)</code> 查询调用结果。详细使用方法请参考 <a href="./tencentdb-scf">tencentdb_scf</a>。</li>
+<li class=""><strong>注意事项</strong>：启用异步 worker 需要在 <code>shared_preload_libraries</code> 中配置并重启实例。当前仅支持 POST 方法，仅允许 CloudBase 网关域名。请求体固定使用 <code>Content-Type: application/json</code>，用户传入的敏感请求头（Authorization、Cookie、Host 等）会被自动过滤。未配置 env_id 或 api_key 时调用会被拒绝。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-index-advisor">tencentdb_index_advisor<a href="#tencentdb-index-advisor" class="hash-link" aria-label="tencentdb_index_advisor的直接链接" title="tencentdb_index_advisor的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_index_advisor</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/80369">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：TencentDB PostgreSQL 查询和工作负载级索引顾问。</li>
+<li class=""><strong>使用说明</strong>：用于根据单条 SQL 或工作负载分析索引建议，辅助查询优化。</li>
+<li class=""><strong>注意事项</strong>：索引建议需要结合写入成本、存储成本和真实 workload 验证，不应自动全量采纳。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-serverless">tencentdb_serverless<a href="#tencentdb-serverless" class="hash-link" aria-label="tencentdb_serverless的直接链接" title="tencentdb_serverless的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_serverless</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/105554">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：serverless 模式支持扩展。</li>
+<li class=""><strong>使用说 明</strong>：用于 TencentDB PostgreSQL serverless 模式相关能力支持。</li>
+<li class=""><strong>注意事项</strong>：通常属于产品运行时能力，不建议业务 SQL 直接依赖其内部行为。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-sql-throttling">tencentdb_sql_throttling<a href="#tencentdb-sql-throttling" class="hash-link" aria-label="tencentdb_sql_throttling的直接链接" title="tencentdb_sql_throttling的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_sql_throttling</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/111196">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：跟踪 SQL 计划与执行统计。</li>
+<li class=""><strong>使用说明</strong>：用于 SQL 统计、限流或执行观测相关能力，辅助治理异常 SQL。</li>
+<li class=""><strong>注意事项</strong>：限流策略应谨慎配置，避免误伤核心业务；变更前建议灰度验证。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-superuser">tencentdb_superuser<a href="#tencentdb-superuser" class="hash-link" aria-label="tencentdb_superuser的直接链接" title="tencentdb_superuser的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_superuser</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/75121">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：升级支持扩展。</li>
+<li class=""><strong>使用说明</strong>：用于 TencentDB PostgreSQL 升级或托管运维相关支持。</li>
+<li class=""><strong>注意事项</strong>：通常不作为业务功能使用；不要在应用逻辑中依赖该扩展。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-system-stat">tencentdb_system_stat<a href="#tencentdb-system-stat" class="hash-link" aria-label="tencentdb_system_stat的直接链接" title="tencentdb_system_stat的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_system_stat</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/96894">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：跟踪 SQL 执行统计。</li>
+<li class=""><strong>使用说明</strong>：用于采集数据库系统级 SQL 执行统计，辅助性能分析。</li>
+<li class=""><strong>注意事项</strong>：统计信息用于诊断和趋势分析；不要在高频业务路径中反复查询大范围统计视图。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-wal-stat">tencentdb_wal_stat<a href="#tencentdb-wal-stat" class="hash-link" aria-label="tencentdb_wal_stat的直接链接" title="tencentdb_wal_stat的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tencentdb_wal_stat</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://cloud.tencent.com/document/product/409/81235">腾讯云文档</a></li>
+<li class=""><strong>功能</strong>：按关系聚合 WAL 统计。</li>
+<li class=""><strong>使用说明</strong>：用于分析不同表或索引产生的 WAL 写入量，辅助判断写放大和复制压力。</li>
+<li class=""><strong>注意事项</strong>：WAL 统计用于运维分析；处理结果时注意与业务写入峰值、索引数量和批处理关联。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="timescaledb">timescaledb<a href="#timescaledb" class="hash-link" aria-label="timescaledb的直接链接" title="timescaledb的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>timescaledb</code></li>
+<li class=""><strong> 版本</strong>：2.23.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://docs.timescale.com/use-timescale/latest/">TimescaleDB 文档</a></li>
+<li class=""><strong>功能</strong>：时序数据扩展，支持高吞吐写入和复杂查询。</li>
+<li class=""><strong>使用说明</strong>：用于指标、事件、IoT、日志等时序数据建模，支持 hypertable、时间分区和时序聚合能力。</li>
+<li class=""><strong>注意事项</strong>：需要按时间维度设计数据模型和保留策略；高基数标签和压缩策略需单独评估。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topn">topn<a href="#topn" class="hash-link" aria-label="topn的直接链接" title="topn的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>topn</code></li>
+<li class=""><strong>版本</strong>：2.6.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/citusdata/postgresql-topn">GitHub</a></li>
+<li class=""><strong>功能</strong>：Top-N JSONB 类型。</li>
+<li class=""><strong>使用说明</strong>：用于维护 JSONB 形式的 Top-N 统计结果，适合热门项、排名和近似榜单分析。</li>
+<li class=""><strong>注意事项</strong>：适合分析聚合，不适合需要严格顺序和精确排名的交易场景。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tsm-system-rows">tsm_system_rows<a href="#tsm-system-rows" class="hash-link" aria-label="tsm_system_rows的直接链接" title="tsm_system_rows的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tsm_system_rows</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/tsm-system-rows.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：按行数限制的 TABLESAMPLE 方法。</li>
+<li class=""><strong>使用说明</strong>：用于按指定行数从表中采样，适合快速抽样检查和测试数据分析。</li>
+<li class=""><strong>注意事项</strong>：采样结果不保证完全随机均匀；不应用于需要严格统计置信度的场景。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tsm-system-time">tsm_system_time<a href="#tsm-system-time" class="hash-link" aria-label="tsm_system_time的直接链接" title="tsm_system_time的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>tsm_system_time</code></li>
+<li class=""><strong>版本</strong>：1.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/tsm-system-time.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：按时间限制的 TABLESAMPLE 方法。</li>
+<li class=""><strong>使用说明</strong>：用于按执行时间预算从表中采样，适合大表快速预览。</li>
+<li class=""><strong>注意事项</strong>：结果受页面布局和执行时间影响，不适合精确统计。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="unaccent">unaccent<a href="#unaccent" class="hash-link" aria-label="unaccent的直接链接" title="unaccent的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>unaccent</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/unaccent.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：移除重音字符的全文检索字典。</li>
+<li class=""><strong>使用说明</strong>：用于搜索中忽略重音符号，例如让 cafe 和 café 可匹配。</li>
+<li class=""><strong>注意事项</strong>：主要解决拉丁字符重音问题；中文分词应使用 zhparser 或 pg_jieba。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="uuid-ossp">uuid-ossp<a href="#uuid-ossp" class="hash-link" aria-label="uuid-ossp的直接链接" title="uuid-ossp的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>uuid-ossp</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/uuid-ossp.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：生成 UUID。</li>
+<li class=""><strong>使用说明</strong>：用于生成 UUID v1/v3/v4/v5 等标识符，适合作为分布式主键或外部 ID。</li>
+<li class=""><strong>注意事项</strong>：随机 UUID 可能影响 B-tree 写入局部性；高写入表可评估顺序 UUID 或 bigint identity。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="vector">vector<a href="#vector" class="hash-link" aria-label="vector的直接链接" title="vector的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>vector</code></li>
+<li class=""><strong>版本</strong>：0.8.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/pgvector/pgvector">GitHub</a></li>
+<li class=""><strong>功能</strong>：向量数据类型和 ivfflat、hnsw 索引方法。</li>
+<li class=""><strong>使用说明</strong>：用于存储 embedding 并进行向量相似度检索，适合 RAG、语义搜索和推荐。</li>
+<li class=""><strong>注意事项</strong>：向量维度必须与模型一致；索引类型、距离函数和元数据过滤需要一起设计。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="vectorscale">vectorscale<a href="#vectorscale" class="hash-link" aria-label="vectorscale的直接链接" title="vectorscale的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>vectorscale</code></li>
+<li class=""><strong>版本</strong>：0.9.0</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/timescale/pgvectorscale">GitHub</a></li>
+<li class=""><strong>功能</strong>：用于向量搜索的 diskann 访问方法。</li>
+<li class=""><strong>使用说明</strong>：用于更  大规模向量检索场景，基于 diskann 访问方法扩展向量搜索能力。</li>
+<li class=""><strong>注意事项</strong>：适合大规模向量数据；需要评估召回率、索引构建时间、磁盘和查询延迟。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="xml2">xml2<a href="#xml2" class="hash-link" aria-label="xml2的直接链接" title="xml2的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>xml2</code></li>
+<li class=""><strong>版本</strong>：1.1</li>
+<li class=""><strong>访问链接</strong>：<a href="https://www.postgresql.org/docs/17/xml2.html">PostgreSQL 文档</a></li>
+<li class=""><strong>功能</strong>：XPath 查询和 XSLT 支持。</li>
+<li class=""><strong>使用说明</strong>：用于查询和转换 XML 数据，适合兼容 XML 格式的历史系统或数据交换。</li>
+<li class=""><strong>注意事项</strong>：新业务通常优先使用 JSON/JSONB；XML 查询应注意输入可信度和性能。</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="zhparser">zhparser<a href="#zhparser" class="hash-link" aria-label="zhparser的直接链接" title="zhparser的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>名称</strong>：<code>zhparser</code></li>
+<li class=""><strong>版本</strong>：2.2</li>
+<li class=""><strong>访问链接</strong>：<a href="https://github.com/amutu/zhparser">GitHub</a></li>
+<li class=""><strong>功能</strong>：中文全文检索解析器。</li>
+<li class=""><strong>使用说明</strong>：用于中文文本分词和全文检索配置，适合中文文章、商品、工单、知识库搜索。</li>
+<li class=""><strong>注意事项</strong>：词典和分词效果决定搜索质量；上线前需要用真实中文语料验证。</li>
+</ul></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/database/postgresql/extensions"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">扩展管理</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/database/postgresql/pg-doc"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">pg_doc Document 插件</div></a></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#extension-overview" class="table-of-contents__link toc-highlight">扩展总览</a></li><li><a href="#usage-guidance" class="table-of-contents__link toc-highlight">使用建议</a></li><li><a href="#extension-details" class="table-of-contents__link toc-highlight">扩展介绍</a><ul><li><a href="#address-standardizer" class="table-of-contents__link toc-highlight">address_standardizer</a></li><li><a href="#address-standardizer-data-us" class="table-of-contents__link toc-highlight">address_standardizer_data_us</a></li><li><a href="#age" class="table-of-contents__link toc-highlight">age</a></li><li><a href="#amcheck" class="table-of-contents__link toc-highlight">amcheck</a></li><li><a href="#autoinc" class="table-of-contents__link toc-highlight">autoinc</a></li><li><a href="#bloom" class="table-of-contents__link toc-highlight">bloom</a></li><li><a href="#bool-plperl" class="table-of-contents__link toc-highlight">bool_plperl</a></li><li><a href="#btree-gin" class="table-of-contents__link toc-highlight">btree_gin</a></li><li><a href="#btree-gist" class="table-of-contents__link toc-highlight">btree_gist</a></li><li><a href="#chkpass" class="table-of-contents__link toc-highlight">chkpass</a></li><li><a href="#citext" class="table-of-contents__link toc-highlight">citext</a></li><li><a href="#cos-fdw" class="table-of-contents__link toc-highlight">cos_fdw</a></li><li><a href="#count-distinct" class="table-of-contents__link toc-highlight">count_distinct</a></li><li><a href="#cube" class="table-of-contents__link toc-highlight">cube</a></li><li><a href="#dblink" class="table-of-contents__link toc-highlight">dblink</a></li><li><a href="#decoderbufs" class="table-of-contents__link toc-highlight">decoderbufs</a></li><li><a href="#dict-int" class="table-of-contents__link toc-highlight">dict_int</a></li><li><a href="#dict-xsyn" class="table-of-contents__link toc-highlight">dict_xsyn</a></li><li><a href="#earthdistance" class="table-of-contents__link toc-highlight">earthdistance</a></li><li><a href="#fuzzystrmatch" class="table-of-contents__link toc-highlight">fuzzystrmatch</a></li><li><a href="#hll" class="table-of-contents__link toc-highlight">hll</a></li><li><a href="#hstore" class="table-of-contents__link toc-highlight">hstore</a></li><li><a href="#hstore-plperl" class="table-of-contents__link toc-highlight">hstore_plperl</a></li><li><a href="#hypopg" class="table-of-contents__link toc-highlight">hypopg</a></li><li><a href="#imgsmlr" class="table-of-contents__link toc-highlight">imgsmlr</a></li><li><a href="#insert-username" class="table-of-contents__link toc-highlight">insert_username</a></li><li><a href="#intagg" class="table-of-contents__link toc-highlight">intagg</a></li><li><a href="#intarray" class="table-of-contents__link toc-highlight">intarray</a></li><li><a href="#isn" class="table-of-contents__link toc-highlight">isn</a></li><li><a href="#jsonb-plperl" class="table-of-contents__link toc-highlight">jsonb_plperl</a></li><li><a href="#lo" class="table-of-contents__link toc-highlight">lo</a></li><li><a href="#ltree" class="table-of-contents__link toc-highlight">ltree</a></li><li><a href="#moddatetime" class="table-of-contents__link toc-highlight">moddatetime</a></li><li><a href="#mysql-fdw" class="table-of-contents__link toc-highlight">mysql_fdw</a></li><li><a href="#pageinspect" class="table-of-contents__link toc-highlight">pageinspect</a></li><li><a href="#pg-bigm" class="table-of-contents__link toc-highlight">pg_bigm</a></li><li><a href="#pg-buffercache" class="table-of-contents__link toc-highlight">pg_buffercache</a></li><li><a href="#pg-cron" class="table-of-contents__link toc-highlight">pg_cron</a></li><li><a href="#pg-freespacemap" class="table-of-contents__link toc-highlight">pg_freespacemap</a></li><li><a href="#pg-hashids" class="table-of-contents__link toc-highlight">pg_hashids</a></li><li><a href="#pg-hint-plan" class="table-of-contents__link toc-highlight">pg_hint_plan</a></li><li><a href="#pg-ivm" class="table-of-contents__link toc-highlight">pg_ivm</a></li><li><a href="#pg-jieba" class="table-of-contents__link toc-highlight">pg_jieba</a></li><li><a href="#pg-partman" class="table-of-contents__link toc-highlight">pg_partman</a></li><li><a href="#pg-prewarm" class="table-of-contents__link toc-highlight">pg_prewarm</a></li><li><a href="#pg-repack" class="table-of-contents__link toc-highlight">pg_repack</a></li><li><a href="#pg-similarity" class="table-of-contents__link toc-highlight">pg_similarity</a></li><li><a href="#pg-sphere" class="table-of-contents__link toc-highlight">pg_sphere</a></li><li><a href="#pg-squeeze" class="table-of-contents__link toc-highlight">pg_squeeze</a></li><li><a href="#pg-stat-log" class="table-of-contents__link toc-highlight">pg_stat_log</a></li><li><a href="#pg-stat-statements" class="table-of-contents__link toc-highlight">pg_stat_statements</a></li><li><a href="#pg-surgery" class="table-of-contents__link toc-highlight">pg_surgery</a></li><li><a href="#pg-trgm" class="table-of-contents__link toc-highlight">pg_trgm</a></li><li><a href="#pg-visibility" class="table-of-contents__link toc-highlight">pg_visibility</a></li><li><a href="#pg-walinspect" class="table-of-contents__link toc-highlight">pg_walinspect</a></li><li><a href="#pgagent" class="table-of-contents__link toc-highlight">pgagent</a></li><li><a href="#pgaudit" class="table-of-contents__link toc-highlight">pgaudit</a></li><li><a href="#pgcrypto" class="table-of-contents__link toc-highlight">pgcrypto</a></li><li><a href="#pglogical" class="table-of-contents__link toc-highlight">pglogical</a></li><li><a href="#pglogical-origin" class="table-of-contents__link toc-highlight">pglogical_origin</a></li><li><a href="#pgrouting" class="table-of-contents__link toc-highlight">pgrouting</a></li><li><a href="#pgrowlocks" class="table-of-contents__link toc-highlight">pgrowlocks</a></li><li><a href="#pgstattuple" class="table-of-contents__link toc-highlight">pgstattuple</a></li><li><a href="#pldbgapi" class="table-of-contents__link toc-highlight">pldbgapi</a></li><li><a href="#plperl" class="table-of-contents__link toc-highlight">plperl</a></li><li><a href="#plpgsql" class="table-of-contents__link toc-highlight">plpgsql</a></li><li><a href="#pltcl" class="table-of-contents__link toc-highlight">pltcl</a></li><li><a href="#plv8" class="table-of-contents__link toc-highlight">plv8</a></li><li><a href="#postgis" class="table-of-contents__link toc-highlight">postgis</a></li><li><a href="#postgis-raster" class="table-of-contents__link toc-highlight">postgis_raster</a></li><li><a href="#postgis-sfcgal" class="table-of-contents__link toc-highlight">postgis_sfcgal</a></li><li><a href="#postgis-tiger-geocoder" class="table-of-contents__link toc-highlight">postgis_tiger_geocoder</a></li><li><a href="#postgis-topology" class="table-of-contents__link toc-highlight">postgis_topology</a></li><li><a href="#postgres-fdw" class="table-of-contents__link toc-highlight">postgres_fdw</a></li><li><a href="#rdkit" class="table-of-contents__link toc-highlight">rdkit</a></li><li><a href="#rds-server-handler" class="table-of-contents__link toc-highlight">rds_server_handler</a></li><li><a href="#refint" class="table-of-contents__link toc-highlight">refint</a></li><li><a href="#roaringbitmap" class="table-of-contents__link toc-highlight">roaringbitmap</a></li><li><a href="#rum" class="table-of-contents__link toc-highlight">rum</a></li><li><a href="#seg" class="table-of-contents__link toc-highlight">seg</a></li><li><a href="#sequential-uuids" class="table-of-contents__link toc-highlight">sequential_uuids</a></li><li><a href="#smlar" class="table-of-contents__link toc-highlight">smlar</a></li><li><a href="#sslinfo" class="table-of-contents__link toc-highlight">sslinfo</a></li><li><a href="#starrocks-fdw" class="table-of-contents__link toc-highlight">starrocks_fdw</a></li><li><a href="#tablefunc" class="table-of-contents__link toc-highlight">tablefunc</a></li><li><a href="#tcn" class="table-of-contents__link toc-highlight">tcn</a></li><li><a href="#tencentdb-ai" class="table-of-contents__link toc-highlight">tencentdb_ai</a></li><li><a href="#tencentdb-failover-slot" class="table-of-contents__link toc-highlight">tencentdb_failover_slot</a></li><li><a href="#tencentdb-scf" class="table-of-contents__link toc-highlight">tencentdb_scf</a></li><li><a href="#tencentdb-index-advisor" class="table-of-contents__link toc-highlight">tencentdb_index_advisor</a></li><li><a href="#tencentdb-serverless" class="table-of-contents__link toc-highlight">tencentdb_serverless</a></li><li><a href="#tencentdb-sql-throttling" class="table-of-contents__link toc-highlight">tencentdb_sql_throttling</a></li><li><a href="#tencentdb-superuser" class="table-of-contents__link toc-highlight">tencentdb_superuser</a></li><li><a href="#tencentdb-system-stat" class="table-of-contents__link toc-highlight">tencentdb_system_stat</a></li><li><a href="#tencentdb-wal-stat" class="table-of-contents__link toc-highlight">tencentdb_wal_stat</a></li><li><a href="#timescaledb" class="table-of-contents__link toc-highlight">timescaledb</a></li><li><a href="#topn" class="table-of-contents__link toc-highlight">topn</a></li><li><a href="#tsm-system-rows" class="table-of-contents__link toc-highlight">tsm_system_rows</a></li><li><a href="#tsm-system-time" class="table-of-contents__link toc-highlight">tsm_system_time</a></li><li><a href="#unaccent" class="table-of-contents__link toc-highlight">unaccent</a></li><li><a href="#uuid-ossp" class="table-of-contents__link toc-highlight">uuid-ossp</a></li><li><a href="#vector" class="table-of-contents__link toc-highlight">vector</a></li><li><a href="#vectorscale" class="table-of-contents__link toc-highlight">vectorscale</a></li><li><a href="#xml2" class="table-of-contents__link toc-highlight">xml2</a></li><li><a href="#zhparser" class="table-of-contents__link toc-highlight">zhparser</a></li></ul></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="复制文档" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>复制文档</span></button><button class="tocActionButton_eGor" title="查看 Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>查看 Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>反馈文档问题</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>提问 AI</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

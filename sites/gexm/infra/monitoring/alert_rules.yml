@@ -1,0 +1,167 @@
+# Prometheus 告警规则
+# 告警等级：critical（立即发送）/ warning（延迟发送）
+
+groups:
+  # ============================================
+  # 服务可用性告警
+  # ============================================
+  - name: service_availability
+    rules:
+      # 服务宕机 - 1 分钟内目标未响应
+      - alert: ServiceDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: critical
+          category: availability
+        annotations:
+          summary: "服务宕机 ({{ $labels.instance }})"
+          description: "服务 {{ $labels.job }} - {{ $labels.instance }} 已经宕机超过 1 分钟。"
+          runbook_url: "https://docs.example.com/runbooks/service-down"
+
+      # 健康检查端点异常
+      - alert: HealthCheckFailed
+        expr: up{job="gexm-server"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          category: availability
+        annotations:
+          summary: "Gexm Server 健康检查失败"
+          description: "Gexm Server 应用健康检查已失败超过 1 分钟，请立即排查。"
+
+  # ============================================
+  # 系统资源告警（基于 Node Exporter）
+  # ============================================
+  - name: system_resources
+    rules:
+      # CPU 使用率 > 80% 持续 5 分钟
+      - alert: HighCpuUsage
+        expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m
+        labels:
+          severity: warning
+          category: resource
+        annotations:
+          summary: "CPU 使用率过高 ({{ $labels.instance }})"
+          description: "CPU 使用率当前为 {{ printf \"%.2f\" $value }}%，已超过 80% 阈值持续 5 分钟。"
+
+      # CPU 使用率 > 95% 持续 5 分钟（升级为 critical）
+      - alert: CriticalCpuUsage
+        expr: 100 - (avg by(instance)(rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 95
+        for: 5m
+        labels:
+          severity: critical
+          category: resource
+        annotations:
+          summary: "CPU 使用率严重过高 ({{ $labels.instance }})"
+          description: "CPU 使用率当前为 {{ printf \"%.2f\" $value }}%，已超过 95% 阈值持续 5 分钟，可能影响服务。"
+
+      # 内存使用率 > 85% 持续 5 分钟
+      - alert: HighMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          category: resource
+        annotations:
+          summary: "内存使用率过高 ({{ $labels.instance }})"
+          description: "内存使用率当前为 {{ printf \"%.2f\" $value }}%，已超过 85% 阈值持续 5 分钟。"
+
+      # 内存使用率 > 95% 持续 5 分钟（升级为 critical）
+      - alert: CriticalMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 95
+        for: 5m
+        labels:
+          severity: critical
+          category: resource
+        annotations:
+          summary: "内存使用率严重过高 ({{ $labels.instance }})"
+          description: "内存使用率当前为 {{ printf \"%.2f\" $value }}%，已超过 95% 阈值，存在 OOM 风险。"
+
+      # 磁盘使用率 > 90% 持续 10 分钟
+      - alert: HighDiskUsage
+        expr: (1 - (node_filesystem_avail_bytes{fstype!~"tmpfs|overlay|squashfs"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay|squashfs"})) * 100 > 90
+        for: 10m
+        labels:
+          severity: critical
+          category: resource
+        annotations:
+          summary: "磁盘使用率过高 ({{ $labels.instance }} {{ $labels.mountpoint }})"
+          description: "磁盘 {{ $labels.mountpoint }} 使用率当前为 {{ printf \"%.2f\" $value }}%，已超过 90% 阈值持续 10 分钟。"
+
+      # 磁盘使用率 > 70% 持续 10 分钟（warning）
+      - alert: WarningDiskUsage
+        expr: (1 - (node_filesystem_avail_bytes{fstype!~"tmpfs|overlay|squashfs"} / node_filesystem_size_bytes{fstype!~"tmpfs|overlay|squashfs"})) * 100 > 70
+        for: 10m
+        labels:
+          severity: warning
+          category: resource
+        annotations:
+          summary: "磁盘使用率较高 ({{ $labels.instance }} {{ $labels.mountpoint }})"
+          description: "磁盘 {{ $labels.mountpoint }} 使用率当前为 {{ printf \"%.2f\" $value }}%，建议关注。"
+
+  # ============================================
+  # 应用性能告警（基于 gexm-server 指标）
+  # ============================================
+  - name: application_performance
+    rules:
+      # HTTP 5xx 错误率 > 5% 持续 2 分钟
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[2m])) by (service)
+            /
+            clamp_min(sum(rate(http_requests_total[2m])) by (service), 1)
+          ) * 100 > 5
+        for: 2m
+        labels:
+          severity: critical
+          category: application
+        annotations:
+          summary: "HTTP 5xx 错误率过高 ({{ $labels.service }})"
+          description: "5xx 错误率当前为 {{ printf \"%.2f\" $value }}%，已超过 5% 阈值持续 2 分钟。"
+
+      # HTTP 5xx 错误率 > 1% 持续 5 分钟（warning）
+      - alert: WarningErrorRate
+        expr: |
+          (
+            sum(rate(http_requests_total{status=~"5.."}[5m])) by (service)
+            /
+            clamp_min(sum(rate(http_requests_total[5m])) by (service), 1)
+          ) * 100 > 1
+        for: 5m
+        labels:
+          severity: warning
+          category: application
+        annotations:
+          summary: "HTTP 5xx 错误率较高 ({{ $labels.service }})"
+          description: "5xx 错误率当前为 {{ printf \"%.2f\" $value }}%，已超过 1% 阈值持续 5 分钟。"
+
+      # HTTP 响应时间 P95 > 2s 持续 5 分钟
+      - alert: HighResponseTimeP95
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (le, service)
+          ) > 2
+        for: 5m
+        labels:
+          severity: warning
+          category: application
+        annotations:
+          summary: "响应时间 P95 过高 ({{ $labels.service }})"
+          description: "P95 响应时间当前为 {{ printf \"%.2f\" $value }}s，已超过 2s 阈值持续 5 分钟。"
+
+      # HTTP 响应时间 P95 > 1s 持续 5 分钟（warning 提前预警）
+      - alert: WarningResponseTimeP95
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(http_request_duration_seconds_bucket[5m])) by (le, service)
+          ) > 1
+        for: 5m
+        labels:
+          severity: warning
+          category: application
+        annotations:
+          summary: "响应时间 P95 较高 ({{ $labels.service }})"
+          description: "P95 响应时间当前为 {{ printf \"%.2f\" $value }}s，建议关注接口性能。"

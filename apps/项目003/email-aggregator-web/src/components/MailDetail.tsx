@@ -119,25 +119,31 @@ export default function MailDetail({ mail, hit, onClose, onToggleRead, onDelete 
                 </dd>
               </>
             )}
-            {mail?.hasAttachment && (
-              <div className="attachments">
-                <div className="attach-title">
-                  <Icon name="paperclip" size={14} /> 含 {mail.attachments?.length ?? 0} 个附件
-                </div>
-                <ul className="attach-list">
-                  {(mail.attachments ?? []).map((a, i) => (
-                    <li key={i} className="attach-item">
-                      <span className="attach-name">{a.filename}</span>
-                      <span className="attach-meta">
-                        {a.contentType} · {(a.sizeBytes / 1024).toFixed(1)} KB
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
           </dl>
         </div>
+
+        {/* 附件区移出 <dl>：
+            BUG-003-06 —— 原结构把 <div class="attachments"> 直接放在 <dl> 内且不含 dt/dd，
+            违反 HTML 规范（dl 仅允许 dt/dd 或包裹二者的 div），会造成部分浏览器/读屏器解析异常。
+            BUG-003-07 —— a.sizeBytes 缺失时 原表达式输出 "NaN KB"，改为未知兜底。 */}
+        {mail?.hasAttachment && (
+          <div className="attachments">
+            <div className="attach-title">
+              <Icon name="paperclip" size={14} /> 含 {mail.attachments?.length ?? 0} 个附件
+            </div>
+            <ul className="attach-list">
+              {(mail.attachments ?? []).map((a, i) => (
+                <li key={a.filename ? `${a.filename}-${i}` : i} className="attach-item">
+                  <span className="attach-name">{a.filename}</span>
+                  <span className="attach-meta">
+                    {a.contentType} ·{' '}
+                    {Number.isFinite(a.sizeBytes) ? `${(a.sizeBytes / 1024).toFixed(1)} KB` : '大小未知'}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* 可滚动正文 */}
         <div className="modal-body">

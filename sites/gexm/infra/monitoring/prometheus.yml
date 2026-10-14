@@ -1,0 +1,63 @@
+# Prometheus 抓取配置
+# 全局配置
+global:
+  scrape_interval: 15s          # 默认抓取间隔
+  evaluation_interval: 15s      # 告警规则评估间隔
+  scrape_timeout: 10s           # 单次抓取超时
+
+# 告警规则文件
+rule_files:
+  - /etc/prometheus/alert_rules.yml
+
+# Alertmanager 配置
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets:
+            - alertmanager:9093
+
+# 抓取任务配置
+scrape_configs:
+  # ============================================
+  # Prometheus 自身指标
+  # ============================================
+  - job_name: 'prometheus'
+    static_configs:
+      - targets:
+          - localhost:9090
+        labels:
+          service: prometheus
+
+  # ============================================
+  # Gexm Server 应用指标
+  # 服务端通过 /metrics 暴露 Prometheus 指标
+  # 使用 localhost 访问宿主机上的服务（localhost:3000）
+  # ============================================
+  - job_name: 'gexm-server'
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - localhost:3000
+        labels:
+          service: gexm-server
+          env: production
+
+  # ============================================
+  # Node Exporter - 主机系统指标
+  # ============================================
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets:
+          - node-exporter:9100
+        labels:
+          service: node-exporter
+
+  # ============================================
+  # Alertmanager 自身指标
+  # ============================================
+  - job_name: 'alertmanager'
+    static_configs:
+      - targets:
+          - alertmanager:9093
+        labels:
+          service: alertmanager

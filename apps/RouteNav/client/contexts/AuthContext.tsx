@@ -37,13 +37,21 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
       headers['Authorization'] = `Bearer ${token}`;
     }
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      ...options,
-      headers: {
-        ...headers,
-        ...options.headers,
-      },
-    });
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 15000);
+    let response: Response;
+    try {
+      response = await fetch(`${API_BASE_URL}${endpoint}`, {
+        ...options,
+        headers: {
+          ...headers,
+          ...options.headers,
+        },
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     const result = await response.json();
 
@@ -53,7 +61,11 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 
     return { success: true, data: result.data };
   } catch (error) {
-    return { success: false, error: error instanceof Error ? error.message : 'Network error' };
+    const aborted = error instanceof DOMException && error.name === 'AbortError';
+    return {
+      success: false,
+      error: aborted ? '请求超时，请稍后重试' : error instanceof Error ? error.message : 'Network error',
+    };
   }
 }
 

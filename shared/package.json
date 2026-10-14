@@ -1,0 +1,7 @@
+{
+  "name": "@shared/root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "整合抽取的共享代码根：统一地图服务 / 统一请求封装 / 统一配置加载",
+  "workspaces": ["map", "http", "config"]
+}

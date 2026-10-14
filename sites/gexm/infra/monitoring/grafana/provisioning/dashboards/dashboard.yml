@@ -1,0 +1,16 @@
+# Grafana 仪表板自动配置
+# 自动加载 /var/lib/grafana/dashboards 目录下的仪表板 JSON 文件
+apiVersion: 1
+
+providers:
+  - name: 'gexm-dashboards'
+    orgId: 1
+    folder: 'Gexm'
+    folderUid: gexm-dashboards
+    type: file
+    disableDeletion: false
+    updateIntervalSeconds: 30
+    allowUiUpdates: true
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: true

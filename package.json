@@ -1,0 +1,19 @@
+{
+  "name": "mi-xiao-mi-la-a-li-inc-monorepo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "统一单体项目：19 个模块（apps 11 / services 1 / sites 3 / tools 1 / shared 3）合并为一个项目，单一入口 run.mjs",
+  "scripts": {
+    "list": "node run.mjs list",
+    "dev": "node run.mjs dev",
+    "build": "node run.mjs build",
+    "typecheck": "node run.mjs typecheck",
+    "verify": "node run.mjs verify",
+    "clean": "node run.mjs clean",
+    "setup": "node run.mjs setup"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "packageManager": "pnpm@9.12.0"
+}

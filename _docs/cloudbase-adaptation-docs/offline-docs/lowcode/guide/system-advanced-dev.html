@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-lowcode/guide/system-advanced-dev" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">可视化开发(微搭)进阶指南 | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/lowcode/guide/system-advanced-dev"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="可视化开发(微搭)进阶指南 | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="前言"><meta data-rh="true" property="og:description" content="前言"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/lowcode/guide/system-advanced-dev"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/lowcode/guide/system-advanced-dev" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/lowcode/guide/system-advanced-dev" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/lowcode/guide/system-advanced-dev" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"可视化开发进阶指南","item":"https://docs.cloudbase.net/lowcode/guide/system-advanced-dev"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/assets/css/styles.84763893.css">
+<script src="/assets/js/runtime~main.13eb34e7.js" defer="defer"></script>
+<script src="/assets/js/main.38956b3f.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="关闭" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/quick-start/">快速开始</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">基础能力</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">核心能力</a></li><li><a class="dropdown__link nav-icon-database" href="/database/postgresql/initialization">数据库</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/storage/introduce">云存储</a></li><li><a class="dropdown__link nav-icon-zap" href="/cloud-function/introduce">云函数</a></li><li><a class="dropdown__link nav-icon-cloud" href="/run/introduction">云托管</a></li><li><a class="dropdown__link nav-icon-globe" href="/hosting/introduce">静态网站托管</a></li><li><a class="dropdown__link nav-icon-log-in" href="/authentication-v2/auth/introduce">身份认证</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/ai/introduce">AI 接入</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/integration/introduce">集成中心</a></li><li><a href="#" class="dropdown__link navbar-category">平台管理</a></li><li><a class="dropdown__link nav-icon-network" href="/service/introduce">HTTP 网关</a></li><li><a class="dropdown__link nav-icon-eye" href="/envconfig/intro">环境配置</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/logger/introduce">日志监控</a></li><li><a class="dropdown__link" href="/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">开发工具</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/ai/cloudbase-ai-toolkit/">AI 开发工具</a></li><li><a class="dropdown__link" href="/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">解决方案</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/solutions/cloudbase-platform-edition/overview">平台集成方案</a></li><li><a class="dropdown__link" href="/solutions/vibe-coding-platform/overview">VibeCoding 方案</a></li><li><a class="dropdown__link" href="/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">API参考</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDK 文档</a></li><li><a class="dropdown__link" href="/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">接口文档</a></li><li><a class="dropdown__link" href="/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/error-code/basic">错误码</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多资源</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/changelog/">更新日志</a></li><li><a class="dropdown__link" href="/faq/">常见问题</a></li><li><a class="dropdown__link" href="/practices/introduce">最佳实践</a></li><li><a class="dropdown__link" href="/quick-start/migration/">迁移指南</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">价格文档</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">博客</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">关注公众号领福利</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">前往控制台</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>简体中文</a><ul class="dropdown__menu"><li><a href="/lowcode/guide/system-advanced-dev" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-Hans">简体中文</a></li><li><a href="/en/lowcode/guide/system-advanced-dev" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索 (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_mhZE"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Y1UP menuWithAnnouncementBar_fPny"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">微搭可视化开发</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/introduce"><span>路线图</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" tabindex="0" href="/lowcode/guide/introduce">从入门到精通</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/guide/introduce"><span>概述</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/guide/account-permisson"><span>平台基础概念</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/guide/management-system-dev"><span>后台管理系统开发指南</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/lowcode/guide/system-advanced-dev"><span>可视化开发进阶指南</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/guide/data-management-dev"><span>前后端数据处理介绍</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/guide/style-dev"><span>样式处理及调试</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/lowcode/guide/data-permission"><span>权限配置指南</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/lowcode/framework/expression">运行框架</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/lowcode/custom-components/quick-start/comps">应用开发</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/lowcode/datasource/intro">数据源</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/lowcode/practices/components-guide/badge">最佳实践</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/lowcode/debug/codeanalyse">问题排查</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/lowcode/faq">常见问题</a></div></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">微搭可视化开发</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">从入门到精通</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">可视化开发进阶指南</span></li></ul></nav><div class="region-badge-container"><span class="region-badge-prefix">支持地域：</span><span class="region-badge-tag region-badge-shanghai" style="padding:6px 12px;font-size:11px;font-weight:500;border-radius:5px;color:#000000;background-color:#D3E3FD">上海</span></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>可视化开发(微搭)进阶指南</h1></header>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="前言">前言<a href="#前言" class="hash-link" aria-label="前言的直接链接" title="前言的直接链接" translate="no">​</a></h2>
+<p>本篇文章将讲解云开发平台中 <strong>可视化开发（微搭）</strong> 的进阶内容，旨在帮助您更全面地掌握其核心能力。如果您对 <strong>可视化开发（微搭）</strong> 还不太熟悉，建议先阅读 <a href="https://docs.cloudbase.net/lowcode/practices/management-system-dev">快速入门</a> 以夯实基础</p>
+<p>此外，您还需要了解以下基础知识：</p>
+<ul>
+<li class=""><strong>基础 JavaScript 概念</strong>：包括数据类型、ES6 语法等</li>
+</ul>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>提示</div><div class="admonitionContent_BuS1"><p>若您对 ES6 语法不甚熟悉，编写脚本时可借助 AI 工具辅助实现</p></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="应用开发思维指南">应用开发思维指南<a href="#应用开发思维指南" class="hash-link" aria-label="应用开发思维指南的直接链接" title="应用开发思维指南的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="应用开发架构指南">应用开发架构指南<a href="#应用开发架构指南" class="hash-link" aria-label="应用开发架构指南的直接链接" title="应用开发架构指南的直接链接" translate="no">​</a></h3>
+<p><strong>举例说明：餐厅的运作</strong></p>
+<p>我们可以用餐厅的运作来类比应用开发的架构，这样更容易理解：</p>
+<p>餐厅的运作流程有如下三个环节：</p>
+<ul>
+<li class="">
+<p>餐桌（用来放食品）</p>
+</li>
+<li class="">
+<p>厨师（用来加工食品）</p>
+</li>
+<li class="">
+<p>后厨的食材库存（用来存储原材料）</p>
+</li>
+</ul>
+<p>这些环节通过 <strong>服务员</strong> 连接，服务员将加工后的食品传递到餐桌上。</p>
+<p>通过这三个环节的划分，我们可以清晰地理解它们之间的关系</p>
+<ul>
+<li class=""><strong>用户</strong> 需要在餐桌上通过 <strong>服务员</strong> 下单让厨师加工食品，再通过 <strong>服务员</strong> 拿到食品</li>
+</ul>
+<p>如下图所示：</p>
+<img src="https://qcloudimg.tencent-cloud.cn/raw/b706e283a3150ac3022bf0c1e42a9da8.svg" style="width:100px;margin-left:100px">
+<p><strong>应用开发架构</strong></p>
+<p>接下来，我们把餐厅的比喻带入到应用开发架构中：</p>
+<table><thead><tr><th><strong>比喻</strong></th><th><strong>模块</strong></th><th><strong>微搭对应功能</strong></th></tr></thead><tbody><tr><td><strong>餐桌</strong></td><td>视图层</td><td>你看到的网页布局</td></tr><tr><td><strong>厨师</strong></td><td>调用层</td><td>$w、APIs、云函数</td></tr><tr><td><strong>食材库存</strong></td><td>数据层</td><td>数据库</td></tr></tbody></table>
+<img src="https://qcloudimg.tencent-cloud.cn/raw/bd01ba3e07fba2ca9cacaf6445a3cf75.svg" style="width:100px;margin-left:100px">
+<p><strong>总结</strong>：</p>
+<ul>
+<li class=""><strong>视图层</strong> 是用户直接互动的界面（比如餐桌）</li>
+<li class=""><strong>数据层</strong> 是存储信息的仓库（比如后厨的食材）</li>
+<li class=""><strong>调用层</strong> 则是连接两者的智能处理器，像厨师去加工食材再返回给用户</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="应用开发  流程指南">应用开发流程指南<a href="#应用开发流程指南" class="hash-link" aria-label="应用开发流程指南的直接链接" title="应用开发流程指南的直接链接" translate="no">​</a></h3>
+<p><strong>把大象放进冰箱里需要怎么做?</strong></p>
+<p>这是一个经典的比喻，用来解释复杂任务的分步完成。开发应用也是如此，我们需要将任务拆解成几个简单的步骤：</p>
+<p>首先你需要有一头大象和一个冰箱，接下来你就需要：</p>
+<ol>
+<li class=""><strong>打开冰箱门</strong></li>
+<li class=""><strong>把大象放进去</strong></li>
+<li class=""><strong>关上冰箱门</strong></li>
+</ol>
+<p>在这个例子中，我们先把步骤逻辑捋清楚，再考虑每一步的具体实现。应用开发也是一样，先明确需求，再逐步实现</p>
+<p><strong>把数据库的博客列表展示到页面中怎么做?</strong></p>
+<p>我们推荐先设计 <strong>数据层</strong>，再设计 <strong>视图层</strong>，再设计 <strong>调用层</strong> 进行获取数据或二次加工数据</p>
+<p>因此我们可以按照如下步骤进行：</p>
+<ol>
+<li class="">
+<p>设计博客数据模型（设计数据层）</p>
+</li>
+<li class="">
+<p>在页面中新加一个数据列表（设计视图层）</p>
+</li>
+<li class="">
+<p>通过query等方法获取数据（设计调用层）</p>
+</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="微搭架构">微搭架构<a href="#微搭架构" class="hash-link" aria-label="微搭架构的直接链接" title="微搭架构的直接链接" translate="no">​</a></h2>
+<p>微搭在传统的开发路线中，添加了 <code>query数据查询</code> 和 <strong>数据容器组件直接配置数据源</strong> 方式，可以让 <code>视图层</code> 快速获取数据</p>
+<p>接下来我们把通用开发架构带入到微搭的架构中：</p>
+<img src="https://qcloudimg.tencent-cloud.cn/raw/bc1b55a2a6d05455b86f216ad966dd17.svg" style="width:200px;margin-left:100px">
+<ul>
+<li class="">
+<p>我们可以在 <code>可视化页面</code> 中通过 <strong>模型配置</strong> 直接调用 <strong>数据模型</strong> 的数据进行展示</p>
+</li>
+<li class="">
+<p>可以在 <code>可视化页面</code> 中新建 <code>query数据查询</code>，并将查询数据进行展示</p>
+</li>
+<li class="">
+<p>如果需求复杂，不是简单的增删改查的话，则可以在 <code>可视化页面</code> 调用 <code>​​调用层</code> ，通过 <code>​调用层</code> 调用 <code>数据层</code> 并对返回的数据进行 <strong>二次处理</strong> 再返回给 <code>可视化页面</code></p>
+</li>
+</ul>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>解释</div><div class="admonitionContent_BuS1"><p>前端调用和后端调用的区别</p><ul>
+<li class="">
+<p>$w 是一个前端 API，内置一系列方法和系统变量，可以直接操作数据模型</p>
+</li>
+<li class="">
+<p>APIs、 云函数 是运行在后端的服务，可以通过编码的方式操作数据模型，也可以对接外部 API 数据</p>
+</li>
+</ul></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="完整架构">完整架构<a href="#完整架构" class="hash-link" aria-label="完整架构的直接链接" title="完整架构的直接链接" translate="no">​</a></h3>
+<p>接下来我们来看一下 <strong>可视化开发（微搭）</strong> 的完整架构  图。<strong>通过这张图，您可以更清晰地理解微搭的架构及其各模块间的调用关系</strong></p>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/77ddd51efe7ef58136f7742509332ead.svg" alt="preview" class="img_ev3q"></p>
+<p>图中所有模块的连接线表示它们之间存在的调用关系</p>
+<p><strong>页面及数据流</strong></p>
+<ol>
+<li class="">
+<p><code>组件</code> 为页面组成的最小原子，您需要通过组件的搭配进行页面的搭建</p>
+</li>
+<li class="">
+<p><code>数据容器组件</code> 可以通过配置 <code>数据源</code>，从而 <code>自动生成</code> 符合该数据源的表单组件，并自动绑定数据</p>
+</li>
+<li class="">
+<p>若数据不是简单的数据模型增删改查，也可以配置 <code>页面方法</code> 通过 <code>sdk</code> 调用 <code>APIs/云函数</code> 获取数据，然后将数据写入 <code>页面/全局变量</code>中，随后在页面任意位置进行使用</p>
+</li>
+</ol>
+<p><strong>样式</strong></p>
+<ol>
+<li class="">
+<p>可以通过 <code>组件样式配置</code>、<code>主题</code> 等快速修改页面样式</p>
+</li>
+<li class="">
+<p>如果样式配置不够满足条件，可以通过 <code>组件CSS</code> 进行编写样式表，实现原子级样式自定义</p>
+</li>
+<li class="">
+<p>也可以定义 <code>全局CSS</code> 进行全局样式自定义</p>
+</li>
+</ol>
+<p><strong>第三方集成</strong></p>
+<ol>
+<li class="">可以通过 <code>SSO</code> 提供的几种方式对接 <code>外部系统认证源</code>，实现登录、注册、权限验证等功能</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="平台能力">平台能力<a href="#平台能力" class="hash-link" aria-label="平台能力的直接链接" title="平台能力的直接链接" translate="no">​</a></h2>
+<p>下方介绍 <strong>可视化开发（微搭）</strong> 中的一些平台能力</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="数据模型">数据模型<a href="#数据模型" class="hash-link" aria-label="数据模型的直接链接" title="数据模型的直接链接" translate="no">​</a></h3>
+<p><strong>数据模型</strong> 是云开发中的数据模块，自带数据模型和外部数据库集成</p>
+<p>具体文档：<a href="https://docs.cloudbase.net/database/introduce">数据模型</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="w">$w<a href="#w" class="hash-link" aria-label="$w的直接链接" title="$w的直接链接" translate="no">​</a></h3>
+<p><strong>云开发平台</strong> 使用 <code>$w</code> 作为全局的命名空间，微搭前端运行时 <strong>所有能力</strong> 都可以通过这个命名空间访问到</p>
+<p>因此可以在表达式、js 脚本中通过 <code>$w</code> 获取全局数据</p>
+<p>具体文档：<a href="https://docs.cloudbase.net/lowcode/api/api-referrence">$w 指引</a></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="全局变量方法">全局变量/方法<a href="#全局变量方法" class="hash-link" aria-label="全局变量/方法的直接链接" title="全局变量/方法的直接链接" translate="no">​</a></h3>
+<p><strong>全局变量</strong> 可以理解为一个在页面旁边放置的 <strong>箱子</strong>，您可以在其中存放变量和方法，并在页面的 <strong>任意位置</strong> 使用它们。这个箱子里的变量和方法被称为 <strong>全局变量</strong> 和 <strong>全局方法</strong></p>
+<p>全局变量用于在全局范围内维护一个属性值，可以在任意位置使用和修改。例如：</p>
+<ol>
+<li class="">定义一个变量 <code>formType</code>，用于控制某个表单的状态（如编辑、新增、只读）</li>
+<li class="">配置 <code>A按钮</code> 的点击事件，点击时将 <code>formType</code> 修改为 <code>edit</code>。</li>
+<li class="">配置 <code>B按钮</code> 的点击事件，点击时将 <code>formType</code> 修改为 <code>read</code>。</li>
+</ol>
+<p>通过这种方式，不同的按钮可以  通过控制同一个变量来改变表单的属性</p>
+<p>这样就能实现不同的按钮通过控制同一个变量，从而改变表单属性</p>
+<p>全局方法同理，在全局定义方法，可以在任意位置调用</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="表达式单行js语句">表达式(单行js语句)<a href="#表达式单行js语句" class="hash-link" aria-label="表达式(单行js语句)的直接链接" title="表达式(单行js语句)的直接链接" translate="no">​</a></h3>
+<p>在应用开发中，许多属性的值并非固定不变，而是根据特定条件或数据动态变化的。这些动态属性通常通过 <strong>JS 表达式</strong> 来实现。以下是一些常见的应用场景：</p>
+<ol>
+<li class=""><strong>数据转换与计算</strong>：</li>
+</ol>
+<ul>
+<li class="">对数据进行累加、过滤等操作，生成动态结果</li>
+<li class="">示例：计算某个字段的总和，或根据条件筛选数据</li>
+</ul>
+<ol start="2">
+<li class=""><strong>数据查询</strong>：</li>
+</ol>
+<ul>
+<li class="">从数据模型中动态获取所需数据</li>
+<li class="">示例：根据用户输入的关键字查询相关记录</li>
+</ul>
+<ol start="3">
+<li class=""><strong>字段依赖</strong>：</li>
+</ol>
+<ul>
+<li class="">某个字段的显示或隐藏依赖于另一个字段的值</li>
+<li class="">示例：当用户选择“已婚”时，显示“配偶姓名”字段</li>
+</ul>
+<p>在 <strong>云开发平台</strong> 中，所有支持表达式的地方都会用 <code>fx</code> 标记或 <code>{{ }}</code> 占位符来标识</p>
+<p>表达式中可以拿到当前页面定义的全局变量、方法、页面状态信息、组件信息等</p>
+<p>在表达式框展示时，可以在右侧找到所有变量，点击即可回填</p>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/16a68e149d148088a8b6a528e471fcd5.png" alt="preview" class="img_ev3q"></p>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>注意</div><div class="admonitionContent_BuS1"><p>表达式适用于单行js处理脚本，若数据处理场景比较复杂，建议在页面中新建js方法，再从表达式中调用js方法进行数据处理</p></div></div>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="示例动态计算商品总金额">示例：动态计算商品总金额<a href="#示例动态计算商品总金额" class="hash-link" aria-label="示例：动态计算商品总金额的直接链接" title="示例：动态计算商品总金额的直接链接" translate="no">​</a></h4>
+<p>假设你有一个商品列表，需要动态计算所有商品的总金额。可以通过表达式轻松实现：</p>
+<div class="language-javascript codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-javascript codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">$w</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">queryProduct</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">records</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">reduce</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">total</span><span class="token parameter punctuation" style="color:#393A34">,</span><span class="token parameter"> item</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token arrow operator" style="color:#393A34">=&gt;</span><span class="token plain"> total </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> item</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">price</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<ul>
+<li class=""><code>$w.queryProduct</code> 是页面新建的数据源查询方法</li>
+<li class=""><code>reduce</code> 方法遍历每个订单，将 <code>amount</code> 字段的值累加到 <code>total</code> 中</li>
+<li class="">然后将该表达式绑定在组件上进行展示</li>
+</ul>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>提示</div><div class="admonitionContent_BuS1"><p>如果你对 <code>reduce</code>   方法不熟悉，可以随时向 AI 提问获取帮助</p><p><strong>提问示例</strong>：<br>
+<!-- -->帮我写一个 JS 表达式，用来累加 <code>$w.queryProduct.data.records</code> 数据中 <code>price</code> 字段的数据。</p></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="事件系统">事件系统<a href="#事件系统" class="hash-link" aria-label="事件系统的直接链接" title="事件系统的直接链接" translate="no">​</a></h3>
+<p>事件处理是 <strong>云开发平台</strong> 中实现交互功能的关键。您可以为组件配置各种事件（如点击、输入、加载成功等），并在事件触发时执行相应的逻辑</p>
+<p>事件中提供了很多快捷方法，比如 调用数据模型方法、打开页面、调用组件方法等等</p>
+<p>具体参考文章：<a href="https://docs.cloudbase.net/lowcode/framework/event">事件系统</a></p>
+<p><strong>示例</strong></p>
+<p>期望点击「编辑按钮」时打开「编辑页面」，实现如下：</p>
+<ul>
+<li class="">
+<p>为「编辑按钮」配置点击事件</p>
+</li>
+<li class="">
+<p>选择打开页面方法，配置打开页面</p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/6e4a7cf36e5f711ef5b7e9a4df723b6c.png" alt="preview" class="img_ev3q"></p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="插槽">插槽<a href="#插槽" class="hash-link" aria-label="插槽的直接链接" title="插槽的直接链接" translate="no">​</a></h3>
+<p>插槽就是一个 <strong>占位符</strong>，可以根据不同的场景放置不同的内容，让组件变得更加灵活</p>
+<p><strong>举个例子：</strong></p>
+<p>假设你有一个“卡片”组件，卡片里有一个标题和一段描述。但你希望卡片的中间部分可以根据不同的场景显示不同的内容，比如图片、按钮或文字。这时，你就可以在卡片组件中定义一个插槽。当你在使用这个卡片组件时，可以根据需要把图片、 按钮或文字“塞”进这个插槽里。</p>
+<p><strong>示例 1</strong></p>
+<p>如下页面有一个 <code>卡片组件</code> , 其中有三个插槽: <code>卡片顶部</code> 、 <code>卡片内容</code> 、 <code>卡片底部</code></p>
+<p>卡片组件自带样式，将三个插槽放在不同的位置，你只需要关心插槽中的内容即可，可以在插槽中放置任意的组件</p>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/d8db1a2eda2d29df35f38650ee0f96a6.png" alt="preview" class="img_ev3q"></p>
+<p><strong>示例 2</strong></p>
+<p>数据表格中有 <code>全局按钮</code> 、 <code>操作列</code> 插槽，支持你在列表上方、操作列处放置其他的组件</p>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/36245f0682ac13d176d084c807880a12.png" alt="preview" class="img_ev3q"></p>
+<p>数据表格还支持自定义列插槽，可以自定义每一列的展示形式，详情查看 <a href="https://docs.cloudbase.net/lowcode/components/wedaUI/src/docs/compsdocs/database/WdTable#%E9%85%8D%E7%BD%AE%E8%87%AA%E5%AE%9A%E4%B9%89%E5%88%97%E8%87%AA%E5%AE%9A%E4%B9%89%E6%98%BE%E7%A4%BA%E5%86%85%E5%AE%B9%E5%92%8C%E6%A0%B7%E5%BC%8F">数据表格文档</a></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="案例演示">案例演示<a href="#案例演示" class="hash-link" aria-label="案例演示的直接链接" title="案例演示的直接链接" translate="no">​</a></h2>
+<p>现在你已经了解了应用开发的流程，也了解了云开发中包含了哪些能力，接下来我们以一个实际案例来展示我们开发的全链路过程</p>
+<p><strong>功能描述：博客展示列表</strong></p>
+<ul>
+<li class="">左侧展示分类列表</li>
+<li class="">右侧展示查询框和对应分类下的博客列表</li>
+<li class="">点击分类列表，右侧切换展示对应分类下的博客列表</li>
+<li class="">根据用户输入的关键字，过滤出对应的博客</li>
+</ul>
+<img src="https://qcloudimg.tencent-cloud.cn/raw/9b663af83fe301abfdde6e8a428c5daf.png" style="width:300px">
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="1-梳理开发流程">1. 梳理开发流程<a href="#1-梳理开发流程" class="hash-link" aria-label="1. 梳理开发流程的直接链接" title="1. 梳理开发流程的直接链接" translate="no">​</a></h3>
+<p>首先我们需要来拆解一下我们的需求</p>
+<p><strong>1. 梳理数据层</strong></p>
+<p>分类和博客列表都是动态新增的，因此这两份数据都需要落入数据库中</p>
+<p><strong>2. 梳理视图层</strong></p>
+<p>页面如上图所示，用到 <code>侧边选项卡</code> 、 <code>数据列表</code> 、 <code>input</code> 组件</p>
+<ul>
+<li class="">因博客分类的数据和 <code>侧边选项卡</code> 所需要的数据格式不一致，因此需要做数据转换，可以通过表达式实现</li>
+<li class="">数据列表可以直接配置数据源，展示数据模型数据</li>
+<li class="">切换分类时，要过滤右侧的博客列表，可以配置数据列表的查询条件为 <code>分类 等于 侧边选项卡当前选中项</code></li>
+<li class=""><code>搜索框</code> 过滤博客列表的查询条件为 <code>标题 包含 搜索框输入内容</code></li>
+</ul>
+<p><strong>3. 梳理逻辑层</strong></p>
+<ul>
+<li class="">因为数据库中的分类数据和侧边选项卡所需要的结构不一致，因此需要做数据转换，通过表达式实现</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="2-实操步骤">2. 实操步骤<a href="#2-实操步骤" class="hash-link" aria-label="2. 实操步骤的直接链接" title="2. 实操步骤的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="步骤-1-创建数据表">步骤 1: 创建数据表<a href="#步骤-1-创建数据表" class="hash-link" aria-label="步骤 1: 创建数据表的直接链接" title="步骤 1: 创建数据表的直接链接" translate="no">​</a></h4>
+<p>我们需要新建 分类表、博客表</p>
+<p>这里我们选择使用关联关系来实现两张表的关联</p>
+<p><strong>分类表</strong></p>
+<table><thead><tr><th><strong>字段名称</strong></th><th><strong>字段类型</strong></th></tr></thead><tbody><tr><td><strong>分类名称</strong></td><td>文本</td></tr><tr><td><strong>关联博客</strong></td><td>关联关系</td></tr></tbody></table>
+<p><strong>博客表</strong></p>
+<table><thead><tr><th><strong>字段名称</strong></th><th><strong>字段类型</strong></th></tr></thead><tbody><tr><td><strong>博客名称</strong></td><td>文本</td></tr><tr><td><strong>博客副标题</strong></td><td>文本</td></tr><tr><td><strong>所属分类</strong></td><td>关联关系</td></tr><tr><td><strong>博客内容</strong></td><td>富文本</td></tr></tbody></table>
+<div class="theme-admonition theme-admonition-warning admonition_xJq3 alert alert--warning"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.893 1.5c-.183-.31-.52-.5-.887-.5s-.703.19-.886.5L.138 13.499a.98.98 0 0 0 0 1.001c.193.31.53.501.886.501h13.964c.367 0 .704-.19.877-.5a1.03 1.03 0 0 0 .01-1.002L8.893 1.5zm.133 11.497H6.987v-2.003h2.039v2.003zm0-3.004H6.987V5.987h2.039v4.006z"></path></svg></span>注意</div><div class="admonitionContent_BuS1"><p>当只有两张表有某种关联关系时，我们就可以利用 <code>关联关系</code> 来实现数据的关联，相关文档链接：<a href="https://docs.cloudbase.net/model/config/relation">关联关系文档</a></p><p>当有更多张表存在相互关联关系，且需要经常多表联查时，建议不要使用关联关系，而是通过数组/文本类型存储关联数据，用云函数、APIs等方式获取关联数据</p></div></div>
+<p><strong>关联关系</strong></p>
+<ol>
+<li class="">在 <strong>博客表</strong> 中新建一个字段，命名为 <strong>所属分类</strong>，用于存储与 <strong>分类表</strong> 的关联信息</li>
+<li class="">在 <strong>分类表</strong> 中新建一个字段，命名为 <strong>关联博客</strong>，用于存储与 <strong>博客表</strong> 的关联信息</li>
+<li class="">通过这两个字段，可以在 <strong>博客表</strong> 中读取关联的 <strong>分类表</strong> 数据，反之亦然</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/2f825a86ca36b3be75a72cd1083f05ca.png" alt="preview" class="img_ev3q"></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="步骤-2-配置页面">步骤 2: 配置页面<a href="#步骤-2-配置页面" class="hash-link" aria-label="步骤 2: 配置页面的直接链接" title="步骤 2: 配置页面的直接链接" translate="no">​</a></h4>
+<p>在 <strong>可视化低代码</strong> 模块中新建一个应用，编辑页面</p>
+<p>这里我们在页面中添加三个组件，如图所示:</p>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/43b3d430e57f64fc70563c578395550d.png" alt="preview" class="img_ev3q"></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="步骤-3-绑定博客分类数据到侧边选项卡">步骤 3: 绑定博客分类数据到侧边选项卡<a href="#步骤-3-绑定博客分类数据到侧边选项卡" class="hash-link" aria-label="步骤 3: 绑定博客分类数据到侧边选项卡的直接链接" title="步骤 3: 绑定博客分类数据到侧边选项卡的直接链接" translate="no">​</a></h4>
+<p>因为博客分类的数据和侧边选项卡所需要的数据格式不一致，因此我们需要先将数据查出来，然后通过js表达式将其转换成侧边选项卡所需要的数据格式，最终绑定到侧边选项卡中，步骤如下：</p>
+<ol>
+<li class="">在页面中新建一个 <code>内置数据表查询</code>，命名为 <code>queryCategoryList</code>，用于查询分类列表</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/c8f248b5fbcd118a73ec2e13b76c4b4f.png" alt="preview" class="img_ev3q"></p>
+<ol start="2">
+<li class="">点击 <strong>运行</strong>，查看查询结果，确保数据正确显示</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/115bacc476a3dcd756708f873e6907fb.png" alt="preview" class="img_ev3q"></p>
+<ol start="3">
+<li class="">将 <code>queryCategoryList</code> 的返回值绑定到 <code>选项卡组件</code></li>
+</ol>
+<p>切换选项卡的数据为 <code>表达式</code> 模式，确保数据结构包含 <code>label</code> 和 <code>value</code> 字段</p>
+<ul>
+<li class=""><code>label</code>: 标签展示内容</li>
+<li class=""><code>value</code>: 标签对应的值，拿到标签选中的值是该值</li>
+</ul>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/7020a3e5addb3f7e68880b4ae38a3df1.png" alt="preview" class="img_ev3q"></p>
+<p>因此需要把 <code>queryCategoryList</code> 的返回值中的 <code>flmc</code> 字段作为 <code>label</code> ， <code>_id</code> 作为 <code>value</code></p>
+<p>可以用如下的脚本将 <code>queryCategoryList</code> 的返回数据转换成 <code>[{label: xxx,value: xxx}]</code> 的格式</p>
+<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">$w</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">queryCategoryList</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">records</span><span class="token punctuation" style="color:#393A34">.</span><span class="token method function property-access" style="color:#d73a49">map</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token parameter">item</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token arrow operator" style="color:#393A34">=&gt;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token literal-property property" style="color:#36acaa">label</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> item</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">flmc</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token literal-property property" style="color:#36acaa">value</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> item</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">_id</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>提示</div><div class="admonitionContent_BuS1"><p>如果你对 <code>map</code> 方法不熟悉，可以随时向 AI 提问获取帮助</p><p><strong>提问示例</strong>：<br>
+<!-- -->帮我写一个 JS 表达式，将 <code>$w.queryCategoryList.data.records</code> 数据转换成 <code>[{label: xxx,value: xxx}]</code> 的格式，其中源数据的 <code>flmc</code> 字段作为 <code>label</code> ， <code>_id</code> 字段作为 <code>value</code> 。</p></div></div>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>补充 为什么需要将 <code>queryCategoryList</code> 的返回值做处理再绑定到 <code>选项卡组件</code></div><div class="admonitionContent_BuS1"><p>你可以理解为 A 的衣服要给 B 穿的话，得先确认 B 能不能穿，身材合不合适</p><p><code>queryCategoryList</code> 方法的返回值结构和 <code>选项卡组件</code> 所需要的数据  结构并不一致</p><p>所以需要通过 <code>“裁剪”</code> 手段将 <code>queryCategoryList</code> 的返回值处理成 <code>选项卡组件</code> 所需的数据结构</p></div></div>
+<ol start="4">
+<li class="">设置默认选中的标签为第一条数据：</li>
+</ol>
+<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token comment" style="color:#999988;font-style:italic">// $w.queryCategoryList.data.records 第1项的 _id 值</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">$w</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">queryCategoryList</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">data</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">records</span><span class="token operator" style="color:#393A34">?.</span><span class="token punctuation" style="color:#393A34">[</span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">]</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">_id</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<ol start="5">
+<li class="">完成后，<strong>选项卡组件</strong> 应正常显示分类数据</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/e16b7402308f576fdb5f1c036b8be478.png" alt="preview" class="img_ev3q"></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="步骤-4-绑定博客列表">步骤 4: 绑定博客列表<a href="#步骤-4-绑定博客列表" class="hash-link" aria-label="步骤 4: 绑定博客列表的直接链接" title="步骤 4: 绑定博客列表的直接链接" translate="no">​</a></h4>
+<ol>
+<li class="">在 <code>侧边选项卡</code> 的插槽中添加一个 <code>数据列表</code> 组件，并绑定数据源为 <code>博客列表</code></li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/d8315d6efb72b17d69667ff29a410c82.png" alt="preview" class="img_ev3q"></p>
+<p>这里展示了所有的数据，我们期望选择不同的分类时，只展示分类下的博客数据</p>
+<ol start="2">
+<li class="">设置 <strong>数据筛选</strong> 条件为: <code>所属分类</code> 等于 <code>选项卡组件选中项的值</code></li>
+</ol>
+<p>选项卡组件选中项的值通过如下的表达式获取：</p>
+<div class="language-js codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-js codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">$w</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">sideTab1</span><span class="token punctuation" style="color:#393A34">.</span><span class="token property-access">selectedValue</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/03e848d76e475fdb9114c57a0072f93c.png" alt="preview" class="img_ev3q"></p>
+<ol start="3">
+<li class="">此时切换分类选项卡，<strong>博客列表</strong> 过滤条件根据选项卡选中值的改变而改变，从而自动刷新</li>
+</ol>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="步骤-5-搜索框搜索博客">步骤 5: 搜索框搜索博客<a href="#步骤-5-搜索框搜索博客" class="hash-link" aria-label="步骤 5: 搜索框搜索博客的直接链接" title="步骤 5: 搜索框搜索博客的直接链接" translate="no">​</a></h4>
+<p>搜索框回车时，需要隐藏左侧分类列表，且过滤博客列表，因此可以在搜索框回车事件中，将搜索框的值保存到全局变量，当全局变量有值时，隐藏左侧分类列表，否则展示左侧分类列表</p>
+<ol>
+<li class="">新建全局变量 <code>searchValue</code> 用来保存搜索框的值</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/133604e4ac55d6c08afe949eb35b13d5.png" alt="preview" class="img_ev3q"></p>
+<ol start="2">
+<li class="">在搜索框的 <code>回车事件</code> 中，将搜索框的值保存起来</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/da7d75cc437f6f5a45a5b00eb19b3361.png" alt="preview" class="img_ev3q"></p>
+<ol start="3">
+<li class="">将 <code>searchValue</code> 的值绑定到 <code>博客列表</code> 的查询条件中</li>
+</ol>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/809665b3b9a771b7b7e06f3af11bd784.png" alt="preview" class="img_ev3q"></p>
+<p>此时已经完成整个需求开发，实现了切换分类和搜索博客</p>
+<p><img decoding="async" loading="lazy" src="https://qcloudimg.tencent-cloud.cn/raw/0db060687a77599312487ff7fbbd4385.gif" alt="preview" class="img_ev3q"></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="总结">总结<a href="#总结" class="hash-link" aria-label="总结的直接链接" title="总结的直接链接" translate="no">​</a></h2>
+<p>本篇文章介绍了如何梳理拆解应用的开发流程，并对平台能力进行介绍</p>
+<p>现在你可以举一反三做出类似的 <strong>分类数据管理</strong> 模块，比如：</p>
+<ol>
+<li class="">商品分类管理</li>
+<li class="">订单管理</li>
+<li class="">用户管理</li>
+<li class="">...</li>
+</ol></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/lowcode/guide/management-system-dev"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">后台管理系统开发指南</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/lowcode/guide/data-management-dev"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">前后端数据处理介绍</div></a></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#前言" class="table-of-contents__link toc-highlight">前言</a></li><li><a href="#应用开发思维指南" class="table-of-contents__link toc-highlight">应用开发思维指南</a><ul><li><a href="#应用开发架构指南" class="table-of-contents__link toc-highlight">应用开发架构指南</a></li><li><a href="#应用开发流程指南" class="table-of-contents__link toc-highlight">应用开发流程指南</a></li></ul></li><li><a href="#微搭架构" class="table-of-contents__link toc-highlight">微搭架构</a><ul><li><a href="#完整架构" class="table-of-contents__link toc-highlight">完整架构</a></li></ul></li><li><a href="#平台能力" class="table-of-contents__link toc-highlight">平台能力</a><ul><li><a href="#数据模型" class="table-of-contents__link toc-highlight">数据模型</a></li><li><a href="#w" class="table-of-contents__link toc-highlight">$w</a></li><li><a href="#  全局变量方法" class="table-of-contents__link toc-highlight">全局变量/方法</a></li><li><a href="#表达式单行js语句" class="table-of-contents__link toc-highlight">表达式(单行js语句)</a></li><li><a href="#事件系统" class="table-of-contents__link toc-highlight">事件系统</a></li><li><a href="#插槽" class="table-of-contents__link toc-highlight">插槽</a></li></ul></li><li><a href="#案例演示" class="table-of-contents__link toc-highlight">案例演示</a><ul><li><a href="#1-梳理开发流程" class="table-of-contents__link toc-highlight">1. 梳理开发流程</a></li><li><a href="#2-实操步骤" class="table-of-contents__link toc-highlight">2. 实操步骤</a></li></ul></li><li><a href="#总结" class="table-of-contents__link toc-highlight">总结</a></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="复制文档" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>复制文档</span></button><button class="tocActionButton_eGor" title="查看 Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>查看 Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>反馈文档问题</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>提问 AI</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

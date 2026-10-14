@@ -1,0 +1,14 @@
+{
+  "name": "@mxm/proj-06",
+  "version": "1.0.0",
+  "private": true,
+  "description": "WordPress 主题 myp-theme + 插件 myp-core（PHP，已合并 Gitea 镜像提交）",
+  "mxm": {
+    "type": "php",
+    "group": "apps",
+    "note": "主题/插件包；部署到 WP 站点 sites/项目004 或 gexm"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('PHP 主题/插件：本机无 PHP，跳过 php -l（部署时由 WP 主机校验）')\""
+  }
+}

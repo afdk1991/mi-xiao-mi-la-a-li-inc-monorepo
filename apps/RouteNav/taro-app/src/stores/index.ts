@@ -45,7 +45,19 @@ export const useUserStore = create<UserState>()(
     }),
     {
       name: 'user-storage',
-      storage: createJSONStorage(() => Taro.getStorageSync),
+      storage: createJSONStorage(() => ({
+        getItem: (name) => {
+          const v = Taro.getStorageSync(name)
+          // Taro 在 key 不存在时返回空串而非 null，需归一化为 zustand 期望的 null
+          return v == null || v === '' ? null : v
+        },
+        setItem: (name, value) => {
+          Taro.setStorageSync(name, value)
+        },
+        removeItem: (name) => {
+          Taro.removeStorageSync(name)
+        },
+      })),
     }
   )
 )
@@ -119,7 +131,19 @@ export const useAddressStore = create<AddressState>()(
     }),
     {
       name: 'address-storage',
-      storage: createJSONStorage(() => Taro.getStorageSync),
+      storage: createJSONStorage(() => ({
+        getItem: (name) => {
+          const v = Taro.getStorageSync(name)
+          // Taro 在 key 不存在时返回空串而非 null，需归一化为 zustand 期望的 null
+          return v == null || v === '' ? null : v
+        },
+        setItem: (name, value) => {
+          Taro.setStorageSync(name, value)
+        },
+        removeItem: (name) => {
+          Taro.removeStorageSync(name)
+        },
+      })),
     }
   )
 )
@@ -176,7 +200,19 @@ export const useRouteStore = create<RouteState>()(
     }),
     {
       name: 'route-storage',
-      storage: createJSONStorage(() => Taro.getStorageSync),
+      storage: createJSONStorage(() => ({
+        getItem: (name) => {
+          const v = Taro.getStorageSync(name)
+          // Taro 在 key 不存在时返回空串而非 null，需归一化为 zustand 期望的 null
+          return v == null || v === '' ? null : v
+        },
+        setItem: (name, value) => {
+          Taro.setStorageSync(name, value)
+        },
+        removeItem: (name) => {
+          Taro.removeStorageSync(name)
+        },
+      })),
     }
   )
 )

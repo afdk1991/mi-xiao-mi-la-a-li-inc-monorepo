@@ -1,0 +1,1991 @@
+openapi: 3.0.3
+info:
+  title: Gexm 电商商城系统 API
+  description: |
+    Gexm 电商商城系统后端 API 接口规范文档。
+
+    ## 核心模块
+
+    - **认证模块**：用户名密码登录、手机号登录、邮箱注册、令牌刷新
+    - **OAuth 模块**：支持微信（开放平台/公众号/小程序）、QQ、微博、支付宝、Google、Facebook、Twitter 第三方登录
+    - **订单模块**：订单预览、创建、取消、确认收货、退款申请与审核、物流跟踪
+    - **支付模块**：微信支付、支付宝、余额支付、模拟支付，支持支付回调与对账
+    - **RBAC 权限模块**：角色管理、权限管理、用户角色分配
+    - **商品模块**：商品 CRUD、SKU 管理、库存管理
+    - **双写一致性模块**：SQLite 与 PostgreSQL 双写、一致性校验与自动修复
+
+    ## 认证方式
+
+    所有需要认证的接口使用 Bearer Token 认证方式，Token 通过登录接口获取，
+    放在 HTTP 请求头 `Authorization: Bearer <token>` 中。
+
+    ## 双数据库支持
+
+    系统通过 `ISyncDbClient` 抽象层支持 SQLite 与 PostgreSQL 双数据库，
+    并提供双写一致性服务保障数据同步。
+  version: 1.0.0
+  contact:
+    name: Gexm Team
+    email: admin@gexm.com
+  license:
+    name: MIT
+
+servers:
+  - url: http://localhost:3000
+    description: 开发环境
+  - url: https://api.gexm.com
+    description: 生产环境
+
+tags:
+  - name: 认证
+    description: 用户名密码认证、令牌管理、个人资料
+  - name: OAuth 第三方登录
+    description: 微信、QQ、微博、支付宝、Google、Facebook、Twitter 第三方账号登录与绑定
+  - name: 订单
+    description: 订单创建、查询、取消、确认收货、退款、物流
+  - name: 支付
+    description: 支付发起、回调、状态查询、对账
+  - name: RBAC 权限
+    description: 角色管理、权限管理、用户角色分配
+  - name: 管理后台
+    description: 商品管理、订单管理、仪表盘、审计日志
+  - name: 系统监控
+    description: 健康检查、性能指标、双写状态
+
+security:
+  - BearerAuth: []
+
+paths:
+  /api/health:
+    get:
+      tags: [系统监控]
+      summary: 健康检查
+      description: 服务健康状态探测接口，用于负载均衡与容器编排健康检查。
+      security: []
+      responses:
+        '200':
+          description: 服务运行中
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /api/auth/login:
+    post:
+      tags: [认证]
+      summary: 用户名密码登录
+      description: 使用用户名（或邮箱、手机号）和密码登录，返回访问令牌与刷新令牌。
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+
+  /api/auth/register:
+    post:
+      tags: [认证]
+      summary: 邮箱注册
+      description: |
+        使用用户名、邮箱和密码注册新用户。
+
+        **密码复杂度要求**：
+        - 长度至少 8 位
+        - 必须包含大小写字母、数字和特殊字符
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterRequest'
+      responses:
+        '201':
+          description: 注册成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /api/auth/refresh:
+    post:
+      tags: [认证]
+      summary: 刷新访问令牌
+      description: 使用刷新令牌获取新的访问令牌。
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: 刷新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/auth/logout:
+    post:
+      tags: [认证]
+      summary: 退出登录
+      description: 注销当前刷新令牌。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefreshTokenRequest'
+      responses:
+        '200':
+          description: 退出成功
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/auth/profile:
+    get:
+      tags: [认证]
+      summary: 获取个人资料
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    put:
+      tags: [认证]
+      summary: 更新个人资料
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProfileRequest'
+      responses:
+        '200':
+          description: 更新成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/auth/password:
+    put:
+      tags: [认证]
+      summary: 修改密码
+      description: 用户修改登录密码，新密码需符合复杂度要求。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordRequest'
+      responses:
+        '200':
+          description: 修改成功
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/auth/phone-login:
+    post:
+      tags: [认证]
+      summary: 手机号登录
+      description: 使用手机号和验证码登录。
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PhoneLoginRequest'
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/oauth/{provider}/authorize:
+    get:
+      tags: [OAuth 第三方登录]
+      summary: 获取 OAuth 授权 URL
+      description: |
+        生成第三方授权页面的跳转 URL，并返回 state 参数用于 CSRF 防护。
+
+        **支持的 provider**：
+        - `wechat`：微信（开放平台/公众号/小程序）
+        - `qq`：QQ
+        - `weibo`：微博
+        - `alipay`：支付宝
+        - `google`：Google
+        - `facebook`：Facebook
+        - `twitter`：Twitter
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Provider'
+        - name: redirect_uri
+          in: query
+          description: 授权回调地址
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: 微信平台类型（仅 wechat 生效）
+          schema:
+            type: string
+            enum: [openPlatform, officialAccount, miniProgram]
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 0
+                  message:
+                    type: string
+                    example: 获取授权URL成功
+                  data:
+                    type: object
+                    properties:
+                      authUrl:
+                        type: string
+                        description: 第三方授权页面 URL
+                      state:
+                        type: string
+                        description: CSRF 防护 state 参数（5 分钟有效）
+
+  /api/oauth/{provider}/callback:
+    get:
+      tags: [OAuth 第三方登录]
+      summary: OAuth 授权回调
+      description: |
+        第三方授权完成后的回调接口，使用授权码换取令牌并创建/登录用户。
+
+        流程：
+        1. 校验 state 参数有效性
+        2. 使用 code 换取 access_token
+        3. 获取第三方用户信息
+        4. 查找或创建本地用户
+        5. 返回登录凭证
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Provider'
+        - name: code
+          in: query
+          required: true
+          description: 第三方授权码
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: true
+          description: CSRF 防护 state 参数
+          schema:
+            type: string
+        - name: redirect_uri
+          in: query
+          description: 授权回调地址
+          schema:
+            type: string
+        - name: platform
+          in: query
+          description: 微信平台类型
+          schema:
+            type: string
+            enum: [openPlatform, officialAccount]
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthLoginResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/oauth/{provider}/login:
+    post:
+      tags: [OAuth 第三方登录]
+      summary: 小程序登录
+      description: |
+        微信小程序登录接口，使用 js_code 换取 openid 与 session_key。
+
+        仅 wechat provider 支持此接口。
+      security: []
+      parameters:
+        - $ref: '#/components/parameters/Provider'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code:
+                  type: string
+                  description: 微信小程序登录凭证 js_code
+      responses:
+        '200':
+          description: 登录成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuthLoginResponse'
+
+  /api/oauth/{provider}/bind:
+    post:
+      tags: [OAuth 第三方登录]
+      summary: 绑定第三方账号
+      description: 已登录用户绑定第三方账号。
+      parameters:
+        - $ref: '#/components/parameters/Provider'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code:
+                  type: string
+                  description: 第三方授权码
+      responses:
+        '200':
+          description: 绑定成功
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /api/oauth/{provider}/unbind:
+    delete:
+      tags: [OAuth 第三方登录]
+      summary: 解绑第三方账号
+      description: |
+        解除当前用户与指定第三方账号的绑定关系。
+
+        **约束**：至少需要保留一个登录方式（本地账号或其他第三方绑定）。
+      parameters:
+        - $ref: '#/components/parameters/Provider'
+      responses:
+        '200':
+          description: 解绑成功
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/oauth/accounts:
+    get:
+      tags: [OAuth 第三方登录]
+      summary: 获取已绑定的第三方账号列表
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                    example: 0
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/OAuthAccount'
+
+  /api/orders/preview:
+    post:
+      tags: [订单]
+      summary: 订单预览
+      description: |
+        预览订单金额明细，包含商品金额、运费、优惠券折扣、积分抵扣、实付金额。
+
+        支持两种来源：
+        - `cart`：从购物车结算，需提供 cartItemIds
+        - `direct`：直接购买，需提供 items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderPreviewRequest'
+      responses:
+        '200':
+          description: 预览成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderPreviewResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/orders:
+    get:
+      tags: [订单]
+      summary: 获取订单列表
+      description: 获取当前用户的订单列表，支持按状态筛选和分页。
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - name: status
+          in: query
+          description: 订单状态筛选
+          schema:
+            $ref: '#/components/schemas/OrderStatus'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      tags: [订单]
+      summary: 创建订单
+      description: |
+        创建订单，流程包含：
+        1. 校验收货地址有效性
+        2. 校验商品库存
+        3. 计算金额（含优惠券、积分抵扣）
+        4. 事务性扣减库存（SKU 与商品库存）
+        5. 创建订单与订单项
+        6. 清理购物车（如来自购物车）
+        7. 发送订单创建通知
+        8. 发布订单创建消息到队列（用于超时取消）
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateOrderRequest'
+      responses:
+        '201':
+          description: 创建成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /api/orders/statistics:
+    get:
+      tags: [订单]
+      summary: 获取订单统计
+      description: 按状态维度统计订单数量与金额。
+      parameters:
+        - name: startTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+        - name: endTime
+          in: query
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderStatistics'
+
+  /api/orders/{id}:
+    get:
+      tags: [订单]
+      summary: 获取订单详情
+      description: 获取订单完整信息，包含订单项与收货地址。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/orders/{id}/cancel:
+    patch:
+      tags: [订单]
+      summary: 取消订单
+      description: |
+        取消待付款订单，事务性回滚库存（SKU 与商品库存）。
+
+        **前置条件**：订单状态为 `pending`。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                cancelReason:
+                  type: string
+                  description: 取消原因
+      responses:
+        '200':
+          description: 取消成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/orders/{id}/confirm:
+    patch:
+      tags: [订单]
+      summary: 确认收货
+      description: |
+        确认收货，订单状态从 `shipped` 变为 `completed`。
+
+        **前置条件**：订单状态为 `shipped`。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 确认成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/orders/{id}/refund/apply:
+    post:
+      tags: [订单]
+      summary: 申请退款
+      description: |
+        用户发起退款申请，订单状态从 `paid` 或 `shipped` 变为 `refunding`。
+
+        **前置条件**：订单状态为 `paid` 或 `shipped`。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [reason]
+              properties:
+                reason:
+                  type: string
+                  description: 退款原因
+                refundAmount:
+                  type: number
+                  description: 退款金额（不填则退款全额）
+      responses:
+        '200':
+          description: 申请成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/orders/{id}/logistics:
+    get:
+      tags: [订单]
+      summary: 获取订单物流信息
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Logistics'
+
+  /api/payment/pay:
+    post:
+      tags: [支付]
+      summary: 发起支付
+      description: |
+        对指定订单发起支付。支持以下支付方式：
+
+        - `mock`：模拟支付（立即成功，用于测试）
+        - `balance`：余额支付（扣减用户余额，立即成功）
+        - `wechat`：微信支付（返回预支付参数，需用户在客户端完成支付）
+        - `alipay`：支付宝（返回交易参数，需用户在客户端完成支付）
+
+        **mock/balance 方式**：同步扣款并更新订单状态为 `paid`，同步增加商品销量。
+        **wechat/alipay 方式**：异步流程，返回网关预下单结果，等待支付回调。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayRequest'
+      responses:
+        '200':
+          description: 支付发起成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PayResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '402':
+          description: 余额不足
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /api/payment/callback/{method}:
+    post:
+      tags: [支付]
+      summary: 支付回调
+      description: |
+        第三方支付平台异步通知接口。
+
+        **安全机制**：
+        - IP 白名单校验（通过 `ipWhitelistMiddleware`）
+        - 签名校验（HMAC-SHA256，使用 `PAYMENT_SECRET`）
+        - 幂等处理（基于支付状态判断）
+
+        回调数据通过 `sign` 字段进行签名验证，验签失败返回 400。
+      security: []
+      parameters:
+        - name: method
+          in: path
+          required: true
+          description: 支付方式
+          schema:
+            type: string
+            enum: [wechat, alipay]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentCallback'
+      responses:
+        '200':
+          description: 回调处理成功
+        '400':
+          description: 验签失败或参数错误
+
+  /api/payment/{orderId}/status:
+    get:
+      tags: [支付]
+      summary: 获取支付状态
+      description: 查询订单的支付状态，包含订单状态与支付记录状态。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentStatus'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/payment/{orderId}/query:
+    get:
+      tags: [支付]
+      summary: 主动查询支付状态
+      description: 主动查询支付状态，mock 支付会自动置为成功。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 查询成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentQueryResult'
+
+  /api/payment/{orderId}/close:
+    post:
+      tags: [支付]
+      summary: 关闭支付
+      description: 关闭待支付状态下的支付记录，状态变为 `cancelled`。
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      responses:
+        '200':
+          description: 关闭成功
+        '400':
+          $ref: '#/components/responses/BadRequest'
+
+  /api/payment/list:
+    get:
+      tags: [支付]
+      summary: 获取支付记录列表
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: payMethod
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentListResponse'
+
+  /api/payment/detail/{id}:
+    get:
+      tags: [支付]
+      summary: 获取支付详情
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Payment'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/payment/reconciliation:
+    get:
+      tags: [支付]
+      summary: 获取对账数据
+      description: 管理员接口，获取指定日期的对账数据。
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 获取成功
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/admin/roles:
+    get:
+      tags: [RBAC 权限]
+      summary: 获取角色列表
+      description: 管理员接口，分页获取角色列表。
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Role'
+                      total:
+                        type: integer
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      tags: [RBAC 权限]
+      summary: 创建角色
+      description: 管理员接口，创建新角色并分配权限。
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRoleRequest'
+      responses:
+        '201':
+          description: 创建成功
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+
+  /api/admin/roles/{id}:
+    get:
+      tags: [RBAC 权限]
+      summary: 获取角色详情
+      description: 获取角色信息及其关联的权限列表。
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RoleId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      tags: [RBAC 权限]
+      summary: 更新角色
+      description: |
+        更新角色信息与权限分配。
+
+        **约束**：系统内置角色（`is_system=1`）不可修改。
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RoleId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateRoleRequest'
+      responses:
+        '200':
+          description: 更新成功
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    delete:
+      tags: [RBAC 权限]
+      summary: 删除角色
+      description: |
+        删除自定义角色。
+
+        **约束**：系统内置角色不可删除。
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/RoleId'
+      responses:
+        '200':
+          description: 删除成功
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/admin/permissions:
+    get:
+      tags: [RBAC 权限]
+      summary: 获取权限列表
+      description: 获取所有权限，支持按模块分组返回。
+      security:
+        - BearerAuth: []
+      parameters:
+        - name: module
+          in: query
+          description: 按模块筛选
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: integer
+                  data:
+                    type: object
+                    properties:
+                      list:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Permission'
+                      grouped:
+                        type: object
+                        description: 按模块分组的权限
+                        additionalProperties:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Permission'
+
+  /api/admin/users/{userId}/roles:
+    get:
+      tags: [RBAC 权限]
+      summary: 获取用户角色
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+      responses:
+        '200':
+          description: 获取成功
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Role'
+
+  /api/admin/users/roles:
+    post:
+      tags: [RBAC 权限]
+      summary: 为用户分配角色
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [userId, roleId]
+              properties:
+                userId:
+                  type: string
+                roleId:
+                  type: string
+      responses:
+        '201':
+          description: 分配成功
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+
+  /api/admin/users/{userId}/roles/{roleId}:
+    delete:
+      tags: [RBAC 权限]
+      summary: 移除用户角色
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/UserId'
+        - $ref: '#/components/parameters/RoleId'
+      responses:
+        '200':
+          description: 移除成功
+
+  /api/admin/orders/{id}/ship:
+    post:
+      tags: [管理后台]
+      summary: 订单发货
+      description: 管理员接口，对待发货订单执行发货操作。
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [shippingCompany, shippingNo]
+              properties:
+                shippingCompany:
+                  type: string
+                  description: 物流公司
+                shippingNo:
+                  type: string
+                  description: 物流单号
+      responses:
+        '200':
+          description: 发货成功
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/admin/orders/{id}/refund/audit:
+    post:
+      tags: [管理后台]
+      summary: 退款审核
+      description: |
+        管理员对退款申请进行审核。
+
+        - **通过**：订单状态变为 `refunded`，事务性回滚库存
+        - **拒绝**：订单状态回退到 `paid` 或 `shipped`
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/OrderId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [approved]
+              properties:
+                approved:
+                  type: boolean
+                  description: 是否通过审核
+                remark:
+                  type: string
+                  description: 审核备注
+      responses:
+        '200':
+          description: 审核完成
+        '403':
+          $ref: '#/components/responses/Forbidden'
+
+  /api/admin/dashboard/overview:
+    get:
+      tags: [管理后台]
+      summary: 仪表盘概览
+      description: 获取首页仪表盘统计数据。
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 获取成功
+
+  /api/admin/audit/logs:
+    get:
+      tags: [管理后台]
+      summary: 审计日志查询
+      description: 查询系统操作审计日志。
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/Page'
+        - $ref: '#/components/parameters/PageSize'
+        - name: action
+          in: query
+          schema:
+            type: string
+        - name: resource_type
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 查询成功
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: JWT Bearer Token 认证，通过登录接口获取。
+
+  parameters:
+    Provider:
+      name: provider
+      in: path
+      required: true
+      description: OAuth 提供商
+      schema:
+        type: string
+        enum: [wechat, qq, weibo, alipay, google, facebook, twitter]
+    OrderId:
+      name: id
+      in: path
+      required: true
+      description: 订单 ID
+      schema:
+        type: string
+    RoleId:
+      name: id
+      in: path
+      required: true
+      description: 角色 ID
+      schema:
+        type: string
+    UserId:
+      name: userId
+      in: path
+      required: true
+      description: 用户 ID
+      schema:
+        type: string
+    Page:
+      name: page
+      in: query
+      description: 页码（从 1 开始）
+      schema:
+        type: integer
+        minimum: 1
+        default: 1
+    PageSize:
+      name: pageSize
+      in: query
+      description: 每页数量
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 100
+        default: 20
+
+  responses:
+    BadRequest:
+      description: 请求参数错误
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: 未认证或令牌已过期
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Forbidden:
+      description: 无权限访问
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: 资源不存在
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Conflict:
+      description: 资源冲突
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    TooManyRequests:
+      description: 请求过于频繁
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: 业务错误码
+        message:
+          type: string
+          description: 错误信息
+        data:
+          description: 错误附加数据（可为 null）
+
+    HealthResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 0
+        message:
+          type: string
+          example: ok
+        data:
+          type: object
+          properties:
+            status:
+              type: string
+              example: running
+            timestamp:
+              type: integer
+              format: int64
+            version:
+              type: string
+              example: 1.0.0
+
+    LoginRequest:
+      type: object
+      required: [username, password]
+      properties:
+        username:
+          type: string
+          description: 用户名（支持用户名、邮箱、手机号）
+          maxLength: 100
+        password:
+          type: string
+          description: 密码
+          maxLength: 100
+
+    RegisterRequest:
+      type: object
+      required: [username, email, password]
+      properties:
+        username:
+          type: string
+          minLength: 3
+          maxLength: 20
+        email:
+          type: string
+          format: email
+        password:
+          type: string
+          minLength: 8
+          description: 必须包含大小写字母、数字和特殊字符
+        nickname:
+          type: string
+          maxLength: 50
+        phone:
+          type: string
+          pattern: '^1[3-9]\d{9}$'
+
+    RefreshTokenRequest:
+      type: object
+      required: [refreshToken]
+      properties:
+        refreshToken:
+          type: string
+
+    PhoneLoginRequest:
+      type: object
+      required: [phone, code]
+      properties:
+        phone:
+          type: string
+          pattern: '^1[3-9]\d{9}$'
+        code:
+          type: string
+          description: 短信验证码
+
+    LoginResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          example: 0
+        message:
+          type: string
+          example: 登录成功
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/UserProfile'
+            accessToken:
+              type: string
+              description: 访问令牌（默认 2 小时有效）
+            refreshToken:
+              type: string
+              description: 刷新令牌（默认 7 天有效）
+            expiresIn:
+              type: integer
+              example: 86400
+              description: 访问令牌有效期（秒）
+
+    OAuthLoginResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data:
+          type: object
+          properties:
+            user:
+              $ref: '#/components/schemas/UserProfile'
+            accessToken:
+              type: string
+            refreshToken:
+              type: string
+            expiresIn:
+              type: integer
+            isNewUser:
+              type: boolean
+              description: 是否为新创建的用户
+
+    UserProfile:
+      type: object
+      properties:
+        id:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        nickname:
+          type: string
+        avatar:
+          type: string
+        role:
+          type: string
+          example: user
+        status:
+          type: string
+          example: active
+        balance:
+          type: number
+          default: 0
+        points:
+          type: integer
+          default: 0
+        level_id:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    UpdateProfileRequest:
+      type: object
+      properties:
+        nickname:
+          type: string
+          maxLength: 50
+        avatar:
+          type: string
+          format: uri
+        phone:
+          type: string
+          pattern: '^1[3-9]\d{9}$'
+
+    ChangePasswordRequest:
+      type: object
+      required: [oldPassword, newPassword]
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+          minLength: 8
+          description: 必须包含大小写字母、数字和特殊字符
+
+    OAuthAccount:
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        provider:
+          type: string
+          description: 第三方提供商
+        providerUserId:
+          type: string
+        providerUsername:
+          type: string
+        providerEmail:
+          type: string
+        avatar:
+          type: string
+        expiresAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    OrderStatus:
+      type: string
+      enum: [pending, paid, shipped, completed, cancelled, refunding, refunded]
+      description: |
+        订单状态枚举：
+        - `pending`：待付款
+        - `paid`：已付款（待发货）
+        - `shipped`：已发货（待收货）
+        - `completed`：已完成
+        - `cancelled`：已取消
+        - `refunding`：退款中
+        - `refunded`：已退款
+
+    OrderPreviewRequest:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [cart, direct]
+          default: cart
+          description: 订单来源
+        cartItemIds:
+          type: array
+          items:
+            type: string
+          description: 购物车项 ID 列表（type=cart 时必填）
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectBuyItem'
+          description: 直接购买项列表（type=direct 时必填）
+        addressId:
+          type: string
+          description: 收货地址 ID（不填则使用默认地址）
+        couponId:
+          type: string
+          description: 优惠券 ID
+        usePoints:
+          type: boolean
+          default: false
+          description: 是否使用积分抵扣
+
+    DirectBuyItem:
+      type: object
+      required: [productId, quantity]
+      properties:
+        productId:
+          type: string
+        skuId:
+          type: string
+        quantity:
+          type: integer
+          minimum: 1
+
+    OrderPreviewResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            items:
+              type: array
+              items:
+                $ref: '#/components/schemas/OrderItem'
+            totalAmount:
+              type: number
+              description: 商品总金额
+            freight:
+              type: number
+              description: 运费
+            discountAmount:
+              type: number
+              description: 总折扣金额
+            payAmount:
+              type: number
+              description: 实付金额
+            couponDiscount:
+              type: number
+              description: 优惠券折扣
+            pointsDiscount:
+              type: number
+              description: 积分抵扣金额
+            shippingAddress:
+              $ref: '#/components/schemas/ShippingAddress'
+
+    CreateOrderRequest:
+      type: object
+      required: [addressId]
+      properties:
+        type:
+          type: string
+          enum: [cart, direct]
+          default: cart
+        cartItemIds:
+          type: array
+          items:
+            type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DirectBuyItem'
+        addressId:
+          type: string
+          description: 收货地址 ID（必填）
+        remark:
+          type: string
+          description: 订单备注
+        couponId:
+          type: string
+        usePoints:
+          type: boolean
+          default: false
+
+    Order:
+      type: object
+      properties:
+        id:
+          type: string
+        order_no:
+          type: string
+          description: 订单号（格式 OD + 时间戳 + 随机数）
+        user_id:
+          type: string
+        status:
+          $ref: '#/components/schemas/OrderStatus'
+        total_amount:
+          type: number
+        freight:
+          type: number
+        discount_amount:
+          type: number
+        pay_amount:
+          type: number
+        pay_method:
+          type: string
+        pay_time:
+          type: string
+          format: date-time
+        shipping_address:
+          $ref: '#/components/schemas/ShippingAddress'
+        shipping_company:
+          type: string
+        shipping_no:
+          type: string
+        shipped_at:
+          type: string
+          format: date-time
+        completed_at:
+          type: string
+          format: date-time
+        cancelled_at:
+          type: string
+          format: date-time
+        cancel_reason:
+          type: string
+        refund_reason:
+          type: string
+        refund_amount:
+          type: number
+        refund_remark:
+          type: string
+        refunded_at:
+          type: string
+          format: date-time
+        remark:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderItem'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    OrderItem:
+      type: object
+      properties:
+        id:
+          type: string
+        order_id:
+          type: string
+        product_id:
+          type: string
+        sku_id:
+          type: string
+        product_name:
+          type: string
+        product_image:
+          type: string
+        sku_name:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: integer
+        total_price:
+          type: number
+        created_at:
+          type: string
+          format: date-time
+
+    ShippingAddress:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        phone:
+          type: string
+        province:
+          type: string
+        city:
+          type: string
+        district:
+          type: string
+        detail:
+          type: string
+        tag:
+          type: string
+
+    OrderListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Order'
+            total:
+              type: integer
+            page:
+              type: integer
+            pageSize:
+              type: integer
+            totalPages:
+              type: integer
+
+    OrderStatistics:
+      type: object
+      properties:
+        totalOrders:
+          type: integer
+        totalAmount:
+          type: number
+        pendingCount:
+          type: integer
+        paidCount:
+          type: integer
+        shippedCount:
+          type: integer
+        completedCount:
+          type: integer
+        cancelledCount:
+          type: integer
+        refundingCount:
+          type: integer
+        refundedCount:
+          type: integer
+
+    Logistics:
+      type: object
+      properties:
+        id:
+          type: string
+        order_id:
+          type: string
+        company:
+          type: string
+        tracking_no:
+          type: string
+        status:
+          type: string
+          description: 物流状态（shipped/delivering/delivered）
+        location:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+
+    PayRequest:
+      type: object
+      required: [orderId, payMethod]
+      properties:
+        orderId:
+          type: string
+        payMethod:
+          type: string
+          enum: [wechat, alipay, balance, mock]
+          description: |
+            支付方式：
+            - `wechat`：微信支付
+            - `alipay`：支付宝
+            - `balance`：余额支付
+            - `mock`：模拟支付（测试用）
+
+    PayResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            paymentId:
+              type: string
+            paymentNo:
+              type: string
+              description: 支付流水号（格式 PAY + 时间戳 + 随机数）
+            orderId:
+              type: string
+            amount:
+              type: number
+            payMethod:
+              type: string
+            status:
+              type: string
+              enum: [pending, success]
+              description: mock/balance 为 success，wechat/alipay 为 pending
+            gatewayResult:
+              type: object
+              description: 网关返回结果（wechat/alipay 时存在）
+
+    PaymentCallback:
+      type: object
+      properties:
+        out_trade_no:
+          type: string
+          description: 商户订单号（即 paymentNo）
+        transaction_id:
+          type: string
+          description: 第三方交易号
+        trade_no:
+          type: string
+          description: 支付宝交易号
+        success:
+          type: boolean
+        status:
+          type: string
+          description: 状态（success 表示成功）
+        sign:
+          type: string
+          description: HMAC-SHA256 签名
+        failure_reason:
+          type: string
+
+    PaymentStatus:
+      type: object
+      properties:
+        orderId:
+          type: string
+        orderStatus:
+          type: string
+        payAmount:
+          type: number
+        payMethod:
+          type: string
+          nullable: true
+        payTime:
+          type: string
+          format: date-time
+          nullable: true
+        paymentStatus:
+          type: string
+          nullable: true
+        paymentNo:
+          type: string
+          nullable: true
+        paymentId:
+          type: string
+          nullable: true
+
+    PaymentQueryResult:
+      type: object
+      properties:
+        paymentId:
+          type: string
+        paymentNo:
+          type: string
+        orderId:
+          type: string
+        status:
+          type: string
+          enum: [pending, success, failed, cancelled, refunded]
+        payMethod:
+          type: string
+        amount:
+          type: number
+        thirdPartyNo:
+          type: string
+        paidAt:
+          type: string
+          format: date-time
+        createdAt:
+          type: string
+          format: date-time
+
+    Payment:
+      type: object
+      properties:
+        id:
+          type: string
+        order_id:
+          type: string
+        user_id:
+          type: string
+        payment_no:
+          type: string
+        pay_method:
+          type: string
+        amount:
+          type: number
+        status:
+          type: string
+          enum: [pending, success, failed, cancelled, refunded]
+        third_party_no:
+          type: string
+          nullable: true
+        paid_at:
+          type: string
+          format: date-time
+          nullable: true
+        refunded_at:
+          type: string
+          format: date-time
+          nullable: true
+        closed_at:
+          type: string
+          format: date-time
+          nullable: true
+        failure_reason:
+          type: string
+          nullable: true
+        callback_data:
+          type: string
+          nullable: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    PaymentListResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+        data:
+          type: object
+          properties:
+            list:
+              type: array
+              items:
+                $ref: '#/components/schemas/Payment'
+            total:
+              type: integer
+            page:
+              type: integer
+            pageSize:
+              type: integer
+            totalPages:
+              type: integer
+
+    Role:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: 角色名称（唯一）
+        description:
+          type: string
+        is_system:
+          type: integer
+          description: 是否为系统内置角色（1 是，0 否）
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+
+    RoleDetail:
+      allOf:
+        - $ref: '#/components/schemas/Role'
+        - type: object
+          properties:
+            permissions:
+              type: array
+              items:
+                $ref: '#/components/schemas/Permission'
+
+    Permission:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+          description: 权限名称
+        code:
+          type: string
+          description: 权限代码（如 product:view）
+        module:
+          type: string
+          description: 所属模块
+        description:
+          type: string
+
+    CreateRoleRequest:
+      type: object
+      required: [name]
+      properties:
+        name:
+          type: string
+          description: 角色名称（唯一）
+        description:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+          description: 权限 ID 列表
+
+    UpdateRoleRequest:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        permissions:
+          type: array
+          items:
+            type: string
+          description: 权限 ID 列表（覆盖式更新）

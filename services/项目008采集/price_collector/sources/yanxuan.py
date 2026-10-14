@@ -14,6 +14,7 @@
 """
 import os
 import re
+import json
 import urllib.parse
 from typing import List
 
@@ -59,30 +60,68 @@ class YanxuanSource(BaseSource):
             self.timeout = 10
 
     def fetch(self, keyword: str, page: int = 1, page_size: int = 20) -> List[Product]:
+        # 首选：官方 JSON 数据接口（纯标准库 urllib，无签名，云端函数可直连）
+        ps = self._fetch_json(keyword, page, page_size)
+        if ps:
+            return ps
+        # 回退 1：浏览器渲染（统一反检测引擎）
+        try:
+            from .rendered_source import render_collect
+            ps = render_collect("yanxuan", keyword, page, page_size, self.cookie)
+            if ps:
+                return ps
+        except Exception:
+            pass
+        # 回退 2：直连静态 HTML 内联 JSON
         url = _SEARCH_URL.format(kw=urllib.parse.quote(keyword))
         headers = {"Referer": "https://you.163.com/"}
         if self.cookie:
             headers["Cookie"] = self.cookie
-
-        # 路径 1：直连静态解析
         html = ""
         try:
             html = _http.fetch_html(url, timeout=self.timeout, headers=headers)
         except Exception:
             html = ""
-        products = self._parse_static(html, keyword) if html else []
+        return self._parse_static(html, keyword)[:page_size] if html else []
 
-        # 路径 2：直连为空则浏览器渲染后解析
-        if not products:
-            rendered = _browser.render_html(
-                url, timeout=max(self.timeout, 20),
-                cookie=self.cookie, wait_ms=2000)
-            if rendered:
-                products = self._parse_rendered(rendered, keyword)
+    # ---- 首选：官方 JSON 接口 ----
+    def _fetch_json(self, keyword: str, page: int, page_size: int) -> List[Product]:
+        import time as _time
+        ts = int(_time.time() * 1000)
+        params = [('__timestamp', ts), ('page', page), ('sortType', 0), ('categoryId', 0),
+                  ('descSorted', 'true'), ('matchType', 0), ('floorPrice', -1),
+                  ('upperPrice', -1), ('stillSearch', 'false'), ('searchWordSource', 1),
+                  ('size', 40), ('keyword', keyword), ('needPopWindow', 'false')]
+        url = ('https://you.163.com/xhr/search/search.json?'
+               + urllib.parse.urlencode(params))
+        try:
+            body = _http.get_text(url, headers={
+                'Referer': 'https://you.163.com/search?keyword=x',
+                'Accept': 'application/json'}, timeout=self.timeout + 8)
+            items = json.loads(body)['data']['directly']['searcherResult']['result']
+        except Exception:
+            return []
+        result: List[Product] = []
+        for it in items:
+            try:
+                price = float(it.get('retailPrice') or 0)
+                if price <= 0:
+                    continue
+                iid = it.get('id')
+                counter = float(it.get('counterPrice') or 0)
+                original = counter if counter > price else 0.0
+                result.append(Product(
+                    platform="yanxuan", name=it.get('name') or keyword, price=price,
+                    original_price=original, sales=0, sales_text="",
+                    shop_rating=-1.0, shop_name="网易严选",
+                    url=f"https://you.163.com/item/detail?id={iid}",
+                    image=it.get('primaryPicUrl') or it.get('listPicUrl') or "",
+                    keyword=keyword, raw={}))
+            except Exception:
+                continue
+        return result[:page_size]
 
-        return products[:page_size]
-
-    # ---- 路径 1：直连静态 HTML 内联 JSON ----
+    # ---- 回退：直连静态 HTML 内联 JSON ----
     @staticmethod
     def _parse_static(html: str, keyword: str) -> List[Product]:
         result: List[Product] = []

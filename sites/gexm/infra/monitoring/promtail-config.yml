@@ -1,0 +1,78 @@
+# Promtail 日志采集代理配置
+# 收集 gexm-server 日志并发送到 Loki
+
+server:
+  http_listen_port: 9080
+  grpc_listen_port: 0
+  log_level: info
+
+positions:
+  filename: /tmp/promtail/positions.yaml
+
+# ============================================
+# Loki 接收端配置
+# ============================================
+clients:
+  - url: http://loki:3100/loki/api/v1/push
+    batchwait: 1s
+    batchsize: 1048576
+    backoff_config:
+      min_period: 500ms
+      max_period: 5m
+      max_retries: 10
+
+# ============================================
+# 日志采集目标
+# ============================================
+scrape_configs:
+  # ============================================
+  # Gexm Server 应用日志
+  # 路径：/var/log/gexm/*.log
+  # ============================================
+  - job_name: gexm-server
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: gexm-server
+          service: gexm-server
+          env: production
+          __path__: /var/log/gexm/*.log
+
+  # ============================================
+  # Gexm Server 错误日志（独立流）
+  # ============================================
+  - job_name: gexm-server-error
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: gexm-server
+          service: gexm-server
+          level: error
+          env: production
+          __path__: /var/log/gexm/*-error.log
+
+  # ============================================
+  # 系统日志（可选）
+  # ============================================
+  - job_name: system-logs
+    static_configs:
+      - targets:
+          - localhost
+        labels:
+          job: system
+          __path__: /var/log/*.log
+    pipeline_stages:
+      # 解析 syslog 时间戳
+      - match:
+          selector: '{job="system"}'
+          stages:
+            - regex:
+                expression: '^(?P<timestamp>\w{3} +\d+ \d{2}:\d{2}:\d{2}) (?P<host>\S+) (?P<service>\S+?)(?:\[\d+\])?: (?P<message>.*)$'
+            - timestamp:
+                source: timestamp
+                format: 'Jan 2 15:04:05'
+                location: 'Asia/Shanghai'
+            - labels:
+                service:

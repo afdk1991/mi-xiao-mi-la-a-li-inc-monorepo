@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build output
+dist/
+build/
+.output/
+.out/
+release/
+*.tsbuildinfo
+
+# Caches
+.cache/
+__pycache__/
+.venv/
+.wrangler/
+.edgeone/
+.workbuddy/tmp/
+
+# Secrets / env
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Editor / OS
+.idea/
+.vscode/
+.trae/
+.DS_Store
+Thumbs.db
+
+# Misc generated
+*.exe~
+*.bak
+.gopath/

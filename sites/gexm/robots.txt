@@ -1,0 +1,23 @@
+User-agent: *
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/themes/*/admin/
+Disallow: /wp-content/themes/*/includes/
+Disallow: /trackback/
+Disallow: /feed/
+Disallow: /wp-comments-post.php
+Disallow: /xmlrpc.php
+Disallow: /?s=
+Disallow: /*?s=
+Allow: /wp-content/uploads/
+Allow: /wp-content/themes/*/assets/
+Allow: /wp-content/themes/*/css/
+Allow: /wp-content/themes/*/js/
+Allow: /wp-content/themes/*/images/
+
+# 网站地图
+Sitemap: https://api.laal.top/sitemap.xml
+
+# 缓存控制
+Cache-Control: public, max-age=3600

@@ -1,0 +1,14 @@
+{
+  "name": "@mxm/proj-07",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CloudBase 全栈（web / makers / clients[rn,tauri] / server[Py]，已并入 manju）",
+  "mxm": {
+    "type": "aggregator",
+    "group": "apps",
+    "note": "聚合壳：子包 web / makers / clients/manju_rn / clients/manju_tauri，server 为 Python；由 run.mjs 自动发现并分别构建"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('聚合模块：请用 node run.mjs build all 或进入各子包构建（见 README 速查表）')\""
+  }
+}

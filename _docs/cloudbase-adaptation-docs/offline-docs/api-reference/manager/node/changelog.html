@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-api-reference/manager/node/changelog" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">更新日志 | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/api-reference/manager/node/changelog"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="更新日志 | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="- [add] 新增 PlatformService（app.platform）：支持平台版套餐服务，含在售套餐查询（describePlatformPackageList）、已购平台版资源查询（describePlatforms）、平台版环境创建/启停/删除（createPlatformEnv / modifyPlatformEnv / destroyPlatformEnv）、计费周期查询（describePlatformAccountCircle）、资源点用量汇总与明细（describePlatformCreditsUsage / describePlatformCreditsUsageDetail）、环境用量排行与单环境用量（describePlatformEnvCreditsRanking / describePlatformEnvUsage），并提供平台版 HTTP 访问服务路由管理能力"><meta data-rh="true" property="og:description" content="- [add] 新增 PlatformService（app.platform）：支持平台版套餐服务，含在售套餐查询（describePlatformPackageList）、已购平台版资源查询（describePlatforms）、平台版环境创建/启停/删除（createPlatformEnv / modifyPlatformEnv / destroyPlatformEnv）、计费周期查询（describePlatformAccountCircle）、资源点用量汇总与明细（describePlatformCreditsUsage / describePlatformCreditsUsageDetail）、环境用量排行与单环境用量（describePlatformEnvCreditsRanking / describePlatformEnvUsage），并提供平台版 HTTP 访问服务路由管理能力"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/api-reference/manager/node/changelog"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/api-reference/manager/node/changelog" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/api-reference/manager/node/changelog" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/api-reference/manager/node/changelog" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"更新日志","item":"https://docs.cloudbase.net/api-reference/manager/node/changelog"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/assets/css/styles.84763893.css">
+<script src="/assets/js/runtime~main.13eb34e7.js" defer="defer"></script>
+<script src="/assets/js/main.38956b3f.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="关闭" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/quick-start/">快速开始</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">基础能力</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">核心能力</a></li><li><a class="dropdown__link nav-icon-database" href="/database/postgresql/initialization">数据库</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/storage/introduce">云存储</a></li><li><a class="dropdown__link nav-icon-zap" href="/cloud-function/introduce">云函数</a></li><li><a class="dropdown__link nav-icon-cloud" href="/run/introduction">云托管</a></li><li><a class="dropdown__link nav-icon-globe" href="/hosting/introduce">静态网站托管</a></li><li><a class="dropdown__link nav-icon-log-in" href="/authentication-v2/auth/introduce">身份认证</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/ai/introduce">AI 接入</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/integration/introduce">集成中心</a></li><li><a href="#" class="dropdown__link navbar-category">平台管理</a></li><li><a class="dropdown__link nav-icon-network" href="/service/introduce">HTTP 网关</a></li><li><a class="dropdown__link nav-icon-eye" href="/envconfig/intro">环境配置</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/logger/introduce">日志监控</a></li><li><a class="dropdown__link" href="/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">开发工具</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/ai/cloudbase-ai-toolkit/">AI 开发工具</a></li><li><a class="dropdown__link" href="/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">解决方案</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/solutions/cloudbase-platform-edition/overview">平台集成方案</a></li><li><a class="dropdown__link" href="/solutions/vibe-coding-platform/overview">VibeCoding 方案</a></li><li><a class="dropdown__link" href="/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">API参考</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDK 文档</a></li><li><a class="dropdown__link" href="/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/api-reference/csharp">C# SDK</a></li><li><a aria-current="page" class="dropdown__link dropdown__link--active" href="/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">接口文档</a></li><li><a class="dropdown__link" href="/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/error-code/basic">错误码</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多资源</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/changelog/">更新日志</a></li><li><a class="dropdown__link" href="/faq/">常见问题</a></li><li><a class="dropdown__link" href="/practices/introduce">最佳实践</a></li><li><a class="dropdown__link" href="/quick-start/migration/">迁移指南</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">价格文档</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">博客</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">关注公众号领福利</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">前往控制台</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>简体中文</a><ul class="dropdown__menu"><li><a href="/api-reference/manager/node/changelog" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-Hans">简体中文</a></li><li><a href="/en/api-reference/manager/node/changelog" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索 (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_mhZE"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Y1UP menuWithAnnouncementBar_fPny"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">Manager Node SDK</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/introduction"><span>初始化</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">模块管理</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/env"><span>环境管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/login-config"><span>登录配置</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/user"><span>用户管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/permission"><span>权限管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/database"><span>文档型数据库</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/mysql"><span>关系型数据库（MySQL）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/postgresql"><span>关系型数据库（PostgreSQL）</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/storage"><span>云存储</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/function"><span>云函数</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/cloudrun"><span>云托管</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/cloudApp"><span>应用部署</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/hosting"><span>静态网站托管</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/domain"><span>自定义域名</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/agent"><span>Agent 管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/aiModel"><span>AI 模型管理</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/integration"><span>集成中心</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/docs"><span>文档检索</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/deploy"><span>声明式部署编排</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">公共接口</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/common"><span>通用云 API 调用</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/rule"><span>安全规则</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/safeSource"><span>安全来源</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/clsLog"><span>CLS 日志</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active" tabindex="0">其他参考</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/api-reference/manager/node/changelog"><span>更新日志</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/api-reference/manager/node/httpservice"><span>HTTP 网关</span></a></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Manager Node SDK</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">其他参考</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">更新日志</span></li></ul></nav></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>更新日志</h1></header>
+<h1>v5.8.8</h1>
+<ul>
+<li class="">[add] 新增 <code>PlatformService</code>（<code>app.platform</code>）：支持平台版套餐服务，含在售套餐查询（<code>describePlatformPackageList</code>）、已购平台版资源查询（<code>describePlatforms</code>）、平台版环境创建/启停/删除（<code>createPlatformEnv</code> / <code>modifyPlatformEnv</code> / <code>destroyPlatformEnv</code>）、计费周期查询（<code>describePlatformAccountCircle</code>）、资源点用量汇总与明细（<code>describePlatformCreditsUsage</code> / <code>describePlatformCreditsUsageDetail</code>）、环境用量排行与单环境用量（<code>describePlatformEnvCreditsRanking</code> / <code>describePlatformEnvUsage</code>）， 并提供平台版 HTTP 访问服务路由管理能力</li>
+</ul>
+<h1>v5.2.0</h1>
+<ul>
+<li class="">[add] 新增 <code>AiModelService</code>（<code>app.aiModel</code>）：支持 AI 模型分组管理，含创建（<code>createAIModel</code>）、更新（<code>updateAIModel</code>）、删除（<code>deleteAIModel</code>）、查询已配置分组列表（<code>describeAIModels</code>）、查询托管类型模型列表（<code>describeManagedAIModelList</code>）共 5 个 API；支持接入 OpenAI 兼容网关（DeepSeek、混元、Moonshot 等），自定义分组名不允许以 <code>cloudbase</code> 为前缀</li>
+</ul>
+<h1>v5.1.0</h1>
+<ul>
+<li class="">[add] <code>EnvService</code> 新增登录配置 API：<code>getLoginConfig</code>（查询登录策略配置）/ <code>modifyLoginConfig</code>（修改登录策略配置）</li>
+<li class="">[add] <code>EnvService</code> 新增客户端管理 API：<code>describeClient</code>（查询应用客户端详情）/ <code>modifyClient</code>（修改应用客户端配置）</li>
+<li class="">[add] <code>EnvService</code> 新增身份认证源 API：<code>getProviders</code>（获取三方认证源列表）/ <code>addProvider</code>（添加身份认证源）/ <code>modifyProvider</code>（修改身份认证源）/ <code>deleteProvider</code>（删除第三方认证源）</li>
+<li class="">[add] <code>EnvService</code> 新增 API Key 管理：<code>createApiKey</code>（创建 API Key）/ <code>describeApiKeyList</code>（查询 API Key 列表）/ <code>deleteApiKey</code>（删除 API Key）</li>
+</ul>
+<h1>v5.0.0</h1>
+<ul>
+<li class="">[add] 新增 <code>CloudAppService</code>（<code>app.cloudAppService</code>）：支持 Web 应用统一部署（static-hosting），提供应用创建/查询/删除、版本管理、代码上传等完整 API</li>
+<li class="">[add] 新增 <code>LogService</code>（<code>app.log</code>）：支持直接查询 CLS 日志（<code>searchClsLog</code>）、检查日志服务状态（<code>checkLogServiceEnabled</code>）、开通日  志服务（<code>createLogService</code>），支持 <code>module</code>/<code>eventType</code>/<code>logType</code> 三层日志过滤</li>
+<li class="">[add] 新增 <code>PermissionService</code>（<code>app.permission</code>）：支持资源权限管理（<code>modifyResourcePermission</code> / <code>describeResourcePermission</code>）和角色管理（<code>createRole</code> / <code>describeRoleList</code> / <code>modifyRole</code> / <code>deleteRoles</code>）</li>
+<li class="">[add] 新增 <code>MysqlService</code>（<code>app.mysql</code>）：支持云开发托管 MySQL（Serverless CynosDB）完整管理，含实例生命周期、SQL 执行（<code>runSql</code>）、账号权限、备份恢复、回档、监控日志等共 30 个 API</li>
+<li class="">[add] 新增 <code>DocsService</code>（<code>app.docs</code>）：提供 CloudBase 官方文档站的检索与读取能力，支持模块列举（<code>listModules</code>）、文档浏览（<code>listModuleDocs</code>）、统一查找（<code>findByName</code>）、全文搜索（<code>searchDocs</code>）、内容读取（<code>readDoc</code>）</li>
+<li class="">[add] <code>StorageService</code> 新增文件/目录复制（<code>copyFile</code> / <code>copyDirectory</code>）、移动（<code>moveFile</code> / <code>moveDirectory</code>）、搜索（<code>searchFiles</code>）、列举当前目录（<code>listCurrentDirectory</code>）共 6 个方法</li>
+<li class="">[add] <code>DatabaseService</code> 新增原生命令执行（<code>runCommands</code>）、数据回档四件套（<code>describeRestoreTables</code> / <code>describeRestoreTime</code> / <code>describeRestoreTask</code> / <code>restoreTables</code>）共 5 个方法</li>
+<li class="">[add] <code>EnvService</code> 新增环境管理 API：<code>describeEnvs</code> / <code>createEnv</code> / <code>destroyEnvWithParams</code> / <code>describeBaasPackageList</code> / <code>modifyEnvPlan</code> / <code>renewEnv</code> / <code>calculatePackageCreatePrice</code> / <code>calculatePackageRenewPrice</code> / <code>calculatePackageModifyPrice</code> / <code>describeBillingInfo</code> / <code>describeEnvAccountCircle</code> / <code>describeCreditsUsageDetail</code> 共 12 个方法</li>
+<li class="">[breakchange] <code>app.cloudApp</code> getter 已废弃，请迁移至 <code>app.cloudBaseRun</code>（CloudBaseRun/TCBR 服务）。新的 <code>app.cloudAppService</code> 是 CloudApp 统一部署服务的访问入口，与旧 <code>app.cloudApp</code> 不同，请勿混淆。</li>
+</ul>
+<h1>v3.7.0</h1>
+<ul>
+<li class="">新增<a href="/api-reference/manager/node/user#chuang-jian-xin-yong-hu">创建新用户接口</a></li>
+<li class="">新增<a href="/api-reference/manager/node/user#xiu-gai-yong-hu-xin-xi">修改用户信息接口</a></li>
+</ul>
+<h1>v3.6.0</h1>
+<ul>
+<li class="">新增云应用调整服务版本流量接口</li>
+</ul>
+<h1>v3.5.0</h1>
+<ul>
+<li class="">新增获取云开发用户列表接口</li>
+<li class="">新增停用云开发用户接口</li>
+<li class="">新增批量删除云开发用户接口</li>
+</ul>
+<h1>v3.4.0</h1>
+<ul>
+<li class="">增加云接入服务</li>
+<li class="">创建函数支持同时创建云接入</li>
+<li class="">优化请求错误栈</li>
+</ul>
+<h1>v3.3.2</h1>
+<ul>
+<li class="">函数轮询状态时间修复 30s =&gt; 300s</li>
+</ul>
+<h1>v3.3.0</h1>
+<ul>
+<li class="">静态托管支持配置重定向规则</li>
+<li class="">新增删除静态托管自定义域名接口</li>
+<li class="">新增获取静态网站配置接口</li>
+<li class="">新增获取域名配置接口</li>
+<li class="">新增域名配置接口</li>
+</ul>
+<h1>v3.2.0</h1>
+<ul>
+<li class="">新增静态托管查询文件，配置文档，绑定自定义域名接口</li>
+</ul>
+<h1>v3.1.1</h1>
+<ul>
+<li class="">优化文件夹删除接口</li>
+<li class="">增加批量上传文件接口</li>
+<li class="">修复静态网站上传单个文件没有回调的问题</li>
+</ul>
+<h1>v3.1.0</h1>
+<ul>
+<li class="">优化文件上传操作</li>
+<li class="">增加静态网站操作接口</li>
+<li class="">移除获取函数详情字段限制，返回更多信息</li>
+</ul>
+<h1>v3.0.0</h1>
+<ul>
+<li class="">[breakchange] common 接口改造</li>
+<li class="">支持数据库 CRUD</li>
+</ul>
+<h1>v2.4.1</h1>
+<ul>
+<li class="">[fix] 修复并行调用 createFunction 接口报错的问题</li>
+<li class="">[add] 支持通过指定函数路径创建函数</li>
+</ul>
+<h1>v2.4.0</h1>
+<ul>
+<li class="">[add] 新增安全来源 API</li>
+<li class="">[fix] 修复云函数环境下取环境变量 bug (入口函数外部调用，未取到报错)</li>
+</ul>
+<h1>v2.3.4</h1>
+<ul>
+<li class="">[fix] 修复函数配置更新问题</li>
+</ul>
+<h1>v2.3.2</h1>
+<ul>
+<li class="">[fix] 修复更新函数 VPC 配置导致无法访问公网的问题</li>
+</ul>
+<h1>v2.3.1</h1>
+<ul>
+<li class="">[fix] 修复创建函数、更新函数代码，代码保护参数遗漏的问题</li>
+</ul>
+<h1>v2.3.0</h1>
+<ul>
+<li class="">[add] 支持文件层</li>
+<li class="">[add] 支持查询修改存储安全规则异步任务状态</li>
+<li class="">[fix] 文档订正</li>
+</ul>
+<h1>v2.2.1</h1>
+<ul>
+<li class="">[fix] 修复查询所有集合信息接口，集合为空时报错</li>
+<li class="">[fix] updateFunctionCode 支持自动安装依赖</li>
+</ul>
+<h1>v2.2.0</h1>
+<ul>
+<li class="">[fix] 修复上传文件夹等接口 <code>onFileFinish</code> 参数 TS 定义错误</li>
+<li class="">[add] 创建云函数返回 RequestId 响应值</li>
+<li class="">[add] 支持 L5 选项</li>
+</ul>
+<h1>v2.1.0</h1>
+<ul>
+<li class="">[add] 支持上传或更新函数时 等待依赖安装完成</li>
+<li class="">[add] 支持增量上传函数代码</li>
+<li class="">[add] 新增创建自定义登录私钥</li>
+<li class="">[add] 新增 HTTP Service API</li>
+<li class="">[add] 新增安全规则 API</li>
+</ul>
+<h1>v2.0.0</h1>
+<ul>
+<li class="">[refactor] 重构 storage , function 接口(breaking change)</li>
+<li class="">[add] 支持闭环完成环境创建</li>
+<li class="">[add] 支持函数操作代码保护</li>
+<li class="">[fix] 修复 windows 下上传文件  路径 bug</li>
+</ul>
+<h1>v1.3.0</h1>
+<ul>
+<li class="">[add] 支持获取云函数代码下载链接</li>
+</ul>
+<h1>v1.2.0</h1>
+<ul>
+<li class="">[deprecated] env 创建环境功能暂时停用</li>
+<li class="">[add] 支持创建云函数自动安装依赖</li>
+</ul></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--prev" href="/api-reference/manager/node/clsLog"><div class="pagination-nav__sublabel">上一页</div><div class="pagination-nav__label">CLS 日志</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/api-reference/manager/node/httpservice"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">HTTP 网关</div></a></nav></div></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

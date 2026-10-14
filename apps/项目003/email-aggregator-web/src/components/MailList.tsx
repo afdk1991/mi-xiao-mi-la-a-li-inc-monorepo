@@ -64,32 +64,36 @@ function MailRow({
   ariaSetsize?: number
   onSelect: () => void
 }) {
+  // BUG-003-10（无障碍）：原实现把 role="button" 直接放在 <li> 上。
+  // <ul> 的隐式角色是 list，要求子元素为 listitem；把 li 改成 button 会让
+  // 列表语义失效（读屏器不再播报「共 N 项，第 M 项」），且被 axe 判为违规。
+  // 这里保留 li 的 listitem 语义，把可点击语义下移到内层 div。
   return (
-    <li
-      className={`mail-item clickable${unread ? ' unread' : ''}`}
-      role="button"
-      tabIndex={0}
-      aria-posinset={ariaPosinset}
-      aria-setsize={ariaSetsize}
-      onClick={onSelect}
-      onKeyDown={(e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault()
-          onSelect()
-        }
-      }}
-    >
-      <div className="mail-item-head">
-        {/* 未读圆点：与左侧竖条、加粗标题构成三重冗余，不只靠颜色传达状态 */}
-        {unread && <span className="unread-dot" aria-label="未读" />}
-        <span className="mail-subject">{subject}</span>
+    <li className="mail-row" aria-posinset={ariaPosinset} aria-setsize={ariaSetsize}>
+      <div
+        className={`mail-item clickable${unread ? ' unread' : ''}`}
+        role="button"
+        tabIndex={0}
+        onClick={onSelect}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            onSelect()
+          }
+        }}
+      >
+        <div className="mail-item-head">
+          {/* 未读圆点：与左侧竖条、加粗标题构成三重冗余，不只靠颜色传达状态 */}
+          {unread && <span className="unread-dot" aria-label="未读" />}
+          <span className="mail-subject">{subject}</span>
+        </div>
+        <div className="mail-meta">
+          <span className="mail-from">{from}</span>
+          {hasAttachment && <Icon name="paperclip" size={12} className="attach-icon-inline" />}
+          <span className="mail-time">{fmtTime(ts)}</span>
+        </div>
+        <div className="mail-preview">{preview}</div>
       </div>
-      <div className="mail-meta">
-        <span className="mail-from">{from}</span>
-        {hasAttachment && <Icon name="paperclip" size={12} className="attach-icon-inline" />}
-        <span className="mail-time">{fmtTime(ts)}</span>
-      </div>
-      <div className="mail-preview">{preview}</div>
     </li>
   )
 }
@@ -118,6 +122,16 @@ export default function MailList({ mails, hits, loading, onSelectMail, onSelectH
     ro.observe(el)
     return () => ro.disconnect()
   }, [sorted.length])
+
+  // BUG-003-11（虚拟滚动错位）：切换账户/重新检索后列表数据被整体替换，
+  // 但 scrollTop 状态仍停留在上一份数据的位置；若新列表更短，浏览器会把
+  // DOM 的 scrollTop 静默夹到新范围却不触发 onScroll，state 与实际滚动位置脱节，
+  // 导致渲染区间落在列表末尾（表现为大片空白）。这里在数据来源变化时强制归零。
+  useEffect(() => {
+    setScrollTop(0)
+    const el = listRef.current
+    if (el && el.scrollTop !== 0) el.scrollTop = 0
+  }, [mails, hits])
 
   // ── 检索命中分支：不虚拟化（结果集通常较小） ──
   if (hits) {

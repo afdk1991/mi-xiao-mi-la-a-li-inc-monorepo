@@ -1,0 +1,11 @@
+packages:
+  # 应用（前端 / Electron / 小程序 / 全栈）
+  - 'apps/*'
+  # 后端服务（Python 等；无 package.json 的目录会被自动忽略）
+  - 'services/*'
+  # 站点（WordPress / PHP；无 package.json 的目录会被自动忽略）
+  - 'sites/*'
+  # 运维脚本
+  - 'tools/*'
+  # 整合抽取的共享包：@shared/map、@shared/http、@shared/config
+  - 'shared/*'

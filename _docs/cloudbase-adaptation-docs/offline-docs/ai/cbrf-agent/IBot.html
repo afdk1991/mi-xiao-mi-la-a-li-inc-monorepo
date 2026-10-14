@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-ai/cbrf-agent/IBot" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">IBot | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/ai/cbrf-agent/IBot"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="IBot | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="函数型 Agent 框架提供了 IBot 接口，开发者只要实现一个满足 IBot 的类，就可以部署起相应的服务。"><meta data-rh="true" property="og:description" content="函数型 Agent 框架提供了 IBot 接口，开发者只要实现一个满足 IBot 的类，就可以部署起相应的服务。"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/ai/cbrf-agent/IBot"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/cbrf-agent/IBot" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/ai/cbrf-agent/IBot" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/cbrf-agent/IBot" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/assets/css/styles.84763893.css">
+<script src="/assets/js/runtime~main.13eb34e7.js" defer="defer"></script>
+<script src="/assets/js/main.38956b3f.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="关闭" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/quick-start/">快速开始</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">基础能力</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">核心能力</a></li><li><a class="dropdown__link nav-icon-database" href="/database/postgresql/initialization">数据库</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/storage/introduce">云存储</a></li><li><a class="dropdown__link nav-icon-zap" href="/cloud-function/introduce">云函数</a></li><li><a class="dropdown__link nav-icon-cloud" href="/run/introduction">云托管</a></li><li><a class="dropdown__link nav-icon-globe" href="/hosting/introduce">静态网站托管</a></li><li><a class="dropdown__link nav-icon-log-in" href="/authentication-v2/auth/introduce">身份认证</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/ai/introduce">AI 接入</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/integration/introduce">集成中心</a></li><li><a href="#" class="dropdown__link navbar-category">平台管理</a></li><li><a class="dropdown__link nav-icon-network" href="/service/introduce">HTTP 网关</a></li><li><a class="dropdown__link nav-icon-eye" href="/envconfig/intro">环境配置</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/logger/introduce">日志监控</a></li><li><a class="dropdown__link" href="/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">开发工具</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/ai/cloudbase-ai-toolkit/">AI 开发工具</a></li><li><a class="dropdown__link" href="/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">解决方案</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/solutions/cloudbase-platform-edition/overview">平台集成方案</a></li><li><a class="dropdown__link" href="/solutions/vibe-coding-platform/overview">VibeCoding 方案</a></li><li><a class="dropdown__link" href="/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">API参考</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDK 文档</a></li><li><a class="dropdown__link" href="/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">接口文档</a></li><li><a class="dropdown__link" href="/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/error-code/basic">错误码</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多资源</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/changelog/">更新日志</a></li><li><a class="dropdown__link" href="/faq/">常见问题</a></li><li><a class="dropdown__link" href="/practices/introduce">最佳实践</a></li><li><a class="dropdown__link" href="/quick-start/migration/">迁移指南</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">价格文档</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">博客</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">关注公众号领福利</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">前往控制台</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>简体中文</a><ul class="dropdown__menu"><li><a href="/ai/cbrf-agent/IBot" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-Hans">简体中文</a></li><li><a href="/en/ai/cbrf-agent/IBot" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索 (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><div class="region-badge-container"><span class="region-badge-prefix">支持地域：</span><span class="region-badge-tag region-badge-shanghai" style="padding:6px 12px;font-size:11px;font-weight:500;border-radius:5px;color:#000000;background-color:#D3E3FD">上海</span></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>IBot</h1></header>
+<p>函数型 Agent 框架提供了 <code>IBot</code> 接口，开发者只要实现一个满足 <code>IBot</code> 的类，就可以部署起相应的服务。</p>
+<p><code>IBot</code> 完整的方法定义及对应的服务如下：</p>
+<table><thead><tr><th>提供的服务</th><th><code>IBot</code> 方法名</th><th>描述</th></tr></thead><tbody><tr><td><code>POST /v1/aibot/bots/:botId/send-message</code></td><td><a href="#sendmessage"><code>sendMessage</code></a></td><td>与 Agent 进行对话</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/wx-send-message</code></td><td><a href="#wxsendmessage"><code>wxSendMessage</code></a></td><td>与 Agent 进行对话(微信回调)</td></tr><tr><td><code>GET  /v1/aibot/bots/:botId</code></td><td><a href="#getbotinfo"><code>getBotInfo</code></a></td><td>查询 Agent 配置信息</td></tr><tr><td><code>GET  /v1/aibot/bots/:botId/records</code></td><td><a href="#getchatrecords"><code>getChatRecords</code></a></td><td>查询 Agent 历史对话信息</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/recommend-questions</code></td><td><a href="#getrecommendquestions"><code>getRecommendQuestions</code></a></td><td>获取推荐问题</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/feedback</code></td><td><a href="#sendfeedback"><code>sendFeedback</code></a></td><td>提交用户反馈</td></tr><tr><td><code>GET  /v1/aibot/bots/:botId/feedback</code></td><td><a href="#getfeedback"><code>getFeedback</code></a></td><td>查询用户反馈</td></tr><tr><td><code>POST  /v1/aibot/bots/:botId/speech-to-text</code></td><td><a href="#speechtotext"><code>speechToText</code></a></td><td>语音转文字</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/text-to-speech</code></td><td><a href="#texttospeech"><code>textToSpeech</code></a></td><td>文字转语音</td></tr><tr><td><code>GET /v1/aibot/bots/:botId/text-to-speech</code></td><td><a href="#gettexttospeechresult"><code>getTextToSpeechResult</code></a></td><td>获取文字转语音结果</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/conversation</code></td><td><a href="#createconversation"><code>createConversation</code></a></td><td>创建会话</td></tr><tr><td><code>GET /v1/aibot/bots/:botId/conversation</code></td><td><a href="#getconversation"><code>getConversation</code></a></td><td>查询会话</td></tr><tr><td><code>PATCH /v1/aibot/bots/:botId/conversation/:conversation</code></td><td><a href="#updateconversation"><code>updateConversation</code></a></td><td>更新会话</td></tr><tr><td><code>DELETE /v1/aibot/bots/:botId/conversation/:conversation</code></td><td><a href="#deleteconversation"><code>deleteConversation</code></a></td><td>删除会话</td></tr></tbody></table>
+<p>使用 <a href="BotCore"><code>BotCore</code> 基类</a> 能够更加快速地实现 <code>IBot</code> 接口。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="方法">方法<a href="#方法" class="hash-link" aria-label="方法的直接链接" title="方法的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendmessage">sendMessage()<a href="#sendmessage" class="hash-link" aria-label="sendMessage()的直接链接" title="sendMessage()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>sendMessage</strong>(<code>input</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
+</blockquote>
+<p>sendMessage - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/send-message</p>
+<p>与 Agent 问答对话接口实现，该接口无返回值，接口内需要通过 this.sseSender 发送 Server-Sent Events 给客户端</p>
+<p>微信基础库 <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-sendMessage"><code>wx.cloud.extend.AI.bot.sendMessage</code></a> API 对应接口</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数">参数<a href="#参数" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/send-message"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxsendmessage">wxSendMessage()<a href="#wxsendmessage" class="hash-link" aria-label="wxSendMessage()的直接链接" title="wxSendMessage()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>wxSendMessage</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#wechattextoutput"><code>WeChatTextOutput</code></a>&gt;</p>
+</blockquote>
+<p>wxSendMessage - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/wx-send-message</p>
+<p>使用微信接入后，微信客服消息回调 Agent 接口的实现，该接口根据微信 APPID 类型以及认证状态进行返回。</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-1">参数<a href="#参数-1" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input">input<a href="#input" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h5>
+<p><a href="#wxsendmessageinput"><code>WxSendMessageInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#wechattextoutput"><code>WeChatTextOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getbotinfo">getBotInfo()<a href="#getbotinfo" class="hash-link" aria-label="getBotInfo()的直接链接" title="getBotInfo()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>getBotInfo</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getbotinfooutput"><code>GetBotInfoOutput</code></a>&gt;</p>
+</blockquote>
+<p>getBotInfo - POST /v1/aibot/bots/<!-- -->:botId</p>
+<p>获取 Agent 配置，返回 Agent 信息</p>
+<p>微信基础库 wx.cloud.extend.AI.bot.get API 对应接口
+<a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-get">https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-get</a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-2">参数<a href="#参数-2" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/get-bot-info"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getchatrecords">getChatRecords()?<a href="#getchatrecords" class="hash-link" aria-label="getChatRecords()?的直接链接" title="getChatRecords()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getChatRecords</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getchatrecordoutput"><code>GetChatRecordOutput</code></a>&gt;</p>
+</blockquote>
+<p>getChatRecords - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/records</p>
+<p>查询 Agent 历史对话信息接口实现，返回历史对话记录。</p>
+<p>注意：需在 sendMessage 接口中实现记录对话信息，并在此接口查询对话信息并中返回</p>
+<p>微信基础库 <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-getChatRecords"><code>wx.cloud.extend.AI.bot.getChatRecords</code></a> API 对应接口</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-3">参数<a href="#参数-3" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/get-chat-history"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getfeedback">getFeedback()?<a href="#getfeedback" class="hash-link" aria-label="getFeedback()?的直接链接" title="getFeedback()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getFeedback</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getfeedbackoutput"><code>GetFeedbackOutput</code></a>&gt;</p>
+</blockquote>
+<p>getFeedback - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/feedback</p>
+<p>获取用户反馈接口实现，返回用户反馈列表</p>
+<p>微信基础库 <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-getFeedBack"><code>wx.cloud.extend.AI.bot.getFeedBack</code></a> API 对应接口</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-4">参数<a href="#参数-4" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/get-feedback"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getrecommendquestions">getRecommendQuestions()?<a href="#getrecommendquestions" class="hash-link" aria-label="getRecommendQuestions()?的直接链接" title="getRecommendQuestions()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getRecommendQuestions</strong>(<code>input</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
+</blockquote>
+<p>getRecommendQuestions - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/recommend-questions</p>
+<p>获取推荐 问题接口实现，返回推荐问题列表</p>
+<p>微信基础库 <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-getRecommendQuestions"><code>wx.cloud.extend.AI.bot.getRecommendQuestions</code></a> API 对应接口</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-5">参数<a href="#参数-5" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/get-recommend-questions"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendfeedback">sendFeedback()?<a href="#sendfeedback" class="hash-link" aria-label="sendFeedback()?的直接链接" title="sendFeedback()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>sendFeedback</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#sendfeedbackoutput"><code>SendFeedbackOutput</code></a>&gt;</p>
+</blockquote>
+<p>sendFeedback - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/feedback</p>
+<p>发送用户反馈接口实现，返回发送用户反馈结果</p>
+<p>微信基础库 <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-sendFeedback"><code>wx.cloud.extend.AI.bot.sendFeedback</code></a> API 对应接口</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-6">参数<a href="#参数-6" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-1">input<a href="#input-1" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h5>
+<p><a href="#sendfeedbackinput"><code>SendFeedbackInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="返回">返回<a href="#返回" class="hash-link" aria-label="返回的直接链接" title="返回的  直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#sendfeedbackoutput"><code>SendFeedbackOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotext">speechToText()?<a href="#speechtotext" class="hash-link" aria-label="speechToText()?的直接链接" title="speechToText()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>speechToText</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#SpeechToTextOutput"><code>SpeechToTextOutput</code></a>&gt;</p>
+</blockquote>
+<p>speechToText - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/speechToText</p>
+<p>语音转文字</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-7">参数<a href="#参数-7" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/speech-to-text"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="texttospeech">textToSpeech()?<a href="#texttospeech" class="hash-link" aria-label="textToSpeech()?的直接链接" title="textToSpeech()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>textToSpeech</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#texttospeechoutput"><code>TextToSpeechOutput</code></a>&gt;</p>
+</blockquote>
+<p>text-to-speech - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/text-to-speech</p>
+<p>文字转语音</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-8">参数<a href="#参数-8" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/text-to-speech"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gettexttospeechresult">getTextToSpeechResult()?<a href="#gettexttospeechresult" class="hash-link" aria-label="getTextToSpeechResult()?的直接 链接" title="getTextToSpeechResult()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getTextToSpeechResult</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#gettexttospeechresultoutput"><code>GetTextToSpeechResultOutput</code></a>&gt;</p>
+</blockquote>
+<p>text-to-speech - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/text-to-speech</p>
+<p>获取文字转语音结果</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-9">参数<a href="#参数-9" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/get-text-to-speech-result"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="createconversation">createConversation()?<a href="#createconversation" class="hash-link" aria-label="createConversation()?的直接链接" title="createConversation()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>createConversation</strong>(): <code>Promise</code>&lt;<a href="#createconversationoutput"><code>CreateConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation</p>
+<p>创建会话</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-10">参数<a href="#参数-10" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<p>调用参数详见 <a href="../../http-api/ai-bot/create-conversation"><code>HTTP API</code></a> 文档</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getconversation">getConversation()?<a href="#getconversation" class="hash-link" aria-label="getConversation()?的直接链接" title="getConversation()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getConversation</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getconversationoutput"><code>GetConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation</p>
+<p>查询会话</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-11">参数<a href="#参数-11" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-2">input<a href="#input-2" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h5>
+<p><a href="#getconversationinput"><code>GetConversationInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#getconversationoutput"><code>GetConversationOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="updateconversation">updateConversation()?<a href="#updateconversation" class="hash-link" aria-label="updateConversation()?的直接链接" title="updateConversation()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>updateConversation</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#updateconversationoutput"><code>UpdateConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - PATCH /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation/<!-- -->:conversation</p>
+<p>更新会话</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-12">参数<a href="#参数-12" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-3">input<a href="#input-3" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h5>
+<p><a href="#updateconversationinput"><code>UpdateConversationInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#updateconversationoutput"><code>UpdateConversationOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deleteconversation">deleteConversation()?<a href="#deleteconversation" class="hash-link" aria-label="deleteConversation()?的直接链接" title="deleteConversation()?的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>deleteConversation</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#deleteconversationoutput"><code>DeleteConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - DELETE /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation/<!-- -->:conversation</p>
+<p>删除会话</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-13">参数<a href="#参数-13" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-4">input<a href="#input-4" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h5>
+<p><a href="#deleteconversationinput"><code>DeleteConversationInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-3">Returns<a href="#returns-3" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#deleteconversationoutput"><code>DeleteConversationOutput</code></a>&gt;</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="类型">类型<a href="#类型" class="hash-link" aria-label="类型的直接链接" title="类型的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getchatrecordoutput">GetChatRecordOutput<a href="#getchatrecordoutput" class="hash-link" aria-label="GetChatRecordOutput的直接链接" title="GetChatRecordOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性">属性<a href="#属性" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="recordlist">recordList<a href="#recordlist" class="hash-link" aria-label="recordList的直接链接" title="recordList的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>recordList</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid">botId?<a href="#botid" class="hash-link" aria-label="botId?的直接链接" title="botId?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>botId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content">content?<a href="#content" class="hash-link" aria-label="content?的直接链接" title="content?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversation">conversation?<a href="#conversation" class="hash-link" aria-label="conversation?的直接链接" title="conversation?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>conversation</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime">createTime?<a href="#createtime" class="hash-link" aria-label="createTime?的直接链接" title="createTime?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>createTime</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="image">image?<a href="#image" class="hash-link" aria-label="image?的直接链接" title="image?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>image</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="recordid">recordId?<a href="#recordid" class="hash-link" aria-label="recordId?的直接链接" title="recordId?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>recordId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="reply">reply?<a href="#reply" class="hash-link" aria-label="reply?的直接链接" title="reply?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>reply</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="replyto">replyTo?<a href="#replyto" class="hash-link" aria-label="replyTo?的直接链接" title="replyTo?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>replyTo</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="role">role?<a href="#role" class="hash-link" aria-label="role?的直接链接" title="role?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>role</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="triggersrc">triggerSrc?<a href="#triggersrc" class="hash-link" aria-label="triggerSrc?的直接链接" title="triggerSrc?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>triggerSrc</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="type">type?<a href="#type" class="hash-link" aria-label="type?的直接链接" title="type?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>type</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="total">total<a href="#total" class="hash-link" aria-label="total 的直接链接" title="total的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>total</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getfeedbackoutput">GetFeedbackOutput<a href="#getfeedbackoutput" class="hash-link" aria-label="GetFeedbackOutput的直接链接" title="GetFeedbackOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-1">属性<a href="#属性-1" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="feedbacklist">feedbackList<a href="#feedbacklist" class="hash-link" aria-label="feedbackList的直接链接" title="feedbackList的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>feedbackList</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="aianswer">aiAnswer<a href="#aianswer" class="hash-link" aria-label="aiAnswer的直接链接" title="aiAnswer的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>aiAnswer</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-1">botId<a href="#botid-1" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>botId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="comment">comment<a href="#comment" class="hash-link" aria-label="comment的直接链接" title="comment的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>comment</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-1">createTime<a href="#createtime-1" class="hash-link" aria-label="createTime的直接链接" title="createTime的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>createTime</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-5">input<a href="#input-5" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>input</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="rating">rating<a href="#rating" class="hash-link" aria-label="rating的直接链接" title="rating的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>rating</strong>: <code>number</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="sender">sender<a href="#sender" class="hash-link" aria-label="sender的直接链接" title="sender的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>sender</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="tags">tags<a href="#tags" class="hash-link" aria-label="tags的直接链接" title="tags的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>tags</strong>: <code>string</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-1">type<a href="#type-1" class="hash-link" aria-label="type的直接链接" title="type的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>type</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="total-1">total<a href="#total-1" class="hash-link" aria-label="total的直接链接" title="total的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>total</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendfeedbackinput">SendFeedbackInput<a href="#sendfeedbackinput" class="hash-link" aria-label="SendFeedbackInput的直接链接" title="SendFeedbackInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-2">属性<a href="#属性-2" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="aianswer-1">aiAnswer<a href="#aianswer-1" class="hash-link" aria-label="aiAnswer的直接链接" title="aiAnswer的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>aiAnswer</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="comment-1">comment<a href="#comment-1" class="hash-link" aria-label="comment的直接链接" title="comment的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>comment</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-6">input<a href="#input-6" class="hash-link" aria-label="input的直接链接" title="input的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>input</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="rating-1">rating<a href="#rating-1" class="hash-link" aria-label="rating的直接链接" title="rating的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>rating</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="recordid-1">recordId<a href="#recordid-1" class="hash-link" aria-label="recordId的直接链接" title="recordId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>recordId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tags-1">tags<a href="#tags-1" class="hash-link" aria-label="tags的直接链接" title="tags的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>tags</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-2">type<a href="#type-2" class="hash-link" aria-label="type的直接链接" title="type的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>type</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendfeedbackoutput">SendFeedbackOutput<a href="#sendfeedbackoutput" class="hash-link" aria-label="SendFeedbackOutput的直接链接" title="SendFeedbackOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-3">属性<a href="#属性-3" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="status">status<a href="#status" class="hash-link" aria-label="status的直接链接" title="status的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>status</strong>: <code>&quot;success&quot;</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendmessageinput">SendMessageInput<a href="#sendmessageinput" class="hash-link" aria-label="SendMessageInput的直接链接" title="SendMessageInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-4">属性<a href="#属性-4" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="history">history?<a href="#history" class="hash-link" aria-label="history?的直接链接" title="history?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>history</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-1">content<a href="#content-1" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="role-1">role<a href="#role-1" class="hash-link" aria-label="role的直接链接" title="role的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>role</strong>: <code>&quot;user&quot;</code> | <code>&quot;assistant&quot;</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msg">msg<a href="#msg" class="hash-link" aria-label="msg的直接链接" title="msg的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msg</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechattextinput">WeChatTextInput<a href="#wechattextinput" class="hash-link" aria-label="WeChatTextInput的直接链接" title="WeChatTextInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties">Properties<a href="#properties" class="hash-link" aria-label="Properties的直接链接" title="Properties的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-2">content<a href="#content-2" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-2">createTime<a href="#createtime-2" class="hash-link" aria-label="createTime的直接链接" title="createTime的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>createTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="fromusername">fromUserName<a href="#fromusername" class="hash-link" aria-label="fromUserName的直接链接" title="fromUserName的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>fromUserName</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid">msgId<a href="#msgid" class="hash-link" aria-label="msgId的直接链接" title="msgId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype">msgType<a href="#msgtype" class="hash-link" aria-label="msgType的直接链接" title="msgType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tousername">toUserName<a href="#tousername" class="hash-link" aria-label="toUserName的直接链接" title="toUserName的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>toUserName</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechatvoiceinput">WeChatVoiceInput<a href="#wechatvoiceinput" class="hash-link" aria-label="WeChatVoiceInput的直接链接" title="WeChatVoiceInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-5">属性<a href="#属性-5" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-3">createTime<a href="#createtime-3" class="hash-link" aria-label="createTime的直接链接" title="createTime的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>createTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="format">format<a href="#format" class="hash-link" aria-label="format的直接链接" title="format的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>format</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="fromusername-1">fromUserName<a href="#fromusername-1" class="hash-link" aria-label="fromUserName的直接链接" title="fromUserName的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>fromUserName</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="mediaid">mediaId<a href="#mediaid" class="hash-link" aria-label="mediaId的直接链接" title="mediaId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>mediaId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid-1">msgId<a href="#msgid-1" class="hash-link" aria-label="msgId的直接链接" title="msgId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-1">msgType<a href="#msgtype-1" class="hash-link" aria-label="msgType的直接链接" title="msgType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tousername-1">toUserName<a href="#tousername-1" class="hash-link" aria-label="toUserName的直接链接" title="toUserName的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>toUserName</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechatworktextinput">WeChatWorkTextInput<a href="#wechatworktextinput" class="hash-link" aria-label="WeChatWorkTextInput的直接链接" title="WeChatWorkTextInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-6">属性<a href="#属性-6" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="externaluserid">externalUserId<a href="#externaluserid" class="hash-link" aria-label="externalUserId的直接链接" title="externalUserId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>externalUserId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid-2">msgId<a href="#msgid-2" class="hash-link" aria-label="msgId的直接链接" title="msgId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-2">msgType<a href="#msgtype-2" class="hash-link" aria-label="msgType的直接链接" title="msgType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="openkfid">openKfId<a href="#openkfid" class="hash-link" aria-label="openKfId的直接链接" title="openKfId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>openKfId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="origin">origin<a href="#origin" class="hash-link" aria-label="origin的直接链接" title="origin的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>origin</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendtime">sendTime<a href="#sendtime" class="hash-link" aria-label="sendTime的直接链接" title="sendTime的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>sendTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="text">text<a href="#text" class="hash-link" aria-label="text的直接链接" title="text的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>text</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-3">content<a href="#content-3" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechatworkvoiceinput">WeChatWorkVoiceInput<a href="#wechatworkvoiceinput" class="hash-link" aria-label="WeChatWorkVoiceInput的直接链接" title="WeChatWorkVoiceInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-7">属性<a href="#属性-7" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="externaluserid-1">externalUserId<a href="#externaluserid-1" class="hash-link" aria-label="externalUserId的直接链接" title="externalUserId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>externalUserId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid-3">msgId<a href="#msgid-3" class="hash-link" aria-label="msgId的直接链接" title="msgId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-3">msgType<a href="#msgtype-3" class="hash-link" aria-label="msgType的直接链接" title="msgType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="openkfid-1">openKfId<a href="#openkfid-1" class="hash-link" aria-label="openKfId的直接链接" title="openKfId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>openKfId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="origin-1">origin<a href="#origin-1" class="hash-link" aria-label="origin的直接链接" title="origin的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>origin</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendtime-1">sendTime<a href="#sendtime-1" class="hash-link" aria-label="sendTime的直接链接" title="sendTime的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>sendTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voice">voice<a href="#voice" class="hash-link" aria-label="voice的直接链接" title="voice的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>voice</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="mediaid-1">mediaId<a href="#mediaid-1" class="hash-link" aria-label="mediaId的直接链接" title="mediaId的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>mediaId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxsendmessageinput">WxSendMessageInput<a href="#wxsendmessageinput" class="hash-link" aria-label="WxSendMessageInput的直接链接" title="WxSendMessageInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-8">属性<a href="#属性-8" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="callbackdata">callbackData<a href="#callbackdata" class="hash-link" aria-label="callbackData的直接链接" title="callbackData的直接链接" translate="no">​</a></h5>
+<p>微信回调消息</p>
+<blockquote>
+<p><strong>callbackData</strong>: <a href="#WeChatTextInput"><code>WeChatTextInput</code></a> | <a href="#WeChatTextInput"><code>WeChatVoiceInput</code></a> | <a href="#WeChatWorkTextInput"><code>WeChatWorkTextInput</code></a> | <a href="#WeChatWorkVoiceInput"><code>WeChatWorkVoiceInput</code></a></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="triggersrc-1">triggerSrc?<a href="#triggersrc-1" class="hash-link" aria-label="triggerSrc?的直接链接" title="triggerSrc?的直接链接" translate="no">​</a></h5>
+<p>根据微信 APPID 传入来源类型，微信订阅号: WXSubscription 微信服务号: WXService 微信小程序客服: WXMiniapp 企业微信客服: WXCustomerService</p>
+<blockquote>
+<p><code>optional</code> <strong>triggerSrc</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxverify">wxVerify?<a href="#wxverify" class="hash-link" aria-label="wxVerify?的直接链接" title="wxVerify?的直接链接" translate="no">​</a></h5>
+<p>微信 APPID 的认证状态</p>
+<blockquote>
+<p><code>optional</code> <strong>wxVerify</strong>: <code>boolean</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechattextoutput">WeChatTextOutput<a href="#wechattextoutput" class="hash-link" aria-label="WeChatTextOutput的直接链接" title="WeChatTextOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-9">属性<a href="#属性-9" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-4">Content?<a href="#content-4" class="hash-link" aria-label="Content?的直接链接" title="Content?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>Content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-4">CreateTime?<a href="#createtime-4" class="hash-link" aria-label="CreateTime?的直接链接" title="CreateTime?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>CreateTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="fromusername-2">FromUserName?<a href="#fromusername-2" class="hash-link" aria-label="FromUserName?的直接链接" title="FromUserName?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>FromUserName</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-4">MsgType?<a href="#msgtype-4" class="hash-link" aria-label="MsgType?的直接链接" title="MsgType?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>MsgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tousername-2">ToUserName?<a href="#tousername-2" class="hash-link" aria-label="ToUserName?的直接链接" title="ToUserName?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>ToUserName</strong>: <code>string</code></p>
+</blockquote>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotextinput">SpeechToTextInput<a href="#speechtotextinput" class="hash-link" aria-label="SpeechToTextInput的直接链接" title="SpeechToTextInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-10">属性<a href="#属性-10" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="engservicetype">engSerViceType<a href="#engservicetype" class="hash-link" aria-label="engSerViceType的直接链接" title="engSerViceType的直接链接" translate="no">​</a></h5>
+<p>输入语言类型</p>
+<blockquote>
+<p><strong>engSerViceType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="url">url<a href="#url" class="hash-link" aria-label="url的直接链接" title="url的直接链接" translate="no">​</a></h5>
+<p>语音文件链接</p>
+<blockquote>
+<p><strong>url</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voiceformat">voiceFormat<a href="#voiceformat" class="hash-link" aria-label="voiceFormat的直接链接" title="voiceFormat的直接链接" translate="no">​</a></h5>
+<p>识别音频的音频格式，如 wav/mp3</p>
+<blockquote>
+<p><strong>voiceFormat</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotextoutput">SpeechToTextOutput<a href="#speechtotextoutput" class="hash-link" aria-label="SpeechToTextOutput的直接链接" title="SpeechToTextOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-11">属性<a href="#属性-11" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="result">Result<a href="#result" class="hash-link" aria-label="Result的直接链接" title="Result的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>Result</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="texttospeechoutput">TextToSpeechOutput<a href="#texttospeechoutput" class="hash-link" aria-label="TextToSpeechOutput的直接链接" title="TextToSpeechOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-12">属性<a href="#属性-12" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid">TaskId<a href="#taskid" class="hash-link" aria-label="TaskId的直接链接" title="TaskId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>TaskId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gettexttospeechresultoutput">GetTextToSpeechResultOutput<a href="#gettexttospeechresultoutput" class="hash-link" aria-label="GetTextToSpeechResultOutput的直接链接" title="GetTextToSpeechResultOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-13">属性<a href="#属性-13" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="resulturl">ResultUrl<a href="#resulturl" class="hash-link" aria-label="ResultUrl的直接链接" title="ResultUrl的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>ResultUrl</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="status-1">Status<a href="#status-1" class="hash-link" aria-label="Status的直接链接" title="Status的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>Status</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="statusstr">StatusStr<a href="#statusstr" class="hash-link" aria-label="StatusStr的直接链接" title="StatusStr的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>StatusStr</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid-1">TaskId<a href="#taskid-1" class="hash-link" aria-label="TaskId的直接链接" title="TaskId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>TaskId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="createconversationoutput">CreateConversationOutput<a href="#createconversationoutput" class="hash-link" aria-label="CreateConversationOutput的直接链接" title="CreateConversationOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-14">属性<a href="#属性-14" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid">conversationId<a href="#conversationid" class="hash-link" aria-label="conversationId的直接链接" title="conversationId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="title">title<a href="#title" class="hash-link" aria-label="title的直接链接" title="title的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getconversationinput">GetConversationInput<a href="#getconversationinput" class="hash-link" aria-label="GetConversationInput的直接链接" title="GetConversationInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-15">属性<a href="#属性-15" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-1">conversationId?<a href="#conversationid-1" class="hash-link" aria-label="conversationId?的直接链接" title="conversationId?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="limit">limit?<a href="#limit" class="hash-link" aria-label="limit?的直接链接" title="limit?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>limit</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="offset">offset?<a href="#offset" class="hash-link" aria-label="offset?的直接链接" title="offset?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>offset</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getconversationoutput">GetConversationOutput<a href="#getconversationoutput" class="hash-link" aria-label="GetConversationOutput的直接链接" title="GetConversationOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-16">属性<a href="#属性-16" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="data">data<a href="#data" class="hash-link" aria-label="data的直接链接" title="data的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>data</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-2">conversationId<a href="#conversationid-2" class="hash-link" aria-label="conversationId的直接链接" title="conversationId的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-5">createTime<a href="#createtime-5" class="hash-link" aria-label="createTime的直接链接" title="createTime的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>createTime</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="title-1">title<a href="#title-1" class="hash-link" aria-label="title的直接链接" title="title的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="updatetime">updateTime<a href="#updatetime" class="hash-link" aria-label="updateTime的直接链接" title="updateTime的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>updateTime</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="total-2">total<a href="#total-2" class="hash-link" aria-label="total的直接链接" title="total的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>total</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="updateconversationinput">UpdateConversationInput<a href="#updateconversationinput" class="hash-link" aria-label="UpdateConversationInput的直接链接" title="UpdateConversationInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-17">属性<a href="#属性-17" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-3">conversationId?<a href="#conversationid-3" class="hash-link" aria-label="conversationId?的直接链接" title="conversationId?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="title-2">title<a href="#title-2" class="hash-link" aria-label="title的直接链接" title="title的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="updateconversationoutput">UpdateConversationOutput<a href="#updateconversationoutput" class="hash-link" aria-label="UpdateConversationOutput的直接链接" title="UpdateConversationOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-18">属性<a href="#属性-18" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="count">count<a href="#count" class="hash-link" aria-label="count的直接链接" title="count的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>count</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deleteconversationinput">DeleteConversationInput<a href="#deleteconversationinput" class="hash-link" aria-label="DeleteConversationInput的直接链接" title="DeleteConversationInput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-19">属性<a href="#属性-19" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-4">conversationId<a href="#conversationid-4" class="hash-link" aria-label="conversationId的直接链接" title="conversationId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deleteconversationoutput">DeleteConversationOutput<a href="#deleteconversationoutput" class="hash-link" aria-label="DeleteConversationOutput的直接链接" title="DeleteConversationOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-20">属性<a href="#属性-20" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="count-1">count<a href="#count-1" class="hash-link" aria-label="count的直接链接" title="count的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>count</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getbotinfooutput">GetBotInfoOutput<a href="#getbotinfooutput" class="hash-link" aria-label="GetBotInfoOutput的直接链接" title="GetBotInfoOutput的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-21">属性<a href="#属性-21" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="agentsetting">agentSetting?<a href="#agentsetting" class="hash-link" aria-label="agentSetting?的直接链接" title="agentSetting?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>agentSetting</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="avatar">avatar?<a href="#avatar" class="hash-link" aria-label="avatar?的直接链接" title="avatar?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>avatar</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="background">background?<a href="#background" class="hash-link" aria-label="background?的直接链接" title="background?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>background</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-2">botId?<a href="#botid-2" class="hash-link" aria-label="botId?的直接链接" title="botId?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>botId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="databasemodel">databaseModel?<a href="#databasemodel" class="hash-link" aria-label="databaseModel?的直接链接" title="databaseModel?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>databaseModel</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="initquestions">initQuestions?<a href="#initquestions" class="hash-link" aria-label="initQuestions?的直接链接" title="initQuestions?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>initQuestions</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="introduction">introduction?<a href="#introduction" class="hash-link" aria-label="introduction?的直接链接" title="introduction?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>introduction</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="isneedrecommend">isNeedRecommend?<a href="#isneedrecommend" class="hash-link" aria-label="isNeedRecommend?的直接链接" title="isNeedRecommend?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>isNeedRecommend</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="knowledgebase">knowledgeBase?<a href="#knowledgebase" class="hash-link" aria-label="knowledgeBase?的直接链接" title="knowledgeBase?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>knowledgeBase</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="mcpserverlist">mcpServerList?<a href="#mcpserverlist" class="hash-link" aria-label="mcpServerList?的直接链接" title="mcpServerList?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>mcpServerList</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="name">name?<a href="#name" class="hash-link" aria-label="name?的直接链接" title="name?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>name</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="tools">tools<a href="#tools" class="hash-link" aria-label="tools的直接链接" title="tools的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>tools</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="url-1">url?<a href="#url-1" class="hash-link" aria-label="url?的直接链接" title="url?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>url</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="model">model?<a href="#model" class="hash-link" aria-label="model?的直接链接" title="model?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>model</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="modelvalue">modelValue?<a href="#modelvalue" class="hash-link" aria-label="modelValue?的直接链接" title="modelValue?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>modelValue</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="multiconversationenable">multiConversationEnable?<a href="#multiconversationenable" class="hash-link" aria-label="multiConversationEnable?的直接链接" title="multiConversationEnable?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>multiConversationEnable</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="name-1">name?<a href="#name-1" class="hash-link" aria-label="name?的直接链接" title="name?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>name</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchenable">searchEnable?<a href="#searchenable" class="hash-link" aria-label="searchEnable?的直接链接" title="searchEnable?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>searchEnable</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchfileenable">searchFileEnable?<a href="#searchfileenable" class="hash-link" aria-label="searchFileEnable?的直接链接" title="searchFileEnable?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>searchFileEnable</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tags-2">tags?<a href="#tags-2" class="hash-link" aria-label="tags?的直接链接" title="tags?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>tags</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-3">type?<a href="#type-3" class="hash-link" aria-label="type?的直接链接" title="type?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>type</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="updatetime-1">updateTime?<a href="#updatetime-1" class="hash-link" aria-label="updateTime?的直接链接" title="updateTime?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>updateTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voicesettings">voiceSettings?<a href="#voicesettings" class="hash-link" aria-label="voiceSettings?的直接链接" title="voiceSettings?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>voiceSettings</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="enable">enable?<a href="#enable" class="hash-link" aria-label="enable?的直接链接" title="enable?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>enable</strong>: <code>boolean</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="inputtype">inputType?<a href="#inputtype" class="hash-link" aria-label="inputType?的直接链接" title="inputType?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>inputType</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="outputtype">outputType?<a href="#outputtype" class="hash-link" aria-label="outputType?的直接链接" title="outputType?的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>outputType</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="welcomemessage">welcomeMessage?<a href="#welcomemessage" class="hash-link" aria-label="welcomeMessage?的直接链接" title="welcomeMessage?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>welcomeMessage</strong>: <code>string</code></p>
+</blockquote>
+<hr></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#方法" class="table-of-contents__link toc-highlight">方法</a><ul><li><a href="#sendmessage" class="table-of-contents__link toc-highlight">sendMessage()</a></li><li><a href="#wxsendmessage" class="table-of-contents__link toc-highlight">wxSendMessage()</a></li><li><a href="#getbotinfo" class="table-of-contents__link toc-highlight">getBotInfo()</a></li><li><a href="#getchatrecords" class="table-of-contents__link toc-highlight">getChatRecords()?</a></li><li><a href="#getfeedback" class="table-of-contents__link toc-highlight">getFeedback()?</a></li><li><a href="#getrecommendquestions" class="table-of-contents__link toc-highlight">getRecommendQuestions()?</a></li><li><a href="#sendfeedback" class="table-of-contents__link toc-highlight">sendFeedback()?</a></li><li><a href="#speechtotext" class="table-of-contents__link toc-highlight">speechToText()?</a></li><li><a href="#texttospeech" class="table-of-contents__link toc-highlight">textToSpeech()?</a></li><li><a href="#gettexttospeechresult" class="table-of-contents__link toc-highlight">getTextToSpeechResult()?</a></li><li><a href="#createconversation" class="table-of-contents__link toc-highlight">createConversation()?</a></li><li><a href="#getconversation" class="table-of-contents__link toc-highlight">getConversation()?</a></li><li><a href="#updateconversation" class="table-of-contents__link toc-highlight">updateConversation()?</a></li><li><a href="#deleteconversation" class="table-of-contents__link toc-highlight">deleteConversation()?</a></li></ul></li><li><a href="#类型" class="table-of-contents__link toc-highlight">类型</a><ul><li><a href="#getchatrecordoutput" class="table-of-contents__link toc-highlight">GetChatRecordOutput</a></li><li><a href="#getfeedbackoutput" class="table-of-contents__link toc-highlight">GetFeedbackOutput</a></li><li><a href="#sendfeedbackinput" class="table-of-contents__link toc-highlight">SendFeedbackInput</a></li><li><a href="#sendfeedbackoutput" class="table-of-contents__link toc-highlight">SendFeedbackOutput</a></li><li><a href="#sendmessageinput" class="table-of-contents__link toc-highlight">SendMessageInput</a></li><li><a href="#wechattextinput" class="table-of-contents__link toc-highlight">WeChatTextInput</a></li><li><a href="#wechatvoiceinput" class="table-of-contents__link toc-highlight">WeChatVoiceInput</a></li><li><a href="#wechatworktextinput" class="table-of-contents__link toc-highlight">WeChatWorkTextInput</a></li><li><a href="#wechatworkvoiceinput" class="table-of-contents__link toc-highlight">WeChatWorkVoiceInput</a></li><li><a href="#wxsendmessageinput" class="table-of-contents__link toc-highlight">WxSendMessageInput</a></li><li><a href="#wechattextoutput" class="table-of-contents__link toc-highlight">WeChatTextOutput</a></li><li><a href="#speechtotextinput" class="table-of-contents__link toc-highlight">SpeechToTextInput</a></li><li><a href="#speechtotextoutput" class="table-of-contents__link toc-highlight">SpeechToTextOutput</a></li><li><a href="#texttospeechoutput" class="table-of-contents__link toc-highlight">TextToSpeechOutput</a></li><li><a href="#gettexttospeechresultoutput" class="table-of-contents__link toc-highlight">GetTextToSpeechResultOutput</a></li><li><a href="#createconversationoutput" class="table-of-contents__link toc-highlight">CreateConversationOutput</a></li><li><a href="#getconversationinput" class="table-of-contents__link toc-highlight">GetConversationInput</a></li><li><a href="#getconversationoutput" class="table-of-contents__link toc-highlight">GetConversationOutput</a></li><li><a href="#updateconversationinput" class="table-of-contents__link toc-highlight">UpdateConversationInput</a></li><li><a href="#updateconversationoutput" class="table-of-contents__link toc-highlight">UpdateConversationOutput</a></li><li><a href="#deleteconversationinput" class="table-of-contents__link toc-highlight">DeleteConversationInput</a></li><li><a href="#deleteconversationoutput" class="table-of-contents__link toc-highlight">DeleteConversationOutput</a></li><li><a href="#getbotinfooutput" class="table-of-contents__link toc-highlight">GetBotInfoOutput</a></li></ul></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="复制文档" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>复制文档</span></button><button class="tocActionButton_eGor" title="查看 Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>查看 Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>反馈文档问题</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>提问 AI</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

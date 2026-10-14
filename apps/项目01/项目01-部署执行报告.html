@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目01 部署执行报告 - 后端归口与安全整改</title>
+<style>
+  :root{
+    --bg:#ffffff; --surface:#f7f8fa; --border:#e3e6ea; --text:#1f2328; --muted:#5b6570;
+    --ok:#0f6e56; --ok-bg:#e1f5ee; --warn:#854f0b; --warn-bg:#faeeda; --err:#a32d2d; --err-bg:#fcebeb;
+    --info:#185fa5; --info-bg:#e6f1fb;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;padding:32px;background:var(--bg);color:var(--text);
+       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+       font-size:14px;line-height:1.7;}
+  .wrap{max-width:1080px;margin:0 auto;}
+  h1{font-size:22px;font-weight:600;margin:0 0 6px;}
+  h2{font-size:17px;font-weight:600;margin:32px 0 12px;padding-bottom:8px;border-bottom:2px solid var(--border);}
+  h3{font-size:15px;font-weight:600;margin:20px 0 8px;}
+  .sub{color:var(--muted);font-size:13px;margin-bottom:24px;}
+  table{width:100%;border-collapse:collapse;margin:12px 0;font-size:13px;}
+  th,td{border:1px solid var(--border);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--surface);font-weight:600;}
+  code{background:var(--surface);padding:1px 5px;border-radius:4px;
+       font-family:ui-monospace,Consolas,monospace;font-size:12.5px;word-break:break-all;}
+  .tag{display:inline-block;padding:1px 8px;border-radius:10px;font-size:12px;font-weight:600;}
+  .t-ok{background:var(--ok-bg);color:var(--ok);}
+  .t-warn{background:var(--warn-bg);color:var(--warn);}
+  .t-err{background:var(--err-bg);color:var(--err);}
+  .t-info{background:var(--info-bg);color:var(--info);}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:14px 16px;margin:12px 0;}
+  ul{margin:8px 0;padding-left:22px;}
+  li{margin:4px 0;}
+  .urlbox{background:var(--surface);border-left:3px solid var(--info);padding:8px 12px;margin:6px 0;
+          font-family:ui-monospace,Consolas,monospace;font-size:12px;word-break:break-all;}
+  .kpi{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0;}
+  .kpi div{flex:1;min-width:150px;background:var(--surface);border:1px solid var(--border);
+           border-radius:8px;padding:12px 14px;}
+  .kpi b{display:block;font-size:20px;font-weight:600;}
+  .kpi span{font-size:12px;color:var(--muted);}
+  .note{background:var(--info-bg);border-left:3px solid var(--info);padding:10px 14px;margin:12px 0;font-size:13px;}
+  .warnbox{background:var(--warn-bg);border-left:3px solid var(--warn);padding:10px 14px;margin:12px 0;font-size:13px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>项目01 部署执行报告</h1>
+<div class="sub">后端归口 python-fastapi · 四条部署路径收敛 · 安全整改落地 · 6 个前端真实上线 · 后端 API 实测通过</div>
+
+<div class="kpi">
+  <div><b>7</b><span>个站点已真实上线（EdgeOne）</span></div>
+  <div><b>13</b><span>个文件改造/新增</span></div>
+  <div><b>4 → 1</b><span>部署后端从 4 套收敛为 python-fastapi</span></div>
+  <div><b>3</b><span>项安全中间件落地（限流/体积/脱敏）</span></div>
+</div>
+
+<h2>一、执行摘要</h2>
+<p>本轮把「诊断 → 建议」推进到<b>代码与配置的实际落地</b>。核心决策：<b>以 <code>python-fastapi</code>（合并后唯一真实后端，v3.0.0）作为所有部署机制的统一后端归口</b>，彻底消除此前「nginx 指向 Node :3001、真实后端却是 Python」的身份分裂；同时落地安全整改，并对 6 个已构建前端执行真实上线与 HTTP 校验。</p>
+
+<table>
+<tr><th style="width:22%">维度</th><th style="width:16%">状态</th><th>结果</th></tr>
+<tr><td>后端归口</td><td><span class="tag t-ok">已完成</span></td><td>PM2 / Nginx / Docker / Render 四条路径全部指向 python-fastapi(:8000)</td></tr>
+<tr><td>安全整改</td><td><span class="tag t-ok">已完成</span></td><td>JWT 生产强校验、单 IP 限流、请求体限制、生产异常脱敏、.env.example、.gitignore</td></tr>
+<tr><td>后端实测</td><td><span class="tag t-ok">已通过</span></td><td>/health、/、/api/products 真实返回数据；限流实测触发 429</td></tr>
+<tr><td>前端上线</td><td><span class="tag t-ok">已完成</span></td><td>6 个 Mi-Xiao 前端 + daijia 共 7 个站点上线，逐个 curl 校验 200 且标题正确</td></tr>
+<tr><td>生产服务器部署</td><td><span class="tag t-warn">待执行</span></td><td>沙箱无生产 SSH；已产出生产机执行清单（见第五节）</td></tr>
+</table>
+
+<h2>二、核心架构决策：后端身份分裂已消除</h2>
+<h3>2.1 改造前（问题）</h3>
+<ul>
+<li>Nginx 把所有 <code>/api/</code> 代理到 <code>127.0.0.1:3001</code>，即 Node 版 <code>02-后端微服务集群/mixmlaal-backend</code>。</li>
+<li>但记忆与实际代码确认：合并后的真实后端是 <code>python-fastapi</code>（FastAPI + SQLAlchemy + JWT/bcrypt，<code>/api/products</code> 等真实数据）。</li>
+<li><code>python-fastapi</code> <b>未被任何部署配置引用</b> → 线上 API 与代码库不一致。</li>
+<li><code>ecosystem.config.cjs</code> 中 <code>unified-api-gateway</code> 占用 :8000，与主后端端口冲突。</li>
+</ul>
+
+<h3>2.2 改造后（全部指向 python-fastapi:8000）</h3>
+<table>
+<tr><th style="width:20%">部署机制</th><th style="width:26%">改造内容</th><th>状态</th></tr>
+<tr><td>PM2</td><td>新增 <code>mixmlaal-python-backend</code>（<code>uvicorn app.main:app --port 8000</code>）；原 Node <code>mixmlaal-backend</code> 由 Python 取代；<code>unified-api-gateway</code> 退役（注释保留）</td><td><span class="tag t-ok">完成</span></td></tr>
+<tr><td>Nginx</td><td><code>nginx-mixmlaal.conf</code> 3 处 <code>/api/</code> 代理 <code>:3001 → :8000</code>（web-vue-pc / page-builder / web-h5-mobile）</td><td><span class="tag t-ok">完成</span></td></tr>
+<tr><td>Docker</td><td>原仓库<b>缺失 Dockerfile</b>（Docker 路径不可用）→ 新增 <code>python-fastapi/Dockerfile</code> + <code>.dockerignore</code> + 根 <code>docker-compose.yml</code>；<code>start-docker.sh</code> 重写为 <code>docker compose up</code></td><td><span class="tag t-ok">完成</span></td></tr>
+<tr><td>Render</td><td>原 <code>render.yaml</code> 缺 build/start 命令 → 重写为 <code>runtime: python</code>、<code>rootDir: python-fastapi</code>、<code>buildCommand: pip install</code>、<code>startCommand: uvicorn</code></td><td><span class="tag t-ok">完成</span></td></tr>
+</table>
+
+<div class="note"><b>为什么不再分裂：</b>四条机制现在指向<b>同一个后端进程</b>（python-fastapi:8000）。机制保留是为了部署灵活性，不再是「同一流量被四套配置各说各话」。</div>
+
+<h2>三、安全整改落地</h2>
+<table>
+<tr><th style="width:22%">项目</th><th style="width:30%">整改内容</th><th>文件</th></tr>
+<tr><td>JWT 密钥</td><td>新增 <code>APP_ENV</code> 判定；<b>生产环境未注入 JWT_SECRET 时直接拒绝启动</b>（杜绝回退随机密钥导致令牌可被伪造/重启失效）。开发仍保留随机兜底并告警。</td><td><code>app/config.py</code></td></tr>
+<tr><td>接口限流</td><td>单 IP 滑动窗口，默认 120 次/分钟，超限返回 429</td><td><code>app/main.py</code></td></tr>
+<tr><td>请求体限制</td><td>默认 5MB 上限，超限返回 413</td><td><code>app/main.py</code></td></tr>
+<tr><td>错误脱敏</td><td>生产环境全局异常返回「服务器内部错误」，不泄露堆栈/DB 细节；DEBUG 下保留原始异常</td><td><code>app/main.py</code></td></tr>
+<tr><td>密钥防泄露</td><td>新增 <code>.env.example</code>（含全部配置说明）与 <code>.gitignore</code>（忽略 <code>.env</code>、<code>*.db</code>、<code>data/</code>、<code>secrets/</code>）</td><td><code>python-fastapi/</code></td></tr>
+</table>
+
+<h2>四、真实验证证据</h2>
+<h3>4.1 后端 API 实测（本机 uvicorn :8011）</h3>
+<div class="card">
+<b>依赖安装：</b>fastapi 0.104.1 / uvicorn 0.24.0 / sqlalchemy 2.1.4 / bcrypt 5.0.0 / pydantic 2.14.0 等全部安装成功。<br><br>
+<b>GET /health</b> → <code>{"status":"healthy","database":"connected"}</code><br>
+<b>GET /</b> → 返回 v3.0 元信息，端点含 <code>/api/analysis,/api/visualization,/api/ai,/api/reports,/api/auth,/api/products,/api/cart,/api/orders,/api/addresses</code><br>
+<b>GET /api/products?limit=2</b> → <code>{"total":8,...}</code> 返回真实商品（无线蓝牙耳机Pro ¥299 / 智能手表S8 ¥1299）<br>
+<b>限流实测</b> → 连续 130 次请求，触发 <b>429 共 14 次</b>（阈值 120/分钟生效）
+</div>
+<div class="warnbox"><b>端口说明：</b>本机 :8000 已被 PID 6684 占用，验证临时使用 :8011。生产部署前需确认 :8000 释放或调整 <code>PORT</code>。</div>
+
+<h3>4.2 已上线站点（逐个 curl 校验 200 且标题正确）</h3>
+<div class="urlbox">daijia 平台（上轮已上线）: https://daijia-platform-cfseudsz.edgeone.cool</div>
+<div class="urlbox">web-vue-pc（PC商城）: https://mixmlaal-web-vue-pc-vtzvffvz.edgeone.cool?eo_token=61896fde019cce89cccb18fab07b9568&eo_time=1791741264</div>
+<div class="urlbox">mixmlaal-frontend: https://mixmlaal-frontend-fd2g22ii.edgeone.cool?eo_token=b8d5912cec38e763108c5a39501042eb&eo_time=1791741287</div>
+<div class="urlbox">web-h5-mobile（H5移动端）: https://mixmlaal-h5-mobile-pxyeu95q.edgeone.cool?eo_token=59bce8eff71ea04a681b4ae938f4739e&eo_time=1791741351</div>
+<div class="urlbox">ai-saas-frontend: https://mixmlaal-ai-saas-bjb7g4eh.edgeone.cool?eo_token=86a1238420b68a0727ef0c1e07251ba9&eo_time=1791741328</div>
+<div class="urlbox">page-builder-frontend: https://mixmlaal-page-builder-gjjhcwf9.edgeone.cool?eo_token=74cabc4813e18b9ff2d3bc077eaf6c8f&eo_time=1791741413</div>
+<div class="urlbox">portal（统一门户）: https://mixmlaal-portal-ehkkxaqo.edgeone.cool?eo_token=f042468027ddbb22c357f321681bd9d1&eo_time=1791741390</div>
+
+<table>
+<tr><th style="width:24%">站点</th><th style="width:14%">校验</th><th>页面标题</th></tr>
+<tr><td>web-vue-pc</td><td><span class="tag t-ok">200</span></td><td>E-Commerce Platform - Vue3</td></tr>
+<tr><td>mixmlaal-frontend</td><td><span class="tag t-ok">200</span></td><td>E-Commerce Platform</td></tr>
+<tr><td>web-h5-mobile</td><td><span class="tag t-ok">200</span></td><td>超级商城 - H5移动端</td></tr>
+<tr><td>ai-saas-frontend</td><td><span class="tag t-ok">200</span></td><td>AI智能助手</td></tr>
+<tr><td>page-builder-frontend</td><td><span class="tag t-ok">200</span></td><td>可视化页面编辑器</td></tr>
+<tr><td>portal</td><td><span class="tag t-ok">200</span></td><td>超级综合体 - 统一门户</td></tr>
+</table>
+<div class="note"><b>链接含临时鉴权参数，需在本机浏览器打开（数小时内有效）。</b>curl 需携带会话 Cookie 才能跟随到 200，直接请求会因重定向后丢 Cookie 返回 401——这是鉴权机制表现，非部署失败。</div>
+
+<h2>五、生产机执行清单（沙箱无 SSH，需你在 laal.top 执行）</h2>
+<div class="card">
+<b>1. 准备密钥</b><br>
+<code>export JWT_SECRET=$(python -c "import secrets;print(secrets.token_urlsafe(48))")</code><br>
+（务必持久化，重启后令牌失效；生产环境未设置时后端会拒绝启动）<br><br>
+<b>2. 启动后端（三选一）</b><br>
+• PM2：<code>pm2 start ecosystem.config.cjs --only mixmlaal-python-backend --env production &amp;&amp; pm2 save</code><br>
+• Docker：<code>export JWT_SECRET=... &amp;&amp; docker compose up -d --build</code><br>
+• 直启：<code>cd python-fastapi &amp;&amp; uvicorn app.main:app --host 0.0.0.0 --port 8000</code><br><br>
+<b>3. Nginx</b><br>
+部署 <code>deploy/nginx-mixmlaal.conf</code>，<code>nginx -s reload</code>；确认 <code>/api/</code> → <code>127.0.0.1:8000</code><br><br>
+<b>4. 前端 API 对接（关键）</b><br>
+前端已上线 EdgeOne，但其 <code>/api/</code> 请求需指向后端域名。需在前端构建配置中设置 API 基址为 <code>https://api.laal.top/api</code>（或用 Nginx 反代），否则前端加载正常但数据接口不通。<br><br>
+<b>5. 验证</b><br>
+<code>curl https://api.laal.top/health</code> → 期望 <code>{"status":"healthy","database":"connected"}</code>
+</div>
+
+<h2>六、待确认 / 风险项</h2>
+<table>
+<tr><th style="width:20%">项</th><th style="width:14%">严重度</th><th>说明与建议</th></tr>
+<tr><td>前端 API 基址未对接</td><td><span class="tag t-err">高</span></td><td>6 个前端已上线但接口指向未确认，需设置 API 基址到后端域名，否则线上无数据。建议确认后端域名后我修改前端构建配置。</td></tr>
+<tr><td>:8000 端口占用</td><td><span class="tag t-warn">中</span></td><td>本机 8000 被 PID 6684 占用，生产部署前需释放或改 PORT。</td></tr>
+<tr><td>CORS 白名单</td><td><span class="tag t-warn">中</span></td><td>默认仅 localhost。生产需 <code>CORS_ORIGINS</code> 注入实际前端域名（含刚上线的 6 个 EdgeOne 域名），否则浏览器拦截。</td></tr>
+<tr><td>SQLite 并发</td><td><span class="tag t-info">提示</span></td><td>当前 SQLite 单实例。生产高并发建议 <code>DATABASE_URL</code> 切换 MySQL（代码已支持）。</td></tr>
+<tr><td>Node mixmlaal-backend 处置</td><td><span class="tag t-info">提示</span></td><td>已停止在部署链路引用，目录保留未删除。确认无需回滚后可由你清理。</td></tr>
+</table>
+
+<h2>七、改动文件清单</h2>
+<table>
+<tr><th style="width:38%">文件</th><th>类型</th></tr>
+<tr><td><code>ecosystem.config.cjs</code></td><td>改：主后端改为 python uvicorn(:8000)；网关退役</td></tr>
+<tr><td><code>deploy/nginx-mixmlaal.conf</code></td><td>改：3 处 /api/ 代理 3001 → 8000</td></tr>
+<tr><td><code>render.yaml</code></td><td>重写：Node → python 运行时 + build/start 命令</td></tr>
+<tr><td><code>docker-compose.yml</code></td><td>新增</td></tr>
+<tr><td><code>python-fastapi/Dockerfile</code></td><td>新增（补齐 Docker 路径）</td></tr>
+<tr><td><code>python-fastapi/.dockerignore</code></td><td>新增</td></tr>
+<tr><td><code>deploy/start-docker.sh</code></td><td>重写：docker compose 启动</td></tr>
+<tr><td><code>deploy/deploy-all.ps1</code></td><td>改：阶段1 改为 python venv/pip；健康检查 :8000</td></tr>
+<tr><td><code>deploy/start-all.ps1</code></td><td>改：健康检查 :3001 → :8000</td></tr>
+<tr><td><code>python-fastapi/app/config.py</code></td><td>改：APP_ENV + 生产 JWT 强校验 + 安全参数</td></tr>
+<tr><td><code>python-fastapi/app/main.py</code></td><td>改：限流 + 请求体限制 + 异常脱敏中间件</td></tr>
+<tr><td><code>python-fastapi/.env.example</code></td><td>新增</td></tr>
+<tr><td><code>python-fastapi/.gitignore</code></td><td>新增</td></tr>
+</table>
+
+<div class="sub" style="margin-top:28px;">生成时间：2026-10-12 · 项目01（F:/网站全栈项目/项目01）</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-ai/cbrf-agent/IBot" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">IBot | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/en/img/og-docs-en.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/en/img/og-docs-en.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/en/ai/cbrf-agent/IBot"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="IBot | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="The Function-based Agent Framework provides the IBot interface. Developers can deploy corresponding services simply by implementing a class that conforms to IBot."><meta data-rh="true" property="og:description" content="The Function-based Agent Framework provides the IBot interface. Developers can deploy corresponding services simply by implementing a class that conforms to IBot."><link data-rh="true" rel="icon" href="/en/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/en/ai/cbrf-agent/IBot"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/cbrf-agent/IBot" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/ai/cbrf-agent/IBot" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/cbrf-agent/IBot" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/en/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/en/assets/css/styles.09bf0622.css">
+<script src="/en/assets/js/runtime~main.5f1bf0e5.js" defer="defer"></script>
+<script src="/en/assets/js/main.b2e27f72.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="Close" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/en/quick-start/">Quick Start</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Products</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">Core</a></li><li><a class="dropdown__link nav-icon-database" href="/en/database/postgresql/initialization">Cloud Database</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/en/storage/introduce">Cloud Storage</a></li><li><a class="dropdown__link nav-icon-zap" href="/en/cloud-function/introduce">Cloud Functions</a></li><li><a class="dropdown__link nav-icon-cloud" href="/en/run/introduction">Cloud Run</a></li><li><a class="dropdown__link nav-icon-globe" href="/en/hosting/introduce">Hosting</a></li><li><a class="dropdown__link nav-icon-log-in" href="/en/authentication-v2/auth/introduce">Auth</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/en/ai/introduce">AI</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/en/integration/introduce">Integration Center</a></li><li><a href="#" class="dropdown__link navbar-category">Platform</a></li><li><a class="dropdown__link nav-icon-network" href="/en/service/introduce">HTTP Gateway</a></li><li><a class="dropdown__link nav-icon-eye" href="/en/envconfig/intro">Environment Configuration</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/en/logger/introduce">LogManage</a></li><li><a class="dropdown__link" href="/en/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Dev Tools</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/ai/cloudbase-ai-toolkit/">AI Dev Tools</a></li><li><a class="dropdown__link" href="/en/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Solutions</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/solutions/cloudbase-platform-edition/overview">Platform Integration</a></li><li><a class="dropdown__link" href="/en/solutions/vibe-coding-platform/overview">VibeCoding Platform</a></li><li><a class="dropdown__link" href="/en/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Reference</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDKs</a></li><li><a class="dropdown__link" href="/en/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">APIs</a></li><li><a class="dropdown__link" href="/en/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/en/error-code/basic">Error Codes</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">More Resources</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/changelog/">ChangeLog</a></li><li><a class="dropdown__link" href="/en/faq/">FAQ</a></li><li><a class="dropdown__link" href="/en/practices/introduce">Best Practices</a></li><li><a class="dropdown__link" href="/en/quick-start/migration/">Migration Guides</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Pricing</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Blog</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Follow Official Account for Benefits</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">Console</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/ai/cbrf-agent/IBot" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-Hans">简体中文</a></li><li><a href="/en/ai/cbrf-agent/IBot" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><div class="region-badge-container"><span class="region-badge-prefix">Supported Regions:</span><span class="region-badge-tag region-badge-shanghai" style="padding:6px 12px;font-size:11px;font-weight:500;border-radius:5px;color:#000000;background-color:#D3E3FD">上海</span></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>IBot</h1></header>
+<p>The Function-based Agent Framework provides the <code>IBot</code> interface. Developers can deploy corresponding services simply by implementing a class that conforms to <code>IBot</code>.</p>
+<p>The complete method definitions of <code>IBot</code> and the corresponding services are as follows:</p>
+<table><thead><tr><th>Services Provided</th><th><code>IBot</code> Method Name</th><th>Description</th></tr></thead><tbody><tr><td><code>POST /v1/aibot/bots/:botId/send-message</code></td><td><a href="#sendmessage"><code>sendMessage</code></a></td><td>Converse with Agent</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/wx-send-message</code></td><td><a href="#wxsendmessage"><code>wxSendMessage</code></a></td><td>Converse with Agent (WeChat callback)</td></tr><tr><td><code>GET /v1/aibot/bots/:botId</code></td><td><a href="#getbotinfo"><code>getBotInfo</code></a></td><td>Query Agent configuration information</td></tr><tr><td><code>GET /v1/aibot/bots/:botId/records</code></td><td><a href="#getchatrecords"><code>getChatRecords</code></a></td><td>Query Agent historical conversation records</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/recommend-questions</code></td><td><a href="#getrecommendquestions"><code>getRecommendQuestions</code></a></td><td>Obtain recommended questions</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/feedback</code></td><td><a href="#sendfeedback"><code>sendFeedback</code></a></td><td>Submit user feedback</td></tr><tr><td><code>GET /v1/aibot/bots/:botId/feedback</code></td><td><a href="#getfeedback"><code>getFeedback</code></a></td><td>Query user feedback</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/speech-to-text</code></td><td><a href="#speechtotext"><code>speechToText</code></a></td><td>Speech to Text</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/text-to-speech</code></td><td><a href="#texttospeech"><code>textToSpeech</code></a></td><td>Text to Speech</td></tr><tr><td><code>GET /v1/aibot/bots/:botId/text-to-speech</code></td><td><a href="#gettexttospeechresult"><code>getTextToSpeechResult</code></a></td><td>Get Text-to-Speech result</td></tr><tr><td><code>POST /v1/aibot/bots/:botId/conversation</code></td><td><a href="#createconversation"><code>createConversation</code></a></td><td>Create conversation</td></tr><tr><td><code>GET /v1/aibot/bots/:botId/conversation</code></td><td><a href="#getconversation"><code>getConversation</code></a></td><td>Query conversation</td></tr><tr><td><code>PATCH /v1/aibot/bots/:botId/conversation/:conversation</code></td><td><a href="#updateconversation"><code>updateConversation</code></a></td><td>Update conversation</td></tr><tr><td><code>DELETE /v1/aibot/bots/:botId/conversation/:conversation</code></td><td><a href="#deleteconversation"><code>deleteConversation</code></a></td><td>Delete conversation</td></tr></tbody></table>
+<p>Using the <a href="BotCore"><code>BotCore</code> base class</a> enables faster implementation of the <code>IBot</code> interface.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="methods">Methods<a href="#methods" class="hash-link" aria-label="Direct link to Methods" title="Direct link to Methods" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendmessage">sendMessage()<a href="#sendmessage" class="hash-link" aria-label="Direct link to sendMessage()" title="Direct link to sendMessage()" translate="no">​</a></h3>
+<blockquote>
+<p><strong>sendMessage</strong>(<code>input</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
+</blockquote>
+<p>sendMessage - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/send-message</p>
+<p>Implementation of the Q&amp;A dialogue interface with the Agent. This interface has no return value and must send Server-Sent Events to the client via this.sseSender within the implementation.</p>
+<p>The corresponding interface for the WeChat Basic Library <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-sendMessage"><code>wx.cloud.extend.AI.bot.sendMessage</code></a> API</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/send-message"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxsendmessage">wxSendMessage()<a href="#wxsendmessage" class="hash-link" aria-label="Direct link to wxSendMessage()" title="Direct link to wxSendMessage()" translate="no">​</a></h3>
+<blockquote>
+<p><strong>wxSendMessage</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#wechattextoutput"><code>WeChatTextOutput</code></a>&gt;</p>
+</blockquote>
+<p>wxSendMessage - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/wx-send-message</p>
+<p>After WeChat integration, the implementation of the WeChat customer service message callback Agent interface returns responses based on the WeChat APPID type and authentication status.</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input">input<a href="#input" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h5>
+<p><a href="#wxsendmessageinput"><code>WxSendMessageInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#wechattextoutput"><code>WeChatTextOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getbotinfo">getBotInfo()<a href="#getbotinfo" class="hash-link" aria-label="Direct link to getBotInfo()" title="Direct link to getBotInfo()" translate="no">​</a></h3>
+<blockquote>
+<p><strong>getBotInfo</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getbotinfooutput"><code>GetBotInfoOutput</code></a>&gt;</p>
+</blockquote>
+<p>getBotInfo - POST /v1/aibot/bots/<!-- -->:botId</p>
+<p>Obtain Agent configuration, return Agent information</p>
+<p>The counterpart interface for the WeChat Basic Library <code>wx.cloud.extend.AI.bot.get</code> API
+<a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-get">https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-get</a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-2">Parameters<a href="#parameters-2" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/get-bot-info"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getchatrecords">getChatRecords()?<a href="#getchatrecords" class="hash-link" aria-label="Direct link to getChatRecords()?" title="Direct link to getChatRecords()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getChatRecords</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getchatrecordoutput"><code>GetChatRecordOutput</code></a>&gt;</p>
+</blockquote>
+<p>getChatRecords - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/records</p>
+<p>Implementation of the query Agent historical conversation information interface, returning historical conversation records.</p>
+<p>Note: The sendMessage interface must implement conversation recording, and this interface queries and returns the conversation records.</p>
+<p>The corresponding interface for the WeChat Basic Library <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-getChatRecords"><code>wx.cloud.extend.AI.bot.getChatRecords</code></a> API</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-3">Parameters<a href="#parameters-3" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/get-chat-history"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getfeedback">getFeedback()?<a href="#getfeedback" class="hash-link" aria-label="Direct link to getFeedback()?" title="Direct link to getFeedback()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getFeedback</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getfeedbackoutput"><code>GetFeedbackOutput</code></a>&gt;</p>
+</blockquote>
+<p>getFeedback - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/feedback</p>
+<p>Implementation of the obtain user feedback interface, returning a user-feedback list.</p>
+<p>The corresponding interface for the WeChat Basic Library <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-getFeedBack"><code>wx.cloud.extend.AI.bot.getFeedBack</code></a> API</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-4">Parameters<a href="#parameters-4" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/get-feedback"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getrecommendquestions">getRecommendQuestions()?<a href="#getrecommendquestions" class="hash-link" aria-label="Direct link to getRecommendQuestions()?" title="Direct link to getRecommendQuestions()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getRecommendQuestions</strong>(<code>input</code>): <code>Promise</code>&lt;<code>void</code>&gt;</p>
+</blockquote>
+<p>getRecommendQuestions - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/recommend-questions</p>
+<p>Implementation of the obtain recommended questions interface, returning a recommended-questions list.</p>
+<p>The corresponding interface for the WeChat Basic Library <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-getRecommendQuestions"><code>wx.cloud.extend.AI.bot.getRecommendQuestions</code></a> API</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-5">Parameters<a href="#parameters-5" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/get-recommend-questions"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendfeedback">sendFeedback()?<a href="#sendfeedback" class="hash-link" aria-label="Direct link to sendFeedback()?" title="Direct link to sendFeedback()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>sendFeedback</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#sendfeedbackoutput"><code>SendFeedbackOutput</code></a>&gt;</p>
+</blockquote>
+<p>sendFeedback - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/feedback</p>
+<p>Implementation of the send user feedback interface, returning the result of sending user feedback.</p>
+<p>The corresponding interface for the WeChat Basic Library <a href="https://developers.weixin.qq.com/miniprogram/dev/wxcloudservice/wxcloud/reference-sdk-api/extend/ai.html#AI-bot-sendFeedback"><code>wx.cloud.extend.AI.bot.sendFeedback</code></a> API</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-6">Parameters<a href="#parameters-6" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-1">input<a href="#input-1" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h5>
+<p><a href="#sendfeedbackinput"><code>SendFeedbackInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#sendfeedbackoutput"><code>SendFeedbackOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotext">speechToText()?<a href="#speechtotext" class="hash-link" aria-label="Direct link to speechToText()?" title="Direct link to speechToText()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>speechToText</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#SpeechToTextOutput"><code>SpeechToTextOutput</code></a>&gt;</p>
+</blockquote>
+<p>speechToText - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/speechToText</p>
+<p>Speech to Text</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-7">Parameters<a href="#parameters-7" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/speech-to-text"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="texttospeech">textToSpeech()?<a href="#texttospeech" class="hash-link" aria-label="Direct link to textToSpeech()?" title="Direct link to textToSpeech()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>textToSpeech</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#texttospeechoutput"><code>TextToSpeechOutput</code></a>&gt;</p>
+</blockquote>
+<p>text-to-speech - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/text-to-speech</p>
+<p>Text to Speech</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-8">Parameters<a href="#parameters-8" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/text-to-speech"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gettexttospeechresult">getTextToSpeechResult()?<a href="#gettexttospeechresult" class="hash-link" aria-label="Direct link to getTextToSpeechResult()?" title="Direct link to getTextToSpeechResult()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getTextToSpeechResult</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#gettexttospeechresultoutput"><code>GetTextToSpeechResultOutput</code></a>&gt;</p>
+</blockquote>
+<p>text-to-speech - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/text-to-speech</p>
+<p>Obtain Text to Speech result</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-9">Parameters<a href="#parameters-9" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/get-text-to-speech-result"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="createconversation">createConversation()?<a href="#createconversation" class="hash-link" aria-label="Direct link to createConversation()?" title="Direct link to createConversation()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>createConversation</strong>(): <code>Promise</code>&lt;<a href="#createconversationoutput"><code>CreateConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - POST /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation</p>
+<p>Create Session</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-10">Parameters<a href="#parameters-10" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<p>See the <a href="https://docs.cloudbase.net/http-api/ai-bot/create-conversation"><code>HTTP API</code></a> documentation for call parameters.</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getconversation">getConversation()?<a href="#getconversation" class="hash-link" aria-label="Direct link to getConversation()?" title="Direct link to getConversation()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>getConversation</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#getconversationoutput"><code>GetConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - GET /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation</p>
+<p>Query Session</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-11">Parameters<a href="#parameters-11" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-2">input<a href="#input-2" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h5>
+<p><a href="#getconversationinput"><code>GetConversationInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#getconversationoutput"><code>GetConversationOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="updateconversation">updateConversation()?<a href="#updateconversation" class="hash-link" aria-label="Direct link to updateConversation()?" title="Direct link to updateConversation()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>updateConversation</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#updateconversationoutput"><code>UpdateConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - PATCH /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation/<!-- -->:conversation</p>
+<p>Update Session</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-12">Parameters<a href="#parameters-12" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-3">input<a href="#input-3" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h5>
+<p><a href="#updateconversationinput"><code>UpdateConversationInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-3">Returns<a href="#returns-3" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#updateconversationoutput"><code>UpdateConversationOutput</code></a>&gt;</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deleteconversation">deleteConversation()?<a href="#deleteconversation" class="hash-link" aria-label="Direct link to deleteConversation()?" title="Direct link to deleteConversation()?" translate="no">​</a></h3>
+<blockquote>
+<p><code>optional</code> <strong>deleteConversation</strong>(<code>input</code>): <code>Promise</code>&lt;<a href="#deleteconversationoutput"><code>DeleteConversationOutput</code></a>&gt;</p>
+</blockquote>
+<p>conversation - DELETE /v1/aibot/bots/<!-- -->:botId<!-- -->/conversation/<!-- -->:conversation</p>
+<p>Delete Session</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="parameters-13">Parameters<a href="#parameters-13" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-4">input<a href="#input-4" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h5>
+<p><a href="#deleteconversationinput"><code>DeleteConversationInput</code></a></p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-4">Returns<a href="#returns-4" class="hash-link" aria-label="Direct link to Returns" title="Direct link to Returns" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#deleteconversationoutput"><code>DeleteConversationOutput</code></a>&gt;</p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="type">Type<a href="#type" class="hash-link" aria-label="Direct link to Type" title="Direct link to Type" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getchatrecordoutput">GetChatRecordOutput<a href="#getchatrecordoutput" class="hash-link" aria-label="Direct link to GetChatRecordOutput" title="Direct link to GetChatRecordOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties">Properties<a href="#properties" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="recordlist">recordList<a href="#recordlist" class="hash-link" aria-label="Direct link to recordList" title="Direct link to recordList" translate="no">​</a></h5>
+<blockquote>
+<p><strong>recordList</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid">botId?<a href="#botid" class="hash-link" aria-label="Direct link to botId?" title="Direct link to botId?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>botId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content">content?<a href="#content" class="hash-link" aria-label="Direct link to content?" title="Direct link to content?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversation">conversation?<a href="#conversation" class="hash-link" aria-label="Direct link to conversation?" title="Direct link to conversation?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>conversation</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime">createTime?<a href="#createtime" class="hash-link" aria-label="Direct link to createTime?" title="Direct link to createTime?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>createTime</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="image">image?<a href="#image" class="hash-link" aria-label="Direct link to image?" title="Direct link to image?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>image</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="recordid">recordId?<a href="#recordid" class="hash-link" aria-label="Direct link to recordId?" title="Direct link to recordId?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>recordId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="reply">reply?<a href="#reply" class="hash-link" aria-label="Direct link to reply?" title="Direct link to reply?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>reply</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="replyto">replyTo?<a href="#replyto" class="hash-link" aria-label="Direct link to replyTo?" title="Direct link to replyTo?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>replyTo</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="role">role?<a href="#role" class="hash-link" aria-label="Direct link to role?" title="Direct link to role?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>role</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="triggersrc">triggerSrc?<a href="#triggersrc" class="hash-link" aria-label="Direct link to triggerSrc?" title="Direct link to triggerSrc?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>triggerSrc</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-1">type?<a href="#type-1" class="hash-link" aria-label="Direct link to type?" title="Direct link to type?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>type</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="total">total<a href="#total" class="hash-link" aria-label="Direct link to total" title="Direct link to total" translate="no">​</a></h5>
+<blockquote>
+<p><strong>total</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getfeedbackoutput">GetFeedbackOutput<a href="#getfeedbackoutput" class="hash-link" aria-label="Direct link to GetFeedbackOutput" title="Direct link to GetFeedbackOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-1">Properties<a href="#properties-1" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="feedbacklist">feedbackList<a href="#feedbacklist" class="hash-link" aria-label="Direct link to feedbackList" title="Direct link to feedbackList" translate="no">​</a></h5>
+<blockquote>
+<p><strong>feedbackList</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="aianswer">aiAnswer<a href="#aianswer" class="hash-link" aria-label="Direct link to aiAnswer" title="Direct link to aiAnswer" translate="no">​</a></h6>
+<blockquote>
+<p><strong>aiAnswer</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-1">botId<a href="#botid-1" class="hash-link" aria-label="Direct link to botId" title="Direct link to botId" translate="no">​</a></h6>
+<blockquote>
+<p><strong>botId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="comment">comment<a href="#comment" class="hash-link" aria-label="Direct link to comment" title="Direct link to comment" translate="no">​</a></h6>
+<blockquote>
+<p><strong>comment</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-1">createTime<a href="#createtime-1" class="hash-link" aria-label="Direct link to createTime" title="Direct link to createTime" translate="no">​</a></h6>
+<blockquote>
+<p><strong>createTime</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-5">input<a href="#input-5" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h6>
+<blockquote>
+<p><strong>input</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="rating">rating<a href="#rating" class="hash-link" aria-label="Direct link to rating" title="Direct link to rating" translate="no">​</a></h6>
+<blockquote>
+<p><strong>rating</strong>: <code>number</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="sender">sender<a href="#sender" class="hash-link" aria-label="Direct link to sender" title="Direct link to sender" translate="no"> ​</a></h6>
+<blockquote>
+<p><strong>sender</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="tags">tags<a href="#tags" class="hash-link" aria-label="Direct link to tags" title="Direct link to tags" translate="no">​</a></h6>
+<blockquote>
+<p><strong>tags</strong>: <code>string</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-2">type<a href="#type-2" class="hash-link" aria-label="Direct link to type" title="Direct link to type" translate="no">​</a></h6>
+<blockquote>
+<p><strong>type</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="total-1">total<a href="#total-1" class="hash-link" aria-label="Direct link to total" title="Direct link to total" translate="no">​</a></h5>
+<blockquote>
+<p><strong>total</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendfeedbackinput">SendFeedbackInput<a href="#sendfeedbackinput" class="hash-link" aria-label="Direct link to SendFeedbackInput" title="Direct link to SendFeedbackInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-2">Properties<a href="#properties-2" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="aianswer-1">aiAnswer<a href="#aianswer-1" class="hash-link" aria-label="Direct link to aiAnswer" title="Direct link to aiAnswer" translate="no">​</a></h5>
+<blockquote>
+<p><strong>aiAnswer</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="comment-1">comment<a href="#comment-1" class="hash-link" aria-label="Direct link to comment" title="Direct link to comment" translate="no">​</a></h5>
+<blockquote>
+<p><strong>comment</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="input-6">input<a href="#input-6" class="hash-link" aria-label="Direct link to input" title="Direct link to input" translate="no">​</a></h5>
+<blockquote>
+<p><strong>input</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="rating-1">rating<a href="#rating-1" class="hash-link" aria-label="Direct link to rating" title="Direct link to rating" translate="no">​</a></h5>
+<blockquote>
+<p><strong>rating</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="recordid-1">recordId<a href="#recordid-1" class="hash-link" aria-label="Direct link to recordId" title="Direct link to recordId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>recordId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tags-1">tags<a href="#tags-1" class="hash-link" aria-label="Direct link to tags" title="Direct link to tags" translate="no">​</a></h5>
+<blockquote>
+<p><strong>tags</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-3">type<a href="#type-3" class="hash-link" aria-label="Direct link to type" title="Direct link to type" translate="no">​</a></h5>
+<blockquote>
+<p><strong>type</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendfeedbackoutput">SendFeedbackOutput<a href="#sendfeedbackoutput" class="hash-link" aria-label="Direct link to SendFeedbackOutput" title="Direct link to SendFeedbackOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-3">Properties<a href="#properties-3" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="status">status<a href="#status" class="hash-link" aria-label="Direct link to status" title="Direct link to status" translate="no">​</a></h5>
+<blockquote>
+<p><strong>status</strong>: <code>&quot;success&quot;</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendmessageinput">SendMessageInput<a href="#sendmessageinput" class="hash-link" aria-label="Direct link to SendMessageInput" title="Direct link to SendMessageInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-4">Properties<a href="#properties-4" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="history">history?<a href="#history" class="hash-link" aria-label="Direct link to history?" title="Direct link to history?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>history</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-1">content<a href="#content-1" class="hash-link" aria-label="Direct link to content" title="Direct link to content" translate="no">​</a></h6>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="role-1">role<a href="#role-1" class="hash-link" aria-label="Direct link to role" title="Direct link to role" translate="no">​</a></h6>
+<blockquote>
+<p><strong>role</strong>: <code>&quot;user&quot;</code> | <code>&quot;assistant&quot;</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msg">msg<a href="#msg" class="hash-link" aria-label="Direct link to msg" title="Direct link to msg" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msg</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechattextinput">WeChatTextInput<a href="#wechattextinput" class="hash-link" aria-label="Direct link to WeChatTextInput" title="Direct link to WeChatTextInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-5">Properties<a href="#properties-5" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-2">content<a href="#content-2" class="hash-link" aria-label="Direct link to content" title="Direct link to content" translate="no">​</a></h5>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-2">createTime<a href="#createtime-2" class="hash-link" aria-label="Direct link to createTime" title="Direct link to createTime" translate="no">​</a></h5>
+<blockquote>
+<p><strong>createTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="fromusername">fromUserName<a href="#fromusername" class="hash-link" aria-label="Direct link to fromUserName" title="Direct link to fromUserName" translate="no">​</a></h5>
+<blockquote>
+<p><strong>fromUserName</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid">msgId<a href="#msgid" class="hash-link" aria-label="Direct link to msgId" title="Direct link to msgId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype">msgType<a href="#msgtype" class="hash-link" aria-label="Direct link to msgType" title="Direct link to msgType" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tousername">toUserName<a href="#tousername" class="hash-link" aria-label="Direct link to toUserName" title="Direct link to toUserName" translate="no">​</a></h5>
+<blockquote>
+<p><strong>toUserName</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechatvoiceinput">WeChatVoiceInput<a href="#wechatvoiceinput" class="hash-link" aria-label="Direct link to WeChatVoiceInput" title="Direct link to WeChatVoiceInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-6">Properties<a href="#properties-6" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-3">createTime<a href="#createtime-3" class="hash-link" aria-label="Direct link to createTime" title="Direct link to createTime" translate="no">​</a></h5>
+<blockquote>
+<p><strong>createTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="format">format<a href="#format" class="hash-link" aria-label="Direct link to format" title="Direct link to format" translate="no">​</a></h5>
+<blockquote>
+<p><strong>format</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="fromusername-1">fromUserName<a href="#fromusername-1" class="hash-link" aria-label="Direct link to fromUserName" title="Direct link to fromUserName" translate="no">​</a></h5>
+<blockquote>
+<p><strong>fromUserName</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="mediaid">mediaId<a href="#mediaid" class="hash-link" aria-label="Direct link to mediaId" title="Direct link to mediaId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>mediaId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid-1">msgId<a href="#msgid-1" class="hash-link" aria-label="Direct link to msgId" title="Direct link to msgId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-1">msgType<a href="#msgtype-1" class="hash-link" aria-label="Direct link to msgType" title="Direct link to msgType" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tousername-1">toUserName<a href="#tousername-1" class="hash-link" aria-label="Direct link to toUserName" title="Direct link to toUserName" translate="no">​</a></h5>
+<blockquote>
+<p><strong>toUserName</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechatworktextinput">WeChatWorkTextInput<a href="#wechatworktextinput" class="hash-link" aria-label="Direct link to WeChatWorkTextInput" title="Direct link to WeChatWorkTextInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-7">Properties<a href="#properties-7" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="externaluserid">externalUserId<a href="#externaluserid" class="hash-link" aria-label="Direct link to externalUserId" title="Direct link to externalUserId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>externalUserId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid-2">msgId<a href="#msgid-2" class="hash-link" aria-label="Direct link to msgId" title="Direct link to msgId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-2">msgType<a href="#msgtype-2" class="hash-link" aria-label="Direct link to msgType" title="Direct link to msgType" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="openkfid">openKfId<a href="#openkfid" class="hash-link" aria-label="Direct link to openKfId" title="Direct link to openKfId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>openKfId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="origin">origin<a href="#origin" class="hash-link" aria-label="Direct link to origin" title="Direct link to origin" translate="no">​</a></h5>
+<blockquote>
+<p><strong>origin</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendtime">sendTime<a href="#sendtime" class="hash-link" aria-label="Direct link to sendTime" title="Direct link to sendTime" translate="no">​</a></h5>
+<blockquote>
+<p><strong>sendTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="text">text<a href="#text" class="hash-link" aria-label="Direct link to text" title="Direct link to text" translate="no">​</a></h5>
+<blockquote>
+<p><strong>text</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-3">content<a href="#content-3" class="hash-link" aria-label="Direct link to content" title="Direct link to content" translate="no">​</a></h6>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechatworkvoiceinput">WeChatWorkVoiceInput<a href="#wechatworkvoiceinput" class="hash-link" aria-label="Direct link to WeChatWorkVoiceInput" title="Direct link to WeChatWorkVoiceInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-8">Properties<a href="#properties-8" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="externaluserid-1">externalUserId<a href="#externaluserid-1" class="hash-link" aria-label="Direct link to externalUserId" title="Direct link to externalUserId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>externalUserId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid-3">msgId<a href="#msgid-3" class="hash-link" aria-label="Direct link to msgId" title="Direct link to msgId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-3">msgType<a href="#msgtype-3" class="hash-link" aria-label="Direct link to msgType" title="Direct link to msgType" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="openkfid-1">openKfId<a href="#openkfid-1" class="hash-link" aria-label="Direct link to openKfId" title="Direct link to openKfId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>openKfId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="origin-1">origin<a href="#origin-1" class="hash-link" aria-label="Direct link to origin" title="Direct link to origin" translate="no">​</a></h5>
+<blockquote>
+<p><strong>origin</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendtime-1">sendTime<a href="#sendtime-1" class="hash-link" aria-label="Direct link to sendTime" title="Direct link to sendTime" translate="no">​</a></h5>
+<blockquote>
+<p><strong>sendTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voice">voice<a href="#voice" class="hash-link" aria-label="Direct link to voice" title="Direct link to voice" translate="no">​</a></h5>
+<blockquote>
+<p><strong>voice</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="mediaid-1">mediaId<a href="#mediaid-1" class="hash-link" aria-label="Direct link to mediaId" title="Direct link to mediaId" translate="no">​</a></h6>
+<blockquote>
+<p><strong>mediaId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxsendmessageinput">WxSendMessageInput<a href="#wxsendmessageinput" class="hash-link" aria-label="Direct link to WxSendMessageInput" title="Direct link to WxSendMessageInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-9">Properties<a href="#properties-9" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="callbackdata">callbackData<a href="#callbackdata" class="hash-link" aria-label="Direct link to callbackData" title="Direct link to callbackData" translate="no">​</a></h5>
+<p>WeChat callback message</p>
+<blockquote>
+<p><strong>callbackData</strong>: <a href="#WeChatTextInput"><code>WeChatTextInput</code></a> | <a href="#WeChatTextInput"><code>WeChatVoiceInput</code></a> | <a href="#WeChatWorkTextInput"><code>WeChatWorkTextInput</code></a> | <a href="#WeChatWorkVoiceInput"><code>WeChatWorkVoiceInput</code></a></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="triggersrc-1">triggerSrc?<a href="#triggersrc-1" class="hash-link" aria-label="Direct link to triggerSrc?" title="Direct link to triggerSrc?" translate="no">​</a></h5>
+<p>According to the WeChat APPID source type: WeChat Subscription Account: WXSubscription, WeChat Service Account: WXService, WeChat Mini Program Customer Service: WXMiniapp, WeCom Customer Service: WXCustomerService</p>
+<blockquote>
+<p><code>optional</code> <strong>triggerSrc</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxverify">wxVerify?<a href="#wxverify" class="hash-link" aria-label="Direct link to wxVerify?" title="Direct link to wxVerify?" translate="no">​</a></h5>
+<p>WeChat APPID authentication status</p>
+<blockquote>
+<p><code>optional</code> <strong>wxVerify</strong>: <code>boolean</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wechattextoutput">WeChatTextOutput<a href="#wechattextoutput" class="hash-link" aria-label="Direct link to WeChatTextOutput" title="Direct link to WeChatTextOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-10">Properties<a href="#properties-10" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-4">Content?<a href="#content-4" class="hash-link" aria-label="Direct link to Content?" title="Direct link to Content?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>Content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-4">CreateTime?<a href="#createtime-4" class="hash-link" aria-label="Direct link to CreateTime?" title="Direct link to CreateTime?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>CreateTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="fromusername-2">FromUserName?<a href="#fromusername-2" class="hash-link" aria-label="Direct link to FromUserName?" title="Direct link to FromUserName?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>FromUserName</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype-4">MsgType?<a href="#msgtype-4" class="hash-link" aria-label="Direct link to MsgType?" title="Direct link to MsgType?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>MsgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tousername-2">ToUserName?<a href="#tousername-2" class="hash-link" aria-label="Direct link to ToUserName?" title="Direct link to ToUserName?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>ToUserName</strong>: <code>string</code></p>
+</blockquote>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotextinput">SpeechToTextInput<a href="#speechtotextinput" class="hash-link" aria-label="Direct link to SpeechToTextInput" title="Direct link to SpeechToTextInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-11">Properties<a href="#properties-11" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="engservicetype">engSerViceType<a href="#engservicetype" class="hash-link" aria-label="Direct link to engSerViceType" title="Direct link to engSerViceType" translate="no">​</a></h5>
+<p>input language type</p>
+<blockquote>
+<p><strong>engSerViceType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="url">url<a href="#url" class="hash-link" aria-label="Direct link to url" title="Direct link to url" translate="no">​</a></h5>
+<p>Voice file link</p>
+<blockquote>
+<p><strong>url</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voiceformat">voiceFormat<a href="#voiceformat" class="hash-link" aria-label="Direct link to voiceFormat" title="Direct link to voiceFormat" translate="no">​</a></h5>
+<p>Identify audio format, such as wav/mp3</p>
+<blockquote>
+<p><strong>voiceFormat</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotextoutput">SpeechToTextOutput<a href="#speechtotextoutput" class="hash-link" aria-label="Direct link to SpeechToTextOutput" title="Direct link to SpeechToTextOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-12">Properties<a href="#properties-12" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="result">Result<a href="#result" class="hash-link" aria-label="Direct link to Result" title="Direct link to Result" translate="no">​</a></h5>
+<blockquote>
+<p><strong>Result</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="texttospeechoutput">TextToSpeechOutput<a href="#texttospeechoutput" class="hash-link" aria-label="Direct link to TextToSpeechOutput" title="Direct link to TextToSpeechOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-13">Properties<a href="#properties-13" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid">TaskId<a href="#taskid" class="hash-link" aria-label="Direct link to TaskId" title="Direct link to TaskId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>TaskId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gettexttospeechresultoutput">GetTextToSpeechResultOutput<a href="#gettexttospeechresultoutput" class="hash-link" aria-label="Direct link to GetTextToSpeechResultOutput" title="Direct link to GetTextToSpeechResultOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-14">Properties<a href="#properties-14" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="resulturl">ResultUrl<a href="#resulturl" class="hash-link" aria-label="Direct link to ResultUrl" title="Direct link to ResultUrl" translate="no">​</a></h5>
+<blockquote>
+<p><strong>ResultUrl</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="status-1">Status<a href="#status-1" class="hash-link" aria-label="Direct link to Status" title="Direct link to Status" translate="no">​</a></h5>
+<blockquote>
+<p><strong>Status</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="statusstr">StatusStr<a href="#statusstr" class="hash-link" aria-label="Direct link to StatusStr" title="Direct link to StatusStr" translate="no">​</a></h5>
+<blockquote>
+<p><strong>StatusStr</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid-1">TaskId<a href="#taskid-1" class="hash-link" aria-label="Direct link to TaskId" title="Direct link to TaskId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>TaskId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="createconversationoutput">CreateConversationOutput<a href="#createconversationoutput" class="hash-link" aria-label="Direct link to CreateConversationOutput" title="Direct link to CreateConversationOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-15">Properties<a href="#properties-15" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid">conversationId<a href="#conversationid" class="hash-link" aria-label="Direct link to conversationId" title="Direct link to conversationId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="title">title<a href="#title" class="hash-link" aria-label="Direct link to title" title="Direct link to title" translate="no">​</a></h5>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getconversationinput">GetConversationInput<a href="#getconversationinput" class="hash-link" aria-label="Direct link to GetConversationInput" title="Direct link to GetConversationInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-16">Properties<a href="#properties-16" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-1">conversationId?<a href="#conversationid-1" class="hash-link" aria-label="Direct link to conversationId?" title="Direct link to conversationId?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="limit">limit?<a href="#limit" class="hash-link" aria-label="Direct link to limit?" title="Direct link to limit?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>limit</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="offset">offset?<a href="#offset" class="hash-link" aria-label="Direct link to offset?" title="Direct link to offset?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>offset</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getconversationoutput">GetConversationOutput<a href="#getconversationoutput" class="hash-link" aria-label="Direct link to GetConversationOutput" title="Direct link to GetConversationOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-17">Properties<a href="#properties-17" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="data">data<a href="#data" class="hash-link" aria-label="Direct link to data" title="Direct link to data" translate="no">​</a></h5>
+<blockquote>
+<p><strong>data</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-2">conversationId<a href="#conversationid-2" class="hash-link" aria-label="Direct link to conversationId" title="Direct link to conversationId" translate="no">​</a></h6>
+<blockquote>
+<p><strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="createtime-5">createTime<a href="#createtime-5" class="hash-link" aria-label="Direct link to createTime" title="Direct link to createTime" translate="no">​</a></h6>
+<blockquote>
+<p><strong>createTime</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="title-1">title<a href="#title-1" class="hash-link" aria-label="Direct link to title" title="Direct link to title" translate="no">​</a></h6>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="updatetime">updateTime<a href="#updatetime" class="hash-link" aria-label="Direct link to updateTime" title="Direct link to updateTime" translate="no">​</a></h6>
+<blockquote>
+<p><strong>updateTime</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="total-2">total<a href="#total-2" class="hash-link" aria-label="Direct link to total" title="Direct link to total" translate="no">​</a></h5>
+<blockquote>
+<p><strong>total</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="updateconversationinput">UpdateConversationInput<a href="#updateconversationinput" class="hash-link" aria-label="Direct link to UpdateConversationInput" title="Direct link to UpdateConversationInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-18">Properties<a href="#properties-18" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-3">conversationId?<a href="#conversationid-3" class="hash-link" aria-label="Direct link to conversationId?" title="Direct link to conversationId?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="title-2">title<a href="#title-2" class="hash-link" aria-label="Direct link to title" title="Direct link to title" translate="no">​</a></h5>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="updateconversationoutput">UpdateConversationOutput<a href="#updateconversationoutput" class="hash-link" aria-label="Direct link to UpdateConversationOutput" title="Direct link to UpdateConversationOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-19">Properties<a href="#properties-19" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="count">count<a href="#count" class="hash-link" aria-label="Direct link to count" title="Direct link to count" translate="no">​</a></h5>
+<blockquote>
+<p><strong>count</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deleteconversationinput">DeleteConversationInput<a href="#deleteconversationinput" class="hash-link" aria-label="Direct link to DeleteConversationInput" title="Direct link to DeleteConversationInput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-20">Properties<a href="#properties-20" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="conversationid-4">conversationId<a href="#conversationid-4" class="hash-link" aria-label="Direct link to conversationId" title="Direct link to conversationId" translate="no">​</a></h5>
+<blockquote>
+<p><strong>conversationId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="deleteconversationoutput">DeleteConversationOutput<a href="#deleteconversationoutput" class="hash-link" aria-label="Direct link to DeleteConversationOutput" title="Direct link to DeleteConversationOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-21">Properties<a href="#properties-21" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="count-1">count<a href="#count-1" class="hash-link" aria-label="Direct link to count" title="Direct link to count" translate="no">​</a></h5>
+<blockquote>
+<p><strong>count</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getbotinfooutput">GetBotInfoOutput<a href="#getbotinfooutput" class="hash-link" aria-label="Direct link to GetBotInfoOutput" title="Direct link to GetBotInfoOutput" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-22">Properties<a href="#properties-22" class="hash-link" aria-label="Direct link to Properties" title="Direct link to Properties" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="agentsetting">agentSetting?<a href="#agentsetting" class="hash-link" aria-label="Direct link to agentSetting?" title="Direct link to agentSetting?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>agentSetting</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="avatar">avatar?<a href="#avatar" class="hash-link" aria-label="Direct link to avatar?" title="Direct link to avatar?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>avatar</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="background">background?<a href="#background" class="hash-link" aria-label="Direct link to background?" title="Direct link to background?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>background</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-2">botId?<a href="#botid-2" class="hash-link" aria-label="Direct link to botId?" title="Direct link to botId?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>botId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="databasemodel">databaseModel?<a href="#databasemodel" class="hash-link" aria-label="Direct link to databaseModel?" title="Direct link to databaseModel?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>databaseModel</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="initquestions">initQuestions?<a href="#initquestions" class="hash-link" aria-label="Direct link to initQuestions?" title="Direct link to initQuestions?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>initQuestions</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="introduction">introduction?<a href="#introduction" class="hash-link" aria-label="Direct link to introduction?" title="Direct link to introduction?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>introduction</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="isneedrecommend">isNeedRecommend?<a href="#isneedrecommend" class="hash-link" aria-label="Direct link to isNeedRecommend?" title="Direct link to isNeedRecommend?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>isNeedRecommend</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="knowledgebase">knowledgeBase?<a href="#knowledgebase" class="hash-link" aria-label="Direct link to knowledgeBase?" title="Direct link to knowledgeBase?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>knowledgeBase</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="mcpserverlist">mcpServerList?<a href="#mcpserverlist" class="hash-link" aria-label="Direct link to mcpServerList?" title="Direct link to mcpServerList?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>mcpServerList</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="name">name?<a href="#name" class="hash-link" aria-label="Direct link to name?" title="Direct link to name?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>name</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="tools">tools<a href="#tools" class="hash-link" aria-label="Direct link to tools" title="Direct link to tools" translate="no">​</a></h6>
+<blockquote>
+<p><strong>tools</strong>: <code>object</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="url-1">url?<a href="#url-1" class="hash-link" aria-label="Direct link to url?" title="Direct link to url?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>url</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="model">model?<a href="#model" class="hash-link" aria-label="Direct link to model?" title="Direct link to model?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>model</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="modelvalue">modelValue?<a href="#modelvalue" class="hash-link" aria-label="Direct link to modelValue?" title="Direct link to modelValue?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>modelValue</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="multiconversationenable">multiConversationEnable?<a href="#multiconversationenable" class="hash-link" aria-label="Direct link to multiConversationEnable?" title="Direct link to multiConversationEnable?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>multiConversationEnable</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="name-1">name?<a href="#name-1" class="hash-link" aria-label="Direct link to name?" title="Direct link to name?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>name</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchenable">searchEnable?<a href="#searchenable" class="hash-link" aria-label="Direct link to searchEnable?" title="Direct link to searchEnable?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>searchEnable</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchfileenable">searchFileEnable?<a href="#searchfileenable" class="hash-link" aria-label="Direct link to searchFileEnable?" title="Direct link to searchFileEnable?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>searchFileEnable</strong>: <code>boolean</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="tags-2">tags?<a href="#tags-2" class="hash-link" aria-label="Direct link to tags?" title="Direct link to tags?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>tags</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="type-4">type?<a href="#type-4" class="hash-link" aria-label="Direct link to type?" title="Direct link to type?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>type</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="updatetime-1">updateTime?<a href="#updatetime-1" class="hash-link" aria-label="Direct link to updateTime?" title="Direct link to updateTime?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>updateTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voicesettings">voiceSettings?<a href="#voicesettings" class="hash-link" aria-label="Direct link to voiceSettings?" title="Direct link to voiceSettings?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>voiceSettings</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="enable">enable?<a href="#enable" class="hash-link" aria-label="Direct link to enable?" title="Direct link to enable?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>enable</strong>: <code>boolean</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="inputtype">inputType?<a href="#inputtype" class="hash-link" aria-label="Direct link to inputType?" title="Direct link to inputType?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>inputType</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="outputtype">outputType?<a href="#outputtype" class="hash-link" aria-label="Direct link to outputType?" title="Direct link to outputType?" translate="no">​</a></h6>
+<blockquote>
+<p><code>optional</code> <strong>outputType</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="welcomemessage">welcomeMessage?<a href="#welcomemessage" class="hash-link" aria-label="Direct link to welcomeMessage?" title="Direct link to welcomeMessage?" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>welcomeMessage</strong>: <code>string</code></p>
+</blockquote>
+<hr></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#methods" class="table-of-contents__link toc-highlight">Methods</a><ul><li><a href="#sendmessage" class="table-of-contents__link toc-highlight">sendMessage()</a></li><li><a href="#wxsendmessage" class="table-of-contents__link toc-highlight">wxSendMessage()</a></li><li><a href="#getbotinfo" class="table-of-contents__link toc-highlight">getBotInfo()</a></li><li><a href="#getchatrecords" class="table-of-contents__link toc-highlight">getChatRecords()?</a></li><li><a href="#getfeedback" class="table-of-contents__link toc-highlight">getFeedback()?</a></li><li><a href="#getrecommendquestions" class="table-of-contents__link toc-highlight">getRecommendQuestions()?</a></li><li><a href="#sendfeedback" class="table-of-contents__link toc-highlight">sendFeedback()?</a></li><li><a href="#speechtotext" class="table-of-contents__link toc-highlight">speechToText()?</a></li><li><a href="#texttospeech" class="table-of-contents__link toc-highlight">textToSpeech()?</a></li><li><a href="#gettexttospeechresult" class="table-of-contents__link toc-highlight">getTextToSpeechResult()?</a></li><li><a href="#createconversation" class="table-of-contents__link toc-highlight">createConversation()?</a></li><li><a href="#getconversation" class="table-of-contents__link toc-highlight">getConversation()?</a></li><li><a href="#updateconversation" class="table-of-contents__link toc-highlight">updateConversation()?</a></li><li><a href="#deleteconversation" class="table-of-contents__link toc-highlight">deleteConversation()?</a></li></ul></li><li><a href="#type" class="table-of-contents__link toc-highlight">Type</a><ul><li><a href="#getchatrecordoutput" class="table-of-contents__link toc-highlight">GetChatRecordOutput</a></li><li><a href="#getfeedbackoutput" class="table-of-contents__link toc-highlight">GetFeedbackOutput</a></li><li><a href="#sendfeedbackinput" class="table-of-contents__link toc-highlight">SendFeedbackInput</a></li><li><a href="#sendfeedbackoutput" class="table-of-contents__link toc-highlight">SendFeedbackOutput</a></li><li><a href="#sendmessageinput" class="table-of-contents__link toc-highlight">SendMessageInput</a></li><li><a href="#wechattextinput" class="table-of-contents__link toc-highlight">WeChatTextInput</a></li><li><a href="#wechatvoiceinput" class="table-of-contents__link toc-highlight">WeChatVoiceInput</a></li><li><a href="#wechatworktextinput" class="table-of-contents__link toc-highlight">WeChatWorkTextInput</a></li><li><a href="#wechatworkvoiceinput" class="table-of-contents__link toc-highlight">WeChatWorkVoiceInput</a></li><li><a href="#wxsendmessageinput" class="table-of-contents__link toc-highlight">WxSendMessageInput</a></li><li><a href="#wechattextoutput" class="table-of-contents__link toc-highlight">WeChatTextOutput</a></li><li><a href="#speechtotextinput" class="table-of-contents__link toc-highlight">SpeechToTextInput</a></li><li><a href="#speechtotextoutput" class="table-of-contents__link toc-highlight">SpeechToTextOutput</a></li><li><a href="#texttospeechoutput" class="table-of-contents__link toc-highlight">TextToSpeechOutput</a></li><li><a href="#gettexttospeechresultoutput" class="table-of-contents__link toc-highlight">GetTextToSpeechResultOutput</a></li><li><a href="#createconversationoutput" class="table-of-contents__link toc-highlight">CreateConversationOutput</a></li><li><a href="#getconversationinput" class="table-of-contents__link toc-highlight">GetConversationInput</a></li><li><a href="#getconversationoutput" class="table-of-contents__link toc-highlight">GetConversationOutput</a></li><li><a href="#updateconversationinput" class="table-of-contents__link toc-highlight">UpdateConversationInput</a></li><li><a href="#updateconversationoutput" class="table-of-contents__link toc-highlight">UpdateConversationOutput</a></li><li><a href="#deleteconversationinput" class="table-of-contents__link toc-highlight">DeleteConversationInput</a></li><li><a href="#deleteconversationoutput" class="table-of-contents__link toc-highlight">DeleteConversationOutput</a></li><li><a href="#getbotinfooutput" class="table-of-contents__link toc-highlight">GetBotInfoOutput</a></li></ul></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="Copy page" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Copy page</span></button><button class="tocActionButton_eGor" title="View Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>View Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>Give feedback</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Ask AI about this page</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

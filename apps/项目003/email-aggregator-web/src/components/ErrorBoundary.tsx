@@ -25,6 +25,9 @@ export default class ErrorBoundary extends Component<Props, State> {
     console.error('[ErrorBoundary]', err, info)
   }
 
+  // BUG-003-12：按钮原文案为「重新加载」，但 handleRetry 只重置边界状态重新渲染子树，
+  // 既不刷新页面也不重新拉取数据，与文案承诺不符（用户会以为数据已重载）。
+  // 这里把文案对齐为「重试」，并补充「若持续失败请刷新页面」的提示。
   handleRetry = () => {
     this.setState({ hasError: false, message: '' })
   }
@@ -38,8 +41,9 @@ export default class ErrorBoundary extends Component<Props, State> {
           </h2>
           <p className="error-boundary-msg">{this.state.message || '发生未知错误'}</p>
           <button onClick={this.handleRetry} className="btn btn--primary btn--lg">
-            重新加载
+            重试
           </button>
+          <p className="error-boundary-hint">若反复失败，请刷新页面重试。</p>
         </div>
       )
     }

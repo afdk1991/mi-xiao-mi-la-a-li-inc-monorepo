@@ -46,9 +46,42 @@ export function wsEndpoint(accountId: string): string {
   return `${wsBase}/ws?accountId=${encodeURIComponent(accountId)}`
 }
 
+// ── 统一超时与错误体解析 ───────────────────────────────────────────────────
+//
+// 缺陷修复（BUG-003-01 / BUG-003-02）：
+//   1. 原实现所有 fetch 均无超时，后端不可达或连接挂起时 Promise 永不 settle，
+//      前端「加载中…」会永久卡死且无法重试（用户只能刷新页面）。
+//   2. deleteAccount / setRead / deleteMail / demoPush 四个接口只抛 `HTTP ${status}`，
+//      丢弃了服务端 JSON 里带具体原因的 `error` 字段，排障时只能看到 400/500。
+// 这里统一注入 AbortController 超时，并把「读错误体」收敛为单一实现。
+
+const DEFAULT_TIMEOUT_MS = 15_000
+
+async function request(url: string, init?: RequestInit): Promise<Response> {
+  const ctrl = new AbortController()
+  const timer = setTimeout(() => ctrl.abort(), DEFAULT_TIMEOUT_MS)
+  try {
+    return await fetch(url, { ...init, signal: ctrl.signal })
+  } catch (e) {
+    // 超时被 abort 时抛出语义化错误，避免用户看到晦涩的 AbortError
+    if (e instanceof DOMException && e.name === 'AbortError') {
+      throw new Error(`请求超时（${DEFAULT_TIMEOUT_MS / 1000}s）`)
+    }
+    throw e
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+/** 从失败响应中提取服务端原因，无 body 时回落到状态码。 */
+async function errorOf(r: Response): Promise<string> {
+  const err = (await r.json().catch(() => ({}))) as { error?: string }
+  return err.error || `HTTP ${r.status}`
+}
+
 async function getJSON<T>(url: string): Promise<T> {
-  const r = await fetch(url)
-  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  const r = await request(url)
+  if (!r.ok) throw new Error(await errorOf(r))
   return (await r.json()) as T
 }
 
@@ -107,15 +140,12 @@ export interface NewAccountInput {
   serverHost?: string
 }
 export async function createAccount(input: NewAccountInput): Promise<AccountInfo> {
-  const r = await fetch(`${BASE}/accounts`, {
+  const r = await request(`${BASE}/accounts`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(input),
   })
-  if (!r.ok) {
-    const err = (await r.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error || `HTTP ${r.status}`)
-  }
+  if (!r.ok) throw new Error(await errorOf(r))
   return (await r.json()) as AccountInfo
 }
 
@@ -125,79 +155,67 @@ export async function saveAccountCredentials(
   username: string,
   password: string,
 ): Promise<void> {
-  const r = await fetch(`${BASE}/accounts/${encodeURIComponent(accountId)}/credentials`, {
+  const r = await request(`${BASE}/accounts/${encodeURIComponent(accountId)}/credentials`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ username, password }),
   })
-  if (!r.ok) {
-    const err = (await r.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error || `HTTP ${r.status}`)
-  }
+  if (!r.ok) throw new Error(await errorOf(r))
 }
 
 // syncAccount 后台触发一次账户真实同步（POST /api/accounts/{id}/sync，202）。
 export async function syncAccount(accountId: string): Promise<void> {
-  const r = await fetch(`${BASE}/accounts/${encodeURIComponent(accountId)}/sync`, {
+  const r = await request(`${BASE}/accounts/${encodeURIComponent(accountId)}/sync`, {
     method: 'POST',
   })
-  if (!r.ok) {
-    const err = (await r.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error || `HTTP ${r.status}`)
-  }
+  if (!r.ok) throw new Error(await errorOf(r))
 }
 
 // 更新账户状态（PUT /api/accounts/{id}，部分更新）。
 export async function updateAccountStatus(accountId: string, status: AccountStatus): Promise<AccountInfo> {
-  const r = await fetch(`${BASE}/accounts/${encodeURIComponent(accountId)}`, {
+  const r = await request(`${BASE}/accounts/${encodeURIComponent(accountId)}`, {
     method: 'PUT',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ id: accountId, status }),
   })
-  if (!r.ok) {
-    const err = (await r.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error || `HTTP ${r.status}`)
-  }
+  if (!r.ok) throw new Error(await errorOf(r))
   return (await r.json()) as AccountInfo
 }
 
 // 删除账户（DELETE /api/accounts/{id}）。
 export async function deleteAccount(accountId: string): Promise<void> {
-  const r = await fetch(`${BASE}/accounts/${encodeURIComponent(accountId)}`, { method: 'DELETE' })
-  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  const r = await request(`${BASE}/accounts/${encodeURIComponent(accountId)}`, { method: 'DELETE' })
+  if (!r.ok) throw new Error(await errorOf(r))
 }
 
 // setRead 设置邮件已读/未读（POST /api/mails/{id}/read，body {read}）。
 export async function setRead(accountId: string, id: string, read: boolean): Promise<void> {
   const qs = new URLSearchParams({ accountId })
-  const r = await fetch(`${BASE}/mails/${encodeURIComponent(id)}/read?${qs.toString()}`, {
+  const r = await request(`${BASE}/mails/${encodeURIComponent(id)}/read?${qs.toString()}`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify({ read }),
   })
-  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  if (!r.ok) throw new Error(await errorOf(r))
 }
 
 // deleteMail 删除邮件（DELETE /api/mails/{id}）。
 export async function deleteMail(accountId: string, id: string): Promise<void> {
   const qs = new URLSearchParams({ accountId })
-  const r = await fetch(`${BASE}/mails/${encodeURIComponent(id)}?${qs.toString()}`, {
+  const r = await request(`${BASE}/mails/${encodeURIComponent(id)}?${qs.toString()}`, {
     method: 'DELETE',
   })
-  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  if (!r.ok) throw new Error(await errorOf(r))
 }
 
 // AI 网关入口（ADR-010）：基础 demo 未挂载时返回 422/405，前端做降级提示。
 export async function aiChat(req: ChatRequest): Promise<ChatResponse> {
-  const r = await fetch(`${BASE}/ai/chat`, {
+  const r = await request(`${BASE}/ai/chat`, {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
     body: JSON.stringify(req),
   })
-  if (!r.ok) {
-    const err = (await r.json().catch(() => ({}))) as { error?: string }
-    throw new Error(err.error || `HTTP ${r.status}`)
-  }
+  if (!r.ok) throw new Error(await errorOf(r))
   return (await r.json()) as ChatResponse
 }
 
@@ -210,8 +228,8 @@ export interface DemoPushResp {
 }
 export async function demoPush(accountId: string): Promise<DemoPushResp> {
   const qs = new URLSearchParams({ accountId })
-  const r = await fetch(`${BASE}/demo/push?${qs.toString()}`, { method: 'POST' })
-  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  const r = await request(`${BASE}/demo/push?${qs.toString()}`, { method: 'POST' })
+  if (!r.ok) throw new Error(await errorOf(r))
   return (await r.json()) as DemoPushResp
 }
 

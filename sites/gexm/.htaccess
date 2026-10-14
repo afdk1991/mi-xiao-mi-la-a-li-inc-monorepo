@@ -1,0 +1,482 @@
+# 子域名模块页面重定向规则
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# ============================================================
+# module 参数白名单校验（防止未授权模块访问）
+# 仅允许已注册的子域名模块通过 module 参数路由
+# 若 module 参数不在白名单，回退到 WordPress 默认路由
+# ============================================================
+RewriteCond %{QUERY_STRING} (^|&)module=([^&]+)(&|$)
+RewriteCond %2 !^(home|api|www|wp|blog|m|shop|dy|xw|yy|video|user|test|support|store|stats|sp|sj|service|secure|portal|pay|news|mobile|market|mall|login|img|help|gy|fwq|dnpj|dh|dev|data|cloud|center|auth|app|admin)$ [NC]
+RewriteRule ^index\.php$ - [F,L]
+
+# 主域名重定向到首页
+RewriteCond %{HTTP_HOST} ^laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=home&path=$1 [L,QSA]
+
+# API子域名重定向到api模块
+RewriteCond %{HTTP_HOST} ^api\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=api&path=$1 [L,QSA]
+
+# www子域名重定向到首页
+RewriteCond %{HTTP_HOST} ^www\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=www&path=$1 [L,QSA]
+
+# WordPress子域名重定向到wp模块
+RewriteCond %{HTTP_HOST} ^wp\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=wp&path=$1 [L,QSA]
+
+# 博客子域名重定向到blog模块
+RewriteCond %{HTTP_HOST} ^blog\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=blog&path=$1 [L,QSA]
+
+# 移动端子域名重定向到m模块
+RewriteCond %{HTTP_HOST} ^m\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=m&path=$1 [L,QSA]
+
+# 商城子域名重定向到shop模块
+RewriteCond %{HTTP_HOST} ^shop\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=shop&path=$1 [L,QSA]
+
+# 电影子域名重定向到dy模块
+RewriteCond %{HTTP_HOST} ^dy\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=dy&path=$1 [L,QSA]
+
+# 新闻子域名重定向到xw模块
+RewriteCond %{HTTP_HOST} ^xw\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=xw&path=$1 [L,QSA]
+
+# 音乐子域名重定向到yy模块
+RewriteCond %{HTTP_HOST} ^yy\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=yy&path=$1 [L,QSA]
+
+# 视频子域名重定向到video模块
+RewriteCond %{HTTP_HOST} ^video\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=video&path=$1 [L,QSA]
+
+# 用户中心子域名重定向到user模块
+RewriteCond %{HTTP_HOST} ^user\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=user&path=$1 [L,QSA]
+
+# 测试子域名重定向到test模块
+RewriteCond %{HTTP_HOST} ^test\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=test&path=$1 [L,QSA]
+
+# 支持子域名重定向到support模块
+RewriteCond %{HTTP_HOST} ^support\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=support&path=$1 [L,QSA]
+
+# 商店子域名重定向到store模块
+RewriteCond %{HTTP_HOST} ^store\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=store&path=$1 [L,QSA]
+
+# 统计子域名重定向到stats模块
+RewriteCond %{HTTP_HOST} ^stats\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=stats&path=$1 [L,QSA]
+
+# 商品子域名重定向到sp模块
+RewriteCond %{HTTP_HOST} ^sp\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=sp&path=$1 [L,QSA]
+
+# 手机子域名重定向到sj模块
+RewriteCond %{HTTP_HOST} ^sj\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=sj&path=$1 [L,QSA]
+
+# 服务子域名重定向到service模块
+RewriteCond %{HTTP_HOST} ^service\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=service&path=$1 [L,QSA]
+
+# 安全子域名重定向到secure模块
+RewriteCond %{HTTP_HOST} ^secure\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=secure&path=$1 [L,QSA]
+
+# 门户子域名重定向到portal模块
+RewriteCond %{HTTP_HOST} ^portal\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=portal&path=$1 [L,QSA]
+
+# 支付子域名重定向到pay模块
+RewriteCond %{HTTP_HOST} ^pay\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=pay&path=$1 [L,QSA]
+
+# 新闻子域名重定向到news模块
+RewriteCond %{HTTP_HOST} ^news\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=news&path=$1 [L,QSA]
+
+# 移动子域名重定向到mobile模块
+RewriteCond %{HTTP_HOST} ^mobile\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=mobile&path=$1 [L,QSA]
+
+# 市场子域名重定向到market模块
+RewriteCond %{HTTP_HOST} ^market\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=market&path=$1 [L,QSA]
+
+# 商城子域名重定向到mall模块
+RewriteCond %{HTTP_HOST} ^mall\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=mall&path=$1 [L,QSA]
+
+# 登录子域名重定向到login模块
+RewriteCond %{HTTP_HOST} ^login\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=login&path=$1 [L,QSA]
+
+# 图片子域名重定向到img模块
+RewriteCond %{HTTP_HOST} ^img\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=img&path=$1 [L,QSA]
+
+# 帮助子域名重定向到help模块
+RewriteCond %{HTTP_HOST} ^help\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=help&path=$1 [L,QSA]
+
+# 关于子域名重定向到gy模块
+RewriteCond %{HTTP_HOST} ^gy\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=gy&path=$1 [L,QSA]
+
+# 服务器子域名重定向到fwq模块
+RewriteCond %{HTTP_HOST} ^fwq\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=fwq&path=$1 [L,QSA]
+
+# 电商铺建子域名重定向到dnpj模块
+RewriteCond %{HTTP_HOST} ^dnpj\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=dnpj&path=$1 [L,QSA]
+
+# 导航子域名重定向到dh模块
+RewriteCond %{HTTP_HOST} ^dh\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=dh&path=$1 [L,QSA]
+
+# 开发子域名重定向到dev模块
+RewriteCond %{HTTP_HOST} ^dev\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=dev&path=$1 [L,QSA]
+
+# 数据子域名重定向到data模块
+RewriteCond %{HTTP_HOST} ^data\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=data&path=$1 [L,QSA]
+
+# 云服务子域名重定向到cloud模块
+RewriteCond %{HTTP_HOST} ^cloud\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=cloud&path=$1 [L,QSA]
+
+# 中心子域名重定向到center模块
+RewriteCond %{HTTP_HOST} ^center\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=center&path=$1 [L,QSA]
+
+# 认证子域名重定向到auth模块
+RewriteCond %{HTTP_HOST} ^auth\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=auth&path=$1 [L,QSA]
+
+# 应用子域名重定向到app模块
+RewriteCond %{HTTP_HOST} ^app\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=app&path=$1 [L,QSA]
+
+# 管理员子域名重定向到admin模块
+RewriteCond %{HTTP_HOST} ^admin\.laal\.top$ [NC]
+RewriteCond %{REQUEST_URI} !^/index\.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.php?module=admin&path=$1 [L,QSA]
+
+# 原始WordPress规则
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+
+# 强制HTTPS重定向（测试环境禁用）
+# <IfModule mod_rewrite.c>
+#     RewriteEngine On
+#     RewriteCond %{HTTPS} off
+#     RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+# </IfModule>
+
+# 安全增强规则
+<IfModule mod_headers.c>
+    # 禁用Framing（防止点击劫持）
+    Header always set X-Frame-Options "SAMEORIGIN"
+    # 启用XSS过滤
+    Header always set X-XSS-Protection "1; mode=block"
+    # 设置内容类型选项
+    Header always set X-Content-Type-Options "nosniff"
+    # 设置Referrer策略
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # 启用HTTP严格传输安全(HSTS)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    # 注意：Content-Security-Policy 不在此处设置，统一由主题 inc/api-security.php 控制
+    # 历史问题：此处与 PHP 同时下发 CSP，浏览器取交集策略导致 cdn.jsdelivr.net /
+    # cdnjs.cloudflare.com / unpkg.com 等 CDN 资源全部被阻断（2026-07-19 修复）
+</IfModule>
+
+# 禁用目录浏览
+Options -Indexes
+
+# 设置字符集
+AddDefaultCharset UTF-8
+
+# 浏览器缓存规则
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType font/opentype "access plus 1 year"
+    ExpiresDefault "access plus 2 days"
+</IfModule>
+
+# 启用Gzip压缩
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
+
+# 保护敏感文件
+<FilesMatch "\.(htaccess|htpasswd|wp-config\.php|php\.ini|README|readme\.txt|composer\.json|composer\.lock|package\.json|package-lock\.json|env|env\.production|env\.development|env\.testing|sql|dump|bak|backup|log|ps1|sh|bat)$">
+    Order Deny,Allow
+    Deny from all
+</FilesMatch>
+
+# 阻止敏感目录直接访问（历史遗留与私钥目录）
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^PEM_Privatekey/ - [F,L]
+    RewriteRule ^certs/ - [F,L]
+    RewriteRule ^backups/ - [F,L]
+    RewriteRule ^logs/ - [F,L]
+    RewriteRule ^\.snapshots/ - [F,L]
+    RewriteRule ^_responsive_test/ - [F,L]
+    RewriteRule ^responsive-test/ - [F,L]
+    RewriteRule ^test-results/ - [F,L]
+</IfModule>
+
+# 防止恶意请求
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # 阻止常见的SQL注入攻击
+    RewriteCond %{QUERY_STRING} (;|'|"|<|>|%3c|%3e|%22|%27|%3b)
+    RewriteRule ^(.*)$ - [F,L]
+    # 阻止敏感路径访问
+    RewriteRule ^wp-admin/includes/ - [F,L]
+    RewriteRule !^wp-includes/ - [S=3]
+    RewriteRule ^wp-includes/[^/]+\.php$ - [F,L]
+    RewriteRule ^wp-includes/js/tinymce/langs/.+\.php - [F,L]
+    RewriteRule ^wp-includes/theme-compat/ - [F,L]
+</IfModule>
+
+# 防止Hotlinking（防盗链）
+# 允许以下来源引用资源：
+#   - 空 Referer（直接访问，如浏览器地址栏、爬虫）
+#   - 本地开发环境：localhost / 127.0.0.1
+#   - 生产环境主域及所有子域：laal.top / *.laal.top
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{HTTP_REFERER} !^$ [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://(localhost|127\.0\.0\.1)(:[0-9]+)?/ [NC]
+    RewriteCond %{HTTP_REFERER} !^https?://([a-z0-9-]+\.)?laal\.top/ [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp|svg|bmp|ico|mp3|mp4|avi|mov|wmv)$ - [F,L]
+</IfModule>
+
+# ============================================================
+# WordPress 安全加固
+# ============================================================
+
+# 禁用 XML-RPC（防止密码爆破放大攻击与 Pingback DDoS）
+# 若不使用 XML-RPC 发布文章（如移动端 App、Windows Live Writer），应直接禁用
+<Files xmlrpc.php>
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        Deny from all
+    </IfModule>
+</Files>
+
+# 限制 wp-login.php 爆破（基于 IP 限流，每分钟最多 5 次登录请求）
+# 超过限制返回 429 Too Many Requests
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # 内存型限流（需要 mod_rewrite + mod_mem_cache 或 RewriteMap，Apache 2.4 推荐用 mod_evasive）
+    # 此处仅做基础防护，建议安装 Limit Login Attempts Reloaded 插件做应用层防护
+    RewriteCond %{REQUEST_METHOD} POST [NC]
+    RewriteCond %{REQUEST_URI} ^/wp-login\.php [NC]
+    # 这里可以集成 fail2ban 或 mod_evasive 实现真正的限流
+</IfModule>
+
+# 移除 WordPress 版本号泄露（防止攻击者通过版本号对应 CVE 列表）
+<IfModule mod_filter.c>
+    # 通过 Header 移除 X-Pingback
+    Header always unset X-Pingback
+</IfModule>
+
+# 阻止敏感文件访问（Apache 2.4 语法）
+<FilesMatch "(^\.git|^\.env|^\.htaccess|^wp-config\.php|^xmlrpc\.php|^readme\.html|^license\.txt)">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order Deny,Allow
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# 禁止 PHP 在上传目录执行（防止 webshell）
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule ^wp-content/uploads/.*\.php$ - [F,L]
+    RewriteRule ^wp-content/uploads/.*\.phtml$ - [F,L]
+    RewriteRule ^wp-content/uploads/.*\.php[0-9]?$ - [F,L]
+</IfModule>
+
+# 安全响应头补充
+<IfModule mod_headers.c>
+    # 防止 MIME 类型嗅探
+    Header always set X-Content-Type-Options "nosniff"
+    # 防止点击劫持
+    Header always set X-Frame-Options "SAMEORIGIN"
+    # XSS 保护（现代浏览器应使用 CSP，此头作为兜底）
+    Header always set X-XSS-Protection "1; mode=block"
+    # HSTS（强制 HTTPS，max-age 1 年，包含子域）
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains" env=HTTPS
+    # Referrer 策略
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    # 权限策略（替代 Feature-Policy）
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>

@@ -31,7 +31,7 @@ PLATFORMS.forEach(([k, n]) => { PLATFORM_NAMES[k] = n; });
 const charts = {};
 let lastData = null;
 
-/* 渲染 31 平台 chips（默认全选） */
+/* 渲染 34 平台 chips（默认全选） */
 function renderChips() {
   const box = document.getElementById("platform-chips");
   box.innerHTML = PLATFORMS.map(([k, n]) => `
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCharts();
   document.getElementById("search-form").addEventListener("submit", onSearch);
   document.getElementById("btn-ai").addEventListener("click", runAiAnalysis);
-  showStatus("输入关键词后点击「开始采集」，将真实请求所选 33 个平台", "ok");
+  showStatus("输入关键词后点击「开始采集」，将真实请求所选 34 个平台", "ok");
 });
 
 function initCharts() {

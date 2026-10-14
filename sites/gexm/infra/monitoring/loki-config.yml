@@ -1,0 +1,94 @@
+# Loki 日志聚合系统配置
+# 轻量级日志系统，与 Grafana 集成
+
+auth_enabled: false
+
+server:
+  http_listen_port: 3100
+  grpc_listen_port: 9096
+  log_level: info
+
+# ============================================
+# 数据存储配置 - 使用本地文件系统
+# ============================================
+common:
+  path_prefix: /loki
+  storage:
+    filesystem:
+      chunks_directory: /loki/chunks
+      rules_directory: /loki/rules
+  replication_factor: 1
+  ring:
+    instance_addr: 127.0.0.1
+    kvstore:
+      store: inmemory
+
+# ============================================
+# Schema 配置
+# ============================================
+schema_config:
+  configs:
+    - from: 2024-01-01
+      store: tsdb
+      object_store: filesystem
+      schema: v13
+      index:
+        prefix: index_
+        period: 24h
+
+# ============================================
+# 数据保留策略 - 保留 7 天
+# ============================================
+limits_config:
+  retention_period: 168h                # 7 天 = 168 小时
+  max_query_length: 721h                # 最大查询范围 30 天
+  reject_old_samples: true
+  reject_old_samples_max_age: 168h      # 拒绝超过 7 天的旧日志
+  ingestion_rate_mb: 10                 # 每秒摄入 MB 上限
+  ingestion_burst_size_mb: 20           # 摄入突发大小上限
+  max_streams_per_user: 0               # 不限制流数量
+  max_entries_limit_per_query: 5000     # 单次查询最大条目数
+
+# ============================================
+# 压缩与保留任务
+# ============================================
+compactor:
+  working_directory: /loki/compactor
+  compaction_interval: 10m
+  retention_enabled: true
+  retention_delete_delay: 2h
+  retention_delete_worker_count: 150
+  delete_request_store: filesystem
+
+# ============================================
+# 摄入器配置
+# ============================================
+ingester:
+  wal:
+    enabled: true
+    dir: /loki/wal
+  max_chunk_age: 1h
+  chunk_target_size: 1048576
+  chunk_idle_period: 30m
+
+# ============================================
+# 查询范围配置
+# ============================================
+query_range:
+  align_queries_with_step: true
+  max_retries: 5
+  parallelise_shardable_queries: true
+  cache_results: true
+
+# ============================================
+# 前端查询配置
+# ============================================
+frontend:
+  max_outstanding_per_tenant: 2048
+  compress_responses: true
+
+# ============================================
+# 分析器配置
+# ============================================
+analytics:
+  reporting_enabled: false

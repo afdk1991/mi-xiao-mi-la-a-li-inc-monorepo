@@ -1,10 +1,12 @@
 import { View, Text, Button } from '@tarojs/components'
 import { House, MapPin, Route, Plus, Compass } from '@/utils/icons'
-import { useUserStore } from '@/stores'
+import { useUserStore, useAddressStore, useRouteStore } from '@/stores'
 import './index.css'
 
 export default function Index() {
   const { userInfo, isAuthenticated } = useUserStore()
+  const { addresses } = useAddressStore()
+  const { routes } = useRouteStore()
 
   return (
     <View className="min-h-screen bg-gray-50">
@@ -25,21 +27,23 @@ export default function Index() {
                 <MapPin size={24} color="#3b82f6" />
               </View>
               <Text className="text-gray-500 text-sm">地址</Text>
-              <Text className="text-2xl font-bold text-gray-800">0</Text>
+              <Text className="text-2xl font-bold text-gray-800">{addresses.length}</Text>
             </View>
             <View className="items-center">
               <View className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mb-2">
                 <Route size={24} color="#22c55e" />
               </View>
               <Text className="text-gray-500 text-sm">路线</Text>
-              <Text className="text-2xl font-bold text-gray-800">0</Text>
+              <Text className="text-2xl font-bold text-gray-800">{routes.length}</Text>
             </View>
             <View className="items-center">
               <View className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mb-2">
                 <Compass size={24} color="#f97316" />
               </View>
               <Text className="text-gray-500 text-sm">公里</Text>
-              <Text className="text-2xl font-bold text-gray-800">0</Text>
+              <Text className="text-2xl font-bold text-gray-800">
+                {Math.round(routes.reduce((s, r) => s + (r.totalDistance || 0), 0))}
+              </Text>
             </View>
           </View>
         </View>

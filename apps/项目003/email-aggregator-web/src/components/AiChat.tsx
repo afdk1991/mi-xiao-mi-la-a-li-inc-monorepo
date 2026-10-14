@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { aiChat } from '../api/client'
 import type { ChatMessage, ChatRequest } from '../types'
 import { Icon } from './Icon'
@@ -12,6 +12,23 @@ export default function AiChat({ accountId }: Props) {
   const [input, setInput] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  // 卸载守卫：请求飞行中组件被卸载（如切换视图）时不再 setState。
+  const aliveRef = useRef(true)
+  useEffect(() => {
+    aliveRef.current = true
+    return () => {
+      aliveRef.current = false
+    }
+  }, [])
+
+  // BUG-003-08：切换账户时清空上一账户的会话。
+  // 原实现把 messages 挂在组件上而 accountId 变化不会重置，导致
+  // A 账户的提问历史残留在 B 账户面板中，且作为上下文被一并提交给后端（串账户）。
+  useEffect(() => {
+    setMessages([])
+    setError(null)
+    setInput('')
+  }, [accountId])
 
   const send = async () => {
     const text = input.trim()
@@ -32,14 +49,18 @@ export default function AiChat({ accountId }: Props) {
         userConsented: true,
       }
       const resp = await aiChat(req)
-      setMessages([...next, { role: 'model', content: resp.content }])
+      if (!aliveRef.current) return
+      // BUG-003-09：上游返回空正文时原实现会渲染一个空白 AI 气泡，用户无从判断是
+      // 「模型没说话」还是「出错了」。这里给出显式占位，便于区分。
+      setMessages([...next, { role: 'model', content: resp.content || '(模型未返回内容)' }])
     } catch (e) {
+      if (!aliveRef.current) return
       const msg = e instanceof Error ? e.message : String(e)
       // 后端已返回人类可读的中文错误（如未配置上游）时原样展示；
       // 只有裸 HTTP 状态码才映射为通用文案，避免把具体原因吞掉。
       setError(/^HTTP \d+$/.test(msg) ? 'AI 服务暂不可用，请稍后重试' : msg)
     } finally {
-      setBusy(false)
+      if (aliveRef.current) setBusy(false)
     }
   }
 

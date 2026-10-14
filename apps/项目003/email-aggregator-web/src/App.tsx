@@ -84,6 +84,29 @@ export default function App() {
   const [selectedHit, setSelectedHit] = useState<SearchHit | null>(null)
   const searchRef = useRef<HTMLInputElement>(null)
 
+  // ── 生命周期与竞态守卫（BUG-003-03 / 04 / 05）────────────────────────────
+  // aliveRef：组件卸载后所有异步回调据此放弃 setState，避免卸载后更新与定时器残留。
+  const aliveRef = useRef(true)
+  // reqSeqRef：列表/检索请求序号。快速切换账户时先发请求可能后返回（慢网尤其明显），
+  // 原实现会让旧账户的响应覆盖新账户列表；这里只接受「最后一次发出的请求」的结果。
+  const reqSeqRef = useRef(0)
+  // deletedIdsRef：已本地删除的邮件 ID。删除后若此前 getMail 请求才返回，
+  // 原实现会把这封已删除的邮件重新塞回详情模态（幽灵回填）。
+  const deletedIdsRef = useRef<Set<string>>(new Set())
+  // syncPollRef：同步轮询定时器句柄，供卸载时清理（原实现定时器脱离 React 生命周期）。
+  const syncPollRef = useRef<number | undefined>(undefined)
+
+  useEffect(() => {
+    aliveRef.current = true
+    return () => {
+      aliveRef.current = false
+      if (syncPollRef.current !== undefined) {
+        window.clearInterval(syncPollRef.current)
+        syncPollRef.current = undefined
+      }
+    }
+  }, [])
+
   // 连接/账户服务：添加账户表单状态 + 操作中标志（防重复提交）
   const [addingAccount, setAddingAccount] = useState(false)
   const [accForm, setAccForm] = useState({ id: '', provider: 'imap' as Provider, email: '', displayName: '', serverHost: '' })
@@ -102,23 +125,27 @@ export default function App() {
 
   const pushToast = useCallback((p: NotificationPayload) => {
     setToasts((t) => [...t, p])
-    // 5 秒后自动消失
+    // 5 秒后自动消失（卸载后放弃 setState，避免对已卸载组件更新）
     window.setTimeout(() => {
+      if (!aliveRef.current) return
       setToasts((t) => t.filter((x) => x !== p))
     }, 5000)
   }, [])
 
   const loadMails = useCallback(async () => {
+    const seq = ++reqSeqRef.current
     setLoading(true)
     setError(null)
     try {
       const resp = await listMails(accountId)
+      if (seq !== reqSeqRef.current || !aliveRef.current) return
       setMails(resp.mails)
       setHits(null)
     } catch (e) {
+      if (seq !== reqSeqRef.current || !aliveRef.current) return
       setError(e instanceof Error ? e.message : String(e))
     } finally {
-      setLoading(false)
+      if (seq === reqSeqRef.current && aliveRef.current) setLoading(false)
     }
   }, [accountId])
 
@@ -127,15 +154,18 @@ export default function App() {
       setHits(null)
       return
     }
+    const seq = ++reqSeqRef.current
     setLoading(true)
     setError(null)
     try {
       const resp = await searchMails(accountId, q)
+      if (seq !== reqSeqRef.current || !aliveRef.current) return
       setHits(resp.hits)
     } catch (e) {
+      if (seq !== reqSeqRef.current || !aliveRef.current) return
       setError(e instanceof Error ? e.message : String(e))
     } finally {
-      setLoading(false)
+      if (seq === reqSeqRef.current && aliveRef.current) setLoading(false)
     }
   }, [accountId])
 
@@ -158,6 +188,8 @@ export default function App() {
   const openMail = useCallback(async (mail: CanonicalMail) => {
     try {
       const fetched = await getMail(mail.accountId, mail.id)
+      // 请求飞行途中该邮件已被删除 —— 放弃回填，否则详情会显示已删邮件
+      if (!aliveRef.current || deletedIdsRef.current.has(mail.id)) return
       if (!fetched.read) {
         setRead(mail.accountId, mail.id, true).catch(() => {})
         fetched.read = true
@@ -165,6 +197,7 @@ export default function App() {
       }
       setSelectedMail(fetched)
     } catch {
+      if (!aliveRef.current || deletedIdsRef.current.has(mail.id)) return
       setSelectedMail(mail)
     }
   }, [])
@@ -173,6 +206,7 @@ export default function App() {
     setSelectedHit(hit)
     try {
       const fetched = await getMail(hit.accountId, hit.idempotencyKey)
+      if (!aliveRef.current || deletedIdsRef.current.has(hit.idempotencyKey)) return
       if (!fetched.read) {
         setRead(hit.accountId, hit.idempotencyKey, true).catch(() => {})
         fetched.read = true
@@ -203,6 +237,7 @@ export default function App() {
   const removeMail = useCallback(
     async (mail: CanonicalMail) => {
       if (!window.confirm(`确定删除邮件「${mail.subject || '(无主题)'}」？此操作不可撤销。`)) return
+      deletedIdsRef.current.add(mail.id)
       setMails((ms) => ms.filter((m) => m.id !== mail.id))
       setSelectedMail(null)
       setSelectedHit(null)
@@ -412,14 +447,29 @@ export default function App() {
       try {
         await syncAccount(acc.id)
         // 轮询同步状态：running → ok/error
+        //
+        // 缺陷修复（BUG-003-03）：原实现只在 catch 分支里判断 tries > 60 才停表，
+        // 若服务端持续返回 syncing=true（长同步/卡住），请求一路成功、永远进不到 catch，
+        // 定时器会无限轮询下去；且定时器没有句柄，组件卸载/切换账户后仍在跑。
+        // 这里：① 循环顶部无条件上限判断 ② 句柄入 syncPollRef 供卸载清理。
+        const MAX_POLLS = 60
         let tries = 0
+        const stop = () => {
+          window.clearInterval(poll)
+          if (syncPollRef.current === poll) syncPollRef.current = undefined
+        }
         const poll = window.setInterval(async () => {
           tries++
+          if (tries > MAX_POLLS || !aliveRef.current) {
+            stop()
+            return
+          }
           try {
             const resp = await listAccounts()
             const cur = resp.accounts.find((a) => a.id === acc.id)
             if (cur?.syncing) return
-            window.clearInterval(poll)
+            stop()
+            if (!aliveRef.current) return
             if (cur?.lastSyncError) {
               setError(`同步失败：${cur.lastSyncError}`)
             } else {
@@ -427,9 +477,10 @@ export default function App() {
               loadMails()
             }
           } catch {
-            if (tries > 60) window.clearInterval(poll)
+            if (tries >= MAX_POLLS) stop()
           }
         }, 1000)
+        syncPollRef.current = poll
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e))
       }

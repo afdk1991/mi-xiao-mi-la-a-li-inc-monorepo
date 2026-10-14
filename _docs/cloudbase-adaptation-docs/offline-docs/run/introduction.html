@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-run/introduction" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">云托管 | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/run/introduction"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="云托管 | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="云托管（Tencent CloudBase Run）是新一代云原生应用引擎，支持托管用任意语言和框架编写的容器化应用。无需关心服务器运维，即可快速部署和运行您的应用，享受自动弹性伸缩、按量计费的云服务体验。"><meta data-rh="true" property="og:description" content="云托管（Tencent CloudBase Run）是新一代云原生应用引擎，支持托管用任意语言和框架编写的容器化应用。无需关心服务器运维，即可快速部署和运行您的应用，享受自动弹性伸缩、按量计费的云服务体验。"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/run/introduction"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/run/introduction" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/run/introduction" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/run/introduction" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"概述","item":"https://docs.cloudbase.net/run/introduction"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/assets/css/styles.84763893.css">
+<script src="/assets/js/runtime~main.13eb34e7.js" defer="defer"></script>
+<script src="/assets/js/main.38956b3f.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="关闭" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/quick-start/">快速开始</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">基础能力</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">核心能力</a></li><li><a class="dropdown__link nav-icon-database" href="/database/postgresql/initialization">数据库</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/storage/introduce">云存储</a></li><li><a class="dropdown__link nav-icon-zap" href="/cloud-function/introduce">云函数</a></li><li><a aria-current="page" class="dropdown__link nav-icon-cloud dropdown__link--active" href="/run/introduction">云托管</a></li><li><a class="dropdown__link nav-icon-globe" href="/hosting/introduce">静态网站托管</a></li><li><a class="dropdown__link nav-icon-log-in" href="/authentication-v2/auth/introduce">身份认证</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/ai/introduce">AI 接入</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/integration/introduce">集成中心</a></li><li><a href="#" class="dropdown__link navbar-category">平台管理</a></li><li><a class="dropdown__link nav-icon-network" href="/service/introduce">HTTP 网关</a></li><li><a class="dropdown__link nav-icon-eye" href="/envconfig/intro">环境配置</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/logger/introduce">日志监控</a></li><li><a class="dropdown__link" href="/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">开发工具</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/ai/cloudbase-ai-toolkit/">AI 开发工具</a></li><li><a class="dropdown__link" href="/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">解决方案</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/solutions/cloudbase-platform-edition/overview">平台集成方案</a></li><li><a class="dropdown__link" href="/solutions/vibe-coding-platform/overview">VibeCoding 方案</a></li><li><a class="dropdown__link" href="/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">API参考</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDK 文档</a></li><li><a class="dropdown__link" href="/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">接口文档</a></li><li><a class="dropdown__link" href="/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/error-code/basic">错误码</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多资源</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/changelog/">更新日志</a></li><li><a class="dropdown__link" href="/faq/">常见问题</a></li><li><a class="dropdown__link" href="/practices/introduce">最佳实践</a></li><li><a class="dropdown__link" href="/quick-start/migration/">迁移指南</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">价格文档</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">博客</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">关注公众号领福利</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">前往控制台</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>简体中文</a><ul class="dropdown__menu"><li><a href="/run/introduction" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-Hans">简体中文</a></li><li><a href="/en/run/introduction" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索 (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_mhZE"><nav aria-label="文档侧边栏" class="menu thin-scrollbar menu_Y1UP menuWithAnnouncementBar_fPny"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">云托管</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/run/introduction"><span>概述</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/run/quick-start/introduce">快速开始</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/run/develop/developing-guide">开发指南</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/run/deploy/deploy/introduce">服务指南</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/run/maintain/log">运维指南</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/cbrf/intro">函数型开发框架</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/run/best-practice/fix-timezone">最佳实践</a></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/run/limitation"><span>使用限制</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/run/related"><span>概念说明</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/run/faq/">常见问题</a></div></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="页面路径"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="主页面" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">云托管</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">概述</span></li></ul></nav><div class="region-badge-container"><span class="region-badge-prefix">支持地域：</span><span class="region-badge-tag region-badge-shanghai" style="padding:6px 12px;font-size:11px;font-weight:500;border-radius:5px;color:#000000;background-color:#D3E3FD">上海</span></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>云托管</h1></header>
+<p>云托管（Tencent CloudBase Run）是新一代云原生应用引擎，支持托管用任意语言和框架编写的容器化应用。无需关心服务器运维，即可快速部署和运行您的应用，享受自动弹性伸缩、按量计费的云服务体验。</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-为什么选择云托管">💡 为什么选择云托管？<a href="#-为什么选择云托管" class="hash-link" aria-label="💡 为什么选择云托管？的直接链接" title="💡 为什么选择云托管？的直接链接" translate="no">​</a></h2>
+<p>传统应用部署需要购买服务器、配置环境、处理运维问题，而云托管让您：</p>
+<ul>
+<li class=""><strong>专注业务开发</strong>：无需关心底层基础设施，将精力投入到产品创新</li>
+<li class=""><strong>快速上线应用</strong>：从代码到上线只需几分钟，支持多种部署方式</li>
+<li class=""><strong>降低运营成本</strong>：按实际使用付费，流量低谷时自动缩容到 0，避免资源浪费</li>
+<li class=""><strong>应对流量波动</strong>：自动扩缩容应对突发流量，保障服务稳定性</li>
+<li class=""><strong>服务资源集成</strong> - 与数据库、存储、腾讯云资源无缝集成</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-适用场景">🎯 适用场景<a href="#-适用场  景" class="hash-link" aria-label="🎯 适用场景的直接链接" title="🎯 适用场景的直接链接" translate="no">​</a></h2>
+<p>云托管适合各类 Web 应用和后端服务：</p>
+<ul>
+<li class=""><strong>Web 应用</strong>：企业官网、电商平台、管理后台、SaaS 服务</li>
+<li class=""><strong>API 服务</strong>：RESTful API、微服务架构</li>
+<li class=""><strong>实时应用</strong>：WebSocket 服务、SSE 推送、实时通讯</li>
+<li class=""><strong>定时任务</strong>：数据处理、报表生成、定时同步</li>
+<li class=""><strong>AI 应用</strong>：模型推理服务、智能客服、内容生成</li>
+</ul>
+<div class="theme-admonition theme-admonition-tip admonition_xJq3 alert alert--success"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>快速开始</div><div class="admonitionContent_BuS1"><p>如果您是首次使用云托管，建议先阅读 <a href="/run/quick-start/introduce">快速开始</a> 文档，5 分钟快速体验云托管的核心功能。</p></div></div>
+<div class="container_InWO"><p class="hint_k0NE">使用 AI 开发、对接和管理云托管服务</p><div class="inputWrapper_jMJo"><div class="inputContainer_u8lb"><input type="text" class="input_sK88" readonly="" value="帮我部署一个 Node.js 后端服务到 CloudBase 云托管"><div class="inputActions_fKhy"><button class="changeButton_vuDF" title="更换"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2.5 3.5V6.5H5.5M13.5 12.5V9.5H10.5M2.5 6.5C3.5 4.5 5.5 3 8 3C10.5 3 12.5 4.5 13.5 6.5M13.5 9.5C12.5 11.5 10.5 13 8 13C5.5 13 3.5 11.5 2.5 9.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button><button class="startButton_uYrp" title="AI 开发">AI 开发</button></div></div></div></div>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="核心特性">核心特性<a href="#核心特性" class="hash-link" aria-label="核心特性的直接链接" title="核心特性的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-零运维开箱即用">🚀 零运维，开箱即用<a href="#-零运维开箱即用" class="hash-link" aria-label="🚀 零运维，开箱即用的直接链接" title="🚀 零运维，开箱即用的直接链接" translate="no">​</a></h3>
+<p>无需购买、配置、维护服务器，平台自动处理：</p>
+<ul>
+<li class="">服务器资源调度与管理</li>
+<li class="">操作系统更新与安全补丁</li>
+<li class="">负载均衡与健康检查</li>
+<li class="">SSL 证书自动续期</li>
+</ul>
+<p><strong>实际收益</strong>：运维成本降低 80%，让 2 人团队也能运营大规模应用。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-智能弹性伸缩">📈 智能弹性伸缩<a href="#-智能弹性伸缩" class="hash-link" aria-label="📈 智能弹性伸缩的直接链接" title="📈 智能弹性伸缩的直接链接" translate="no">​</a></h3>
+<p>根据实际负载自动调整实例数量：</p>
+<ul>
+<li class=""><strong>流量高峰</strong>：秒级扩容，最多支持 n 个实例</li>
+<li class=""><strong>流量低谷</strong>：自动缩容到 0，不产生费用</li>
+<li class=""><strong>灵活策略</strong>：支持基于 CPU、内存、并发数的扩缩容规则</li>
+<li class=""><strong>定时伸缩</strong>：工作时间保持实例，非工作时间自动释放</li>
+</ul>
+<p><strong>实际收益</strong>：某电商应用在促销期间自动扩容应对 10 倍流量，活动结束后自动缩容，成本节省 60%。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-按量计费用多少付多少">💰 按量计费，用多少付多少<a href="#-按量计费用多少付多少" class="hash-link" aria-label="💰 按量计费，用多少付多少的直接链接" title="💰 按量计费，用多少付多少的直接链接" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>精细计费</strong>：最小粒度 0.25 核 0.5GB，按秒计费</li>
+<li class=""><strong>零流量零费用</strong>：无请求时缩容到 0，不产生计算费用</li>
+<li class=""><strong>透明可控</strong>：实时查看资源使用和费用明细</li>
+<li class=""><strong>成本优化</strong>：支持预留实例，长期使用更优惠</li>
+</ul>
+<p><strong>实际收益</strong>：相比传统云主机，中小型应用平均节省 50-70% 成本。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-全栈语言支持">🛠️ 全栈语言支持<a href="#️-全栈语言支持" class="hash-link" aria-label="🛠️ 全栈语言支持的直接链接" title="🛠️ 全栈语言支持的直接链接" translate="no">​</a></h3>
+<p>支持任意语言和框架，只要能容器化就能部署：</p>
+<ul>
+<li class=""><strong>Node.js</strong>：Express、Nest.js、Next.js、Koa</li>
+<li class=""><strong>Python</strong>：Flask、Django、FastAPI</li>
+<li class=""><strong>Java</strong>：Spring Boot、Quarkus</li>
+<li class=""><strong>Go</strong>：Gin、Echo、Fiber</li>
+<li class=""><strong>PHP</strong>：Laravel、ThinkPHP、Symfony</li>
+<li class=""><strong>.NET</strong>：ASP.NET Core</li>
+<li class=""><strong>其他</strong>：Ruby、Rust、Elixir 等</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-多种部署方式">🔄 多种部署方式<a href="#-多种部署方式" class="hash-link" aria-label="🔄 多种部署方式的直接链接" title="🔄 多种部署方式的直接链接" translate="no">​</a></h3>
+<p>灵活选择最适合您的部署方式：</p>
+<table><thead><tr><th>部署方式</th><th>适用场景</th><th>优势</th></tr></thead><tbody><tr><td><strong>代码部署</strong></td><td>快速原型、小型项目</td><td>无需编写 Dockerfile，平台自动构建</td></tr><tr><td><strong>镜像部署</strong></td><td>生产环境、复杂应用</td><td>完全控制构建过程，支持私有镜像仓库</td></tr><tr><td><strong>Git 部署</strong></td><td>团队协作、持续集成</td><td>代码推送自动部署，支持 GitHub/GitLab/Gitee</td></tr><tr><td><strong>Cli 部署</strong></td><td>快速部署、持续集成</td><td>云开发官方提供的命令行工具，帮助您快速管理和部署云开发资源</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="技术选型指南">技术选型指南<a href="#技术选型指南" class="hash-link" aria-label="技术选型指南的直接链接" title="技术选型指南的直接链接" translate="no">​</a></h2>
+<p>云开发平台提供多种计算服务，满足不同场景需求。本节帮助您选择最适合的技术方案。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-如何选择">🤔 如何选择？<a href="#-如何选择" class="hash-link" aria-label="🤔 如何选择？的直接链接" title="🤔 如何选择？的直接链接" translate="no">​</a></h3>
+<p><strong>选择云托管，如果您：</strong></p>
+<ul>
+<li class="">✅ 需要使用 Java、Go、PHP、.NET 等非 Node.js 语言</li>
+<li class="">✅ 有现有应用需要迁移上云</li>
+<li class="">✅ 需要长连接支持（WebSocket、SSE）</li>
+<li class="">✅ 需要高并发处理能力</li>
+<li class="">✅ 需要访问 VPC 内资源（Redis、MySQL 等）</li>
+<li class="">✅ 需要完全控制运行环境和依赖</li>
+</ul>
+<p><strong>选择云函数，如果您：</strong></p>
+<ul>
+<li class="">✅ 开发简单的 API 接口或定时任务</li>
+<li class="">✅ 需要事件驱动（URL、MQ 触发）</li>
+<li class="">✅ 追求极简部署，无需关心容器</li>
+<li class="">✅ 需要访问 VPC 内资源（Redis、MySQL 等）</li>
+<li class="">✅ 流量极低，希望最大化节省成本</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-详细对比">📊 详细对比<a href="#-详细对比" class="hash-link" aria-label="📊 详细对比的直接链接" title="📊 详细对比的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>对比维度</th><th>事件函数</th><th>HTTP 函数</th><th>函数型开发框架</th><th>云托管 ⭐</th></tr></thead><tbody><tr><td><strong>概述</strong></td><td><a href="../cloud-function/introduce">事件函数</a></td><td><a href="../cloud-function/introduce">HTTP 函数</a></td><td><a href="../cbrf/intro">函数型开发框架</a></td><td><a href="../run/introduction">云托管</a></td></tr><tr><td><strong>设计思想</strong></td><td>纯托管 FaaS<br>事件驱动</td><td>Serverless Web<br>HTTP 直连</td><td>Node.js 函数框架<br>部署在云托管</td><td>云原生应用引擎<br>容器化托管</td></tr><tr><td><strong>核心场景</strong></td><td>对象存储、消息队列<br>定时任务等非 HTTP 业务</td><td>Web 建站、API 服务<br>HTTP/SSE/WebSocket</td><td>Node.js 环境服务<br>HTTP/SSE/WebSocket</td><td>任意语言/框架<br>微服务、Web 应用<br>HTTP/SSE/WebSocket</td></tr><tr><td><strong>触发方式</strong></td><td>定时、MQ、COS<br>云 API 等多种触发器</td><td>HTTP URL<br>WebSocket / SSE</td><td>HTTP URL<br>WebSocket / SSE</td><td>HTTP URL<br>WebSocket / SSE</td></tr><tr><td><strong>编程范式</strong></td><td>JSON 入参<br>(event/context)</td><td>原生 Request<br>HTTP / WebSocket</td><td>JSON 入参<br>(event/context)</td><td>原生 Request<br>HTTP / WebSocket</td></tr><tr><td><strong>运行时</strong></td><td>固定语言版本<br>或镜像自定义</td><td>固定语言版本<br>或镜像自定义</td><td>仅 Node.js</td><td><strong>任意语言版本/环境</strong></td></tr><tr><td><strong>部署方式</strong></td><td>模板/代码/镜像</td><td>模板/代码/镜像</td><td>模板</td><td><strong>模板/代码/镜像/Git</strong></td></tr><tr><td><strong>端口监听</strong></td><td>❌ 无需配置</td><td>✅ 需监听 9000</td><td>✅ 需监听 3000</td><td>✅ <strong>自定义端口</strong></td></tr><tr><td><strong>启动文件</strong></td><td>⚠️ 代码部署不支持自定义<br>镜像支持</td><td>⚠️ 代码部署不支持自定义<br>镜像支持</td><td>❌ 不支持自定义</td><td>✅ <strong>支持自定义</strong></td></tr><tr><td><strong>Dockerfile</strong></td><td>❌ 不感知</td><td>⚠️ 仅镜像部署时感知</td><td>❌ 不感知</td><td>✅ <strong>完全支持</strong></td></tr><tr><td><strong>本地调试</strong></td><td>❌ 不支持</td><td>✅ 支持</td><td>✅ 支持</td><td>✅ <strong>支持</strong></td></tr><tr><td><strong>冷启动</strong></td><td>存在冷启动延迟</td><td>存在冷启动延迟</td><td>可配最小实例常驻<br>(几乎无延迟)</td><td><strong>可配最小实例常驻</strong><br>(几乎无延迟)</td></tr><tr><td><strong>并发支持</strong></td><td>❌ 不支持 (单并发)</td><td>✅ 支持多并发</td><td>✅ 支持多并发</td><td>✅ <strong>支持多并发</strong></td></tr><tr><td><strong>云开发数据库</strong></td><td>❌ 内网网络不通</td><td>❌ 内网网络不通</td><td>✅ 内网连通<br>(需开启私有网络)</td><td>✅ <strong>内网连通</strong><br>(需开启私有网络)</td></tr><tr><td><strong>VPC 访问</strong></td><td>❌ 不支持</td><td>❌ 不支持</td><td>✅ 支持</td><td>✅ <strong>支持</strong></td></tr><tr><td><strong>适合团队</strong></td><td>个人开发者</td><td>个人/小团队</td><td>Node.js 开发者</td><td><strong>所有开发团队</strong></td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="资源模型">资源模型<a href="#资源模型" class="hash-link" aria-label="资源模型的直接链接" title="资源模型的直接链接" translate="no">  ​</a></h2>
+<p>云托管采用三层资源模型：<strong>服务 → 版本 → 实例</strong>，提供灵活的部署和管理能力。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-服务service">📦 服务（Service）<a href="#-服务service" class="hash-link" aria-label="📦 服务（Service）的直接链接" title="📦 服务（Service）的直接链接" translate="no">​</a></h3>
+<p>服务是您的业务单元，通常对应一个独立的应用或微服务。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li class="">每个服务有独立的访问域名（支持自定义域名）</li>
+<li class="">独立的配置和资源限制</li>
+<li class="">独立的日志和监控</li>
+</ul>
+<p><strong>示例场景：</strong></p>
+<ul>
+<li class=""><code>user-service</code>：用户管理服务</li>
+<li class=""><code>order-service</code>：订单处理服务</li>
+<li class=""><code>api-gateway</code>：API 网关服务</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-版本revision">🔖 版本（Revision）<a href="#-版本revision" class="hash-link" aria-label="🔖 版本（Revision）的直接链接" title="🔖 版本（Revision）的直接链接" translate="no">​</a></h3>
+<p>版本是服务的不同部署版本，支持多版本并存。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li class="">每次部署创建新版本，版本不可变</li>
+<li class="">支持流量分配，实现灰度发布</li>
+<li class="">可快速回滚到历史版本</li>
+</ul>
+<p><strong>示例场景：</strong></p>
+<ul>
+<li class=""><strong>灰度发布</strong>：v1 版本 90% 流量，v2 版本 10% 流量</li>
+<li class=""><strong>A/B 测试</strong>：v1 和 v2 各 50% 流量，对比效果</li>
+<li class=""><strong>蓝绿部署</strong>：新版本验证通过后，一键切换 100% 流量</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-实例instance">🖥️ 实例（Instance）<a href="#️-实例instance" class="hash-link" aria-label="🖥️ 实例（Instance）的直 接链接" title="🖥️ 实例（Instance）的直接链接" translate="no">​</a></h3>
+<p>实例是实际运行的容器，数量根据负载自动伸缩。</p>
+<p><strong>特点：</strong></p>
+<ul>
+<li class="">每个实例是一个独立的容器</li>
+<li class="">自动健康检查，异常实例自动重启</li>
+<li class="">支持 0 ～ n 个实例弹性伸缩</li>
+</ul>
+<p><strong>示例场景：</strong></p>
+<ul>
+<li class=""><strong>低流量时</strong>：0-1 个实例，成本最低</li>
+<li class=""><strong>正常流量</strong>：2-5 个实例，保障稳定性</li>
+<li class=""><strong>高峰流量</strong>：自动扩容到 10+ 个实例</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-架构示意图">🏗️ 架构示意图<a href="#️-架构示意图" class="hash-link" aria-label="🏗️ 架构示意图的直接链接" title="🏗️ 架构示意图的直接链接" translate="no">​</a></h3>
+<p><img decoding="async" loading="lazy" src="https://main.qcloudimg.com/raw/3227b80bcd9de2a1c546c6973d1a8e0a.png" alt="资源模型" class="img_ev3q"></p>
+<p>上图展示了三个服务（TestA、TestB、TestC）的资源模型。每个服务包含多个版本，每个版本运行 0 ～ N 个实例。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-访问与流量分配">🌐 访问与流量分配<a href="#-访问与流量分配" class="hash-link" aria-label="🌐 访问与流量分配的直接链接" title="🌐 访问与流量分配的直接链接" translate="no">​</a></h3>
+<p><strong>域名访问：</strong></p>
+<ul>
+<li class=""><strong>默认域名</strong>：<code>{service-name}-{random}.{region}.app.tcloudbase.com</code></li>
+<li class=""><strong>自定义域名</strong>：支持绑定您的域名，自动配置 SSL 证书</li>
+</ul>
+<p><strong>流量分配策略：</strong></p>
+<table><thead><tr><th>策略</th><th>说明</th><th>适用场景</th></tr></thead><tbody><tr><td><strong>单版本 100%</strong></td><td>所有流量到一个版本</td><td>生产环境  稳定运行</td></tr><tr><td><strong>按比例分配</strong></td><td>多版本按百分比分配流量</td><td>灰度发布、A/B 测试</td></tr><tr><td><strong>URL 参数路由</strong></td><td>根据 URL 参数路由到指定版本</td><td>内部测试、特定用户</td></tr></tbody></table>
+<p><strong>自动伸缩机制：</strong></p>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">请求量增加 → 触发扩容条件 → 启动新实例 → 加入负载均衡</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">请求量减少 → 触发缩容条件 → 停止空闲实例 → 释放资源</span><br></div></code></pre></div></div>
+<ul>
+<li class=""><strong>扩容速度</strong>：秒级启动新实例</li>
+<li class=""><strong>缩容策略</strong>：实例空闲 30 分钟后自动回收</li>
+<li class=""><strong>最小实例</strong>：可配置最小实例数，避免冷启动</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="服务运行模式">服务运行模式<a href="#服务运行模式" class="hash-link" aria-label="服务运行模式的直接链接" title="服务运行模式的直接链接" translate="no">​</a></h2>
+<p>云托管提供 <a href="./deploy/configuring/autoscaling/about-instance-autoscaling">5 种运行模式</a>，满足不同业务场景的需求。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-始终自动扩缩容推荐">🔄 始终自动扩缩容（推荐）<a href="#-始终自动扩缩容推荐" class="hash-link" aria-label="🔄 始终自动扩缩容（推荐）的直接链接" title="🔄 始终自动扩缩容（推荐）的直接链接" translate="no">​</a></h3>
+<p><strong>特点</strong>：根据 CPU、内存、并发数等指标自动调整实例数量</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li class="">流量波动较大的应用</li>
+<li class="">成本敏感的项目</li>
+<li class="">新上线的应用（流量不确定）</li>
+</ul>
+<p><strong>配置示例</strong>：</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">最小实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">最大实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">扩容条件</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> CPU </span><span class="token punctuation" style="color:#393A34">&gt;</span><span class="token plain"> 60% 或 并发数 </span><span class="token punctuation" style="color:#393A34">&gt;</span><span class="token plain"> 100</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">缩容条件</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> CPU &lt; 30% 且 并发数 &lt; 50</span><br></div></code></pre></div></div>
+<p><strong>成本优势</strong>：无流量时缩容到 0，成本最低。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-持续运行">🏃 持续运行<a href="#-持续运行" class="hash-link" aria-label="🏃 持续运行的直接链接" title="🏃 持续运行的直接链接" translate="no">​</a></h3>
+<p><strong>特点</strong>：保持固定数量的实例持续运行</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li class="">流量稳定的生产应用</li>
+<li class="">对响应时间要求极高（无冷启动）</li>
+<li class="">需要保持长连接或内存状态</li>
+</ul>
+<p><strong>配置示例</strong>：</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">实例副本数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">3</span><br></div></code></pre></div></div>
+<p><strong>性能优势</strong>：无冷启动，响应速度最快。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-白天持续运行夜间自动扩缩容">🌓 白天持续运行，夜间自动扩缩容<a href="#-白天持续运行夜间自动扩缩容" class="hash-link" aria-label="🌓 白天持续运行，夜间自动扩缩容的直接链接" title="🌓 白天持续运行，夜间自动扩缩容的直接链接" translate="no">​</a></h3>
+<p><strong>特点</strong>：工作时间保持固定实例，非工作时间自动伸缩</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li class="">办公类应用（工作日 9:00-18:00 流量高）</li>
+<li class="">电商应用（白天流量高，夜间流量低）</li>
+<li class="">教育类应用（上课时间流量高）</li>
+</ul>
+<p><strong>配置示例</strong>：</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">工作时间</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> 09</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain">00</span><span class="token punctuation" style="color:#393A34">-</span><span class="token datetime number" style="color:#36acaa">18:00</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">固定实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">非工作时间</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> 18</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain">00</span><span class="token punctuation" style="color:#393A34">-</span><span class="token datetime number" style="color:#36acaa">09:00</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">最小实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">最大实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><br></div></code></pre></div></div>
+<p><strong>成本优势</strong>：兼顾性能和成本，夜间自动缩容节省费用。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-自定义">⚙️ 自定义<a href="#️-自定义" class="hash-link" aria-label="⚙️ 自定义的直接链接" title="⚙️ 自定义的直接链接" translate="no">​</a></h3>
+<p><strong>特点</strong>：灵活配置自动扩缩容和定时扩缩容策略</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li class="">有特殊业务规律（如每周一流量高峰）</li>
+<li class="">需要精细化成本控制</li>
+<li class="">多种策略组合使用</li>
+</ul>
+<p><strong>配置示例</strong>：</p>
+<div class="language-yaml codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-yaml codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token key atrule" style="color:#00a4db">策略 1 - 自动扩缩容</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">最小实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">最大实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">20</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">扩容条件</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> CPU </span><span class="token punctuation" style="color:#393A34">&gt;</span><span class="token plain"> 70%</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">策略 2 - 定时扩容</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">时间</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> 每周一 08</span><span class="token punctuation" style="color:#393A34">:</span><span class="token number" style="color:#36acaa">00</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token key atrule" style="color:#00a4db">策略 3 - 定时缩容</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">时间</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> 每周一 20</span><span class="token punctuation" style="color:#393A34">:</span><span class="token number" style="color:#36acaa">00</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token key atrule" style="color:#00a4db">实例数</span><span class="token punctuation" style="color:#393A34">:</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><br></div></code></pre></div></div>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-手工启停实例">🖐️ 手工启停实例<a href="#️-手工启停实例" class="hash-link" aria-label="🖐️ 手工启停实例的直接链接" title="🖐️ 手工启停实例的直接链接" translate="no">​</a></h3>
+<p><strong>特点</strong>：完全手动控制实例数量</p>
+<p><strong>适用场景</strong>：</p>
+<ul>
+<li class="">开发测试环境</li>
+<li class="">临时演示环境</li>
+<li class="">需要完全可控的场景</li>
+</ul>
+<p><strong>操作方式</strong>：通过控制台或 API 手动调整实例数量。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-运行模式对比">📊 运行模式对比<a href="#-运行模式对比" class="hash-link" aria-label="📊 运行模式对比的直接链接" title="📊 运行模式对比的直接链接" translate="no">​</a></h3>
+<table><thead><tr><th>运行模式</th><th>成本</th><th>性能</th><th>灵活性</th><th>推荐场景</th></tr></thead><tbody><tr><td>始终自动扩缩容</td><td>⭐⭐⭐⭐ ⭐</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>流量波动大的应用</td></tr><tr><td>持续运行</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td><td>生产环境稳定应用</td></tr><tr><td>白天持续夜间自动</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐</td><td>办公/电商类应用</td></tr><tr><td>自定义</td><td>⭐⭐⭐</td><td>⭐⭐⭐⭐</td><td>⭐⭐⭐⭐⭐</td><td>复杂业务场景</td></tr><tr><td>手工启停</td><td>⭐⭐⭐⭐⭐</td><td>⭐⭐</td><td>⭐</td><td>开发测试环境</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="资源集成">资源集成<a href="#资源集成" class="hash-link" aria-label="资源集成的直接链接" title="资源集成的直接链接" translate="no">​</a></h2>
+<p>云托管深度集成 CloudBase 和腾讯云生态，让您轻松构建功能完整的应用。</p>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️调用mysql数据库">🗄️调用MySQL数据库<a href="#️调用mysql数据库" class="hash-link" aria-label="🗄️调用MySQL数据库的直接链接" title="🗄️调用MySQL数据库的直接链接" translate="no">​</a></h3>
+<p>云托管提供了多种方式连接和操作 MySQL 数据库，满足不同场景下的应用需求。本文档将详细介绍以下几种连接方式：</p>
+<ul>
+<li class=""><a href="./develop/resource-integration/mysql">调用MySQL数据库</a></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-私有网络vpc">🔗 私有网络（VPC）<a href="#-私有网络vpc" class="hash-link" aria-label="🔗 私有网络（VPC）的直接链接" title="🔗 私有网络（VPC）的直接链接" translate="no">​</a></h3>
+<p>通过配置 <a href="./deploy/networking/internal-link">VPC 网络</a>，云托管实例可以访问 VPC 内的各种资源：</p>
+<ul>
+<li class=""><strong>Redis</strong>：缓存、会话存储</li>
+<li class=""><strong>MySQL/PostgreSQL</strong>：关系型数据库</li>
+<li class=""><strong>Elasticsearch</strong>：全文搜索</li>
+<li class=""><strong>Kafka</strong>：消息队列</li>
+<li class=""><strong>其它腾讯云资源产品</strong>：其它腾讯云资源产品</li>
+</ul>
+<p><strong>配置步骤</strong>：</p>
+<ol>
+<li class="">在服务设置中开启「私有网络」</li>
+<li class="">选择目标 VPC 和子网</li>
+<li class="">配置安全组规则</li>
+<li class="">重新部署服务生效</li>
+</ol>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-持续交付cicd">🚀 持续交付（CI/CD）<a href="#-持续交付cicd" class="hash-link" aria-label="🚀 持续交付（CI/CD）的直接链接" title="🚀 持续交付（CI/CD）的直接链接" translate="no">​</a></h2>
+<p>支持从代码仓库自动部署，实现 DevOps 最佳实践。</p>
+<p><strong>支持的代码仓库</strong>：</p>
+<ul>
+<li class="">GitHub</li>
+<li class="">GitLab</li>
+<li class="">Gitee（码云）
+<strong>工作流程</strong>：</li>
+</ul>
+<div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token plain">代码推送 → 自动触发构建 → 运行测试 → 构建镜像 → 自动部署</span><br></div></code></pre></div></div>
+<p><strong>配置方式</strong>：</p>
+<ol>
+<li class="">在服务设置中绑定代码仓库</li>
+<li class="">选择分支和构建配置</li>
+<li class="">推送代码自动触发部署</li>
+</ol>
+<p>支持基于Cli来部署，来实现命令行部署</p>
+<p><strong>支持的能力如下</strong>：</p>
+<ul>
+<li class=""><a href="../cli-v1/cloudrun/init">初始化项目</a></li>
+<li class=""><a href="../cli-v1/cloudrun/run">本地运行</a></li>
+<li class=""><a href="../cli-v1/cloudrun/deploy">代码部署</a></li>
+<li class=""><a href="../cli-v1/cloudrun/list">服务列表</a></li>
+<li class=""><a href="../cli-v1/cloudrun/download">下载代码</a></li>
+<li class=""><a href="../cli-v1/cloudrun/download">删除服务</a></li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="-可观测性">📊 可观测性<a href="#-可观测性" class="hash-link" aria-label="📊 可观测性的直接链接" title="📊 可观测性的直接链接" translate="no">​</a></h2>
+<p><strong>日志服务</strong></p>
+<ul>
+<li class="">实时查看容器日志</li>
+<li class="">支持关键词搜索、时间筛选</li>
+<li class="">支持上传到 CLS（日志服务）</li>
+</ul>
+<p><strong>访问路径</strong>：[服务详情] → [日志] → 选择实例和时间范围</p>
+<p><strong>监控指标</strong></p>
+<ul>
+<li class=""><strong>资源监控</strong>：CPU、内存、网络、磁盘</li>
+<li class=""><strong>业务监控</strong>：QPS、响应时间、错误率</li>
+<li class=""><strong>实例监控</strong>：实例数量、健康状态</li>
+<li class=""><strong>自定义监控</strong>：支持上报自定义指标</li>
+</ul>
+<p><strong>访问路径</strong>：[服务详情] → [监控] → 查看各项指标</p></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"><a class="pagination-nav__link pagination-nav__link--next" href="/run/quick-start/introduce"><div class="pagination-nav__sublabel">下一页</div><div class="pagination-nav__label">概述</div></a></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#-为什么选择云托管" class="table-of-contents__link toc-highlight">💡 为什么选择云托管？</a></li><li><a href="#-适用场景" class="table-of-contents__link toc-highlight">🎯 适用场景</a></li><li><a href="#核心特性" class="table-of-contents__link toc-highlight">核心特性</a><ul><li><a href="#-零运维开箱即用" class="table-of-contents__link toc-highlight">🚀 零运维，开箱即用</a></li><li><a href="#-智能弹性伸缩" class="table-of-contents__link toc-highlight">📈 智能弹性伸缩</a></li><li><a href="#-按量计费用多少付多少" class="table-of-contents__link toc-highlight">💰 按量计费，用多少付多少</a></li><li><a href="#️-全栈语言支持" class="table-of-contents__link toc-highlight">🛠️ 全栈语言支持</a></li><li><a href="#-多种部署方式" class="table-of-contents__link toc-highlight">🔄 多种部署方式</a></li></ul></li><li><a href="#技术选型指南" class="table-of-contents__link toc-highlight">技术选型指南</a><ul><li><a href="#-如何选择" class="table-of-contents__link toc-highlight">🤔 如何选择？</a></li><li><a href="#-详细对比" class="table-of-contents__link toc-highlight">📊 详细对比</a></li></ul></li><li><a href="#资源模型" class="table-of-contents__link toc-highlight">资源模型</a><ul><li><a href="#-服务service" class="table-of-contents__link toc-highlight">📦 服务（Service）</a></li><li><a href="#-版本revision" class="table-of-contents__link toc-highlight">🔖 版本（Revision）</a></li><li><a href="#️-实例instance" class="table-of-contents__link toc-highlight">🖥️ 实例（Instance）</a></li><li><a href="#️-架构示意图" class="table-of-contents__link toc-highlight">🏗️ 架构示意图</a></li><li><a href="#-访问与流量分配" class="table-of-contents__link toc-highlight">🌐 访问与流量分配</a></li></ul></li><li><a href="#服务运行模式" class="table-of-contents__link toc-highlight">服务运行模式</a><ul><li><a href="#-始终自动扩缩容推荐" class="table-of-contents__link toc-highlight">🔄 始终自动扩缩容（推荐）</a></li><li><a href="#-持续运行" class="table-of-contents__link toc-highlight">🏃 持续运行</a></li><li><a href="#-白天持续运行夜间自动扩缩容" class="table-of-contents__link toc-highlight">🌓 白天持续运行，夜间自动扩缩容</a></li><li><a href="#️-自定义" class="table-of-contents__link toc-highlight">⚙️ 自定义</a></li><li><a href="#️-手工启停实例" class="table-of-contents__link toc-highlight">🖐️ 手工启停实例</a></li><li><a href="#-运行模式对比" class="table-of-contents__link toc-highlight">📊 运行模式对比</a></li></ul></li><li><a href="#资源集成" class="table-of-contents__link toc-highlight">资源集成</a><ul><li><a href="#️调用mysql数据库" class="table-of-contents__link toc-highlight">🗄️调用MySQL数据库</a></li><li><a href="#-私有网络vpc" class="table-of-contents__link toc-highlight">🔗 私有网络（VPC）</a></li></ul></li><li><a href="#-持续交付cicd" class="table-of-contents__link toc-highlight">🚀 持续交付（CI/CD）</a></li><li><a href="#-可观测性" class="table-of-contents__link toc-highlight">📊 可观测性</a></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="复制文档" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>复制文档</span></button><button class="tocActionButton_eGor" title="查看 Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>查看 Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>反馈文档问题</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>提问 AI</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

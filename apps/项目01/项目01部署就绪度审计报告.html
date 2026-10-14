@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目01 部署就绪度审计报告</title>
+<style>
+  :root{
+    --bg:#f7f8fa; --card:#ffffff; --ink:#1f2329; --muted:#6b7280;
+    --line:#e5e7eb; --brand:#2563eb; --brandbg:#eff4ff;
+    --red:#dc2626; --redbg:#fef2f2; --amber:#d97706; --amberbg:#fffbeb; --green:#16a34a; --greenbg:#f0fdf4;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;line-height:1.6;}
+  .wrap{max-width:1080px;margin:0 auto;padding:28px 22px 60px;}
+  header{border-bottom:3px solid var(--brand);padding-bottom:14px;margin-bottom:22px;}
+  h1{font-size:24px;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:18px;box-shadow:0 1px 2px rgba(0,0,0,.03);}
+  h2{font-size:17px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  h2 .tag{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--brandbg);color:var(--brand)}
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:600}
+  tr:nth-child(even) td{background:#fafbfc}
+  .ok{color:var(--green);font-weight:700}
+  .warn{color:var(--amber);font-weight:700}
+  .bad{color:var(--red);font-weight:700}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px}
+  .p-red{background:var(--redbg);color:var(--red)}
+  .p-amber{background:var(--amberbg);color:var(--amber)}
+  .p-green{background:var(--greenbg);color:var(--green)}
+  code{background:#f3f4f6;padding:1px 6px;border-radius:5px;font-size:12.5px;font-family:ui-monospace,Consolas,monospace}
+  .fix{background:#0f172a;color:#e2e8f0;border-radius:10px;padding:14px 16px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;white-space:pre-wrap;margin:0}
+  ul{margin:8px 0;padding-left:20px} li{margin:4px 0}
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:4px}
+  .metric{background:var(--brandbg);border-radius:10px;padding:12px 14px}
+  .metric .n{font-size:22px;font-weight:800;color:var(--brand)}
+  .metric .l{font-size:12px;color:var(--muted)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:8px}
+  a{color:var(--brand);word-break:break-all}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>项目01（F:/网站全栈项目/项目01）部署就绪度审计报告</h1>
+  <div class="sub">生成时间：2026-10-12 ｜ 审计范围：本工作区内全部可部署资产 ｜ 执行人：WorkBuddy</div>
+</header>
+
+<div class="card">
+  <h2>① 交付摘要 <span class="tag">Deliverable Summary</span></h2>
+  <div class="summary">
+    <div class="metric"><div class="n">1</div><div class="l">已实际上线（EdgeOne）</div></div>
+    <div class="metric"><div class="n">7</div><div class="l">已修复的配置文件</div></div>
+    <div class="metric"><div class="n">4</div><div class="l">并存的部署机制</div></div>
+    <div class="metric"><div class="n">3</div><div class="l">待你决策阻断点</div></div>
+  </div>
+  <ul>
+    <li><span class="ok">✅ 已部署</span>：<code>daijia-dist</code> → EdgeOne Pages 项目 <code>daijia-platform</code>（中国站），URL 见文末。</li>
+    <li><span class="ok">✅ 已修复</span>：主项目 7 个部署/运维文件中硬编码的 <code>D:/网站全栈项目/...</code> 旧路径全部改为 <code>F:/网站全栈项目/...</code>，解除本地自托管（PM2+Nginx）第一阻断点。</li>
+    <li><span class="warn">⚠️ 未做</span>：生产服务器（laal.top）真实部署、Docker 构建、Render 上线——沙箱无 SSH、Docker 离线、C 盘 98%+ 满，且生产凭据不在本地。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>② 本工作区部署资产清单 <span class="tag">Inventory</span></h2>
+  <table>
+    <tr><th>资产</th><th>类型 / 技术栈</th><th>部署目标</th><th>当前状态</th></tr>
+    <tr><td><code>daijia-dist/</code></td><td>静态站（已构建，含 index.html+assets）</td><td>EdgeOne Pages（edgeone.json: daijia-platform）</td><td><span class="pill p-green">已上线</span> 本次推送</td></tr>
+    <tr><td><code>Mi-Xiao-Mi-La-A-Li-Inc/</code></td><td>全栈 monorepo（Vue/Node/NestJS/Java/PHP/Python-FastAPI）</td><td>自托管(PM2+Nginx) / Render / Docker</td><td><span class="pill p-amber">部分就绪</span> 路径已修，架构待定</td></tr>
+    <tr><td><code>Mi-Xiao…/python-fastapi/</code></td><td>FastAPI + SQLAlchemy + SQLite/MySQL</td><td>应为统一后端（uvicorn）</td><td><span class="pill p-red">未被任何部署配置引用</span></td></tr>
+    <tr><td><code>Mi-Xiao…/01-前端集群/</code>（6个）</td><td>Vue3 + Vite 前端</td><td>静态托管 / EdgeOne / IGA Pages</td><td><span class="pill p-amber">5个可构建，1个缺 build 脚本</span></td></tr>
+    <tr><td><code>Mi-Xiao…/08-卫星产品/</code></td><td>RouteNav / enterprise-admin / zhinenglux / b-admin / WP 等</td><td>PM2 + Nginx 子站点</td><td><span class="pill p-amber">配置就绪，路径已修</span></td></tr>
+    <tr><td><code>scripts/ ark-examples/ ollama_*.py</code> 等</td><td>辅助脚本 / 示例</td><td>非部署产物</td><td><span class="pill p-green">无需部署</span></td></tr>
+  </table>
+  <div class="note">注：记忆中提及的 enterprise-admin-platform / plugin-mcp-system / delivery-router 不在本工作区根（位于 F:/项目01/…），本次未纳入。</div>
+</div>
+
+<div class="card">
+  <h2>③ 四套部署机制逐项分析 <span class="tag">Mechanisms</span></h2>
+  <table>
+    <tr><th>机制</th><th>入口</th><th>结论</th><th>阻塞 / 风险</th></tr>
+    <tr>
+      <td><b>EdgeOne Pages</b><br>（daijia 平台前端）</td>
+      <td><code>edgeone.json</code> + <code>daijia-dist/</code></td>
+      <td><span class="ok">✅ 可用并已上线</span></td>
+      <td>无。outputDirectory 指向已构建目录，本次已成功推送。</td>
+    </tr>
+    <tr>
+      <td><b>PM2 + Nginx</b><br>（自托管）</td>
+      <td><code>ecosystem.config.cjs</code><br><code>deploy/deploy-all.ps1</code><br><code>deploy/start-all.ps1</code></td>
+      <td><span class="warn">🟡 路径已修复，仍不可用</span></td>
+      <td>
+        🔴 <b>后端身份分裂</b>：PM2 启动 <code>02-后端微服务集群/mixmlaal-backend</code>(Node :3001)，但仓库真实后端是 <code>python-fastapi</code>(FastAPI)，后者未被任何配置加载。<br>
+        🟡 Nginx 主站 <code>listen 8080</code>，但 <code>deploy-all.ps1</code> 提示占用 80 端口——端口描述不一致。<br>
+        🟡 Nginx 安装路径硬编码 <code>C:\Users\addk1\...</code>（用户机专属，未改）。
+      </td>
+    </tr>
+    <tr>
+      <td><b>Render</b></td>
+      <td><code>render.yaml</code></td>
+      <td><span class="bad">🔴 无法部署</span></td>
+      <td>
+        🔴 <code>render.yaml</code> 仅有 <code>healthCheckPath</code> 与 <code>envVars</code>，<b>无 buildCommand / startCommand</b>；且根目录 <b>无 package.json</b>（已确认 MISSING），Render 不知构建/启动什么。<br>
+        🟡 注释称"已去除 Docker 改用原生 Node 运行时"，但代码入口指向不明（python 还是 node？）。
+      </td>
+    </tr>
+    <tr>
+      <td><b>Docker</b></td>
+      <td><code>deploy/start-docker.sh</code><br><code>deploy/nginx-docker.conf</code></td>
+      <td><span class="warn">🟡 配置存在，不可用</span></td>
+      <td>
+        🟡 脚本按容器内 <code>/app</code> 路径与 PM2 编排，但仓库内<b>未发现 Dockerfile</b>（全树搜索无 docker-compose）。<br>
+        🔴 沙箱 Docker daemon 离线，即便配置完整也无法本地构建。
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>④ 关键阻断点（按严重度）</h2>
+  <table>
+    <tr><th>级别</th><th>阻断点</th><th>影响</th><th>处置</th></tr>
+    <tr><td><span class="pill p-red">🔴 P0</span></td><td>后端身份分裂：部署脚本拉 Node 版 <code>mixmlaal-backend</code>，而 <code>python-fastapi</code> 才是合并后的真实后端且零引用</td><td>线上 API 与实际代码库不一致，可能跑的是旧/错误后端</td><td>需你确认：python-fastapi 是否取代 mixmlaal-backend？据此改 PM2 / start-docker / nginx 的 :3001 指向 uvicorn</td></tr>
+    <tr><td><span class="pill p-red">🔴 P0</span></td><td>Render 缺 build/start 命令 + 根无 package.json</td><td>Render 自动部署必失败</td><td>补 render.yaml 的 buildCommand/startCommand，明确指向 python-fastapi 或某后端入口</td></tr>
+    <tr><td><span class="pill p-amber">🟡 P1</span></td><td>路径硬编码 D: → 已修复为 F:（7 文件）</td><td>已解除本地自托管第一阻断</td><td>✅ 本次已修；若生产机实为 D:，请回退对应文件</td></tr>
+    <tr><td><span class="pill p-amber">🟡 P1</span></td><td>前端 <code>portal</code> 仅有 <code>dev</code> 脚本，无 <code>build</code></td><td>无法产出生产构建</td><td>补 <code>build</code> 脚本（如 <code>vite build</code>）</td></tr>
+    <tr><td><span class="pill p-amber">🟡 P1</span></td><td>多套机制并存（PM2/Render/Docker/EdgeOne），无单一事实来源</td><td>团队协作易混乱、重复维护</td><td>选定 1 套主机制（建议：静态前端走 EdgeOne，后端走自托管 PM2+python-fastapi）</td></tr>
+    <tr><td><span class="pill p-green">🟢 P2</span></td><td>Nginx 主站端口 8080 vs 脚本提示 80</td><td>仅文档/提示不一致，不影响运行</td><td>统一为 8080 并在脚本中同步说明</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>⑤ 本次已修复清单 <span class="tag">Fix-list</span></h2>
+  <p class="note">全部为文本路径替换 <code>D:/网站全栈项目/项目01</code> → <code>F:/网站全栈项目/项目01</code>（.ps1 中为反斜杠），未改动任何业务逻辑。</p>
+  <div class="fix">Mi-Xiao-Mi-La-A-Li-Inc/ecosystem.config.cjs          :6   ROOT 常量
+Mi-Xiao-Mi-La-A-Li-Inc/deploy/deploy-all.ps1            :26  $ROOT
+Mi-Xiao-Mi-La-A-Li-Inc/deploy/start-all.ps1             :4   $ROOT
+Mi-Xiao-Mi-La-A-Li-Inc/deploy/nginx.conf                :14  include 路径
+Mi-Xiao-Mi-La-A-Li-Inc/deploy/nginx-mixmlaal.conf       :34,64,83,102,121,140,166,188  root 路径(8处)
+Mi-Xiao-Mi-La-A-Li-Inc/push-now.ps1                     :27  $ROOT
+Mi-Xiao-Mi-La-A-Li-Inc/push-to-github.ps1               :32  $ROOT</div>
+</div>
+
+<div class="card">
+  <h2>⑥ 建议的下一步（需你拍板）</h2>
+  <ul>
+    <li><b>决策 A — 后端归口</b>：确认 <code>python-fastapi</code> 是否为唯一生产后端。若是，我把 PM2 / start-docker / nginx 的 :3001 代理改指 uvicorn（建议端口 8000），并从 PM2 移除 mixmlaal-backend Node 进程。</li>
+    <li><b>决策 B — 主部署机制</b>：建议"静态前端→EdgeOne Pages，后端→自托管 PM2+python-fastapi"，废弃 Render/Docker 重复配置或保留其一。</li>
+    <li><b>决策 C — 生产上线</b>：laal.top 的真实 Docker 部署需你在生产机执行（沙箱无 SSH）。我可产出一份"生产机执行清单"（含 Nginx 反代、SSL、Systemd/PM2 resurrect 步骤）。</li>
+    <li><b>小修</b>：给 <code>portal</code> 补 <code>build</code> 脚本；统一 nginx 端口说明；把 <code>render.yaml</code> 补全 build/start 或删除以免误用。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>⑦ 本次实际上线结果</h2>
+  <p><span class="ok">🎉 daijia-platform 已上线 EdgeOne Pages（中国站）</span></p>
+  <p><a href="https://daijia-platform-cfseudsz.edgeone.cool?eo_token=cbc1c077a9858a8b928a5ac71a721ee0&eo_time=1791739920">https://daijia-platform-cfseudsz.edgeone.cool?eo_token=cbc1c077a9858a8b928a5ac71a721ee0&eo_time=1791739920</a></p>
+  <p class="note">该链接含临时鉴权参数，请在你本机浏览器中打开；有效期约数小时。部署复用了既有的 EdgeOne Pages 实例（daijia-platform），未新建基础设施。</p>
+</div>
+
+</div>
+</body>
+</html>

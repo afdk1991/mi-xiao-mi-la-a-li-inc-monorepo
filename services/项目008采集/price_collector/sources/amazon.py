@@ -49,6 +49,15 @@ class AmazonSource(BaseSource):
             self.timeout = 10
 
     def fetch(self, keyword: str, page: int = 1, page_size: int = 20) -> List[Product]:
+        # 渲染优先（统一反检测引擎，字段更全）
+        try:
+            from .rendered_source import render_collect
+            ps = render_collect("amazon", keyword, page, page_size, self.cookie)
+            if ps:
+                return ps
+        except Exception:
+            pass
+        # 回退：静态 HTML 区块解析
         url = _SEARCH_URL.format(kw=urllib.parse.quote(keyword), page=page)
         headers = {
             "Referer": "https://www.amazon.com/",
@@ -60,13 +69,7 @@ class AmazonSource(BaseSource):
             html = _http.fetch_html(url, timeout=self.timeout, headers=headers)
         except Exception:
             html = ""
-        result = self._parse(html, keyword)
-        # 直连为空时，若启用渲染层（PRICE_COLLECTOR_BROWSER=1），用 Chromium 渲染后再解析
-        if not result and _browser.browser_enabled():
-            rendered = _browser.render_html(url, timeout=self.timeout, cookie=self.cookie)
-            if rendered:
-                result = self._parse(rendered, keyword)
-        return result[:page_size]
+        return self._parse(html, keyword)[:page_size]
 
     @staticmethod
     def _parse(html: str, keyword: str) -> List[Product]:

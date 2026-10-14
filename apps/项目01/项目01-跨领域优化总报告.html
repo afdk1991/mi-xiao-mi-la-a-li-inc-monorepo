@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>项目01 跨领域优化总报告</title>
+<style>
+  :root{--bg:#f7f8fa;--card:#fff;--ink:#1f2329;--muted:#6b7280;--line:#e5e7eb;--brand:#2563eb;--brandbg:#eff4ff;
+    --red:#dc2626;--redbg:#fef2f2;--amber:#d97706;--amberbg:#fffbeb;--green:#16a34a;--greenbg:#f0fdf4;--gray:#6b7280;--graybg:#f3f4f6;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;line-height:1.6}
+  .wrap{max-width:1100px;margin:0 auto;padding:28px 22px 60px}
+  header{border-bottom:3px solid var(--brand);padding-bottom:14px;margin-bottom:22px}
+  h1{font-size:23px;margin:0 0 6px}
+  .sub{color:var(--muted);font-size:13px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:18px}
+  h2{font-size:17px;margin:0 0 12px;display:flex;align-items:center;gap:8px}
+  h2 .t{font-size:11px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--brandbg);color:var(--brand)}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{background:#f1f5f9;font-weight:600}
+  tr:nth-child(even) td{background:#fafbfc}
+  .pill{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px}
+  .p-red{background:var(--redbg);color:var(--red)}
+  .p-amber{background:var(--amberbg);color:var(--amber)}
+  .p-green{background:var(--greenbg);color:var(--green)}
+  .p-gray{background:var(--graybg);color:var(--gray)}
+  code{background:#f3f4f6;padding:1px 6px;border-radius:5px;font-size:12px;font-family:ui-monospace,Consolas,monospace}
+  ul{margin:8px 0;padding-left:20px}li{margin:4px 0}
+  .metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:4px}
+  .m{background:var(--brandbg);border-radius:10px;padding:12px 14px}
+  .m .n{font-size:21px;font-weight:800;color:var(--brand)}.m .l{font-size:12px;color:var(--muted)}
+  .note{font-size:12.5px;color:var(--muted);margin-top:8px}
+  a{color:var(--brand)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>项目01（F:/网站全栈项目/项目01）跨领域优化总报告</h1>
+  <div class="sub">基于 SkillHub 套件的能力盘点 + 13 领域覆盖评估 ｜ 生成：2026-10-12 ｜ 执行：WorkBuddy（Agent 模式）</div>
+</header>
+
+<div class="card">
+  <h2>① 执行摘要 <span class="t">Summary</span></h2>
+  <div class="metrics">
+    <div class="m"><div class="n">1</div><div class="l">已实际上线（EdgeOne）</div></div>
+    <div class="m"><div class="n">7</div><div class="l">已修复部署配置</div></div>
+    <div class="m"><div class="n">6</div><div class="l">已落地交付领域</div></div>
+    <div class="m"><div class="n">5</div><div class="l">不适用（N/A）领域</div></div>
+    <div class="m"><div class="n">13</div><div class="l">覆盖领域总数</div></div>
+    <div class="m"><div class="n">19,335</div><div class="l">源码/配置文件</div></div>
+  </div>
+  <ul>
+    <li><b>真实上线</b>：<code>daijia-dist</code> → EdgeOne Pages 项目 <code>daijia-platform</code>（中国站）。</li>
+    <li><b>配置修复</b>：主项目 7 个部署/运维文件硬编码 <code>D:</code> 旧路径改为 <code>F:</code>，解除本地自托管第一阻断。</li>
+    <li><b>安全审计</b>：用 SkillHub <code>api-security-audit-hckp</code> 对真实配置做结构化审计，定位 JWT 硬编码、后端身份分裂、限流缺失 3 项高危。</li>
+    <li><b>数据分析</b>：全工作区技术栈/文件分布统计（19,335 文件，PHP 18.1% / JS 13.5% / TS 7.8% 等）。</li>
+    <li><b>诚实边界</b>：投资理财/生活服务/教育学习/信息资讯/一人公司 等 5 个领域对本代码项目无对应优化对象，已明确标注 N/A，未制造伪交付；生产服务器真实部署需你在生产机执行（沙箱无 SSH）。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>② SkillHub 能力盘点 <span class="t">Discovery</span></h2>
+  <ul>
+    <li><b>专家库</b>：本机 <code>~/.workbuddy/skills/</code> 下 100+ Skill（即"专家库"），覆盖全栈开发、Docker、安全、GitHub、需求/PRD、电商、会议、浏览器自动化、i18n、地图、法务、写作、看板/任务、部署、PowerBI、短视频、社媒、专家团编排、商业计划等。</li>
+    <li><b>专家市场（相关）</b>：<code>Atlas</code>（全栈网站开发/安全部署）、<code>领航员</code>（项目规划/敏捷/质量）。已通过 <code>search_plugins</code> 真实发现。</li>
+    <li><b>连接器</b>：已连接 <code>agent-mail</code> / <code>cloudbase</code> / <code>edgeone-pages</code>（其中 edgeone-pages 本次已用于部署）。连接器市场大量为金融/ERP/地图/法务类，与代码项目无关，未盲目"调用"。</li>
+    <li><b>编排方法论</b>：加载 <code>on-demand-expert-team</code> 专家团即时拉起框架——先判定组团必要性、动态设计最小团队、门禁校验后交付。本报告即按该框架"判定→设计→执行适用域→守护→交付"推进。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>③ 13 领域覆盖矩阵 <span class="t">Coverage</span></h2>
+  <table>
+    <tr><th>#</th><th>领域</th><th>适用性</th><th>本次动作</th><th>交付物 / 状态</th></tr>
+    <tr><td>1</td><td>OPC·一人公司</td><td><span class="pill p-gray">⚪ N/A</span></td><td>代码项目无公司运营对象；以"一人全栈"工程治理范本看待，未单独建模块</td><td>并入工程治理建议</td></tr>
+    <tr><td>2</td><td>办公协同</td><td><span class="pill p-amber">🟡 部分</span></td><td>产出项目状态文档框架；tencent-docs/wecom 连接器未连接，未推送</td><td>手册/报告即协同载体</td></tr>
+    <tr><td>3</td><td>开发工具</td><td><span class="pill p-green">✅ 已落地</span></td><td>安全审计（api-security-audit-hckp）+ 7 文件配置修复 + 部署机制审查</td><td>API安全审计报告.md</td></tr>
+    <tr><td>4</td><td>投资理财</td><td><span class="pill p-gray">⚪ N/A</span></td><td>代码项目无财务/行情数据；市场金融连接器与本项目无关</td><td>不制造伪交付</td></tr>
+    <tr><td>5</td><td>效率工具</td><td><span class="pill p-green">✅ 已落地</span></td><td>建立跨领域任务追踪与优化看板</td><td>本报告 + TaskList 追踪</td></tr>
+    <tr><td>6</td><td>内容创作</td><td><span class="pill p-green">✅ 已落地</span></td><td>产出部署运行手册与技术审计报告（结构化文档）</td><td>项目01-部署运行手册.md</td></tr>
+    <tr><td>7</td><td>信息资讯</td><td><span class="pill p-gray">⚪ N/A</span></td><td>无资讯类产品模块</td><td>不制造伪交付</td></tr>
+    <tr><td>8</td><td>教育学习</td><td><span class="pill p-gray">⚪ N/A</span></td><td>无教育/课程模块</td><td>不制造伪交付</td></tr>
+    <tr><td>9</td><td>数据分析</td><td><span class="pill p-green">✅ 已落地</span></td><td>全工作区技术栈/文件分布统计脚本</td><td>项目结构与技术栈统计.md</td></tr>
+    <tr><td>10</td><td>网站部署</td><td><span class="pill p-green">✅ 已落地</span></td><td>daijia 上线 EdgeOne；补部署运行手册；标注 Render 缺口</td><td>已上线 + 运行手册</td></tr>
+    <tr><td>11</td><td>生活服务</td><td><span class="pill p-gray">⚪ N/A</span></td><td>无生活服务类功能</td><td>不制造伪交付</td></tr>
+    <tr><td>12</td><td>商业运营</td><td><span class="pill p-amber">🟡 部分</span></td><td>在主报告中给出项目定位/多端矩阵运营要点</td><td>见本报告 §④</td></tr>
+    <tr><td>13</td><td>知识与学习</td><td><span class="pill p-green">✅ 已落地</span></td><td>梳理 CODE_WIKI / README 体系，沉淀部署与审计知识</td><td>报告 + 记忆归档</td></tr>
+  </table>
+  <div class="note">统计：✅ 已落地 6 ｜ 🟡 部分 2 ｜ ⚪ N/A 5。N/A 均因"本工作区为 Web/全栈代码仓库，该领域无对应可优化对象"，而非遗漏。</div>
+</div>
+
+<div class="card">
+  <h2>④ 商业运营要点（部分领域落地） <span class="t">Ops</span></h2>
+  <ul>
+    <li><b>产品矩阵</b>：主站 Mi-Xiao-Mi-La-A-Li-Inc（46 子域名 laal.top 矩阵）+ 代驾 daijia（EdgeOne 已上线）+ 配送 delivery-router + 多卫星产品，构成一人/小团队的 SaaS 矩阵。</li>
+    <li><b>部署策略</b>：静态前端统一走 EdgeOne Pages（已验证），后端收敛到单一 python-fastapi + PM2，降低多机制维护成本。</li>
+    <li><b>风险</b>：后端身份分裂、密钥硬编码、限流缺失是上线前必须解决的生产级风险（详见安全报告）。</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>⑤ 已生成交付物清单 <span class="t">Deliverables</span></h2>
+  <ul>
+    <li><a href="项目01部署就绪度审计报告.html">项目01部署就绪度审计报告.html</a> — 部署机制逐项诊断</li>
+    <li><a href="API安全审计报告.md">API安全审计报告.md</a> — SkillHub 审计工具产出 + 人工复核结论</li>
+    <li><a href="项目01-部署运行手册.md">项目01-部署运行手册.md</a> — 生产机执行清单 + Render 补正</li>
+    <li><a href="项目结构与技术栈统计.md">项目结构与技术栈统计.md</a> — 19,335 文件技术栈分布</li>
+    <li><a href="项目01跨领域优化总报告.html">项目01跨领域优化总报告.html</a> — 本文件（13 领域总览）</li>
+    <li>线上：https://daijia-platform-cfseudsz.edgeone.cool?eo_token=cbc1c077a9858a8b928a5ac71a721ee0&eo_time=1791739920</li>
+  </ul>
+</div>
+
+<div class="card">
+  <h2>⑥ 待你决策 / 下一步 <span class="t">Next</span></h2>
+  <ul>
+    <li><b>决策 A</b>：<code>python-fastapi</code> 是否取代 Node 版 <code>mixmlaal-backend</code> 为唯一生产后端？确认后我统一改 PM2 / Docker / Nginx 指向 uvicorn。</li>
+    <li><b>决策 B</b>：主部署机制是否定为"静态前端→EdgeOne、后端→PM2+python-fastapi"，并清理 Render/Docker 冗余配置？</li>
+    <li><b>决策 C</b>：是否要我把安全整改（JWT 环境变量化、加限流、错误脱敏）直接落到代码与配置中？</li>
+    <li><b>生产上线</b>：laal.top 真实部署请在你的生产机按《部署运行手册》执行；如需我产出"生产机一键脚本"可继续。</li>
+  </ul>
+  <p class="note">说明：本环境无生产 SSH、Docker 离线、C 盘 98%+ 满，无法代执行真实服务器部署；上述决策确认后，代码与配置侧的修改我可立即落地。</p>
+</div>
+
+</div>
+</body>
+</html>

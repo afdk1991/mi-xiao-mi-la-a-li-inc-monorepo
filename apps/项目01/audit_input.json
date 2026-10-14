@@ -1,0 +1,50 @@
+{
+  "subject": "Mi-Xiao-Mi-La-A-Li-Inc / 项目01 部署与 API 安全配置",
+  "items": [
+    {
+      "name": "JWT 密钥硬编码",
+      "evidence": "生产环境 JWT_SECRET 在 ecosystem.config.cjs 与 deploy/start-docker.sh 中以明文常量形式硬编码，未接入密钥管理服务或环境变量隔离",
+      "value": 0
+    },
+    {
+      "name": "部署脚本路径已修复",
+      "evidence": "原 D: 盘硬编码根路径已全部改为 F:，配置现已正确指向工作区，身份校验与越权防护所依赖的配置文件可正常加载",
+      "value": 1
+    },
+    {
+      "name": "后端入口不一致",
+      "evidence": "PM2 仅启动 Node 版 mixmlaal-backend，python-fastapi 未被任何部署配置加载，API 网关路由缺少统一鉴权",
+      "value": 0
+    },
+    {
+      "name": "secrets 目录保护",
+      "evidence": "项目含 secrets/ 目录，需确认已被 .gitignore 排除，防止敏感字段与错误信息随代码泄露",
+      "value": 0
+    },
+    {
+      "name": "API 输入校验",
+      "evidence": "FastAPI 接口使用 Pydantic 模型做参数与注入防护，外部输入经类型与边界校验",
+      "value": 1
+    },
+    {
+      "name": "限流与防重放",
+      "evidence": "后端接口未配置限流与防重放，缺少风控能力",
+      "value": 0
+    },
+    {
+      "name": "错误信息暴露",
+      "evidence": "未对接口错误信息做敏感字段掩码，存在内部细节泄露风险",
+      "value": 0
+    },
+    {
+      "name": "Nginx 鉴权头透传",
+      "evidence": "生产 Nginx 通过 proxy_pass 保留 /api/ 前缀并透传身份校验与越权防护所需的请求头",
+      "value": 1
+    },
+    {
+      "name": "传输层加密",
+      "evidence": "laal.top 已通过 Let's Encrypt 配置 SSL 并自动续期，并配合身份校验与越权防护所需的传输加密",
+      "value": 1
+    }
+  ]
+}

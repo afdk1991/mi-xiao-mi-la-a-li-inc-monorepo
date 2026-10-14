@@ -1,0 +1,982 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-database/postgresql/supported-extensions" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">Supported extensions | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/en/img/og-docs-en.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/en/img/og-docs-en.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/en/database/postgresql/supported-extensions"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Supported extensions | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="This page lists the extensions currently provided by CloudBase PostgreSQL. Support scope, versions,"><meta data-rh="true" property="og:description" content="This page lists the extensions currently provided by CloudBase PostgreSQL. Support scope, versions,"><link data-rh="true" rel="icon" href="/en/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/en/database/postgresql/supported-extensions"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/database/postgresql/supported-extensions" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/database/postgresql/supported-extensions" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/database/postgresql/supported-extensions" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Supported extensions","item":"https://docs.cloudbase.net/en/database/postgresql/supported-extensions"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/en/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/en/assets/css/styles.09bf0622.css">
+<script src="/en/assets/js/runtime~main.5f1bf0e5.js" defer="defer"></script>
+<script src="/en/assets/js/main.b2e27f72.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="Close" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/en/quick-start/">Quick Start</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Products</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">Core</a></li><li><a aria-current="page" class="dropdown__link nav-icon-database dropdown__link--active" href="/en/database/postgresql/initialization">Cloud Database</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/en/storage/introduce">Cloud Storage</a></li><li><a class="dropdown__link nav-icon-zap" href="/en/cloud-function/introduce">Cloud Functions</a></li><li><a class="dropdown__link nav-icon-cloud" href="/en/run/introduction">Cloud Run</a></li><li><a class="dropdown__link nav-icon-globe" href="/en/hosting/introduce">Hosting</a></li><li><a class="dropdown__link nav-icon-log-in" href="/en/authentication-v2/auth/introduce">Auth</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/en/ai/introduce">AI</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/en/integration/introduce">Integration Center</a></li><li><a href="#" class="dropdown__link navbar-category">Platform</a></li><li><a class="dropdown__link nav-icon-network" href="/en/service/introduce">HTTP Gateway</a></li><li><a class="dropdown__link nav-icon-eye" href="/en/envconfig/intro">Environment Configuration</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/en/logger/introduce">LogManage</a></li><li><a class="dropdown__link" href="/en/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Dev Tools</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/ai/cloudbase-ai-toolkit/">AI Dev Tools</a></li><li><a class="dropdown__link" href="/en/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Solutions</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/solutions/cloudbase-platform-edition/overview">Platform Integration</a></li><li><a class="dropdown__link" href="/en/solutions/vibe-coding-platform/overview">VibeCoding Platform</a></li><li><a class="dropdown__link" href="/en/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Reference</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDKs</a></li><li><a class="dropdown__link" href="/en/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">APIs</a></li><li><a class="dropdown__link" href="/en/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/en/error-code/basic">Error Codes</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">More Resources</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/changelog/">ChangeLog</a></li><li><a class="dropdown__link" href="/en/faq/">FAQ</a></li><li><a class="dropdown__link" href="/en/practices/introduce">Best Practices</a></li><li><a class="dropdown__link" href="/en/quick-start/migration/">Migration Guides</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Pricing</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Blog</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Follow Official Account for Benefits</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">Console</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/database/postgresql/supported-extensions" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-Hans">简体中文</a></li><li><a href="/en/database/postgresql/supported-extensions" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_mhZE"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_Y1UP menuWithAnnouncementBar_fPny"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">PostgreSQL Database</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/initialization"><span>Overview</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Fundamentals</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/connecting-to-postgresql"><span>Connect to your database</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/import-data"><span>Import data</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/secure-data"><span>Secure your data</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Working with your database basics</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/tables"><span>Tables, views, and data</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/arrays"><span>Arrays</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/data-index"><span>Index Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/foreign-key"><span>Foreign Key Configuration</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/http/relate-query"><span>Relational Query</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/json"><span>JSON and unstructured data</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/full-text-search"><span>Full text search</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item sidebar-external"><a class="menu__link" tabindex="0" href="/en/http-api/pgdb/postgresql-restful-api"><span>Access via HTTP API</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Working with your database intermediate</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/enums"><span>Enum types</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/functions"><span>Database functions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/triggers"><span>Triggers</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/transactions"><span>Transactions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/connection-management"><span>Connection management</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Access and security</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/data-permission"><span>Basic Permissions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/roles"><span>Roles and permissions</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Configuration, optimization, and operations</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/query-optimization"><span>Query optimization</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/logs-monitoring"><span>Logs and monitoring</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/database-management"><span>Database management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/backup"><span>Backup and recovery</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/errorcode"><span>Error Codes</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active" tabindex="0">Extensions</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/extensions"><span>Extensions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/en/database/postgresql/supported-extensions"><span>Supported extensions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/pg-doc"><span>pg_doc Document plugin</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/pgvector"><span>pgvector</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/tencentdb-scf"><span>tencentdb_scf</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Frameworks and tools</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/framework-quickstarts/pg/mp"><span>WeChat Mini Program</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/framework-quickstarts/pg/react"><span>React</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/framework-quickstarts/pg/vue"><span>Vue</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/nodejs-cloud-function"><span>Node.js and Cloud Functions</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/dmc-data-manage"><span>DMC Database Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item sidebar-external"><a class="menu__link" tabindex="0" href="/en/cli-v1/db/postgresql/management"><span>Use via CLI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item sidebar-external"><a class="menu__link" tabindex="0" href="/en/recipes/add-rag-with-pgvector-cloudbase"><span>pgvector RAG</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link" tabindex="0">Debugging</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/troubleshooting/"><span>Troubleshooting overview</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/troubleshooting/common-errors"><span>Common errors</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/troubleshooting/connection"><span>Connection failures</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/troubleshooting/permission"><span>Permission and RLS issues</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/troubleshooting/schema-cache"><span>Schema cache issues</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/troubleshooting/backup-restore"><span>Backup and restore issues</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/database/postgresql/faq"><span>FAQ</span></a></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">PostgreSQL Database</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Extensions</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Supported extensions</span></li></ul></nav></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>Supported extensions</h1></header>
+<p>This page lists the extensions currently provided by CloudBase PostgreSQL. Support scope, versions, and permission requirements may vary by instance version. Use the actual database query result and console information as the source of truth.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="extension-overview">Extension overview<a href="#extension-overview" class="hash-link" aria-label="Direct link to Extension overview" title="Direct link to Extension overview" translate="no">​</a></h2>
+<table><thead><tr><th>Extension</th><th>Version</th><th>Capability</th></tr></thead><tbody><tr><td><a href="#address-standardizer"><code>address_standardizer</code></a></td><td>3.5.0</td><td>Parse and normalize postal addresses before geocoding.</td></tr><tr><td><a href="#address-standardizer-data-us"><code>address_standardizer_data_us</code></a></td><td>3.5.0</td><td>Example US dataset for the address standardizer.</td></tr><tr><td><a href="#age"><code>age</code></a></td><td>1.5.0</td><td>Apache AGE graph database extension for PostgreSQL.</td></tr><tr><td><a href="#amcheck"><code>amcheck</code></a></td><td>1.4</td><td>Verify relation and index integrity.</td></tr><tr><td><a href="#autoinc"><code>autoinc</code></a></td><td>1.0</td><td>Trigger-based helpers for auto-incrementing fields.</td></tr><tr><td><a href="#bloom"><code>bloom</code></a></td><td>1.0</td><td>Bloom index access method for multi-column equality filters.</td></tr><tr><td><a href="#bool-plperl"><code>bool_plperl</code></a></td><td>1.0</td><td>Transform boolean values between PostgreSQL and PL/Perl.</td></tr><tr><td><a href="#btree-gin"><code>btree_gin</code></a></td><td>1.3</td><td>GIN operator classes for common B-tree data types.</td></tr><tr><td><a href="#btree-gist"><code>btree_gist</code></a></td><td>1.7</td><td>GiST operator classes for common B-tree data types.</td></tr><tr><td><a href="#chkpass"><code>chkpass</code></a></td><td>1.0</td><td>Password type with automatic encryption.</td></tr><tr><td><a href="#citext"><code>citext</code></a></td><td>1.6</td><td>Case-insensitive text type.</td></tr><tr><td><a href="#cos-fdw"><code>cos_fdw</code></a></td><td>1.0</td><td>Foreign data wrapper for Tencent Cloud COS flat files.</td></tr><tr><td><a href="#count-distinct"><code>count_distinct</code></a></td><td>3.0.2</td><td>Alternative COUNT(DISTINCT ...) aggregate implementation.</td></tr><tr><td><a href="#cube"><code>cube</code></a></td><td>1.5</td><td>Multidimensional cube data type.</td></tr><tr><td><a href="#dblink"><code>dblink</code></a></td><td>1.2</td><td>Connect to other PostgreSQL databases from SQL.</td></tr><tr><td><a href="#decoderbufs"><code>decoderbufs</code></a></td><td>0.1.0</td><td>Logical decoding plugin that outputs WAL changes in Protocol Buffer format.</td></tr><tr><td><a href="#dict-int"><code>dict_int</code></a></td><td>1.0</td><td>Full text search dictionary template for integers.</td></tr><tr><td><a href="#dict-xsyn"><code>dict_xsyn</code></a></td><td>1.0</td><td>Extended synonym dictionary template for full text search.</td></tr><tr><td><a href="#earthdistance"><code>earthdistance</code></a></td><td>1.2</td><td>Great-circle distance calculations.</td></tr><tr><td><a href="#fuzzystrmatch"><code>fuzzystrmatch</code></a></td><td>1.2</td><td>String similarity and distance functions.</td></tr><tr><td><a href="#hll"><code>hll</code></a></td><td>2.18</td><td>HyperLogLog type for approximate distinct counting.</td></tr><tr><td><a href="#hstore"><code>hstore</code></a></td><td>1.8</td><td>Key-value data type.</td></tr><tr><td><a href="#hstore-plperl"><code>hstore_plperl</code></a></td><td>1.0</td><td>Transform hstore values between PostgreSQL and PL/Perl.</td></tr><tr><td><a href="#hypopg"><code>hypopg</code></a></td><td>1.4.1</td><td>Hypothetical indexes for PostgreSQL.</td></tr><tr><td><a href="#imgsmlr"><code>imgsmlr</code></a></td><td>1.0</td><td>Image similarity module.</td></tr><tr><td><a href="#insert-username"><code>insert_username</code></a></td><td>1.0</td><td>Functions for tracking who changed a table.</td></tr><tr><td><a href="#intagg"><code>intagg</code></a></td><td>1.1</td><td>Obsolete integer aggregator and enumerator.</td></tr><tr><td><a href="#intarray"><code>intarray</code></a></td><td>1.5</td><td>Functions, operators, and indexes for one-dimensional integer arrays.</td></tr><tr><td><a href="#isn"><code>isn</code></a></td><td>1.2</td><td>Data types for international product numbering standards.</td></tr><tr><td><a href="#jsonb-plperl"><code>jsonb_plperl</code></a></td><td>1.0</td><td>Transform JSONB values between PostgreSQL and PL/Perl.</td></tr><tr><td><a href="#lo"><code>lo</code></a></td><td>1.1</td><td>Large Object maintenance.</td></tr><tr><td><a href="#ltree"><code>ltree</code></a></td><td>1.3</td><td>Hierarchical tree path data type.</td></tr><tr><td><a href="#moddatetime"><code>moddatetime</code></a></td><td>1.0</td><td>Functions for tracking last modification time.</td></tr><tr><td><a href="#mysql-fdw"><code>mysql_fdw</code></a></td><td>1.2</td><td>Foreign data wrapper for querying MySQL.</td></tr><tr><td><a href="#pageinspect"><code>pageinspect</code></a></td><td>1.12</td><td>Inspect database pages at a low level.</td></tr><tr><td><a href="#pg-bigm"><code>pg_bigm</code></a></td><td>1.2</td><td>Bigram-based text similarity and index search.</td></tr><tr><td><a href="#pg-buffercache"><code>pg_buffercache</code></a></td><td>1.5</td><td>Inspect shared buffer cache contents.</td></tr><tr><td><a href="#pg-cron"><code>pg_cron</code></a></td><td>1.6</td><td>Job scheduler for PostgreSQL.</td></tr><tr><td><a href="#pg-freespacemap"><code>pg_freespacemap</code></a></td><td>1.2</td><td>Inspect the free space map.</td></tr><tr><td><a href="#pg-hashids"><code>pg_hashids</code></a></td><td>1.3</td><td>Hashids support.</td></tr><tr><td><a href="#pg-hint-plan"><code>pg_hint_plan</code></a></td><td>1.7.0</td><td>Optimizer hints for PostgreSQL.</td></tr><tr><td><a href="#pg-ivm"><code>pg_ivm</code></a></td><td>1.11</td><td>Incremental view maintenance.</td></tr><tr><td><a href="#pg-jieba"><code>pg_jieba</code></a></td><td>1.1.1</td><td>Chinese full text search parser.</td></tr><tr><td><a href="#pg-partman"><code>pg_partman</code></a></td><td>4.7.4</td><td>Partition management by time or ID.</td></tr><tr><td><a href="#pg-prewarm"><code>pg_prewarm</code></a></td><td>1.2</td><td>Prewarm relation data.</td></tr><tr><td><a href="#pg-repack"><code>pg_repack</code></a></td><td>1.5.2</td><td>Reorganize tables and indexes with minimal locks.</td></tr><tr><td><a href="#pg-similarity"><code>pg_similarity</code></a></td><td>1.0</td><td>Similarity query support.</td></tr><tr><td><a href="#pg-sphere"><code>pg_sphere</code></a></td><td>1.5.1</td><td>Spherical objects, functions, and indexes.</td></tr><tr><td><a href="#pg-squeeze"><code>pg_squeeze</code></a></td><td>1.9</td><td>Remove unused space from relations.</td></tr><tr><td><a href="#pg-stat-log"><code>pg_stat_log</code></a></td><td>1.0</td><td>Runtime execution statistics for SQL statements.</td></tr><tr><td><a href="#pg-stat-statements"><code>pg_stat_statements</code></a></td><td>1.11</td><td>SQL planning and execution statistics.</td></tr><tr><td><a href="#pg-surgery"><code>pg_surgery</code></a></td><td>1.0</td><td>Low-level surgery on damaged relations.</td></tr><tr><td><a href="#pg-trgm"><code>pg_trgm</code></a></td><td>1.6</td><td>Trigram-based text similarity and index search.</td></tr><tr><td><a href="#pg-visibility"><code>pg_visibility</code></a></td><td>1.2</td><td>Inspect visibility map and page-level visibility.</td></tr><tr><td><a href="#pg-walinspect"><code>pg_walinspect</code></a></td><td>1.1</td><td>Inspect PostgreSQL WAL contents.</td></tr><tr><td><a href="#pgagent"><code>pgagent</code></a></td><td>4.2</td><td>PostgreSQL job scheduler.</td></tr><tr><td><a href="#pgaudit"><code>pgaudit</code></a></td><td>17.0</td><td>PostgreSQL auditing.</td></tr><tr><td><a href="#pgcrypto"><code>pgcrypto</code></a></td><td>1.3</td><td>Cryptographic functions.</td></tr><tr><td><a href="#pglogical"><code>pglogical</code></a></td><td>2.4.5</td><td>PostgreSQL logical replication.</td></tr><tr><td><a href="#pglogical-origin"><code>pglogical_origin</code></a></td><td>1.0.0</td><td>Compatibility extension for pglogical origin.</td></tr><tr><td><a href="#pgrouting"><code>pgrouting</code></a></td><td>3.6.2</td><td>Routing extension for PostgreSQL/PostGIS.</td></tr><tr><td><a href="#pgrowlocks"><code>pgrowlocks</code></a></td><td>1.2</td><td>Show row-level locking information.</td></tr><tr><td><a href="#pgstattuple"><code>pgstattuple</code></a></td><td>1.5</td><td>Tuple-level statistics.</td></tr><tr><td><a href="#pldbgapi"><code>pldbgapi</code></a></td><td>1.1</td><td>Server-side debugging support for PL/pgSQL.</td></tr><tr><td><a href="#plperl"><code>plperl</code></a></td><td>1.0</td><td>PL/Perl procedural language.</td></tr><tr><td><a href="#plpgsql"><code>plpgsql</code></a></td><td>1.0</td><td>PL/pgSQL procedural language.</td></tr><tr><td><a href="#pltcl"><code>pltcl</code></a></td><td>1.0</td><td>PL/Tcl procedural language.</td></tr><tr><td><a href="#plv8"><code>plv8</code></a></td><td>3.2.3</td><td>Trusted PL/JavaScript procedural language.</td></tr><tr><td><a href="#postgis"><code>postgis</code></a></td><td>3.5.0</td><td>Geometry and geography spatial types and functions.</td></tr><tr><td><a href="#postgis-raster"><code>postgis_raster</code></a></td><td>3.5.0</td><td>PostGIS raster types and functions.</td></tr><tr><td><a href="#postgis-sfcgal"><code>postgis_sfcgal</code></a></td><td>3.5.0</td><td>PostGIS SFCGAL functions.</td></tr><tr><td><a href="#postgis-tiger-geocoder"><code>postgis_tiger_geocoder</code></a></td><td>3.5.0</td><td>PostGIS TIGER geocoder and reverse geocoder.</td></tr><tr><td><a href="#postgis-topology"><code>postgis_topology</code></a></td><td>3.5.0</td><td>PostGIS topology spatial types and functions.</td></tr><tr><td><a href="#postgres-fdw"><code>postgres_fdw</code></a></td><td>1.1</td><td>Foreign data wrapper for remote PostgreSQL servers.</td></tr><tr><td><a href="#rdkit"><code>rdkit</code></a></td><td>4.7.0</td><td>Cheminformatics functionality.</td></tr><tr><td><a href="#rds-server-handler"><code>rds_server_handler</code></a></td><td>1.0</td><td>TencentDB PostgreSQL service handler.</td></tr><tr><td><a href="#refint"><code>refint</code></a></td><td>1.0</td><td>Obsolete referential integrity helper functions.</td></tr><tr><td><a href="#roaringbitmap"><code>roaringbitmap</code></a></td><td>0.5</td><td>Roaring Bitmap support.</td></tr><tr><td><a href="#rum"><code>rum</code></a></td><td>1.3</td><td>RUM index access method.</td></tr><tr><td><a href="#seg"><code>seg</code></a></td><td>1.4</td><td>Line segment or floating interval type.</td></tr><tr><td><a href="#sequential-uuids"><code>sequential_uuids</code></a></td><td>1.0.2</td><td>Sequential UUID generator.</td></tr><tr><td><a href="#smlar"><code>smlar</code></a></td><td>1.0</td><td>Similarity for one-dimensional arrays.</td></tr><tr><td><a href="#sslinfo"><code>sslinfo</code></a></td><td>1.2</td><td>SSL certificate information.</td></tr><tr><td><a href="#starrocks-fdw"><code>starrocks_fdw</code></a></td><td>1.2</td><td>Foreign data wrapper for StarRocks.</td></tr><tr><td><a href="#tablefunc"><code>tablefunc</code></a></td><td>1.0</td><td>Whole-table functions including crosstab.</td></tr><tr><td><a href="#tcn"><code>tcn</code></a></td><td>1.0</td><td>Triggered change notifications.</td></tr><tr><td><a href="#tencentdb-ai"><code>tencentdb_ai</code></a></td><td>1.3</td><td>TencentDB AI extension for prompt, embedding, and related AI capabilities.</td></tr><tr><td><a href="#tencentdb-failover-slot"><code>tencentdb_failover_slot</code></a></td><td>1.1</td><td>Failover slot helper functions.</td></tr><tr><td><a href="#tencentdb-scf"><code>tencentdb_scf</code></a></td><td>1.0</td><td>Secure and controlled CloudBase cloud function invocation with sync/async support and pg_cron integration.</td></tr><tr><td><a href="#tencentdb-index-advisor"><code>tencentdb_index_advisor</code></a></td><td>1.0</td><td>Index advisor for queries and workloads.</td></tr><tr><td><a href="#tencentdb-serverless"><code>tencentdb_serverless</code></a></td><td>1.0</td><td>Serverless mode support extension.</td></tr><tr><td><a href="#tencentdb-sql-throttling"><code>tencentdb_sql_throttling</code></a></td><td>1.0</td><td>SQL planning and execution statistics for throttling.</td></tr><tr><td><a href="#tencentdb-superuser"><code>tencentdb_superuser</code></a></td><td>1.1</td><td>TencentDB upgrade support extension.</td></tr><tr><td><a href="#tencentdb-system-stat"><code>tencentdb_system_stat</code></a></td><td>1.0</td><td>SQL execution statistics.</td></tr><tr><td><a href="#tencentdb-wal-stat"><code>tencentdb_wal_stat</code></a></td><td>1.0</td><td>WAL statistics grouped by relation.</td></tr><tr><td><a href="#timescaledb"><code>timescaledb</code></a></td><td>2.23.0</td><td>Time-series extension for scalable inserts and complex queries.</td></tr><tr><td><a href="#topn"><code>topn</code></a></td><td>2.6.0</td><td>Top-N JSONB type.</td></tr><tr><td><a href="#tsm-system-rows"><code>tsm_system_rows</code></a></td><td>1.0</td><td>TABLESAMPLE method limited by row count.</td></tr><tr><td><a href="#tsm-system-time"><code>tsm_system_time</code></a></td><td>1.0</td><td>TABLESAMPLE method limited by time.</td></tr><tr><td><a href="#unaccent"><code>unaccent</code></a></td><td>1.1</td><td>Text search dictionary that removes accents.</td></tr><tr><td><a href="#uuid-ossp"><code>uuid-ossp</code></a></td><td>1.1</td><td>UUID generation functions.</td></tr><tr><td><a href="#vector"><code>vector</code></a></td><td>0.8.2</td><td>Vector type and ivfflat/hnsw indexes.</td></tr><tr><td><a href="#vectorscale"><code>vectorscale</code></a></td><td>0.9.0</td><td>DiskANN access method for vector search.</td></tr><tr><td><a href="#xml2"><code>xml2</code></a></td><td>1.1</td><td>XPath querying and XSLT.</td></tr><tr><td><a href="#zhparser"><code>zhparser</code></a></td><td>2.2</td><td>Chinese parser for full text search.</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="usage-guidance">Usage guidance<a href="#usage-guidance" class="hash-link" aria-label="Direct link to Usage guidance" title="Direct link to Usage guidance" translate="no">​</a></h2>
+<ul>
+<li class="">This page uses an overview table plus per-extension notes so you can find extensions by capability. For CloudBase PostgreSQL, use the current instance query result as the source of truth.</li>
+<li class="">Before using an extension, validate permissions, performance, backup and restore, and migration impact in a staging environment.</li>
+<li class="">FDW, scheduling, audit, replication, procedural language, and low-level diagnostic extensions usually require stricter permission governance.</li>
+<li class="">Extensions provide database capabilities. Do not expose low-level diagnostics, replication, scheduling, or external data access directly to frontend access paths.</li>
+</ul>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="extension-details">Extension details<a href="#extension-details" class="hash-link" aria-label="Direct link to Extension details" title="Direct link to Extension details" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="address-standardizer">address_standardizer<a href="#address-standardizer" class="hash-link" aria-label="Direct link to address_standardizer" title="Direct link to address_standardizer" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>address_standardizer</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/Extras.html">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: Parse and normalize postal addresses before geocoding.</li>
+<li class=""><strong>Usage</strong>: Use it after importing user, store, or logistics addresses to split free-form address text into structured parts such as street, city, and postcode.</li>
+<li class=""><strong>Notes</strong>: Address parsing depends on rules and datasets. Validate samples for the target country or region, and do not treat parsed results as the only source of truth.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="address-standardizer-data-us">address_standardizer_data_us<a href="#address-standardizer-data-us" class="hash-link" aria-label="Direct link to address_standardizer_data_us" title="Direct link to address_standardizer_data_us" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>address_standardizer_data_us</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/Extras.html">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: Example US dataset for the address standardizer.</li>
+<li class=""><strong>Usage</strong>: Use it with address_standardizer for US address examples, tests, or US address normalization validation.</li>
+<li class=""><strong>Notes</strong>: This dataset targets US addresses. Do not use it as a rule set for China or other regions.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="age">age<a href="#age" class="hash-link" aria-label="Direct link to age" title="Direct link to age" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>age</code></li>
+<li class=""><strong>Version</strong>: 1.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://age.apache.org/overview/">Apache AGE website</a></li>
+<li class=""><strong>Capability</strong>: Apache AGE graph database extension for PostgreSQL.</li>
+<li class=""><strong>Usage</strong>: Use it to model graph data such as user relationships, knowledge graphs, dependencies, and path traversal.</li>
+<li class=""><strong>Notes</strong>: Graph querying differs from relational modeling. Validate query language, indexing, and backup behavior before adoption.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="amcheck">amcheck<a href="#amcheck" class="hash-link" aria-label="Direct link to amcheck" title="Direct link to amcheck" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>amcheck</code></li>
+<li class=""><strong>Version</strong>: 1.4</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/amcheck.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Verify relation and index integrity.</li>
+<li class=""><strong>Usage</strong>: Use it when you suspect index corruption, relation page issues, or need low-level consistency checks.</li>
+<li class=""><strong>Notes</strong>: This is a low-level diagnostic tool. Run large checks during off-peak hours.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="autoinc">autoinc<a href="#autoinc" class="hash-link" aria-label="Direct link to autoinc" title="Direct link to autoinc" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>autoinc</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Trigger-based helpers for auto-incrementing fields.</li>
+<li class=""><strong>Usage</strong>: Use it for compatibility with legacy tables that maintain incrementing values through triggers. Prefer identity columns or sequences for new tables.</li>
+<li class=""><strong>Notes</strong>: Trigger-based auto increments hide write behavior. Validate concurrency and uniqueness semantics.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bloom">bloom<a href="#bloom" class="hash-link" aria-label="Direct link to bloom" title="Direct link to bloom" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>bloom</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/bloom.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Bloom index access method for multi-column equality filters.</li>
+<li class=""><strong>Usage</strong>: Use Bloom indexes when queries filter by many columns and many composite B-tree indexes are impractical.</li>
+<li class=""><strong>Notes</strong>: Bloom indexes can have false positives and require heap rechecks. They do not replace B-tree indexes for range queries.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="bool-plperl">bool_plperl<a href="#bool-plperl" class="hash-link" aria-label="Direct link to bool_plperl" title="Direct link to bool_plperl" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>bool_plperl</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/plperl-funcs.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Transform boolean values between PostgreSQL and PL/Perl.</li>
+<li class=""><strong>Usage</strong>: Use it when PL/Perl functions need to read or return PostgreSQL boolean values.</li>
+<li class=""><strong>Notes</strong>: Procedural language transforms expand executable database logic. Restrict function creation permissions.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="btree-gin">btree_gin<a href="#btree-gin" class="hash-link" aria-label="Direct link to btree_gin" title="Direct link to btree_gin" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>btree_gin</code></li>
+<li class=""><strong>Version</strong>: 1.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/btree-gin.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: GIN operator classes for common B-tree data types.</li>
+<li class=""><strong>Usage</strong>: Use it when a GIN index needs to combine scalar fields with arrays, full text search, or JSONB fields.</li>
+<li class=""><strong>Notes</strong>: GIN indexes add write cost. For simple equality or range filters, prefer B-tree indexes.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="btree-gist">btree_gist<a href="#btree-gist" class="hash-link" aria-label="Direct link to btree_gist" title="Direct link to btree_gist" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>btree_gist</code></li>
+<li class=""><strong>Version</strong>: 1.7</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/btree-gist.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: GiST operator classes for common B-tree data types.</li>
+<li class=""><strong>Usage</strong>: Use it with GiST indexes or exclusion constraints, such as schedule conflict detection and mixed spatial/range constraints.</li>
+<li class=""><strong>Notes</strong>: GiST is operator-class specific. Use B-tree for ordinary equality, sorting, and range filters.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="chkpass">chkpass<a href="#chkpass" class="hash-link" aria-label="Direct link to chkpass" title="Direct link to chkpass" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>chkpass</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/9/chkpass.html">PostgreSQL historical documentation</a></li>
+<li class=""><strong>Capability</strong>: Password type with automatic encryption.</li>
+<li class=""><strong>Usage</strong>: Use it only for legacy compatibility with database-stored password fields. Modern apps should use a dedicated authentication system.</li>
+<li class=""><strong>Notes</strong>: Do not design a new password storage scheme around this extension.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="citext">citext<a href="#citext" class="hash-link" aria-label="Direct link to citext" title="Direct link to citext" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>citext</code></li>
+<li class=""><strong>Version</strong>: 1.6</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/citext.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Case-insensitive text type.</li>
+<li class=""><strong>Usage</strong>: Use it for emails, usernames, and tags where comparisons should ignore case without wrapping queries in lower().</li>
+<li class=""><strong>Notes</strong>: Confirm uniqueness semantics and collation behavior before using it in unique constraints.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cos-fdw">cos_fdw<a href="#cos-fdw" class="hash-link" aria-label="Direct link to cos_fdw" title="Direct link to cos_fdw" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>cos_fdw</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/47390">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: Foreign data wrapper for Tencent Cloud COS flat files.</li>
+<li class=""><strong>Usage</strong>: Use it to map structured files in COS as foreign tables for low-frequency import, analysis, or temporary queries.</li>
+<li class=""><strong>Notes</strong>: FDW queries depend on object storage, network, and file format. Avoid high-frequency transactional paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="count-distinct">count_distinct<a href="#count-distinct" class="hash-link" aria-label="Direct link to count_distinct" title="Direct link to count_distinct" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>count_distinct</code></li>
+<li class=""><strong>Version</strong>: 3.0.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://pgxn.org/dist/count_distinct/">PGXN</a></li>
+<li class=""><strong>Capability</strong>: Alternative COUNT(DISTINCT ...) aggregate implementation.</li>
+<li class=""><strong>Usage</strong>: Use it for large analytical distinct-count queries where it improves HashAggregate behavior.</li>
+<li class=""><strong>Notes</strong>: Benchmark with EXPLAIN ANALYZE. Do not replace every COUNT(DISTINCT) blindly.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="cube">cube<a href="#cube" class="hash-link" aria-label="Direct link to cube" title="Direct link to cube" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>cube</code></li>
+<li class=""><strong>Version</strong>: 1.5</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/cube.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Multidimensional cube data type.</li>
+<li class=""><strong>Usage</strong>: Use it for multidimensional points, ranges, and simple similarity calculations with GiST indexes.</li>
+<li class=""><strong>Notes</strong>: For embedding search, prefer vector or vectorscale. Cube fits lower-dimensional numeric data.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dblink">dblink<a href="#dblink" class="hash-link" aria-label="Direct link to dblink" title="Direct link to dblink" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>dblink</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/dblink.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Connect to other PostgreSQL databases from SQL.</li>
+<li class=""><strong>Usage</strong>: Use it for cross-database queries or small migration tasks from another PostgreSQL database.</li>
+<li class=""><strong>Notes</strong>: Protect connection strings and credentials. Cross-database queries are not ideal for high-frequency production paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="decoderbufs">decoderbufs<a href="#decoderbufs" class="hash-link" aria-label="Direct link to decoderbufs" title="Direct link to decoderbufs" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>decoderbufs</code></li>
+<li class=""><strong>Version</strong>: 0.1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/debezium/postgres-decoderbufs">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Logical decoding plugin that outputs WAL changes in Protocol Buffer format.</li>
+<li class=""><strong>Usage</strong>: Use it for logical replication or change data capture pipelines that consume protobuf-encoded WAL changes.</li>
+<li class=""><strong>Notes</strong>: Monitor replication slots and consumer lag. Long lag can retain WAL and increase storage pressure.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dict-int">dict_int<a href="#dict-int" class="hash-link" aria-label="Direct link to dict_int" title="Direct link to dict_int" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>dict_int</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/dict-int.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Full text search dictionary template for integers.</li>
+<li class=""><strong>Usage</strong>: Use it in text search configurations that need to handle numeric tokens such as product codes or category IDs.</li>
+<li class=""><strong>Notes</strong>: Dictionary changes should be coordinated with text search configurations and index refreshes.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="dict-xsyn">dict_xsyn<a href="#dict-xsyn" class="hash-link" aria-label="Direct link to dict_xsyn" title="Direct link to dict_xsyn" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>dict_xsyn</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/dict-xsyn.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Extended synonym dictionary template for full text search.</li>
+<li class=""><strong>Usage</strong>: Use it to expand business synonyms, brand aliases, or alternate spellings in search.</li>
+<li class=""><strong>Notes</strong>: Synonyms affect recall and false positives. Validate with real search samples.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="earthdistance">earthdistance<a href="#earthdistance" class="hash-link" aria-label="Direct link to earthdistance" title="Direct link to earthdistance" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>earthdistance</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/earthdistance.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Great-circle distance calculations.</li>
+<li class=""><strong>Usage</strong>: Use it for distance between latitude/longitude points, nearby store filtering, and coarse location queries.</li>
+<li class=""><strong>Notes</strong>: For complex GIS, projections, and spatial indexes, prefer PostGIS.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="fuzzystrmatch">fuzzystrmatch<a href="#fuzzystrmatch" class="hash-link" aria-label="Direct link to fuzzystrmatch" title="Direct link to fuzzystrmatch" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>fuzzystrmatch</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/fuzzystrmatch.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: String similarity and distance functions.</li>
+<li class=""><strong>Usage</strong>: Use it for spell correction, fuzzy matching, phonetic matching, and data cleanup.</li>
+<li class=""><strong>Notes</strong>: Similarity functions can be CPU-heavy. Reduce candidate sets before applying them to large tables.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hll">hll<a href="#hll" class="hash-link" aria-label="Direct link to hll" title="Direct link to hll" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>hll</code></li>
+<li class=""><strong>Version</strong>: 2.18</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/citusdata/postgresql-hll">GitHub</a></li>
+<li class=""><strong>Capability</strong>: HyperLogLog type for approximate distinct counting.</li>
+<li class=""><strong>Usage</strong>: Use it for approximate UV, user count, or device count analytics at large scale.</li>
+<li class=""><strong>Notes</strong>: HLL is approximate. Do not use it for settlement, inventory, billing, or exact counts.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hstore">hstore<a href="#hstore" class="hash-link" aria-label="Direct link to hstore" title="Direct link to hstore" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>hstore</code></li>
+<li class=""><strong>Version</strong>: 1.8</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/hstore.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Key-value data type.</li>
+<li class=""><strong>Usage</strong>: Use it for simple sparse attributes, labels, or legacy key-value data.</li>
+<li class=""><strong>Notes</strong>: For new nested or flexible data models, prefer JSONB.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hstore-plperl">hstore_plperl<a href="#hstore-plperl" class="hash-link" aria-label="Direct link to hstore_plperl" title="Direct link to hstore_plperl" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>hstore_plperl</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/hstore.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Transform hstore values between PostgreSQL and PL/Perl.</li>
+<li class=""><strong>Usage</strong>: Use it when PL/Perl functions process hstore fields.</li>
+<li class=""><strong>Notes</strong>: Restrict procedural language function creation and avoid complex scripts in the database.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="hypopg">hypopg<a href="#hypopg" class="hash-link" aria-label="Direct link to hypopg" title="Direct link to hypopg" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>hypopg</code></li>
+<li class=""><strong>Version</strong>: 1.4.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/HypoPG/hypopg">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Hypothetical indexes for PostgreSQL.</li>
+<li class=""><strong>Usage</strong>: Use it to evaluate whether an index may improve a query plan without creating the real index.</li>
+<li class=""><strong>Notes</strong>: Hypothetical indexes do not accelerate actual queries. Create real indexes and test before launch.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="imgsmlr">imgsmlr<a href="#imgsmlr" class="hash-link" aria-label="Direct link to imgsmlr" title="Direct link to imgsmlr" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>imgsmlr</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/postgrespro/imgsmlr">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Image similarity module.</li>
+<li class=""><strong>Usage</strong>: Use it for specialized or experimental image similarity comparisons inside PostgreSQL.</li>
+<li class=""><strong>Notes</strong>: Large-scale image search usually fits vector search or dedicated retrieval systems better.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="insert-username">insert_username<a href="#insert-username" class="hash-link" aria-label="Direct link to insert_username" title="Direct link to insert_username" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>insert_username</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Functions for tracking who changed a table.</li>
+<li class=""><strong>Usage</strong>: Use it with triggers to populate audit fields with the database user that inserted or updated a row.</li>
+<li class=""><strong>Notes</strong>: The database user may not equal the application end user. Store business user IDs separately.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="intagg">intagg<a href="#intagg" class="hash-link" aria-label="Direct link to intagg" title="Direct link to intagg" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>intagg</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/intagg.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Obsolete integer aggregator and enumerator.</li>
+<li class=""><strong>Usage</strong>: Use it only for legacy SQL compatibility. Prefer built-in PostgreSQL aggregate and array functions for new queries.</li>
+<li class=""><strong>Notes</strong>: Obsolete extension. Avoid introducing it in new workloads.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="intarray">intarray<a href="#intarray" class="hash-link" aria-label="Direct link to intarray" title="Direct link to intarray" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>intarray</code></li>
+<li class=""><strong>Version</strong>: 1.5</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/intarray.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Functions, operators, and indexes for one-dimensional integer arrays.</li>
+<li class=""><strong>Usage</strong>: Use it for integer set operations such as tag IDs, category IDs, containment, overlap, and sorting.</li>
+<li class=""><strong>Notes</strong>: Arrays fit small sets. Use join tables when elements need permissions, statistics, or relationships.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="isn">isn<a href="#isn" class="hash-link" aria-label="Direct link to isn" title="Direct link to isn" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>isn</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/isn.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Data types for international product numbering standards.</li>
+<li class=""><strong>Usage</strong>: Use it to validate and store ISBN, EAN, UPC, ISMN, and similar standard identifiers.</li>
+<li class=""><strong>Notes</strong>: Clean inconsistent historical formats before import.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="jsonb-plperl">jsonb_plperl<a href="#jsonb-plperl" class="hash-link" aria-label="Direct link to jsonb_plperl" title="Direct link to jsonb_plperl" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>jsonb_plperl</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/datatype-json.html#DATATYPE-JSON-TRANSFORMS">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Transform JSONB values between PostgreSQL and PL/Perl.</li>
+<li class=""><strong>Usage</strong>: Use it when PL/Perl functions need to process JSONB fields.</li>
+<li class=""><strong>Notes</strong>: Keep JSON transformation logic simple. Complex transformations usually belong in application or batch jobs.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="lo">lo<a href="#lo" class="hash-link" aria-label="Direct link to lo" title="Direct link to lo" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>lo</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/lo.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Large Object maintenance.</li>
+<li class=""><strong>Usage</strong>: Use it for compatibility with legacy PostgreSQL Large Object storage.</li>
+<li class=""><strong>Notes</strong>: For new apps, store large files in object storage and keep URLs or metadata in PostgreSQL.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="ltree">ltree<a href="#ltree" class="hash-link" aria-label="Direct link to ltree" title="Direct link to ltree" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>ltree</code></li>
+<li class=""><strong>Version</strong>: 1.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/ltree.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Hierarchical tree path data type.</li>
+<li class=""><strong>Usage</strong>: Use it for organization trees, category trees, path permissions, and menu hierarchies.</li>
+<li class=""><strong>Notes</strong>: Moving subtrees can be expensive. Design path format and indexes around update frequency.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="moddatetime">moddatetime<a href="#moddatetime" class="hash-link" aria-label="Direct link to moddatetime" title="Direct link to moddatetime" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>moddatetime</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Functions for tracking last modification time.</li>
+<li class=""><strong>Usage</strong>: Use it with triggers to update updated_at automatically.</li>
+<li class=""><strong>Notes</strong>: Triggers add implicit write behavior. Confirm behavior during data repair and bulk import.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="mysql-fdw">mysql_fdw<a href="#mysql-fdw" class="hash-link" aria-label="Direct link to mysql_fdw" title="Direct link to mysql_fdw" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>mysql_fdw</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/EnterpriseDB/mysql_fdw">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Foreign data wrapper for querying MySQL.</li>
+<li class=""><strong>Usage</strong>: Use it for migration, reconciliation, low-frequency federation, or transitional integration with MySQL.</li>
+<li class=""><strong>Notes</strong>: Remote queries depend on MySQL and network availability. Avoid high-frequency transactional paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pageinspect">pageinspect<a href="#pageinspect" class="hash-link" aria-label="Direct link to pageinspect" title="Direct link to pageinspect" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pageinspect</code></li>
+<li class=""><strong>Version</strong>: 1.12</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pageinspect.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Inspect database pages at a low level.</li>
+<li class=""><strong>Usage</strong>: Use it to inspect table and index page structures during corruption, bloat, or storage diagnostics.</li>
+<li class=""><strong>Notes</strong>: DBA-oriented diagnostic tool. Do not grant it to ordinary application roles.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-bigm">pg_bigm<a href="#pg-bigm" class="hash-link" aria-label="Direct link to pg_bigm" title="Direct link to pg_bigm" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_bigm</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/pgbigm/pg_bigm">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Bigram-based text similarity and index search.</li>
+<li class=""><strong>Usage</strong>: Use it for bigram fuzzy matching in languages such as Chinese or Japanese.</li>
+<li class=""><strong>Notes</strong>: Compare with pg_trgm, zhparser, and pg_jieba using real query samples.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-buffercache">pg_buffercache<a href="#pg-buffercache" class="hash-link" aria-label="Direct link to pg_buffercache" title="Direct link to pg_buffercache" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_buffercache</code></li>
+<li class=""><strong>Version</strong>: 1.5</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgbuffercache.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Inspect shared buffer cache contents.</li>
+<li class=""><strong>Usage</strong>: Use it to see which relation pages occupy shared buffers and analyze hot data.</li>
+<li class=""><strong>Notes</strong>: It is a point-in-time diagnostic view, not a replacement for long-term monitoring.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-cron">pg_cron<a href="#pg-cron" class="hash-link" aria-label="Direct link to pg_cron" title="Direct link to pg_cron" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_cron</code></li>
+<li class=""><strong>Version</strong>: 1.6</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/citusdata/pg_cron">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Job scheduler for PostgreSQL.</li>
+<li class=""><strong>Usage</strong>: Use it to run scheduled SQL jobs such as rollups, cleanup, and refreshing summary tables.</li>
+<li class=""><strong>Notes</strong>: Avoid long-running jobs or external dependencies. Design failure alerts and audit records.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-freespacemap">pg_freespacemap<a href="#pg-freespacemap" class="hash-link" aria-label="Direct link to pg_freespacemap" title="Direct link to pg_freespacemap" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_freespacemap</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgfreespacemap.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Inspect the free space map.</li>
+<li class=""><strong>Usage</strong>: Use it to analyze free space in table and index pages and plan maintenance.</li>
+<li class=""><strong>Notes</strong>: Low-level diagnostic tool. Interpret results together with vacuum and bloat statistics.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-hashids">pg_hashids<a href="#pg-hashids" class="hash-link" aria-label="Direct link to pg_hashids" title="Direct link to pg_hashids" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_hashids</code></li>
+<li class=""><strong>Version</strong>: 1.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/iCyberon/pg_hashids">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Hashids support.</li>
+<li class=""><strong>Usage</strong>: Use it to encode numeric IDs into short public-facing identifiers for URLs or display.</li>
+<li class=""><strong>Notes</strong>: Hashids are not encryption or authorization. Always enforce permissions separately.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-hint-plan">pg_hint_plan<a href="#pg-hint-plan" class="hash-link" aria-label="Direct link to pg_hint_plan" title="Direct link to pg_hint_plan" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_hint_plan</code></li>
+<li class=""><strong>Version</strong>: 1.7.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://pg-hint-plan.readthedocs.io/">Project documentation</a></li>
+<li class=""><strong>Capability</strong>: Optimizer hints for PostgreSQL.</li>
+<li class=""><strong>Usage</strong>: Use it to influence query plans in exceptional cases where the optimizer chooses poorly.</li>
+<li class=""><strong>Notes</strong>: Hints couple SQL to execution plans. Prefer statistics, indexing, or query rewrites first.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-ivm">pg_ivm<a href="#pg-ivm" class="hash-link" aria-label="Direct link to pg_ivm" title="Direct link to pg_ivm" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_ivm</code></li>
+<li class=""><strong>Version</strong>: 1.11</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/sraoss/pg_ivm">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Incremental view maintenance.</li>
+<li class=""><strong>Usage</strong>: Use it to maintain derived or pre-aggregated data incrementally as base tables change.</li>
+<li class=""><strong>Notes</strong>: Incremental maintenance increases write cost. Evaluate throughput on write-heavy tables.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-jieba">pg_jieba<a href="#pg-jieba" class="hash-link" aria-label="Direct link to pg_jieba" title="Direct link to pg_jieba" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_jieba</code></li>
+<li class=""><strong>Version</strong>: 1.1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/jaiminpan/pg_jieba">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Chinese full text search parser.</li>
+<li class=""><strong>Usage</strong>: Use it for Chinese tokenization in article, ticket, product, or knowledge base search.</li>
+<li class=""><strong>Notes</strong>: Dictionary quality affects search results. Validate recall and ranking with real Chinese content.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-partman">pg_partman<a href="#pg-partman" class="hash-link" aria-label="Direct link to pg_partman" title="Direct link to pg_partman" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_partman</code></li>
+<li class=""><strong>Version</strong>: 4.7.4</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/pgpartman/pg_partman">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Partition management by time or ID.</li>
+<li class=""><strong>Usage</strong>: Use it to create and maintain partitions for logs, orders, events, and other growing tables.</li>
+<li class=""><strong>Notes</strong>: Partition key and retention policy need careful design.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-prewarm">pg_prewarm<a href="#pg-prewarm" class="hash-link" aria-label="Direct link to pg_prewarm" title="Direct link to pg_prewarm" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_prewarm</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgprewarm.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Prewarm relation data.</li>
+<li class=""><strong>Usage</strong>: Use it after restart or cold start to load hot tables or indexes into cache.</li>
+<li class=""><strong>Notes</strong>: Prewarming consumes IO and cache. Apply it only to known hot relations.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-repack">pg_repack<a href="#pg-repack" class="hash-link" aria-label="Direct link to pg_repack" title="Direct link to pg_repack" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_repack</code></li>
+<li class=""><strong>Version</strong>: 1.5.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://reorg.github.io/pg_repack/">Project homepage</a></li>
+<li class=""><strong>Capability</strong>: Reorganize tables and indexes with minimal locks.</li>
+<li class=""><strong>Usage</strong>: Use it to reduce table or index bloat while keeping lock impact lower than traditional rewrites.</li>
+<li class=""><strong>Notes</strong>: Requires extra disk and resources. Plan large-table operations carefully.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-similarity">pg_similarity<a href="#pg-similarity" class="hash-link" aria-label="Direct link to pg_similarity" title="Direct link to pg_similarity" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_similarity</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/eulerto/pg_similarity">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Similarity query support.</li>
+<li class=""><strong>Usage</strong>: Use it for string similarity, deduplication, and fuzzy matching in cleanup or search workflows.</li>
+<li class=""><strong>Notes</strong>: Tune thresholds using business data. Large full-table comparisons can be expensive.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-sphere">pg_sphere<a href="#pg-sphere" class="hash-link" aria-label="Direct link to pg_sphere" title="Direct link to pg_sphere" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_sphere</code></li>
+<li class=""><strong>Version</strong>: 1.5.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://pgsphere.github.io/">Project homepage</a></li>
+<li class=""><strong>Capability</strong>: Spherical objects, functions, and indexes.</li>
+<li class=""><strong>Usage</strong>: Use it for astronomy or spherical-coordinate calculations.</li>
+<li class=""><strong>Notes</strong>: For common GIS workloads, evaluate PostGIS first.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-squeeze">pg_squeeze<a href="#pg-squeeze" class="hash-link" aria-label="Direct link to pg_squeeze" title="Direct link to pg_squeeze" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_squeeze</code></li>
+<li class=""><strong>Version</strong>: 1.9</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/cybertec-postgresql/pg_squeeze">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Remove unused space from relations.</li>
+<li class=""><strong>Usage</strong>: Use it to reclaim bloat from tables with frequent updates or deletes.</li>
+<li class=""><strong>Notes</strong>: Maintenance consumes resources and may affect writes. Run during off-peak windows.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-stat-log">pg_stat_log<a href="#pg-stat-log" class="hash-link" aria-label="Direct link to pg_stat_log" title="Direct link to pg_stat_log" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_stat_log</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/47734">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: Runtime execution statistics for SQL statements.</li>
+<li class=""><strong>Usage</strong>: Use it to inspect runtime SQL statistics and diagnose high-latency or high-frequency SQL.</li>
+<li class=""><strong>Notes</strong>: Diagnostic extension. Avoid relying on it for business features.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-stat-statements">pg_stat_statements<a href="#pg-stat-statements" class="hash-link" aria-label="Direct link to pg_stat_statements" title="Direct link to pg_stat_statements" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_stat_statements</code></li>
+<li class=""><strong>Version</strong>: 1.11</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgstatstatements.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: SQL planning and execution statistics.</li>
+<li class=""><strong>Usage</strong>: Use it to aggregate SQL calls, timing, rows, and planning information. It is a common entry point for slow-query analysis.</li>
+<li class=""><strong>Notes</strong>: Normalized SQL can hide parameter differences. Interpret results with business context.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-surgery">pg_surgery<a href="#pg-surgery" class="hash-link" aria-label="Direct link to pg_surgery" title="Direct link to pg_surgery" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_surgery</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgsurgery.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Low-level surgery on damaged relations.</li>
+<li class=""><strong>Usage</strong>: Use it only for extreme corruption repair workflows.</li>
+<li class=""><strong>Notes</strong>: High-risk tool. Use only after backups and with PostgreSQL storage expertise.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-trgm">pg_trgm<a href="#pg-trgm" class="hash-link" aria-label="Direct link to pg_trgm" title="Direct link to pg_trgm" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_trgm</code></li>
+<li class=""><strong>Version</strong>: 1.6</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgtrgm.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Trigram-based text similarity and index search.</li>
+<li class=""><strong>Usage</strong>: Use it for fuzzy search, similarity ranking, and LIKE/ILIKE acceleration on short text.</li>
+<li class=""><strong>Notes</strong>: Trigram indexes add write cost. For Chinese search, compare with pg_bigm, zhparser, or pg_jieba.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-visibility">pg_visibility<a href="#pg-visibility" class="hash-link" aria-label="Direct link to pg_visibility" title="Direct link to pg_visibility" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_visibility</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgvisibility.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Inspect visibility map and page-level visibility.</li>
+<li class=""><strong>Usage</strong>: Use it to analyze visibility maps for vacuum, index-only scans, and maintenance diagnostics.</li>
+<li class=""><strong>Notes</strong>: Diagnostic-only extension. Do not use it in business query paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pg-walinspect">pg_walinspect<a href="#pg-walinspect" class="hash-link" aria-label="Direct link to pg_walinspect" title="Direct link to pg_walinspect" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pg_walinspect</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgwalinspect.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Inspect PostgreSQL WAL contents.</li>
+<li class=""><strong>Usage</strong>: Use it to analyze WAL records for replication, recovery, or write amplification diagnostics.</li>
+<li class=""><strong>Notes</strong>: WAL contents can be sensitive. Restrict access and use it for operations diagnostics.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgagent">pgagent<a href="#pgagent" class="hash-link" aria-label="Direct link to pgagent" title="Direct link to pgagent" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pgagent</code></li>
+<li class=""><strong>Version</strong>: 4.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/pgadmin-org/pgagent">GitHub</a></li>
+<li class=""><strong>Capability</strong>: PostgreSQL job scheduler.</li>
+<li class=""><strong>Usage</strong>: Use it to manage scheduled SQL jobs and maintenance tasks.</li>
+<li class=""><strong>Notes</strong>: Design failure handling, retries, and job permissions. Complex orchestration belongs in external schedulers.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgaudit">pgaudit<a href="#pgaudit" class="hash-link" aria-label="Direct link to pgaudit" title="Direct link to pgaudit" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pgaudit</code></li>
+<li class=""><strong>Version</strong>: 17.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/pgaudit/pgaudit">GitHub</a></li>
+<li class=""><strong>Capability</strong>: PostgreSQL auditing.</li>
+<li class=""><strong>Usage</strong>: Use it to record database access and operations for compliance and security analysis.</li>
+<li class=""><strong>Notes</strong>: Audit can greatly increase log volume. Plan collection, retention, masking, and alerts.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgcrypto">pgcrypto<a href="#pgcrypto" class="hash-link" aria-label="Direct link to pgcrypto" title="Direct link to pgcrypto" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pgcrypto</code></li>
+<li class=""><strong>Version</strong>: 1.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgcrypto.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Cryptographic functions.</li>
+<li class=""><strong>Usage</strong>: Use it for random values, hashes, digests, UUID helpers, and limited encryption/decryption operations.</li>
+<li class=""><strong>Notes</strong>: Do not treat database crypto functions as a full key management system. Protect keys separately.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pglogical">pglogical<a href="#pglogical" class="hash-link" aria-label="Direct link to pglogical" title="Direct link to pglogical" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pglogical</code></li>
+<li class=""><strong>Version</strong>: 2.4.5</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/2ndQuadrant/pglogical">GitHub</a></li>
+<li class=""><strong>Capability</strong>: PostgreSQL logical replication.</li>
+<li class=""><strong>Usage</strong>: Use it for table-level logical replication, migration, and transitional synchronization.</li>
+<li class=""><strong>Notes</strong>: Monitor replication slots and lag. Lag can retain WAL and cause storage pressure.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pglogical-origin">pglogical_origin<a href="#pglogical-origin" class="hash-link" aria-label="Direct link to pglogical_origin" title="Direct link to pglogical_origin" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pglogical_origin</code></li>
+<li class=""><strong>Version</strong>: 1.0.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/2ndQuadrant/pglogical">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Compatibility extension for pglogical origin.</li>
+<li class=""><strong>Usage</strong>: Use it for upgrade or migration compatibility from older PostgreSQL versions.</li>
+<li class=""><strong>Notes</strong>: Usually not a new application feature. Keep it only when migration compatibility requires it.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgrouting">pgrouting<a href="#pgrouting" class="hash-link" aria-label="Direct link to pgrouting" title="Direct link to pgrouting" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pgrouting</code></li>
+<li class=""><strong>Version</strong>: 3.6.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://docs.pgrouting.org/latest/en/">pgRouting documentation</a></li>
+<li class=""><strong>Capability</strong>: Routing extension for PostgreSQL/PostGIS.</li>
+<li class=""><strong>Usage</strong>: Use it for road networks, shortest paths, and graph routing based on spatial data.</li>
+<li class=""><strong>Notes</strong>: Route quality depends on graph data quality. Evaluate preprocessing and query cost.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgrowlocks">pgrowlocks<a href="#pgrowlocks" class="hash-link" aria-label="Direct link to pgrowlocks" title="Direct link to pgrowlocks" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pgrowlocks</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgrowlocks.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Show row-level locking information.</li>
+<li class=""><strong>Usage</strong>: Use it to diagnose row locks, transaction blocking, and concurrent write conflicts.</li>
+<li class=""><strong>Notes</strong>: Diagnostic use only. Do not put it in application query paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pgstattuple">pgstattuple<a href="#pgstattuple" class="hash-link" aria-label="Direct link to pgstattuple" title="Direct link to pgstattuple" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pgstattuple</code></li>
+<li class=""><strong>Version</strong>: 1.5</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pgstattuple.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Tuple-level statistics.</li>
+<li class=""><strong>Usage</strong>: Use it to inspect dead tuples, bloat, and space waste in tables and indexes.</li>
+<li class=""><strong>Notes</strong>: May scan large objects. Run during off-peak periods for large tables.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pldbgapi">pldbgapi<a href="#pldbgapi" class="hash-link" aria-label="Direct link to pldbgapi" title="Direct link to pldbgapi" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pldbgapi</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/EnterpriseDB/pldebugger">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Server-side debugging support for PL/pgSQL.</li>
+<li class=""><strong>Usage</strong>: Use it to debug complex PL/pgSQL functions during development.</li>
+<li class=""><strong>Notes</strong>: Do not expose debugging capabilities to ordinary application roles.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="plperl">plperl<a href="#plperl" class="hash-link" aria-label="Direct link to plperl" title="Direct link to plperl" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>plperl</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/plperl.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: PL/Perl procedural language.</li>
+<li class=""><strong>Usage</strong>: Use it to write database functions in Perl for legacy logic migration.</li>
+<li class=""><strong>Notes</strong>: Prefer SQL/PLpgSQL or application code for new workloads. Restrict function creation.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="plpgsql">plpgsql<a href="#plpgsql" class="hash-link" aria-label="Direct link to plpgsql" title="Direct link to plpgsql" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>plpgsql</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/plpgsql.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: PL/pgSQL procedural language.</li>
+<li class=""><strong>Usage</strong>: Use it to write PostgreSQL functions, triggers, and procedural logic.</li>
+<li class=""><strong>Notes</strong>: Keep functions clear and testable. Put complex orchestration in server-side application code.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="pltcl">pltcl<a href="#pltcl" class="hash-link" aria-label="Direct link to pltcl" title="Direct link to pltcl" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>pltcl</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/pltcl.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: PL/Tcl procedural language.</li>
+<li class=""><strong>Usage</strong>: Use it to write database functions in Tcl for legacy compatibility.</li>
+<li class=""><strong>Notes</strong>: Use only for legacy compatibility and restrict function creation permissions.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="plv8">plv8<a href="#plv8" class="hash-link" aria-label="Direct link to plv8" title="Direct link to plv8" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>plv8</code></li>
+<li class=""><strong>Version</strong>: 3.2.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://plv8.github.io/">PLV8 documentation</a></li>
+<li class=""><strong>Capability</strong>: Trusted PL/JavaScript procedural language.</li>
+<li class=""><strong>Usage</strong>: Use it for small JavaScript transformations inside database functions.</li>
+<li class=""><strong>Notes</strong>: JavaScript runs inside database processes. Avoid complex business orchestration.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis">postgis<a href="#postgis" class="hash-link" aria-label="Direct link to postgis" title="Direct link to postgis" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>postgis</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: Geometry and geography spatial types and functions.</li>
+<li class=""><strong>Usage</strong>: Use it for geofencing, nearby search, spatial intersections, trajectories, and map workloads.</li>
+<li class=""><strong>Notes</strong>: Coordinate systems, spatial indexes, and geometry validity are critical. Benchmark complex spatial queries.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-raster">postgis_raster<a href="#postgis-raster" class="hash-link" aria-label="Direct link to postgis_raster" title="Direct link to postgis_raster" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>postgis_raster</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: PostGIS raster types and functions.</li>
+<li class=""><strong>Usage</strong>: Use it for raster data such as remote sensing, terrain, and image tile analysis.</li>
+<li class=""><strong>Notes</strong>: Raster data is often large. Evaluate storage, IO, and backup costs.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-sfcgal">postgis_sfcgal<a href="#postgis-sfcgal" class="hash-link" aria-label="Direct link to postgis_sfcgal" title="Direct link to postgis_sfcgal" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>postgis_sfcgal</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: PostGIS SFCGAL functions.</li>
+<li class=""><strong>Usage</strong>: Use it for advanced geometry and 3D spatial operations.</li>
+<li class=""><strong>Notes</strong>: Advanced geometry operations can be CPU-heavy. Validate geometry validity.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-tiger-geocoder">postgis_tiger_geocoder<a href="#postgis-tiger-geocoder" class="hash-link" aria-label="Direct link to postgis_tiger_geocoder" title="Direct link to postgis_tiger_geocoder" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>postgis_tiger_geocoder</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/Extras.html">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: PostGIS TIGER geocoder and reverse geocoder.</li>
+<li class=""><strong>Usage</strong>: Use it for US TIGER geocoding and reverse geocoding workflows.</li>
+<li class=""><strong>Notes</strong>: Primarily for US address data. Do not rely on it for non-US address normalization.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgis-topology">postgis_topology<a href="#postgis-topology" class="hash-link" aria-label="Direct link to postgis_topology" title="Direct link to postgis_topology" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>postgis_topology</code></li>
+<li class=""><strong>Version</strong>: 3.5.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://postgis.net/docs/Topology.html">PostGIS documentation</a></li>
+<li class=""><strong>Capability</strong>: PostGIS topology spatial types and functions.</li>
+<li class=""><strong>Usage</strong>: Use it for topology models with edges, faces, and nodes.</li>
+<li class=""><strong>Notes</strong>: Topology modeling has higher maintenance cost. Ordinary location queries usually only need PostGIS geometry/geography.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="postgres-fdw">postgres_fdw<a href="#postgres-fdw" class="hash-link" aria-label="Direct link to postgres_fdw" title="Direct link to postgres_fdw" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>postgres_fdw</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/postgres-fdw.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Foreign data wrapper for remote PostgreSQL servers.</li>
+<li class=""><strong>Usage</strong>: Use it for cross-instance PostgreSQL queries, migration validation, or federated access.</li>
+<li class=""><strong>Notes</strong>: Remote queries depend on network and remote load. Manage user mappings and remote permissions carefully.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rdkit">rdkit<a href="#rdkit" class="hash-link" aria-label="Direct link to rdkit" title="Direct link to rdkit" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>rdkit</code></li>
+<li class=""><strong>Version</strong>: 4.7.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.rdkit.org/docs/Cartridge.html">RDKit documentation</a></li>
+<li class=""><strong>Capability</strong>: Cheminformatics functionality.</li>
+<li class=""><strong>Usage</strong>: Use it for molecular structures, fingerprints, chemical similarity, and chemistry search.</li>
+<li class=""><strong>Notes</strong>: Domain-specific extension. Validate schema and indexes with cheminformatics rules.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rds-server-handler">rds_server_handler<a href="#rds-server-handler" class="hash-link" aria-label="Direct link to rds_server_handler" title="Direct link to rds_server_handler" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>rds_server_handler</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/47734">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: TencentDB PostgreSQL service handler.</li>
+<li class=""><strong>Usage</strong>: Use it for TencentDB PostgreSQL service-side handling and compatibility scenarios.</li>
+<li class=""><strong>Notes</strong>: Usually not an application development interface. Confirm product boundaries before use.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="refint">refint<a href="#refint" class="hash-link" aria-label="Direct link to refint" title="Direct link to refint" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>refint</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/contrib-spi.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Obsolete referential integrity helper functions.</li>
+<li class=""><strong>Usage</strong>: Use it only for legacy compatibility. Prefer native foreign keys in new schemas.</li>
+<li class=""><strong>Notes</strong>: Obsolete extension. Migrate old logic to native constraints when possible.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="roaringbitmap">roaringbitmap<a href="#roaringbitmap" class="hash-link" aria-label="Direct link to roaringbitmap" title="Direct link to roaringbitmap" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>roaringbitmap</code></li>
+<li class=""><strong>Version</strong>: 0.5</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/ChenHuajun/pg_roaringbitmap">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Roaring Bitmap support.</li>
+<li class=""><strong>Usage</strong>: Use it for efficient large integer-set operations such as audience segments, tags, and analytics.</li>
+<li class=""><strong>Notes</strong>: Bitmap analytics are not a replacement for transactional detail tables.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="rum">rum<a href="#rum" class="hash-link" aria-label="Direct link to rum" title="Direct link to rum" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>rum</code></li>
+<li class=""><strong>Version</strong>: 1.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/postgrespro/rum">GitHub</a></li>
+<li class=""><strong>Capability</strong>: RUM index access method.</li>
+<li class=""><strong>Usage</strong>: Use it for enhanced inverted indexes, full text search ranking, and position-aware search.</li>
+<li class=""><strong>Notes</strong>: RUM indexes can be more expensive to maintain than GIN. Test write-heavy tables carefully.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="seg">seg<a href="#seg" class="hash-link" aria-label="Direct link to seg" title="Direct link to seg" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>seg</code></li>
+<li class=""><strong>Version</strong>: 1.4</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/seg.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Line segment or floating interval type.</li>
+<li class=""><strong>Usage</strong>: Use it to represent one-dimensional intervals or uncertain numeric ranges.</li>
+<li class=""><strong>Notes</strong>: For general ranges, evaluate PostgreSQL native range types first.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sequential-uuids">sequential_uuids<a href="#sequential-uuids" class="hash-link" aria-label="Direct link to sequential_uuids" title="Direct link to sequential_uuids" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>sequential_uuids</code></li>
+<li class=""><strong>Version</strong>: 1.0.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://pgxn.org/dist/sequential_uuids/">PGXN</a></li>
+<li class=""><strong>Capability</strong>: Sequential UUID generator.</li>
+<li class=""><strong>Usage</strong>: Use it when UUIDs are required but B-tree locality matters for high-write tables.</li>
+<li class=""><strong>Notes</strong>: Sequential UUIDs can reveal creation order. Evaluate public ID requirements.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="smlar">smlar<a href="#smlar" class="hash-link" aria-label="Direct link to smlar" title="Direct link to smlar" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>smlar</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/jirutka/smlar">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Similarity for one-dimensional arrays.</li>
+<li class=""><strong>Usage</strong>: Use it for array similarity, candidate recommendation, and set deduplication.</li>
+<li class=""><strong>Notes</strong>: Limit candidate sets before comparing arrays across large tables.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sslinfo">sslinfo<a href="#sslinfo" class="hash-link" aria-label="Direct link to sslinfo" title="Direct link to sslinfo" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>sslinfo</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/sslinfo.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: SSL certificate information.</li>
+<li class=""><strong>Usage</strong>: Use it to inspect SSL certificate and encryption information for the current connection.</li>
+<li class=""><strong>Notes</strong>: Diagnostic only. Do not use it as application-level authorization.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="starrocks-fdw">starrocks_fdw<a href="#starrocks-fdw" class="hash-link" aria-label="Direct link to starrocks_fdw" title="Direct link to starrocks_fdw" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>starrocks_fdw</code></li>
+<li class=""><strong>Version</strong>: 1.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/64751">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: Foreign data wrapper for StarRocks.</li>
+<li class=""><strong>Usage</strong>: Use it for federated queries, migration validation, or analytics integration with StarRocks.</li>
+<li class=""><strong>Notes</strong>: External queries depend on StarRocks availability. Large analytics workloads should use dedicated analytical paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tablefunc">tablefunc<a href="#tablefunc" class="hash-link" aria-label="Direct link to tablefunc" title="Direct link to tablefunc" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tablefunc</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/tablefunc.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Whole-table functions including crosstab.</li>
+<li class=""><strong>Usage</strong>: Use it for crosstab, pivot-style reports, and table transformations.</li>
+<li class=""><strong>Notes</strong>: Pivot structures often require fixed columns. Dynamic reports may fit application or BI layers better.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tcn">tcn<a href="#tcn" class="hash-link" aria-label="Direct link to tcn" title="Direct link to tcn" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tcn</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/tcn.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Triggered change notifications.</li>
+<li class=""><strong>Usage</strong>: Use it for lightweight change notifications triggered by table writes.</li>
+<li class=""><strong>Notes</strong>: Not a durable message queue. Use a message system or event table for reliable event processing.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-ai">tencentdb_ai<a href="#tencentdb-ai" class="hash-link" aria-label="Direct link to tencentdb_ai" title="Direct link to tencentdb_ai" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_ai</code></li>
+<li class=""><strong>Version</strong>: 1.3</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/80347">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: TencentDB AI extension for prompt, embedding, and related AI capabilities.</li>
+<li class=""><strong>Usage</strong>: Use it to integrate AI capabilities inside the database, such as embeddings or prompt processing.</li>
+<li class=""><strong>Notes</strong>: AI calls can add latency and cost. Review compliance and masking before sending sensitive data to models.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-failover-slot">tencentdb_failover_slot<a href="#tencentdb-failover-slot" class="hash-link" aria-label="Direct link to tencentdb_failover_slot" title="Direct link to tencentdb_failover_slot" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_failover_slot</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/78864">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: Failover slot helper functions.</li>
+<li class=""><strong>Usage</strong>: Use it for replication slot handling in failover scenarios.</li>
+<li class=""><strong>Notes</strong>: Operations-focused extension. Incorrect use can affect replication or WAL retention.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-scf">tencentdb_scf<a href="#tencentdb-scf" class="hash-link" aria-label="Direct link to tencentdb_scf" title="Direct link to tencentdb_scf" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_scf</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Capability</strong>: Secure and controlled CloudBase cloud function invocation. Allows SQL-level synchronous/asynchronous POST requests to the CloudBase cloud function gateway, supports pg_cron-based scheduled tasks and triggers, and avoids SSRF and network pivot risks through URL convergence, checkurl validation, and sensitive header filtering.</li>
+<li class=""><strong>Usage</strong>: Install <code>pgcrypto</code> and <code>tencentdb_scf</code> extensions, then configure the CloudBase environment ID and API Key. Synchronous invocation is suitable for short tasks requiring immediate results. Asynchronous invocation is suitable for scheduled tasks, triggers, and batch jobs that should not block the main workflow. Returns a BIGINT request ID; use <code>tencentdb_scf_result(req_id)</code> to query the result. For detailed usage, see <a href="./tencentdb-scf">tencentdb_scf</a>.</li>
+<li class=""><strong>Notes</strong>: Enabling the async worker requires configuring <code>shared_preload_libraries</code> and restarting the instance. Only the POST method is currently supported; only the CloudBase gateway domain is allowed. The request body always uses <code>Content-Type: application/json</code>. User-supplied sensitive headers (Authorization, Cookie, Host, etc.) are automatically filtered. Calls are rejected when env_id or api_key is not configured.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-index-advisor">tencentdb_index_advisor<a href="#tencentdb-index-advisor" class="hash-link" aria-label="Direct link to tencentdb_index_advisor" title="Direct link to tencentdb_index_advisor" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_index_advisor</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/80369">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: Index advisor for queries and workloads.</li>
+<li class=""><strong>Usage</strong>: Use it to analyze SQL or workload-level index recommendations for query optimization.</li>
+<li class=""><strong>Notes</strong>: Validate recommendations against write cost, storage cost, and real workload before adoption.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-serverless">tencentdb_serverless<a href="#tencentdb-serverless" class="hash-link" aria-label="Direct link to tencentdb_serverless" title="Direct link to tencentdb_serverless" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_serverless</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/62412">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: Serverless mode support extension.</li>
+<li class=""><strong>Usage</strong>: Use it as part of TencentDB PostgreSQL serverless runtime support.</li>
+<li class=""><strong>Notes</strong>: Product runtime capability. Avoid depending on internal behavior in business SQL.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-sql-throttling">tencentdb_sql_throttling<a href="#tencentdb-sql-throttling" class="hash-link" aria-label="Direct link to tencentdb_sql_throttling" title="Direct link to tencentdb_sql_throttling" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_sql_throttling</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://cloud.tencent.com/document/product/409/111196">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: SQL planning and execution statistics for throttling.</li>
+<li class=""><strong>Usage</strong>: Use it to observe and govern abnormal SQL behavior and throttling policies.</li>
+<li class=""><strong>Notes</strong>: Configure throttling carefully to avoid affecting core business queries.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-superuser">tencentdb_superuser<a href="#tencentdb-superuser" class="hash-link" aria-label="Direct link to tencentdb_superuser" title="Direct link to tencentdb_superuser" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_superuser</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/47734">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: TencentDB upgrade support extension.</li>
+<li class=""><strong>Usage</strong>: Use it for TencentDB PostgreSQL upgrade or managed operations support.</li>
+<li class=""><strong>Notes</strong>: Not a business feature. Do not depend on it from application logic.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-system-stat">tencentdb_system_stat<a href="#tencentdb-system-stat" class="hash-link" aria-label="Direct link to tencentdb_system_stat" title="Direct link to tencentdb_system_stat" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_system_stat</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/62412">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: SQL execution statistics.</li>
+<li class=""><strong>Usage</strong>: Use it to collect system-level SQL execution statistics for performance analysis.</li>
+<li class=""><strong>Notes</strong>: Use for diagnostics and trends. Avoid frequent broad scans in application paths.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tencentdb-wal-stat">tencentdb_wal_stat<a href="#tencentdb-wal-stat" class="hash-link" aria-label="Direct link to tencentdb_wal_stat" title="Direct link to tencentdb_wal_stat" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tencentdb_wal_stat</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://intl.cloud.tencent.com/document/product/409/81235">Tencent Cloud documentation</a></li>
+<li class=""><strong>Capability</strong>: WAL statistics grouped by relation.</li>
+<li class=""><strong>Usage</strong>: Use it to analyze WAL volume by table or index and diagnose write amplification.</li>
+<li class=""><strong>Notes</strong>: Interpret results with write peaks, index count, and batch jobs.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="timescaledb">timescaledb<a href="#timescaledb" class="hash-link" aria-label="Direct link to timescaledb" title="Direct link to timescaledb" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>timescaledb</code></li>
+<li class=""><strong>Version</strong>: 2.23.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://docs.timescale.com/use-timescale/latest/">TimescaleDB documentation</a></li>
+<li class=""><strong>Capability</strong>: Time-series extension for scalable inserts and complex queries.</li>
+<li class=""><strong>Usage</strong>: Use it for metrics, events, IoT, logs, and other time-series models with hypertables and time-based queries.</li>
+<li class=""><strong>Notes</strong>: Design time dimensions, retention, compression, and high-cardinality tags carefully.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="topn">topn<a href="#topn" class="hash-link" aria-label="Direct link to topn" title="Direct link to topn" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>topn</code></li>
+<li class=""><strong>Version</strong>: 2.6.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/citusdata/postgresql-topn">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Top-N JSONB type.</li>
+<li class=""><strong>Usage</strong>: Use it to maintain top-N statistics such as popular items or approximate leaderboards.</li>
+<li class=""><strong>Notes</strong>: Fits analytical aggregates, not strict transactional ranking.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tsm-system-rows">tsm_system_rows<a href="#tsm-system-rows" class="hash-link" aria-label="Direct link to tsm_system_rows" title="Direct link to tsm_system_rows" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tsm_system_rows</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/tsm-system-rows.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: TABLESAMPLE method limited by row count.</li>
+<li class=""><strong>Usage</strong>: Use it for quick row-count-based sampling and test data inspection.</li>
+<li class=""><strong>Notes</strong>: Sampling is not guaranteed to be statistically uniform.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="tsm-system-time">tsm_system_time<a href="#tsm-system-time" class="hash-link" aria-label="Direct link to tsm_system_time" title="Direct link to tsm_system_time" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>tsm_system_time</code></li>
+<li class=""><strong>Version</strong>: 1.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/tsm-system-time.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: TABLESAMPLE method limited by time.</li>
+<li class=""><strong>Usage</strong>: Use it to sample large tables within a time budget.</li>
+<li class=""><strong>Notes</strong>: Results depend on layout and execution time. Do not use for precise statistics.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="unaccent">unaccent<a href="#unaccent" class="hash-link" aria-label="Direct link to unaccent" title="Direct link to unaccent" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>unaccent</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/unaccent.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: Text search dictionary that removes accents.</li>
+<li class=""><strong>Usage</strong>: Use it to make search ignore accents, such as matching cafe and café.</li>
+<li class=""><strong>Notes</strong>: Primarily useful for accented Latin text. Use zhparser or pg_jieba for Chinese tokenization.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="uuid-ossp">uuid-ossp<a href="#uuid-ossp" class="hash-link" aria-label="Direct link to uuid-ossp" title="Direct link to uuid-ossp" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>uuid-ossp</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/uuid-ossp.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: UUID generation functions.</li>
+<li class=""><strong>Usage</strong>: Use it to generate UUID v1/v3/v4/v5 identifiers for distributed keys or public IDs.</li>
+<li class=""><strong>Notes</strong>: Random UUIDs can reduce B-tree locality. Evaluate sequential UUIDs or bigint identity for high-write tables.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="vector">vector<a href="#vector" class="hash-link" aria-label="Direct link to vector" title="Direct link to vector" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>vector</code></li>
+<li class=""><strong>Version</strong>: 0.8.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/pgvector/pgvector">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Vector type and ivfflat/hnsw indexes.</li>
+<li class=""><strong>Usage</strong>: Use it to store embeddings and perform vector similarity search for RAG, semantic search, and recommendations.</li>
+<li class=""><strong>Notes</strong>: Vector dimensions must match the model. Design index type, distance function, and metadata filters together.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="vectorscale">vectorscale<a href="#vectorscale" class="hash-link" aria-label="Direct link to vectorscale" title="Direct link to vectorscale" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>vectorscale</code></li>
+<li class=""><strong>Version</strong>: 0.9.0</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/timescale/pgvectorscale">GitHub</a></li>
+<li class=""><strong>Capability</strong>: DiskANN access method for vector search.</li>
+<li class=""><strong>Usage</strong>: Use it for larger-scale vector retrieval workloads based on diskann indexing.</li>
+<li class=""><strong>Notes</strong>: Evaluate recall, index build time, disk usage, and query latency.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="xml2">xml2<a href="#xml2" class="hash-link" aria-label="Direct link to xml2" title="Direct link to xml2" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>xml2</code></li>
+<li class=""><strong>Version</strong>: 1.1</li>
+<li class=""><strong>Project link</strong>: <a href="https://www.postgresql.org/docs/17/xml2.html">PostgreSQL documentation</a></li>
+<li class=""><strong>Capability</strong>: XPath querying and XSLT.</li>
+<li class=""><strong>Usage</strong>: Use it to query and transform XML data for legacy integrations or data exchange.</li>
+<li class=""><strong>Notes</strong>: Prefer JSON/JSONB for new workloads. Validate XML input trust and query cost.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="zhparser">zhparser<a href="#zhparser" class="hash-link" aria-label="Direct link to zhparser" title="Direct link to zhparser" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Name</strong>: <code>zhparser</code></li>
+<li class=""><strong>Version</strong>: 2.2</li>
+<li class=""><strong>Project link</strong>: <a href="https://github.com/amutu/zhparser">GitHub</a></li>
+<li class=""><strong>Capability</strong>: Chinese parser for full text search.</li>
+<li class=""><strong>Usage</strong>: Use it for Chinese tokenization in articles, products, tickets, and knowledge base search.</li>
+<li class=""><strong>Notes</strong>: Dictionary and tokenizer behavior determine search quality. Validate with real Chinese content.</li>
+</ul></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/database/postgresql/extensions"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Extensions</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/database/postgresql/pg-doc"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">pg_doc Document plugin</div></a></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#extension-overview" class="table-of-contents__link toc-highlight">Extension overview</a></li><li><a href="#usage-guidance" class="table-of-contents__link toc-highlight">Usage guidance</a></li><li><a href="#extension-details" class="table-of-contents__link toc-highlight">Extension details</a><ul><li><a href="#address-standardizer" class="table-of-contents__link toc-highlight">address_standardizer</a></li><li><a href="#address-standardizer-data-us" class="table-of-contents__link toc-highlight">address_standardizer_data_us</a></li><li><a href="#age" class="table-of-contents__link toc-highlight">age</a></li><li><a href="#amcheck" class="table-of-contents__link toc-highlight">amcheck</a></li><li><a href="#autoinc" class="table-of-contents__link toc-highlight">autoinc</a></li><li><a href="#bloom" class="table-of-contents__link toc-highlight">bloom</a></li><li><a href="#bool-plperl" class="table-of-contents__link toc-highlight">bool_plperl</a></li><li><a href="#btree-gin" class="table-of-contents__link toc-highlight">btree_gin</a></li><li><a href="#btree-gist" class="table-of-contents__link toc-highlight">btree_gist</a></li><li><a href="#chkpass" class="table-of-contents__link toc-highlight">chkpass</a></li><li><a href="#citext" class="table-of-contents__link toc-highlight">citext</a></li><li><a href="#cos-fdw" class="table-of-contents__link toc-highlight">cos_fdw</a></li><li><a href="#count-distinct" class="table-of-contents__link toc-highlight">count_distinct</a></li><li><a href="#cube" class="table-of-contents__link toc-highlight">cube</a></li><li><a href="#dblink" class="table-of-contents__link toc-highlight">dblink</a></li><li><a href="#decoderbufs" class="table-of-contents__link toc-highlight">decoderbufs</a></li><li><a href="#dict-int" class="table-of-contents__link toc-highlight">dict_int</a></li><li><a href="#dict-xsyn" class="table-of-contents__link toc-highlight">dict_xsyn</a></li><li><a href="#earthdistance" class="table-of-contents__link toc-highlight">earthdistance</a></li><li><a href="#fuzzystrmatch" class="table-of-contents__link toc-highlight">fuzzystrmatch</a></li><li><a href="#hll" class="table-of-contents__link toc-highlight">hll</a></li><li><a href="#hstore" class="table-of-contents__link toc-highlight">hstore</a></li><li><a href="#hstore-plperl" class="table-of-contents__link toc-highlight">hstore_plperl</a></li><li><a href="#hypopg" class="table-of-contents__link toc-highlight">hypopg</a></li><li><a href="#imgsmlr" class="table-of-contents__link toc-highlight">imgsmlr</a></li><li><a href="#insert-username" class="table-of-contents__link toc-highlight">insert_username</a></li><li><a href="#intagg" class="table-of-contents__link toc-highlight">intagg</a></li><li><a href="#intarray" class="table-of-contents__link toc-highlight">intarray</a></li><li><a href="#isn" class="table-of-contents__link toc-highlight">isn</a></li><li><a href="#jsonb-plperl" class="table-of-contents__link toc-highlight">jsonb_plperl</a></li><li><a href="#lo" class="table-of-contents__link toc-highlight">lo</a></li><li><a href="#ltree" class="table-of-contents__link toc-highlight">ltree</a></li><li><a href="#moddatetime" class="table-of-contents__link toc-highlight">moddatetime</a></li><li><a href="#mysql-fdw" class="table-of-contents__link toc-highlight">mysql_fdw</a></li><li><a href="#pageinspect" class="table-of-contents__link toc-highlight">pageinspect</a></li><li><a href="#pg-bigm" class="table-of-contents__link toc-highlight">pg_bigm</a></li><li><a href="#pg-buffercache" class="table-of-contents__link toc-highlight">pg_buffercache</a></li><li><a href="#pg-cron" class="table-of-contents__link toc-highlight">pg_cron</a></li><li><a href="#pg-freespacemap" class="table-of-contents__link toc-highlight">pg_freespacemap</a></li><li><a href="#pg-hashids" class="table-of-contents__link toc-highlight">pg_hashids</a></li><li><a href="#pg-hint-plan" class="table-of-contents__link toc-highlight">pg_hint_plan</a></li><li><a href="#pg-ivm" class="table-of-contents__link toc-highlight">pg_ivm</a></li><li><a href="#pg-jieba" class="table-of-contents__link toc-highlight">pg_jieba</a></li><li><a href="#pg-partman" class="table-of-contents__link toc-highlight">pg_partman</a></li><li><a href="#pg-prewarm" class="table-of-contents__link toc-highlight">pg_prewarm</a></li><li><a href="#pg-repack" class="table-of-contents__link toc-highlight">pg_repack</a></li><li><a href="#pg-similarity" class="table-of-contents__link toc-highlight">pg_similarity</a></li><li><a href="#pg-sphere" class="table-of-contents__link toc-highlight">pg_sphere</a></li><li><a href="#pg-squeeze" class="table-of-contents__link toc-highlight">pg_squeeze</a></li><li><a href="#pg-stat-log" class="table-of-contents__link toc-highlight">pg_stat_log</a></li><li><a href="#pg-stat-statements" class="table-of-contents__link toc-highlight">pg_stat_statements</a></li><li><a href="#pg-surgery" class="table-of-contents__link toc-highlight">pg_surgery</a></li><li><a href="#pg-trgm" class="table-of-contents__link toc-highlight">pg_trgm</a></li><li><a href="#pg-visibility" class="table-of-contents__link toc-highlight">pg_visibility</a></li><li><a href="#pg-walinspect" class="table-of-contents__link toc-highlight">pg_walinspect</a></li><li><a href="#pgagent" class="table-of-contents__link toc-highlight">pgagent</a></li><li><a href="#pgaudit" class="table-of-contents__link toc-highlight">pgaudit</a></li><li><a href="#pgcrypto" class="table-of-contents__link toc-highlight">pgcrypto</a></li><li><a href="#pglogical" class="table-of-contents__link toc-highlight">pglogical</a></li><li><a href="#pglogical-origin" class="table-of-contents__link toc-highlight">pglogical_origin</a></li><li><a href="#pgrouting" class="table-of-contents__link toc-highlight">pgrouting</a></li><li><a href="#pgrowlocks" class="table-of-contents__link toc-highlight">pgrowlocks</a></li><li><a href="#pgstattuple" class="table-of-contents__link toc-highlight">pgstattuple</a></li><li><a href="#pldbgapi" class="table-of-contents__link toc-highlight">pldbgapi</a></li><li><a href="#plperl" class="table-of-contents__link toc-highlight">plperl</a></li><li><a href="#plpgsql" class="table-of-contents__link toc-highlight">plpgsql</a></li><li><a href="#pltcl" class="table-of-contents__link toc-highlight">pltcl</a></li><li><a href="#plv8" class="table-of-contents__link toc-highlight">plv8</a></li><li><a href="#postgis" class="table-of-contents__link toc-highlight">postgis</a></li><li><a href="#postgis-raster" class="table-of-contents__link toc-highlight">postgis_raster</a></li><li><a href="#postgis-sfcgal" class="table-of-contents__link toc-highlight">postgis_sfcgal</a></li><li><a href="#postgis-tiger-geocoder" class="table-of-contents__link toc-highlight">postgis_tiger_geocoder</a></li><li><a href="#postgis-topology" class="table-of-contents__link toc-highlight">postgis_topology</a></li><li><a href="#postgres-fdw" class="table-of-contents__link toc-highlight">postgres_fdw</a></li><li><a href="#rdkit" class="table-of-contents__link toc-highlight">rdkit</a></li><li><a href="#rds-server-handler" class="table-of-contents__link toc-highlight">rds_server_handler</a></li><li><a href="#refint" class="table-of-contents__link toc-highlight">refint</a></li><li><a href="#roaringbitmap" class="table-of-contents__link toc-highlight">roaringbitmap</a></li><li><a href="#rum" class="table-of-contents__link toc-highlight">rum</a></li><li><a href="#seg" class="table-of-contents__link toc-highlight">seg</a></li><li><a href="#sequential-uuids" class="table-of-contents__link toc-highlight">sequential_uuids</a></li><li><a href="#smlar" class="table-of-contents__link toc-highlight">smlar</a></li><li><a href="#sslinfo" class="table-of-contents__link toc-highlight">sslinfo</a></li><li><a href="#starrocks-fdw" class="table-of-contents__link toc-highlight">starrocks_fdw</a></li><li><a href="#tablefunc" class="table-of-contents__link toc-highlight">tablefunc</a></li><li><a href="#tcn" class="table-of-contents__link toc-highlight">tcn</a></li><li><a href="#tencentdb-ai" class="table-of-contents__link toc-highlight">tencentdb_ai</a></li><li><a href="#tencentdb-failover-slot" class="table-of-contents__link toc-highlight">tencentdb_failover_slot</a></li><li><a href="#tencentdb-scf" class="table-of-contents__link toc-highlight">tencentdb_scf</a></li><li><a href="#tencentdb-index-advisor" class="table-of-contents__link toc-highlight">tencentdb_index_advisor</a></li><li><a href="#tencentdb-serverless" class="table-of-contents__link toc-highlight">tencentdb_serverless</a></li><li><a href="#tencentdb-sql-throttling" class="table-of-contents__link toc-highlight">tencentdb_sql_throttling</a></li><li><a href="#tencentdb-superuser" class="table-of-contents__link toc-highlight">tencentdb_superuser</a></li><li><a href="#tencentdb-system-stat" class="table-of-contents__link toc-highlight">tencentdb_system_stat</a></li><li><a href="#tencentdb-wal-stat" class="table-of-contents__link toc-highlight">tencentdb_wal_stat</a></li><li><a href="#timescaledb" class="table-of-contents__link toc-highlight">timescaledb</a></li><li><a href="#topn" class="table-of-contents__link toc-highlight">topn</a></li><li><a href="#tsm-system-rows" class="table-of-contents__link toc-highlight">tsm_system_rows</a></li><li><a href="#tsm-system-time" class="table-of-contents__link toc-highlight">tsm_system_time</a></li><li><a href="#unaccent" class="table-of-contents__link toc-highlight">unaccent</a></li><li><a href="#uuid-ossp" class="table-of-contents__link toc-highlight">uuid-ossp</a></li><li><a href="#vector" class="table-of-contents__link toc-highlight">vector</a></li><li><a href="#vectorscale" class="table-of-contents__link toc-highlight">vectorscale</a></li><li><a href="#xml2" class="table-of-contents__link toc-highlight">xml2</a></li><li><a href="#zhparser" class="table-of-contents__link toc-highlight">zhparser</a></li></ul></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="Copy page" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Copy page</span></button><button class="tocActionButton_eGor" title="View Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>View Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>Give feedback</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Ask AI about this page</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

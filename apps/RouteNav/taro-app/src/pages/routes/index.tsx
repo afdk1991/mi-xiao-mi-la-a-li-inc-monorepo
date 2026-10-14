@@ -82,7 +82,7 @@ export default function Routes() {
         {addresses.map((item, index) => (
           <View key={item.id} className="flex items-center gap-3 py-3 border-b border-gray-100 last:border-0">
             <Checkbox checked={selectedAddresses.includes(item.id)} onChange={() => toggleSelected(item.id)} />
-            <View className="flex items-start gap-2 flex-1" onClick={() => toggleSelected(item.id)}>
+            <View className="flex items-start gap-2 flex-1">
               <MapPin size={16} color="#3b82f6" />
               <View>
                 <Text className="text-gray-800">{item.name}</Text>

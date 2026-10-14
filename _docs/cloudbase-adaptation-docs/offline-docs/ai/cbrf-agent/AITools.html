@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="zh-Hans" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-ai/cbrf-agent/AITools" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">AITools | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/img/og-docs.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/ai/cbrf-agent/AITools"><meta data-rh="true" property="og:locale" content="zh_Hans"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="zh-Hans"><meta data-rh="true" name="docsearch:language" content="zh-Hans"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AITools | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="BotCore 对外提供的一些工具，用户可以使用 tools 快速实现基础功能。"><meta data-rh="true" property="og:description" content="BotCore 对外提供的一些工具，用户可以使用 tools 快速实现基础功能。"><link data-rh="true" rel="icon" href="/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/ai/cbrf-agent/AITools"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/cbrf-agent/AITools" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/ai/cbrf-agent/AITools" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/cbrf-agent/AITools" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/assets/css/styles.84763893.css">
+<script src="/assets/js/runtime~main.13eb34e7.js" defer="defer"></script>
+<script src="/assets/js/main.38956b3f.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="跳到主要内容"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">跳到主要内容</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="关闭" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="主导航" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="切换导航栏" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/quick-start/">快速开始</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">基础能力</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">核心能力</a></li><li><a class="dropdown__link nav-icon-database" href="/database/postgresql/initialization">数据库</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/storage/introduce">云存储</a></li><li><a class="dropdown__link nav-icon-zap" href="/cloud-function/introduce">云函数</a></li><li><a class="dropdown__link nav-icon-cloud" href="/run/introduction">云托管</a></li><li><a class="dropdown__link nav-icon-globe" href="/hosting/introduce">静态网站托管</a></li><li><a class="dropdown__link nav-icon-log-in" href="/authentication-v2/auth/introduce">身份认证</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/ai/introduce">AI 接入</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/integration/introduce">集成中心</a></li><li><a href="#" class="dropdown__link navbar-category">平台管理</a></li><li><a class="dropdown__link nav-icon-network" href="/service/introduce">HTTP 网关</a></li><li><a class="dropdown__link nav-icon-eye" href="/envconfig/intro">环境配置</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/logger/introduce">日志监控</a></li><li><a class="dropdown__link" href="/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">开发工具</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/ai/cloudbase-ai-toolkit/">AI 开发工具</a></li><li><a class="dropdown__link" href="/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">解决方案</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/solutions/cloudbase-platform-edition/overview">平台集成方案</a></li><li><a class="dropdown__link" href="/solutions/vibe-coding-platform/overview">VibeCoding 方案</a></li><li><a class="dropdown__link" href="/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">API参考</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDK 文档</a></li><li><a class="dropdown__link" href="/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">接口文档</a></li><li><a class="dropdown__link" href="/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/error-code/basic">错误码</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">更多资源</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/changelog/">更新日志</a></li><li><a class="dropdown__link" href="/faq/">常见问题</a></li><li><a class="dropdown__link" href="/practices/introduce">最佳实践</a></li><li><a class="dropdown__link" href="/quick-start/migration/">迁移指南</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">价格文档</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">博客</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">关注公众号领福利</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">前往控制台</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>简体中文</a><ul class="dropdown__menu"><li><a href="/ai/cbrf-agent/AITools" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="zh-Hans">简体中文</a></li><li><a href="/en/ai/cbrf-agent/AITools" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="切换浅色/暗黑模式（当前为system mode）"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="搜索 (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">搜索</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="回到顶部" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><main class="docMainContainer_TBSr docMainContainerEnhanced_lQrH"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><div class="region-badge-container"><span class="region-badge-prefix">支持地域：</span><span class="region-badge-tag region-badge-shanghai" style="padding:6px 12px;font-size:11px;font-weight:500;border-radius:5px;color:#000000;background-color:#D3E3FD">上海</span></div></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">本页总览</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>AITools</h1></header>
+<p>BotCore 对外提供的一些工具，用户可以使用 tools 快速实现基础功能。</p>
+<p><code>AITools</code> 目前对外提供的工具</p>
+<table><thead><tr><th><code>AITools</code> 方法名</th><th>描述</th></tr></thead><tbody><tr><td><a href="#searchdb"><code>searchDB</code></a></td><td>查询数据模型内容</td></tr><tr><td><a href="#searchfile"><code>searchFile</code></a></td><td>查询文件内容</td></tr><tr><td><a href="#searchknowledgebase"><code>searchKnowledgeBase</code></a></td><td>查询知识库内容</td></tr><tr><td><a href="#searchnetwork"><code>searchNetwork</code></a></td><td>查询联网内容</td></tr><tr><td><a href="#sendwxclientmessage"><code>sendWxClientMessage</code></a></td><td>推送信息到微信客户端</td></tr><tr><td><a href="#speechtotext"><code>speechToText</code></a></td><td>语音转文字</td></tr><tr><td><a href="#texttospeech"><code>textToSpeech</code></a></td><td>文字转语音</td></tr><tr><td><a href="#gettexttospeech"><code>getTextToSpeech</code></a></td><td>获取文字转语音结果</td></tr><tr><td><a href="#getwxmediacontent"><code>getWxMediaContent</code></a></td><td>获取微信回调中语音内容</td></tr></tbody></table>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="方法">方法<a href="#方法" class="hash-link" aria-label="方法的直接链接" title="方法的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchdb">searchDB()<a href="#searchdb" class="hash-link" aria-label="searchDB()的直接链接" title="searchDB()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>searchDB</strong>(<code>botId</code>, <code>msg</code>, <code>databaseModel</code>): <code>Promise</code>&lt;<a href="#searchdbresult"><code>SearchDBResult</code></a>&gt;</p>
+</blockquote>
+<p>查询数据模型内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数">参数<a href="#参数" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid">botId<a href="#botid" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msg">msg<a href="#msg" class="hash-link" aria-label="msg的直接链接" title="msg的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>对话消息内容</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="databasemodel">databaseModel<a href="#databasemodel" class="hash-link" aria-label="databaseModel的直接链接" title="databaseModel的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code>[]</p>
+</blockquote>
+<p>数据模型列表</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns">Returns<a href="#returns" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#searchdbresult"><code>SearchDBResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例">使用示例<a href="#使用示例" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">searchDB</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  msg</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">databaseModel</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">查询数据模型内容失败: </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchfile">searchFile()<a href="#searchfile" class="hash-link" aria-label="searchFile()的直接链接" title="searchFile()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>searchFile</strong>(<code>botId</code>, <code>msg</code>, <code>files</code>): <code>Promise</code>&lt;<a href="#searchfileresult"><code>SearchFileResult</code></a>&gt;</p>
+</blockquote>
+<p>查询文件内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-1">参数<a href="#参数-1" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-1">botId<a href="#botid-1" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msg-1">msg<a href="#msg-1" class="hash-link" aria-label="msg的直接链接" title="msg的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>对话消息内容</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="files">files<a href="#files" class="hash-link" aria-label="files的直接链接" title="files的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code>[]</p>
+</blockquote>
+<p>文件上传到云存储中的 fileID</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-1">Returns<a href="#returns-1" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#searchfileresult"><code>SearchFileResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-1">使用示例<a href="#使用示例-1" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">searchFile</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  msg</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  files</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">查询文件内容失败: </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchknowledgebase">searchKnowledgeBase()<a href="#searchknowledgebase" class="hash-link" aria-label="searchKnowledgeBase()的直接链接" title="searchKnowledgeBase()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>searchKnowledgeBase</strong>(<code>botId</code>, <code>msg</code>, <code>knowledgeBase</code>): <code>Promise</code>&lt;<a href="#searchknowledgeresult"><code>SearchKnowledgeResult</code></a>&gt;</p>
+</blockquote>
+<p>查询知识库内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-2">参数<a href="#参数-2" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-2">botId<a href="#botid-2" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msg-2">msg<a href="#msg-2" class="hash-link" aria-label="msg的直接链接" title="msg的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>对话消息内容</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="knowledgebase">knowledgeBase<a href="#knowledgebase" class="hash-link" aria-label="knowledgeBase的直接链接" title="knowledgeBase的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code>[]</p>
+</blockquote>
+<p>知识库 ID</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-2">Returns<a href="#returns-2" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#searchknowledgeresult"><code>SearchKnowledgeResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-2">使用示例<a href="#使用示例-2" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">searchKnowledgeBase</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  msg</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">knowledgeBase</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">查询知识库内容失败: </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchnetwork">searchNetwork()<a href="#searchnetwork" class="hash-link" aria-label="searchNetwork()的直接链接" title="searchNetwork()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>searchNetwork</strong>(<code>botId</code>, <code>msg</code>): <code>Promise</code>&lt;<a href="#searchnetworkresult"><code>SearchNetworkResult</code></a>&gt;</p>
+</blockquote>
+<p>查询联网内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-3">参数<a href="#参数-3" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-3">botId<a href="#botid-3" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msg-3">msg<a href="#msg-3" class="hash-link" aria-label="msg的直接链接" title="msg的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>对话消息内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-3">Returns<a href="#returns-3" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#searchnetworkresult"><code>SearchNetworkResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-3">使用示例<a href="#使用示例-3" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">searchNetwork</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  msg</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">查询联网内容失败 </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="sendwxclientmessage">sendWxClientMessage()<a href="#sendwxclientmessage" class="hash-link" aria-label="sendWxClientMessage()的直接链接" title="sendWxClientMessage()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>sendWxClientMessage</strong>(<code>botId</code>, <code>triggerSrc</code>, <code>wxClientMessage</code>): <code>Promise</code>&lt;<a href="#toolscommonresp"><code>toolsCommonResp</code></a>&gt;</p>
+</blockquote>
+<p>推送信息到微信客户端</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-4">参数<a href="#参数-4" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-4">botId<a href="#botid-4" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="triggersrc">triggerSrc<a href="#triggersrc" class="hash-link" aria-label="triggerSrc的直接链接" title="triggerSrc的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>微信回调来源</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxclientmessage">wxClientMessage<a href="#wxclientmessage" class="hash-link" aria-label="wxClientMessage的直接链接" title="wxClientMessage的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><a href="#wxclientmessagedto"><code>WxClientMessageDto</code></a></p>
+</blockquote>
+<p>推送到微信客户端的消息内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-4">Returns<a href="#returns-4" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#toolscommonresp"><code>toolsCommonResp</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-4">使用示例<a href="#使用示例-4" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> sendResult </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">sendWxClientMessage</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  triggerSrc</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    msgType</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> toWxMsgData</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">msgType</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    touser</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> toWxMsgData</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">touser</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    text</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> toWxMsgData</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">text</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    openKfId</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> toWxMsgData</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">openKfId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">    msgId</span><span class="token operator" style="color:#393A34">:</span><span class="token plain"> toWxMsgData</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">msgId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token builtin">console</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">log</span><span class="token punctuation" style="color:#393A34">(</span><span class="token string" style="color:#e3116c">&quot;sendResult:&quot;</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> sendResult</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotext">speechToText()<a href="#speechtotext" class="hash-link" aria-label="speechToText()的直接链接" title="speechToText()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>speechToText</strong>(<code>botId</code>, <code>engSerViceType</code>, <code>voiceFormat</code>, <code>voiceUrl</code>): <code>Promise</code>&lt;<a href="#speechtotextresult"><code>SpeechToTextResult</code></a>&gt;</p>
+</blockquote>
+<p>语音转文字</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-5">参数<a href="#参数-5" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-5">botId<a href="#botid-5" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="engservicetype">engSerViceType<a href="#engservicetype" class="hash-link" aria-label="engSerViceType的直接链接" title="engSerViceType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>语言类型</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voiceformat">voiceFormat<a href="#voiceformat" class="hash-link" aria-label="voiceFormat的直接链接" title="voiceFormat的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>语音文件类型,输入语言 16k_zh:中文通用 16k_zh-PY:中英粤 16k_zh_medical:中文医疗 16k_en:英语 16k_yue:粤语</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voiceurl">voiceUrl<a href="#voiceurl" class="hash-link" aria-label="voiceUrl的直接链接" title="voiceUrl的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>语音文件公网链接</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-5">Returns<a href="#returns-5" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#speechtotextresult"><code>SpeechToTextResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-5">使用示例<a href="#使用示例-5" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">speechToText</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  input</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">engSerViceType</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  input</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">voiceFormat</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  input</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">url</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">语音转文字失败: </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="texttospeech">textToSpeech()<a href="#texttospeech" class="hash-link" aria-label="textToSpeech()的直接链接" title="textToSpeech()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>textToSpeech</strong>(<code>botId</code>, <code>text</code>, <code>voiceType</code>): <code>Promise</code>&lt;<a href="#texttospeechresult"><code>TextToSpeechResult</code></a>&gt;</p>
+</blockquote>
+<p>文字转语音</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-6">参数<a href="#参数-6" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-6">botId<a href="#botid-6" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="text">text<a href="#text" class="hash-link" aria-label="text的直接链 接" title="text的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>需要转换成语音的文字</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="voicetype">voiceType<a href="#voicetype" class="hash-link" aria-label="voiceType的直接链接" title="voiceType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>number</code></p>
+</blockquote>
+<p>需要转换成的语音类型, 输出声音类型 101004:通用男声 101005:通用女声 601004:咨询男声 501001:咨询女声 101010:通用男声（大模型） 101035:通用女声（大模型）</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-6">Returns<a href="#returns-6" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#texttospeechresult"><code>TextToSpeechResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-6">使用示例<a href="#使用示例-6" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">textToSpeech</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  input</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">text</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  input</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">voiceType</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">文字转语音失败: </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gettexttospeech">getTextToSpeech()<a href="#gettexttospeech" class="hash-link" aria-label="getTextToSpeech()的直接链接" title="getTextToSpeech()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>getTextToSpeech</strong>(<code>botId</code>, <code>taskId</code>): <code>Promise</code>&lt;<a href="#gettexttospeechresult"><code>GetTextToSpeechResult</code></a>&gt;</p>
+</blockquote>
+<p>获取文字转语音结果</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-7">参数<a href="#参数-7" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-7">botId<a href="#botid-7" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid">taskId<a href="#taskid" class="hash-link" aria-label="taskId的直接链接" title="taskId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>textToSpeech 接口返回的 taskID</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-7">Returns<a href="#returns-7" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#gettexttospeechresult"><code>GetTextToSpeechResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-7">使用示例<a href="#使用示例-7" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> result </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">getTextToSpeech</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">info</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  input</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">taskId</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> result</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">code</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">length </span><span class="token operator" style="color:#393A34">!==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">throw</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">new</span><span class="token plain"> </span><span class="token class-name">Error</span><span class="token punctuation" style="color:#393A34">(</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token template-string string" style="color:#e3116c">查询文字转语音状态失败: </span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">${</span><span class="token template-string interpolation">result</span><span class="token template-string interpolation operator" style="color:#393A34">?.</span><span class="token template-string interpolation">message</span><span class="token template-string interpolation interpolation-punctuation punctuation" style="color:#393A34">}</span><span class="token template-string template-punctuation string" style="color:#e3116c">`</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></div></code></pre></div></div>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getwxmediacontent">getWxMediaContent()<a href="#getwxmediacontent" class="hash-link" aria-label="getWxMediaContent()的直接链接" title="getWxMediaContent()的直接链接" translate="no">​</a></h3>
+<blockquote>
+<p><strong>getWxMediaContent</strong>(<code>botId</code>, <code>triggerSrc</code>, <code>media</code>): <code>Promise</code>&lt;<a href="#getwxmediacontentresult"><code>GetWxMediaContentResult</code></a>&gt;</p>
+</blockquote>
+<p>获取微信回调中语音内容</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="参数-8">参数<a href="#参数-8" class="hash-link" aria-label="参数的直接链接" title="参数的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="botid-8">botId<a href="#botid-8" class="hash-link" aria-label="botId的直接链接" title="botId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>botId，即函数型 Agent 的 ID</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="triggersrc-1">triggerSrc<a href="#triggersrc-1" class="hash-link" aria-label="triggerSrc的直接链接" title="triggerSrc的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>微信回调来源</p>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="media">media<a href="#media" class="hash-link" aria-label="media的直接链接" title="media的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>string</code></p>
+</blockquote>
+<p>微信语音 media ID</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="returns-8">Returns<a href="#returns-8" class="hash-link" aria-label="Returns的直接链接" title="Returns的直接链接" translate="no">​</a></h4>
+<p><code>Promise</code>&lt;<a href="#getwxmediacontentresult"><code>GetWxMediaContentResult</code></a>&gt;</p>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="使用示例-8">使用示例<a href="#使用示例-8" class="hash-link" aria-label="使用示例的直接链接" title="使用示例的直接链接" translate="no">​</a></h4>
+<div class="language-ts codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_QJqH"><pre tabindex="0" class="prism-code language-ts codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><div class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">const</span><span class="token plain"> mediaResult </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">await</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">tools</span><span class="token punctuation" style="color:#393A34">.</span><span class="token function" style="color:#d73a49">getWxMediaContent</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">this</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botContext</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">bot</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">botId</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  triggerSrc</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">  mediaId</span><br></div><div class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></div><div class="token-line" style="color:#393A34"><span class="token plain">content </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> mediaResult</span><span class="token operator" style="color:#393A34">?.</span><span class="token plain">content</span><span class="token punctuation" style="color:#393A34">;</span><br></div></code></pre></div></div>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="类型">类型<a href="#类型" class="hash-link" aria-label="类型的直接链接" title="类型的直接链接" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="chatdbsearchresult">ChatDBSearchResult<a href="#chatdbsearchresult" class="hash-link" aria-label="ChatDBSearchResult的直接链接" title="ChatDBSearchResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性">属性<a href="#属性" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="answerprompt">answerPrompt<a href="#answerprompt" class="hash-link" aria-label="answerPrompt的直接链接" title="answerPrompt的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>answerPrompt</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="relatetables">relateTables<a href="#relatetables" class="hash-link" aria-label="relateTables的直接链接" title="relateTables的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>relateTables</strong>: <code>unknown</code>[]</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchdbresult">SearchDBResult<a href="#searchdbresult" class="hash-link" aria-label="SearchDBResult的直接链接" title="SearchDBResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-1">属性<a href="#属性-1" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code">code?<a href="#code" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message">message?<a href="#message" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchresult">searchResult<a href="#searchresult" class="hash-link" aria-label="searchResult的直接链接" title="searchResult的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>searchResult</strong>: <a href="#ChatDBSearchResult"><code>ChatDBSearchResult</code></a></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchfileresult">SearchFileResult<a href="#searchfileresult" class="hash-link" aria-label="SearchFileResult的直接链接" title="SearchFileResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties">Properties<a href="#properties" class="hash-link" aria-label="Properties的直接链接" title="Properties的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-1">code?<a href="#code-1" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content">content<a href="#content" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-1">message?<a href="#message-1" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="knowledgebasedocument">KnowledgeBaseDocument<a href="#knowledgebasedocument" class="hash-link" aria-label="KnowledgeBaseDocument的直接链接" title="KnowledgeBaseDocument的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-2">属性<a href="#属性-2" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="data">data<a href="#data" class="hash-link" aria-label="data的直接链接" title="data的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>data</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="allparentparagraphtitles">allParentParagraphTitles<a href="#allparentparagraphtitles" class="hash-link" aria-label="allParentParagraphTitles的直接链接" title="allParentParagraphTitles的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>allParentParagraphTitles</strong>: <code>string</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="endpos">endPos<a href="#endpos" class="hash-link" aria-label="endPos的直接链接" title="endPos的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>endPos</strong>: <code>number</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="next">next<a href="#next" class="hash-link" aria-label="next的直接链接" title="next的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>next</strong>: <code>unknown</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="paragraphtitle">paragraphTitle<a href="#paragraphtitle" class="hash-link" aria-label="paragraphTitle的直接链接" title="paragraphTitle的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>paragraphTitle</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="pre">pre<a href="#pre" class="hash-link" aria-label="pre的直接链接" title="pre的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>pre</strong>: <code>unknown</code>[]</p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="startpos">startPos<a href="#startpos" class="hash-link" aria-label="startPos的直接链接" title="startPos的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>startPos</strong>: <code>number</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="text-1">text<a href="#text-1" class="hash-link" aria-label="text的直接链接" title="text的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>text</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="documentset">documentSet<a href="#documentset" class="hash-link" aria-label="documentSet的直接链接" title="documentSet的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>documentSet</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="author">author<a href="#author" class="hash-link" aria-label="author的直接链接" title="author的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>author</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="documentsetid">documentSetId<a href="#documentsetid" class="hash-link" aria-label="documentSetId的直接链接" title="documentSetId的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>documentSetId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="documentsetname">documentSetName<a href="#documentsetname" class="hash-link" aria-label="documentSetName的直接链接" title="documentSetName的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>documentSetName</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="fileid">fileId<a href="#fileid" class="hash-link" aria-label="fileId的直接链接" title="fileId的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>fileId</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="filemetadata">fileMetaData<a href="#filemetadata" class="hash-link" aria-label="fileMetaData的直接链接" title="fileMetaData的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>fileMetaData</strong>: <code>string</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="filetitle">fileTitle<a href="#filetitle" class="hash-link" aria-label="fileTitle的直接链接" title="fileTitle的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>fileTitle</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="score">score<a href="#score" class="hash-link" aria-label="score的直接链接" title="score的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>score</strong>: <code>number</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchknowledgeresult">SearchKnowledgeResult<a href="#searchknowledgeresult" class="hash-link" aria-label="SearchKnowledgeResult的直接链接" title="SearchKnowledgeResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-3">属性<a href="#属性-3" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-2">code?<a href="#code-2" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="documents">documents<a href="#documents" class="hash-link" aria-label="documents的直接链接" title="documents的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>documents</strong>: <a href="#KnowledgeBaseDocument"><code>KnowledgeBaseDocument</code></a></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="knowledgebase-1">knowledgeBase?<a href="#knowledgebase-1" class="hash-link" aria-label="knowledgeBase?的直接链接" title="knowledgeBase?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>knowledgeBase</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="knowledgemeta">knowledgeMeta?<a href="#knowledgemeta" class="hash-link" aria-label="knowledgeMeta?的直接链接" title="knowledgeMeta?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>knowledgeMeta</strong>: <code>string</code>[]</p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-2">message?<a href="#message-2" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchresult-1">SearchResult<a href="#searchresult-1" class="hash-link" aria-label="SearchResult的直接链接" title="SearchResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-1">Properties<a href="#properties-1" class="hash-link" aria-label="Properties的直接链接" title="Properties的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="abstract">abstract<a href="#abstract" class="hash-link" aria-label="abstract的直接链接" title="abstract的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>abstract</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="extra">extra?<a href="#extra" class="hash-link" aria-label="extra?的直接链接" title="extra?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>extra</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="index">index<a href="#index" class="hash-link" aria-label="index的直接链接" title="index的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>index</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="publisher">publisher<a href="#publisher" class="hash-link" aria-label="publisher的直接链接" title="publisher的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>publisher</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="publishtime">publishTime<a href="#publishtime" class="hash-link" aria-label="publishTime的直接链接" title="publishTime的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>publishTime</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="source">source<a href="#source" class="hash-link" aria-label="source的直接链接" title="source的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>source</strong>: <code>&quot;thirdparty&quot;</code> | <code>&quot;knowledgebase&quot;</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="title">title<a href="#title" class="hash-link" aria-label="title的直接链接" title="title的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>title</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="url">url<a href="#url" class="hash-link" aria-label="url的直接链接" title="url的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>url</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchinfo">SearchInfo<a href="#searchinfo" class="hash-link" aria-label="SearchInfo的直接链接" title="SearchInfo的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-2">Properties<a href="#properties-2" class="hash-link" aria-label="Properties的直接链接" title="Properties的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchresults">searchResults<a href="#searchresults" class="hash-link" aria-label="searchResults的直接链接" title="searchResults的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>searchResults</strong>: <a href="#SearchResult"><code>SearchResult</code></a>[]</p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchnetworkresult">SearchNetworkResult<a href="#searchnetworkresult" class="hash-link" aria-label="SearchNetworkResult的直接链接" title="SearchNetworkResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="properties-3">Properties<a href="#properties-3" class="hash-link" aria-label="Properties的直接链接" title="Properties的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-3">code?<a href="#code-3" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-1">content<a href="#content-1" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-3">message?<a href="#message-3" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="searchinfo-1">searchInfo<a href="#searchinfo-1" class="hash-link" aria-label="searchInfo的直接链接" title="searchInfo的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>searchInfo</strong>: <a href="#SearchInfo"><code>SearchInfo</code></a></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="toolscommonresp">toolsCommonResp<a href="#toolscommonresp" class="hash-link" aria-label="toolsCommonResp的直接链接" title="toolsCommonResp的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-4">属性<a href="#属性-4" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-4">code?<a href="#code-4" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-4">message?<a href="#message-4" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="wxclientmessagedto">WxClientMessageDto<a href="#wxclientmessagedto" class="hash-link" aria-label="WxClientMessageDto的直接链接" title="WxClientMessageDto的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-5">属性<a href="#属性-5" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgid">msgId<a href="#msgid" class="hash-link" aria-label="msgId的直接链接" title="msgId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="msgtype">msgType<a href="#msgtype" class="hash-link" aria-label="msgType的直接链接" title="msgType的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>msgType</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="openkfid">openKfId?<a href="#openkfid" class="hash-link" aria-label="openKfId?的直接链接" title="openKfId?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>openKfId</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="text-2">text<a href="#text-2" class="hash-link" aria-label="text的直接链接" title="text的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>text</strong>: <code>object</code></p>
+</blockquote>
+<h6 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-2">content<a href="#content-2" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h6>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="touser">touser<a href="#touser" class="hash-link" aria-label="touser的直接链接" title="touser的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>touser</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="speechtotextresult">SpeechToTextResult<a href="#speechtotextresult" class="hash-link" aria-label="SpeechToTextResult的直接链接" title="SpeechToTextResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-6">属性<a href="#属性-6" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-5">code?<a href="#code-5" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-5">message?<a href="#message-5" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="result">result<a href="#result" class="hash-link" aria-label="result的直接链接" title="result的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>result</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="texttospeechresult">TextToSpeechResult<a href="#texttospeechresult" class="hash-link" aria-label="TextToSpeechResult的直接链接" title="TextToSpeechResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-7">属性<a href="#属性-7" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-6">code?<a href="#code-6" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-6">message?<a href="#message-6" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid-1">taskId<a href="#taskid-1" class="hash-link" aria-label="taskId的直接链接" title="taskId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>taskId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="gettexttospeechresult">GetTextToSpeechResult<a href="#gettexttospeechresult" class="hash-link" aria-label="GetTextToSpeechResult的直接链接" title="GetTextToSpeechResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-8">属性<a href="#属性-8" class="hash-link" aria-label="属性的直接链接" title="属  性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-7">code?<a href="#code-7" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-7">message?<a href="#message-7" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="resulturl">resultUrl<a href="#resulturl" class="hash-link" aria-label="resultUrl的直接链接" title="resultUrl的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>resultUrl</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="status">status<a href="#status" class="hash-link" aria-label="status的直接链接" title="status的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>status</strong>: <code>number</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="statusstr">statusStr<a href="#statusstr" class="hash-link" aria-label="statusStr的直接链接" title="statusStr的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>statusStr</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="taskid-2">taskId<a href="#taskid-2" class="hash-link" aria-label="taskId的直接链接" title="taskId的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>taskId</strong>: <code>string</code></p>
+</blockquote>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="getwxmediacontentresult">GetWxMediaContentResult<a href="#getwxmediacontentresult" class="hash-link" aria-label="GetWxMediaContentResult的直接链接" title="GetWxMediaContentResult的直接链接" translate="no">​</a></h3>
+<h4 class="anchor anchorTargetStickyNavbar_Vzrq" id="属性-9">属性<a href="#属性-9" class="hash-link" aria-label="属性的直接链接" title="属性的直接链接" translate="no">​</a></h4>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="code-8">code?<a href="#code-8" class="hash-link" aria-label="code?的直接链接" title="code?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>code</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="content-3">content<a href="#content-3" class="hash-link" aria-label="content的直接链接" title="content的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><strong>content</strong>: <code>string</code></p>
+</blockquote>
+<h5 class="anchor anchorTargetStickyNavbar_Vzrq" id="message-8">message?<a href="#message-8" class="hash-link" aria-label="message?的直接链接" title="message?的直接链接" translate="no">​</a></h5>
+<blockquote>
+<p><code>optional</code> <strong>message</strong>: <code>string</code></p>
+</blockquote>
+<hr></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="文件选项卡"></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#方法" class="table-of-contents__link toc-highlight">方法</a><ul><li><a href="#searchdb" class="table-of-contents__link toc-highlight">searchDB()</a></li><li><a href="#searchfile" class="table-of-contents__link toc-highlight">searchFile()</a></li><li><a href="#searchknowledgebase" class="table-of-contents__link toc-highlight">searchKnowledgeBase()</a></li><li><a href="#searchnetwork" class="table-of-contents__link toc-highlight">searchNetwork()</a></li><li><a href="#sendwxclientmessage" class="table-of-contents__link toc-highlight">sendWxClientMessage()</a></li><li><a href="#speechtotext" class="table-of-contents__link toc-highlight">speechToText()</a></li><li><a href="#texttospeech" class="table-of-contents__link toc-highlight">textToSpeech()</a></li><li><a href="#gettexttospeech" class="table-of-contents__link toc-highlight">getTextToSpeech()</a></li><li><a href="#getwxmediacontent" class="table-of-contents__link toc-highlight">getWxMediaContent()</a></li></ul></li><li><a href="#类型" class="table-of-contents__link toc-highlight">类型</a><ul><li><a href="#chatdbsearchresult" class="table-of-contents__link toc-highlight">ChatDBSearchResult</a></li><li><a href="#searchdbresult" class="table-of-contents__link toc-highlight">SearchDBResult</a></li><li><a href="#searchfileresult" class="table-of-contents__link toc-highlight">SearchFileResult</a></li><li><a href="#knowledgebasedocument" class="table-of-contents__link toc-highlight">KnowledgeBaseDocument</a></li><li><a href="#searchknowledgeresult" class="table-of-contents__link toc-highlight">SearchKnowledgeResult</a></li><li><a href="#searchresult-1" class="table-of-contents__link toc-highlight">SearchResult</a></li><li><a href="#searchinfo" class="table-of-contents__link toc-highlight">SearchInfo</a></li><li><a href="#searchnetworkresult" class="table-of-contents__link toc-highlight">SearchNetworkResult</a></li><li><a href="#toolscommonresp" class="table-of-contents__link toc-highlight">toolsCommonResp</a></li><li><a href="#wxclientmessagedto" class="table-of-contents__link toc-highlight">WxClientMessageDto</a></li><li><a href="#speechtotextresult" class="table-of-contents__link toc-highlight">SpeechToTextResult</a></li><li><a href="#texttospeechresult" class="table-of-contents__link toc-highlight">TextToSpeechResult</a></li><li><a href="#gettexttospeechresult" class="table-of-contents__link toc-highlight">GetTextToSpeechResult</a></li><li><a href="#getwxmediacontentresult" class="table-of-contents__link toc-highlight">GetWxMediaContentResult</a></li></ul></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="复制文档" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>复制文档</span></button><button class="tocActionButton_eGor" title="查看 Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>查看 Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>反馈文档问题</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>提问 AI</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

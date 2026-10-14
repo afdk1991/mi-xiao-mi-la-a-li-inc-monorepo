@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-ai/CHANGELOG" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.10.0">
+<title data-rh="true">Changelog | 腾讯云开发 CloudBase - AI 原生后端一体化平台</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://docs.cloudbase.net/en/img/og-docs-en.png"><meta data-rh="true" name="twitter:image" content="https://docs.cloudbase.net/en/img/og-docs-en.png"><meta data-rh="true" property="og:url" content="https://docs.cloudbase.net/en/ai/CHANGELOG"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" property="og:locale:alternate" content="zh_Hans"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Changelog | 腾讯云开发 CloudBase - AI 原生后端一体化平台"><meta data-rh="true" name="description" content="CloudBase AI capability changelog, tracking new models, feature improvements, and bug fixes by version."><meta data-rh="true" property="og:description" content="CloudBase AI capability changelog, tracking new models, feature improvements, and bug fixes by version."><link data-rh="true" rel="icon" href="/en/img/favicon.png"><link data-rh="true" rel="canonical" href="https://docs.cloudbase.net/en/ai/CHANGELOG"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/CHANGELOG" hreflang="zh-Hans"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/en/ai/CHANGELOG" hreflang="en"><link data-rh="true" rel="alternate" href="https://docs.cloudbase.net/ai/CHANGELOG" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://70WJVL90PG-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Changelog","item":"https://docs.cloudbase.net/en/ai/CHANGELOG"}]}</script><link rel="search" type="application/opensearchdescription+xml" title="腾讯云开发 CloudBase - AI 原生后端一体化平台" href="/en/opensearch.xml">
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&display=swap">
+<script src="https://tam.cdn-go.cn/aegis-sdk/latest/aegis.min.js"></script><link rel="stylesheet" href="/en/assets/css/styles.09bf0622.css">
+<script src="/en/assets/js/runtime~main.5f1bf0e5.js" defer="defer"></script>
+<script src="/en/assets/js/main.b2e27f72.js" defer="defer"></script>
+</head>
+<body>
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>!function(){var t=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();document.documentElement.setAttribute("data-theme",t||"light"),document.documentElement.setAttribute("data-theme-choice",t||"light")}(),function(){try{const a=new URLSearchParams(window.location.search).entries();for(var[t,e]of a)if(t.startsWith("docusaurus-data-")){var n=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(n,e)}}catch(t){}}(),document.documentElement.setAttribute("data-announcement-bar-initially-dismissed",function(){try{return"true"===localStorage.getItem("docusaurus.announcement.dismiss")}catch(t){}return!1}())</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><div class="theme-announcement-bar announcementBar_mb4j" style="background-color:#f7f7f7;color:#000" role="banner"><div class="announcementBarPlaceholder_vyr4"></div><div class="content_knG7 announcementBarContent_xLdY">&nbsp;</div><button type="button" aria-label="Close" class="clean-btn close closeButton_CVFx announcementBarClose_gvF7"><svg viewBox="0 0 15 15" width="14" height="14"><g stroke="currentColor" stroke-width="3.1"><path d="M.75.75l13.5 13.5M14.25.75L.75 14.25"></path></g></svg></button></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/en/"><div class="navbar__logo"><img src="/en/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/en/img/logo-zh.svg" alt="CloudBase logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate"></b></a><a class="navbar__item navbar__link" href="/en/quick-start/">Quick Start</a><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Products</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category navbar-basic-abilities">Core</a></li><li><a class="dropdown__link nav-icon-database" href="/en/database/postgresql/initialization">Cloud Database</a></li><li><a class="dropdown__link nav-icon-hard-drive" href="/en/storage/introduce">Cloud Storage</a></li><li><a class="dropdown__link nav-icon-zap" href="/en/cloud-function/introduce">Cloud Functions</a></li><li><a class="dropdown__link nav-icon-cloud" href="/en/run/introduction">Cloud Run</a></li><li><a class="dropdown__link nav-icon-globe" href="/en/hosting/introduce">Hosting</a></li><li><a class="dropdown__link nav-icon-log-in" href="/en/authentication-v2/auth/introduce">Auth</a></li><li><a aria-current="page" class="dropdown__link nav-icon-puzzle dropdown__link--active" href="/en/ai/introduce">AI</a></li><li><a class="dropdown__link nav-icon-puzzle" href="/en/integration/introduce">Integration Center</a></li><li><a href="#" class="dropdown__link navbar-category">Platform</a></li><li><a class="dropdown__link nav-icon-network" href="/en/service/introduce">HTTP Gateway</a></li><li><a class="dropdown__link nav-icon-eye" href="/en/envconfig/intro">Environment Configuration</a></li><li><a class="dropdown__link nav-icon-scroll-text" href="/en/logger/introduce">LogManage</a></li><li><a class="dropdown__link" href="/en/anyservice/intro">AnyService</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Dev Tools</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/ai/cloudbase-ai-toolkit/">AI Dev Tools</a></li><li><a class="dropdown__link" href="/en/cli-v1/install">CloudBase CLI</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Solutions</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/solutions/cloudbase-platform-edition/overview">Platform Integration</a></li><li><a class="dropdown__link" href="/en/solutions/vibe-coding-platform/overview">VibeCoding Platform</a></li><li><a class="dropdown__link" href="/en/ai/ai-builder/introduce">AI Builder</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">Reference</a><ul class="dropdown__menu"><li><a href="#" class="dropdown__link navbar-category">SDKs</a></li><li><a class="dropdown__link" href="/en/api-reference/webv3/initialization">JavaScript SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/flutter">Flutter SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/csharp">C# SDK</a></li><li><a class="dropdown__link" href="/en/api-reference/manager/node/introduction">Manager Node SDK</a></li><li><a href="#" class="dropdown__link navbar-category">APIs</a></li><li><a class="dropdown__link" href="/en/http-api/basic/overview">HTTP API</a></li><li><a href="https://cloud.tencent.com/document/product/876/34808" target="_blank" rel="noopener noreferrer" class="dropdown__link">Cloud API<svg width="12" height="12" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li><a class="dropdown__link" href="/en/error-code/basic">Error Codes</a></li></ul></div><div class="navbar__item dropdown dropdown--hoverable"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link">More Resources</a><ul class="dropdown__menu"><li><a class="dropdown__link" href="/en/changelog/">ChangeLog</a></li><li><a class="dropdown__link" href="/en/faq/">FAQ</a></li><li><a class="dropdown__link" href="/en/practices/introduce">Best Practices</a></li><li><a class="dropdown__link" href="/en/quick-start/migration/">Migration Guides</a></li><li><a href="https://cloud.tencent.com/document/product/876/127357" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Pricing</a></li><li><a href="https://cloudbase.cloud.tencent.com/blog" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Blog</a></li><li><a href="https://qcloudimg.tencent-cloud.cn/raw/81b3489af40841ba696d7c6b26b631f0.jpg" target="_blank" rel="noopener noreferrer" class="dropdown__link header-target">Follow Official Account for Benefits</a></li></ul></div></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a href="https://tcb.cloud.tencent.com/dev" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-console-btn">Console</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>English</a><ul class="dropdown__menu"><li><a href="/ai/CHANGELOG" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="zh-Hans">简体中文</a></li><li><a href="/en/ai/CHANGELOG" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="en">English</a></li></ul></div><a href="https://github.com/TencentCloudBase" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link header-github-link" aria-label="GitHub"></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="system mode" aria-label="Switch between dark and light mode (currently system mode)"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" class="toggleIcon_g3eP systemToggleIcon_QzmC"><path fill="currentColor" d="m12 21c4.971 0 9-4.029 9-9s-4.029-9-9-9-9 4.029-9 9 4.029 9 9 9zm4.95-13.95c1.313 1.313 2.05 3.093 2.05 4.95s-0.738 3.637-2.05 4.95c-1.313 1.313-3.093 2.05-4.95 2.05v-14c1.857 0 3.637 0.737 4.95 2.05z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_mhZE"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_Y1UP menuWithAnnouncementBar_fPny"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--active">AI</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/en/ai/introduce"><span>Introduction</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/quickstart/miniprogram">Quick Start</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/model/overview">Text Generation</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/image-model/overview">Image Generation</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/agent-development/">Agent Development</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/ai-inspire-plan">Mini Program Growth Plan</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/FAQ">FAQ</a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" aria-expanded="true" tabindex="0" href="/en/ai/CHANGELOG">Announcements</a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/en/ai/CHANGELOG"><span>Changelog</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/ai/announcement/"><span>Announcements</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/ai/announcement/model-token-volume"><span>Model Usage Ranking</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/ai/available-models"><span>Available Models List</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/en/ai/deprecated-models"><span>Deprecated Models List</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-3 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" aria-expanded="false" tabindex="0" href="/en/ai/announcement/deepseek-v4-flash-0731-offline">Past Announcements</a></div></li></ul></li></ul></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_xLCN"><div class="docItemContainer_jfFK"><article><div class="breadcrumbs-with-region"><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/en/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">AI</span></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">Announcements</span></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Changelog</span></li></ul></nav></div><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><div class="row"><div class="col col--12 markdown"><header><h1>Changelog</h1></header>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="248---20260928"><strong>[2.4.8] - 2026/09/28</strong><a href="#248---20260928" class="hash-link" aria-label="Direct link to 248---20260928" title="Direct link to 248---20260928" translate="no">​</a></h2>
+<ul>
+<li class="">Added <strong>Model Usage Ranking</strong>, updating the token usage share of each model periodically, see <a href="./announcement/model-token-volume">announcement</a></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="247---20260919"><strong>[2.4.7] - 2026/09/19</strong><a href="#247---20260919" class="hash-link" aria-label="Direct link to 247---20260919" title="Direct link to 247---20260919" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>kimi-k2.8-preview</code>, <code>deepseek/deepseek-flash</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="246---20260828"><strong>[2.4.6] - 2026/08/28</strong><a href="#246---20260828" class="hash-link" aria-label="Direct link to 246---20260828" title="Direct link to 246---20260828" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>hy4-preview</code>, <code>deepseek/deepseek-v4-flash-vision-exp</code>, <code>glm-5.3-flash</code>, <code>deepseek-v4-flash-0731</code>, <code>deepseek-v4-pro-0813</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="245---20260814"><strong>[2.4.5] - 2026/08/14</strong><a href="#245---20260814" class="hash-link" aria-label="Direct link to 245---20260814" title="Direct link to 245---20260814" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>glm-5.3</code></li>
+<li class="">DeepSeek-V4 series model pricing adjusted with a peak/off-peak pricing mechanism, see <a href="./announcement/deepseek-v4-price-update">announcement</a></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="244---20260803"><strong>[2.4.4] - 2026/08/03</strong><a href="#244---20260803" class="hash-link" aria-label="Direct link to 244---20260803" title="Direct link to 244---20260803" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>mimo-v2.5-pro</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="243---20260717"><strong>[2.4.3] - 2026/07/17</strong><a href="#243---20260717" class="hash-link" aria-label="Direct link to 243---20260717" title="Direct link to 243---20260717" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>kimi-k3</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="242---20260706"><strong>[2.4.2] - 2026/07/06</strong><a href="#242---20260706" class="hash-link" aria-label="Direct link to 242---20260706" title="Direct link to 242---20260706" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>hy3</code>, <code>kimi-k2.7-code-highspeed</code></li>
+<li class="">New image generation models: <code>HY-Image-3.0-Plus-4090-Tob-v1.0</code>, <code>HY-Image-v3.0-I2I-ToB-v1.0.1</code></li>
+<li class="">Reduced MiniMax-M3 model pricing, see <a href="./announcement/minimax-m3-price-cut">announcement</a></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="241---20260624"><strong>[2.4.1] - 2026/06/24</strong><a href="#241---20260624" class="hash-link" aria-label="Direct link to 241---20260624" title="Direct link to 241---20260624" translate="no">​</a></h2>
+<ul>
+<li class="">New models: <code>glm-5.2</code>, <code>kimi-k2.7-code</code>, <code>hy-mt2-pro</code>, <code>hy-mt2-plus</code>, <code>hy-mt2-lite</code>, <code>hunyuan-role-latest</code>, <code>hy-role</code></li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="240---20260618"><strong>[2.4.0] - 2026/06/18</strong><a href="#240---20260618" class="hash-link" aria-label="Direct link to 240---20260618" title="Direct link to 240---20260618" translate="no">​</a></h2>
+<ul>
+<li class="">Resource-Point Plan now supports Token deduction</li>
+<li class="">Token Resource Pack discontinued</li>
+<li class="">CloudBase Agent and Builder now support using large models in the environment</li>
+<li class="">Compatible with OpenAI Responses API</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="232---20260603"><strong>[2.3.2] - 2026/06/03</strong><a href="#232---20260603" class="hash-link" aria-label="Direct link to 232---20260603" title="Direct link to 232---20260603" translate="no">​</a></h2>
+<ul>
+<li class="">New models: Qwen3.5-Flash, Qwen3.5-Plus, MiniMax-M3, DeepSeek-V4-Flash (direct from vendor), DeepSeek-V4-Pro (direct from vendor)</li>
+<li class=""><code>hy3-preview</code> under the <code>cloudbase</code> provider now supports deducting Tokens gifted by the Mini Program Growth Plan</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="231---20260529"><strong>[2.3.1] - 2026/05/29</strong><a href="#231---20260529" class="hash-link" aria-label="Direct link to 231---20260529" title="Direct link to 231---20260529" translate="no">​</a></h2>
+<ul>
+<li class="">Support Anthropic protocol</li>
+<li class="">Mini Program Growth Plan model upgraded to hy3</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="230---20260508"><strong>[2.3.0] - 2026/05/08</strong><a href="#230---20260508" class="hash-link" aria-label="Direct link to 230---20260508" title="Direct link to 230---20260508" translate="no">​</a></h2>
+<ul>
+<li class="">Support Token resource packages</li>
+<li class="">Support models: deepseek-v4-flash, deepseek-v3.2, deepseek-v4-pro, glm-5, glm-5-turbo, glm-5.1, glm-5v-turbo, hy3-preview, kimi-k2.5, kimi-k2.6, minimax-m2.5, minimax-m2.7</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="220---20260308"><strong>[2.2.0] - 2026/03/08</strong><a href="#220---20260308" class="hash-link" aria-label="Direct link to 220---20260308" title="Direct link to 220---20260308" translate="no">​</a></h2>
+<ul>
+<li class="">Support LLM call logs with request content, response content, latency, and first token response time</li>
+<li class="">Support Agent analytics dashboard with active users, API latency, and success rate</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="210---20260204"><strong>[2.1.0] - 2026/02/04</strong><a href="#210---20260204" class="hash-link" aria-label="Direct link to 210---20260204" title="Direct link to 210---20260204" translate="no">​</a></h2>
+<ul>
+<li class="">Support Google Aggent Development Kit</li>
+<li class="">Supports Tencent Hunyuan and Coze Platform</li>
+<li class="">Support online debugging</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="200---20260102"><strong>[2.0.0] - 2026/01/02</strong><a href="#200---20260102" class="hash-link" aria-label="Direct link to 200---20260102" title="Direct link to 200---20260102" translate="no">​</a></h2>
+<ul>
+<li class="">Supports LangChain, LangGraph, and CrewAI development frameworks</li>
+<li class="">Supports Tencent Hunyuan and Tencent Cloud Agent Development Platform</li>
+<li class="">Support running Agent on both cloud function and cloud hosting platforms</li>
+<li class="">Support both Javascript and Python</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1140---20251225"><strong>[1.14.0] - 2025/12/25</strong><a href="#1140---20251225" class="hash-link" aria-label="Direct link to 1140---20251225" title="Direct link to 1140---20251225" translate="no">​</a></h2>
+<ul>
+<li class="">Added Hunyuan text-to-image model</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1130---20250516"><strong>[1.13.0] - 2025/05/16</strong><a href="#1130---20250516" class="hash-link" aria-label="Direct link to 1130---20250516" title="Direct link to 1130---20250516" translate="no">​</a></h2>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade" class="hash-link" aria-label="Direct link to -core-features-upgrade" title="Direct link to -core-features-upgrade" translate="no">​</a></h3>
+<p><strong>Cross-Platform Voice Capability Enhancement for Agent UI</strong></p>
+<ul>
+<li class="">Support 4 scenario-based voice tone switching (chat/reading/consultation/general)</li>
+<li class="">Added support for playback in mute mode</li>
+<li class="">Mini Program &amp; low-code components support voice playback speed adjustment</li>
+<li class="">Optimize the display logic for dual titles (hide redundant titles in the content area)</li>
+<li class="">Resolve jitter issues in mixed image-text layouts</li>
+</ul>
+<p><strong>Agent UI Web Component Capability Expansion</strong></p>
+<ul>
+<li class="">Added voice playback feature</li>
+<li class="">Support three types of tool cards such as map/weather</li>
+<li class="">Fixed several interaction issues</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-extended-open-capabilities">🌐 <strong>Extended Open Capabilities</strong><a href="#-extended-open-capabilities" class="hash-link" aria-label="Direct link to -extended-open-capabilities" title="Direct link to -extended-open-capabilities" translate="no">​</a></h3>
+<p><strong>MCP Server Template Expansion</strong></p>
+<ul>
+<li class="">Tencent Hunyuan 3D MCP: Supports generating 3D models from text/images (MAX/FBX/GLB formats)</li>
+<li class="">MarkItDown Service MCP: Enables any file → Markdown format conversion</li>
+<li class="">CRIC Property AI MCP: Integrates dedicated intelligent assistant capabilities for the property management industry</li>
+</ul>
+<p><strong>Functional Agent Expansion</strong></p>
+<ul>
+<li class="">LKE Functional Agent Template: Supports integration with large model knowledge engines</li>
+</ul>
+<hr>
+<p>🚧 <strong>Upcoming Features Preview</strong></p>
+<ul>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+<li class="">Agent supports integration with more third-party Agent development platforms</li>
+<li class="">Supports one-click conversion of OpenAPI to MCP</li>
+<li class="">Provides MCP for integrating with third-party knowledge base search and Agent platforms</li>
+</ul>
+<p>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1120---20250429"><strong>[1.12.0] - 2025/04/29</strong><a href="#1120---20250429" class="hash-link" aria-label="Direct link to 1120---20250429" title="Direct link to 1120---20250429" translate="no">​</a></h2>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-1">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-1" class="hash-link" aria-label="Direct link to -core-features-upgrade-1" title="Direct link to -core-features-upgrade-1" translate="no">​</a></h3>
+<p><strong>Agent supports voice input/output capabilities</strong></p>
+<p>Add native voice input/output capabilities to Agent, enabling developers to quickly build multimodal interaction scenarios:</p>
+<p><strong>Agent supports multi-session capability</strong></p>
+<p>Supports a single Agent instance concurrently handling multiple independent sessions, with each session maintaining separate history</p>
+<p><strong>Agent UI Mini Program components support tool cards</strong></p>
+<p>Agent UI mini program source code supports ToolCard tool cards, supporting flexible customization of MCP display effects.
+Supports custom business logic such as product recommendation or map navigation</p>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-developer-experience-improvements">⚙️ <strong>Developer Experience Improvements</strong><a href="#️-developer-experience-improvements" class="hash-link" aria-label="Direct link to ️-developer-experience-improvements" title="Direct link to ️-developer-experience-improvements" translate="no">​</a></h3>
+<p><strong>File Upload Component Security Upgrade</strong></p>
+<p>Due to the security policy upgrade of the WeChat Mini Program base library, the file upload feature parsing process may be affected. Developers are advised to upgrade the Agent UI components.</p>
+<ul>
+<li class="">Mini-program source code components, please update and replace to the latest version</li>
+<li class="">For WeDa low-code components, please create a new page and then drag to update the agent-ui block again. After completion, publish the application.</li>
+</ul>
+<hr>
+<p>🚧 <strong>Upcoming Features Preview</strong></p>
+<ul>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+<li class="">Agent supports integration with more third-party Agent development platforms</li>
+<li class="">Supports one-click conversion of OpenAPI to MCP</li>
+<li class="">Provides MCP for integrating with third-party knowledge base search and Agent platforms</li>
+</ul>
+<p>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1110---20250417"><strong>[1.11.0] - 2025/04/17</strong><a href="#1110---20250417" class="hash-link" aria-label="Direct link to 1110---20250417" title="Direct link to 1110---20250417" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-2">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-2" class="hash-link" aria-label="Direct link to -core-features-upgrade-2" title="Direct link to -core-features-upgrade-2" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>Supports barrier-free cloud-based hosting for MCP Server</p>
+<p>Fully supports MCP Server written in mainstream languages such as Java/Python/GoLang/PHP, without invasive framework modifications.</p>
+<p>Local MCP Servers can be seamlessly migrated to CloudBase hosting, automatically gaining access to secure and reliable remote MCP services.</p>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-extended-open-capabilities-1">🌐 <strong>Extended Open Capabilities</strong><a href="#-extended-open-capabilities-1" class="hash-link" aria-label="Direct link to -extended-open-capabilities-1" title="Direct link to -extended-open-capabilities-1" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p>CloudBase MCP market officially launched</p>
+<p>CloudBase provides a one-stop MCP Server development and hosting platform, supporting rapid publishing and deployment of MCP Server.</p>
+<p>Added 30+ standardized service modules, covering mainstream development scenarios:</p>
+<table><thead><tr><th>Domain</th><th>Representative Service Modules</th></tr></thead><tbody><tr><td>AI Enhanced</td><td>CloudBase AI Capabilities / Memory Module / Meta Plugin / Puppeteer Automation</td></tr><tr><td>Data Services</td><td>MongoDB/MySQL/Postgres/Redis Database Access / COS File &amp; Data Processing</td></tr><tr><td>Developer Tools</td><td>Github/Gitee/Gitlab Code Management / Figma Design Collaboration / Apifox API Debugging</td></tr><tr><td>Maps &amp; Lifestyle Services</td><td>Tencent Location Service / Amap / Caiyun Weather / ALAPI URL Shortener &amp; Data Hotlist</td></tr><tr><td>Productivity Tools</td><td>Notion Knowledge Base / QuickChart Visualization / Mermaid Chart Rendering / Zapier Universal Workflows</td></tr><tr><td>Cloud-Native Infrastructure</td><td>CloudBase Environment Management / Lighthouse Cloud Server / CNB Cloud-Native Build / Trends Hub Hotspot Analysis</td></tr></tbody></table>
+</li>
+</ul>
+<hr>
+<p>🚧 <strong>Upcoming Features Preview</strong></p>
+<ul>
+<li class="">Agent supports session feature</li>
+<li class="">Agent voice input and output features are now available</li>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+<li class="">Agent supports integration with more third-party Agent development platforms</li>
+<li class="">Supports one-click conversion of OpenAPI to MCP</li>
+<li class="">Provides MCP for integrating with third-party knowledge base search and Agent platforms</li>
+</ul>
+<p>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="1100---20250328"><strong>[1.10.0] - 2025/03/28</strong><a href="#1100---20250328" class="hash-link" aria-label="Direct link to 1100---20250328" title="Direct link to 1100---20250328" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-full-support-for-mcp">✨ <strong>Core Features Upgrade: Full Support for MCP</strong><a href="#-core-features-upgrade-full-support-for-mcp" class="hash-link" aria-label="Direct link to -core-features-upgrade-full-support-for-mcp" title="Direct link to -core-features-upgrade-full-support-for-mcp" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Agent supports the MCP protocol</strong><br>
+<!-- -->Agent can integrate MCP Servers, enabling AI to automatically select tools based on task requirements and complete complex operations through multiple tool invocations.</p>
+</li>
+<li class="">
+<p><strong>CloudBase supports the development and hosting of MCP services</strong><br>
+<!-- -->Provides a one-stop service from development to deployment, enabling you to host and build your own MCP services on CloudBase.
+<strong>Provides 6 built-in MCP Server templates</strong></p>
+<ul>
+<li class="">CloudBase AI Capabilities: Provides CloudBase AI atomic capabilities through the MCP protocol, such as knowledge base retrieval, database querying, large model invocation, web search, image parsing, etc.</li>
+<li class="">Yuanqi Plugins: Provides built-in access to 19 official Tencent Yuanqi plugins, supporting capabilities such as image generation, audio generation, and Sogou search. - Yuanqi Agent: Converts Tencent Yuanqi Agent into MCP plugins for use, enabling integration with personal WeChat official account articles (Yuanqi Agent features a built-in capacity of 100 million tokens).</li>
+<li class="">Memory Module: Based on CloudBase database + knowledge graph, it can provide memory for large models and supports storing user-level information.</li>
+<li class="">Puppeteer: Can control the Chrome browser to perform operations</li>
+<li class="">Blank Template: Developers can quickly implement their own MCP Servers, enabling Agents to connect to their own data and features.</li>
+</ul>
+</li>
+<li class="">
+<p><strong>Agent UI Component Upgrade</strong></p>
+<ul>
+<li class="">Mini Program Agent supports invoking shared CloudBase environments</li>
+<li class="">Added status display for the MCP tool invocation process</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-upcoming-features-preview">🚧 <strong>Upcoming Features Preview</strong><a href="#-upcoming-features-preview" class="hash-link" aria-label="Direct link to -upcoming-features-preview" title="Direct link to -upcoming-features-preview" translate="no">​</a></h3>
+<ul>
+<li class="">Quickly import open-source MCP Servers</li>
+<li class="">Agent supports session feature</li>
+<li class="">Agent voice input and output features are now available</li>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+</ul>
+<p><strong>Please stay tuned for further announcements regarding the specific launch date.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="190---20250321"><strong>[1.9.0] - 2025/03/21</strong><a href="#190---20250321" class="hash-link" aria-label="Direct link to 190---20250321" title="Direct link to 190---20250321" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-3">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-3" class="hash-link" aria-label="Direct link to -core-features-upgrade-3" title="Direct link to -core-features-upgrade-3" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Agent supports image upload, parsing, and Q&amp;A</strong><br>
+<!-- -->Added support for uploading images during conversations to enable parsing and AI-generated responses, enhancing multimedia interaction capabilities.</li>
+<li class=""><strong>Agent supports multiple knowledge base selection</strong><br>
+<!-- -->Supports selecting 3 knowledge bases during conversations for comprehensive search, enhancing answer accuracy and information coverage.</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-system-improvements">⚙️ <strong>System Improvements</strong><a href="#️-system-improvements" class="hash-link" aria-label="Direct link to ️-system-improvements" title="Direct link to ️-system-improvements" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Enhanced Knowledge Base Upload and Management Features</strong><br>
+<!-- -->Supports drag-and-drop file upload for streamlined operations
+Supports batch upload of up to 200 files
+Added a batch file deletion feature to improve management efficiency.</p>
+</li>
+<li class="">
+<p><strong>Error Handling and Notification Optimization</strong><br>
+<!-- -->Enhanced error message prompts provide clear guidance for situations such as Token expiration and service overlimit.
+Detects the WeCom environment and displays compatibility prompts</p>
+</li>
+<li class="">
+<p><strong>Enhanced Dialogue Processing Logic</strong><br>
+<!-- -->Optimized the dialogue logic for the WeChat Official Account Platform and fixed the exception of potentially replying to the same question repeatedly.
+Refactored the file content parsing interface to resolve timeout issues in complex file parsing.</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-extended-open-capabilities-2">🌐 <strong>Extended Open Capabilities</strong><a href="#-extended-open-capabilities-2" class="hash-link" aria-label="Direct link to -extended-open-capabilities-2" title="Direct link to -extended-open-capabilities-2" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Open Knowledge Base Search API</strong><br>
+<!-- -->Developers can use the API key to call the knowledge base vector search service for integration in custom business scenarios. Interface documentation address: <a href="http://docs.cloudbase.net/http-api/knowledge/search">http://docs.cloudbase.net/http-api/knowledge/search</a></li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-upcoming-features-preview-1">🚧 <strong>Upcoming Features Preview</strong><a href="#-upcoming-features-preview-1" class="hash-link" aria-label="Direct link to -upcoming-features-preview-1" title="Direct link to -upcoming-features-preview-1" translate="no">​</a></h3>
+<ul>
+<li class="">Agent autonomously invokes external tools to implement complex business logic</li>
+<li class="">Agent supports session feature</li>
+<li class="">Agent voice input and output features are now available</li>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+</ul>
+<p><strong>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="180---20250314"><strong>[1.8.0] - 2025/03/14</strong><a href="#180---20250314" class="hash-link" aria-label="Direct link to 180---20250314" title="Direct link to 180---20250314" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-4">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-4" class="hash-link" aria-label="Direct link to -core-features-upgrade-4" title="Direct link to -core-features-upgrade-4" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Agent supports integration with CloudBase data models</strong><br>
+<!-- -->Added support for integration with CloudBase data models to enable querying structured data through natural language and generating AI responses.</p>
+</li>
+<li class="">
+<p><strong>Agent UI feature optimization, officially open-sourced</strong></p>
+<ul>
+<li class="">Added file upload status display in history records, enhancing operational traceability</li>
+<li class="">Visual Agent UI block supports file upload for dialogue in Mini Program</li>
+<li class="">Mini Program Agent UI components officially open-sourced<!-- -->
+<ul>
+<li class="">Github repository: <a href="https://github.com/TencentCloudBase/cloudbase-agent-ui">https://github.com/TencentCloudBase/cloudbase-agent-ui</a></li>
+<li class="">Gitee repository: <a href="https://gitee.com/TencentCloudBase/cloudbase-agent-ui">https://gitee.com/TencentCloudBase/cloudbase-agent-ui</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-system-improvements-1">⚙️ <strong>System Improvements</strong><a href="#️-system-improvements-1" class="hash-link" aria-label="Direct link to ️-system-improvements-1" title="Direct link to ️-system-improvements-1" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Integrated CloudBase extension capabilities for WeChat DevTools IDE</strong>
+Developers can view AI+ usage statistics and develop Agent in WeChat IDE via CloudBase - extension features.</p>
+</li>
+<li class="">
+<p><strong>Large Model Usage Statistics Feature Launched</strong><br>
+<!-- -->You can view specific token usage via Console - Package Usage - Resource Dashboard.</p>
+</li>
+<li class="">
+<p><strong>Agent file upload supports management switch</strong><br>
+<!-- -->Due to the additional large model token consumption caused by file uploads during conversations, a file upload management switch has been added to the Agent. This feature is only available for Entry Plan and above. After the large model resource package is launched, this capability will be made available to the Individual Plan.</p>
+</li>
+<li class="">
+<p><strong>Optimized Dialogue Processing Logic</strong></p>
+<ul>
+<li class="">WeChat automatically trims leading and trailing whitespace characters in conversations</li>
+<li class="">The query scope for cloud-based conversation history has been optimized to the last 1 day, enhancing the relevance of dialogue context.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-extended-open-capabilities-3">🌐 <strong>Extended Open Capabilities</strong><a href="#-extended-open-capabilities-3" class="hash-link" aria-label="Direct link to -extended-open-capabilities-3" title="Direct link to -extended-open-capabilities-3" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Enhanced Functional Agent Development</strong><br>
+<!-- -->Supports dynamically configuring runtime parameters through environment variables, with default resource allocation optimized to 0.5c1g</li>
+<li class=""><strong>New Tencent Yuanqi Functional Agent Template Added</strong><br>
+<!-- -->Supports quickly connecting to Agents on Tencent Yuanqi through Functional Agents. Open-source address: <a href="https://github.com/TencentCloudBase/cloudbase-examples/tree/master/cloudrunfunctions/yuanqi-agent">https://github.com/TencentCloudBase/cloudbase-examples/tree/master/cloudrunfunctions/yuanqi-agent</a></li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-upcoming-features-preview-2">🚧 <strong>Upcoming Features Preview</strong><a href="#-upcoming-features-preview-2" class="hash-link" aria-label="Direct link to -upcoming-features-preview-2" title="Direct link to -upcoming-features-preview-2" translate="no">​</a></h3>
+<ul>
+<li class="">Agent autonomously invokes external tools to implement complex business logic</li>
+<li class="">Agent supports image upload in the dialogue interface.</li>
+<li class="">Agent supports session feature</li>
+<li class="">Agent voice input and output features are now available</li>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Agent has supported integration with multiple knowledge bases</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+</ul>
+<p><strong>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</strong></p>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="170---20250307"><strong>[1.7.0] - 2025/03/07</strong><a href="#170---20250307" class="hash-link" aria-label="Direct link to 170---20250307" title="Direct link to 170---20250307" translate="no">​</a></h2>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-5">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-5" class="hash-link" aria-label="Direct link to -core-features-upgrade-5" title="Direct link to -core-features-upgrade-5" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Agent UI document context supports file upload</strong><br>
+<!-- -->Added support for users to upload documents as conversation context during dialogues (currently available on: Mini Program source code components and visually built Web applications; adaptation for visually built Mini Programs is under development), expanding multimodal interaction scenarios.</p>
+</li>
+<li class="">
+<p><strong>CloudBase Environment Resource Sharing</strong><br>
+<!-- -->Supports the same entity sharing the CloudBase environment to invoke AI and related resources</p>
+</li>
+<li class="">
+<p><strong>Optimized the user experience of Mini Program Agent UI components</strong>
+Supports selecting and copying text, the input box dynamically adjusting its height based on text content, and exposes more component property configurations.</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-extended-open-capabilities-4">🌐 <strong>Extended Open Capabilities</strong><a href="#-extended-open-capabilities-4" class="hash-link" aria-label="Direct link to -extended-open-capabilities-4" title="Direct link to -extended-open-capabilities-4" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Functional Agents provide standard interface documentation</strong>
+The Functional Agent framework provides the IBot interface. Developers only need to implement a class that satisfies IBot to deploy the corresponding Agent. For details, refer to the documentation <a href="https://docs.cloudbase.net/ai/cbrf-agent/IBot"></a></p>
+</li>
+<li class="">
+<p><strong>Agent API Open Invocation</strong><br>
+<!-- -->Developers can invoke Agent interfaces via API Keys to achieve automated integration and third-party service connectivity.</p>
+</li>
+<li class="">
+<p><strong>Custom UI Output Solution</strong><br>
+<!-- -->Added the capability for Agents to return custom UI structures. Developers can quickly implement personalized interaction designs via the <a href="https://docs.cloudbase.net/ai/agent/custom-output">Guide Documentation</a>.</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-system-improvements-2">⚙️ <strong>System Improvements</strong><a href="#️-system-improvements-2" class="hash-link" aria-label="Direct link to ️-system-improvements-2" title="Direct link to ️-system-improvements-2" translate="no">​</a></h3>
+<ul>
+<li class="">
+<p><strong>Optimized Agent Dialogue Effectiveness</strong><br>
+<!-- -->Improved the accuracy of web search results, optimized the weight allocation policy for setting information, and enhanced context understanding and response relevance.</p>
+</li>
+<li class="">
+<p><strong>Error Notification and Process Optimization</strong><br>
+<!-- -->Optimized the experience during the Agent building process.</p>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-upcoming-features-preview-3">🚧 <strong>Upcoming Features Preview</strong><a href="#-upcoming-features-preview-3" class="hash-link" aria-label="Direct link to -upcoming-features-preview-3" title="Direct link to -upcoming-features-preview-3" translate="no">​</a></h3>
+<ul>
+<li class="">Integrate with CloudBase database as a structured data source, enabling direct citation in conversations.</li>
+<li class="">Agent supports image upload in the dialogue interface.</li>
+<li class="">Agent supports session feature</li>
+<li class="">Agent voice input and output features are now available</li>
+<li class="">The Agent interface supports users in autonomously switching models</li>
+<li class="">Agent has supported integration with multiple knowledge bases</li>
+<li class="">Optimized the effectiveness of knowledge base search and enhanced compatibility with multiple file formats</li>
+<li class="">WeChat official accounts/service accounts/WeChat Customer Service integration with Functional Agent capabilities</li>
+<li class="">Supports viewing large model invocation usage statistics</li>
+<li class="">Provide out-of-the-box Functional Agent templates and solutions</li>
+</ul>
+<p><strong>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</strong></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="160---20250227"><strong>[1.6.0] - 2025/02/27</strong><a href="#160---20250227" class="hash-link" aria-label="Direct link to 160---20250227" title="Direct link to 160---20250227" translate="no">​</a></h2>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-6">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-6" class="hash-link" aria-label="Direct link to -core-features-upgrade-6" title="Direct link to -core-features-upgrade-6" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Release of Functional Agent</strong><br>
+<!-- -->Added support for Functional Agents that enable complex logic development, compatible with open-source Agent frameworks, and capable of integrating with external APIs and diverse data sources to enhance multi-scenario scalability.</li>
+<li class=""><strong>Hunyuan Turbo S Fast Thinking Model Launch</strong><br>
+<!-- -->Added the &quot;Hunyuan Turbo S&quot; fast-thinking model, delivering responses within seconds (token output speed increased by 100%, first-token latency reduced by 44%), complementing existing slow-thinking models like DeepSeek-R1.</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-interactive-experience-optimization">🎨 <strong>Interactive Experience Optimization</strong><a href="#-interactive-experience-optimization" class="hash-link" aria-label="Direct link to -interactive-experience-optimization" title="Direct link to -interactive-experience-optimization" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Agent UI Conversation Interface Refresh</strong>
+<ul>
+<li class=""><strong>Refactored Agent UI</strong>, optimized animation feedback for the thinking state and online interactions</li>
+<li class=""><strong>Conversation History</strong>: Agent UI has added a conversation history display feature that supports backtracking queries.</li>
+<li class=""><strong>Online Toggle</strong>: C-end users can independently disable the online search feature.</li>
+<li class=""><strong>Bug Fixes</strong>: Resolved the rendering issue with bold text and line breaks in Markdown.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-extended-open-capabilities-5">🌐 <strong>Extended Open Capabilities</strong><a href="#-extended-open-capabilities-5" class="hash-link" aria-label="Direct link to -extended-open-capabilities-5" title="Direct link to -extended-open-capabilities-5" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Knowledge Base Management API</strong><br>
+<!-- -->Developers can use APIs to achieve automated management of knowledge base documents, supporting features such as creation, deletion, and batch operations. <a href="https://cloud.tencent.com/document/api/1301/116428">Refer to the documentation</a>.</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="️-system-improvements-3">⚙️ <strong>System Improvements</strong><a href="#️-system-improvements-3" class="hash-link" aria-label="Direct link to ️-system-improvements-3" title="Direct link to ️-system-improvements-3" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Optimized Answering Logic</strong><br>
+<!-- -->Fixed the exceptions of repeating user questions and misusing Markdown formatting in Agent responses, enhancing output accuracy.</li>
+</ul>
+<hr>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-upcoming-features-preview-4">🚧 <strong>Upcoming Features Preview</strong><a href="#-upcoming-features-preview-4" class="hash-link" aria-label="Direct link to -upcoming-features-preview-4" title="Direct link to -upcoming-features-preview-4" translate="no">​</a></h3>
+<ul>
+<li class="">Supports uploading documents and images in the dialogue interface for conversations.</li>
+<li class="">Supports voice input and output features</li>
+<li class="">The Agent interface supports users in switching models</li>
+<li class="">Integrate with CloudBase database as a data source, enabling direct reference of structured data in conversations.</li>
+<li class="">knowledge base supports automatic synchronization of WeChat official accounts</li>
+<li class="">Optimized the effectiveness of knowledge base search</li>
+<li class="">knowledge base supports additional file formats</li>
+<li class="">Supports invoking Agent APIs via API key</li>
+<li class="">Supports integration of WeChat official accounts / service accounts / WeChat customer service with functional Agent</li>
+</ul>
+<p><strong>The feature will be rolled out in batches. For the specific schedule, please refer to the version update notifications.</strong></p>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="150---20250221">[1.5.0] - 2025/02/21<a href="#150---20250221" class="hash-link" aria-label="Direct link to [1.5.0] - 2025/02/21" title="Direct link to [1.5.0] - 2025/02/21" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-core-features-upgrade-7">✨ <strong>Core Features Upgrade</strong><a href="#-core-features-upgrade-7" class="hash-link" aria-label="Direct link to -core-features-upgrade-7" title="Direct link to -core-features-upgrade-7" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Web Search Capability</strong><br>
+<!-- -->Agent now supports large models like DeepSeek in accessing real-time internet data search.</li>
+<li class=""><strong>Dynamic Model Management</strong><br>
+<!-- -->Added model version control feature, supports specifying different versions of large models such as DeepSeek-V3</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-performance-improvements">⚡ <strong>Performance Improvements</strong><a href="#-performance-improvements" class="hash-link" aria-label="Direct link to -performance-improvements" title="Direct link to -performance-improvements" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Document Processing Capability Enhancement</strong><br>
+<!-- -->The file size of knowledge base has been expanded to 100MB (Markdown files are limited to 10MB).</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-open-interface">🌐 <strong>Open Interface</strong><a href="#-open-interface" class="hash-link" aria-label="Direct link to -open-interface" title="Direct link to -open-interface" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Full-scenario API Support</strong><br>
+<!-- -->Provides HTTP REST API and OpenAI SDK-compatible interface invocation capabilities</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="140---20250221">[1.4.0] - 2025/02/21<a href="#140---20250221" class="hash-link" aria-label="Direct link to [1.4.0] - 2025/02/21" title="Direct link to [1.4.0] - 2025/02/21" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-model-ecosystem">🧠 Model Ecosystem<a href="#-model-ecosystem" class="hash-link" aria-label="Direct link to 🧠 Model Ecosystem" title="Direct link to 🧠 Model Ecosystem" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>New Model Access</strong><br>
+<!-- -->Officially supports large language models including DeepSeek R1 and DeepSeek-V3</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-application-building">🚀 Application Building<a href="#-application-building" class="hash-link" aria-label="Direct link to 🚀 Application Building" title="Direct link to 🚀 Application Building" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Quick Deployment Tool</strong><br>
+<!-- -->Provides an end-to-end feature for AI application deployment from conversation flow construction to deployment.</li>
+<li class=""><strong>Interactive Experience Enhancement</strong><br>
+<!-- -->The console has added a real-time preview module for large language model dialogues.</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="-cross-platform-support">📱 Cross-Platform Support<a href="#-cross-platform-support" class="hash-link" aria-label="Direct link to 📱 Cross-Platform Support" title="Direct link to 📱 Cross-Platform Support" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Mini Program Integration Solution</strong><br>
+<!-- -->Launches the Agent UI component library and industry template suite.</li>
+</ul>
+<hr>
+<h2 class="anchor anchorTargetStickyNavbar_Vzrq" id="historical-versions">[Historical Versions]<a href="#historical-versions" class="hash-link" aria-label="Direct link to [Historical Versions]" title="Direct link to [Historical Versions]" translate="no">​</a></h2>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="130">1.3.0<a href="#130" class="hash-link" aria-label="Direct link to 1.3.0" title="Direct link to 1.3.0" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Architecture Upgrade</strong><br>
+<!-- -->WeChat Mini Program base library integrates native AI SDK</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="120">1.2.0<a href="#120" class="hash-link" aria-label="Direct link to 1.2.0" title="Direct link to 1.2.0" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Mini Program Release Compliance Support</strong><br>
+<!-- -->Provides <a href="./release/algorithm-filing">end-to-end guidance for Mini Program algorithm filing</a></li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="110">1.1.0<a href="#110" class="hash-link" aria-label="Direct link to 1.1.0" title="Direct link to 1.1.0" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Extended Development Capabilities</strong>
+<ul>
+<li class="">SDK adds toolchain invocation support</li>
+<li class="">Seamless integration of AI capabilities into cloud functions</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorTargetStickyNavbar_Vzrq" id="100---initial-release">1.0.0 - Initial Release<a href="#100---initial-release" class="hash-link" aria-label="Direct link to 1.0.0 - Initial Release" title="Direct link to 1.0.0 - Initial Release" translate="no">​</a></h3>
+<ul>
+<li class=""><strong>Foundational Capability Building</strong>
+<ul>
+<li class="">Hunyuan large model API integration</li>
+<li class="">Visual Agent Construction Framework
+Multi-platform publishing capability within the WeChat ecosystem (Mini Program/WeChat official accounts/WeCom/customer service systems)</li>
+<li class="">RAG Knowledge Base Engine (Supports Document Q&amp;A Scenarios)</li>
+</ul>
+</li>
+</ul></div></div></div><div class="row"><div class="col col--12"><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"></div><div class="col lastUpdated_JAkA"></div></div></footer></div></div></article><div class="row"><div class="col col--12"><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/en/faq/knowledge/ai-http-streaming-response-timeout"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Ai Http Streaming Response Timeout</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/en/ai/announcement/"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Announcements</div></a></nav></div></div></div></div><div class="col col--3"><div class="tableOfContents_jeP5 thin-scrollbar theme-doc-toc-desktop"><div class="tocItemsWrapper_gRT7"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#248---20260928" class="table-of-contents__link toc-highlight"><strong>[2.4.8] - 2026/09/28</strong></a></li><li><a href="#247---20260919" class="table-of-contents__link toc-highlight"><strong>[2.4.7] - 2026/09/19</strong></a></li><li><a href="#246---20260828" class="table-of-contents__link toc-highlight"><strong>[2.4.6] - 2026/08/28</strong></a></li><li><a href="#245---20260814" class="table-of-contents__link toc-highlight"><strong>[2.4.5] - 2026/08/14</strong></a></li><li><a href="#244---20260803" class="table-of-contents__link toc-highlight"><strong>[2.4.4] - 2026/08/03</strong></a></li><li><a href="#243---20260717" class="table-of-contents__link toc-highlight"><strong>[2.4.3] - 2026/07/17</strong></a></li><li><a href="#242---20260706" class="table-of-contents__link toc-highlight"><strong>[2.4.2] - 2026/07/06</strong></a></li><li><a href="#241---20260624" class="table-of-contents__link toc-highlight"><strong>[2.4.1] - 2026/06/24</strong></a></li><li><a href="#240---20260618" class="table-of-contents__link toc-highlight"><strong>[2.4.0] - 2026/06/18</strong></a></li><li><a href="#232---20260603" class="table-of-contents__link toc-highlight"><strong>[2.3.2] - 2026/06/03</strong></a></li><li><a href="#231---20260529" class="table-of-contents__link toc-highlight"><strong>[2.3.1] - 2026/05/29</strong></a></li><li><a href="#230---20260508" class="table-of-contents__link toc-highlight"><strong>[2.3.0] - 2026/05/08</strong></a></li><li><a href="#220---20260308" class="table-of-contents__link toc-highlight"><strong>[2.2.0] - 2026/03/08</strong></a></li><li><a href="#210---20260204" class="table-of-contents__link toc-highlight"><strong>[2.1.0] - 2026/02/04</strong></a></li><li><a href="#200---20260102" class="table-of-contents__link toc-highlight"><strong>[2.0.0] - 2026/01/02</strong></a></li><li><a href="#1140---20251225" class="table-of-contents__link toc-highlight"><strong>[1.14.0] - 2025/12/25</strong></a></li><li><a href="#1130---20250516" class="table-of-contents__link toc-highlight"><strong>[1.13.0] - 2025/05/16</strong></a><ul><li><a href="#-core-features-upgrade" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#-extended-open-capabilities" class="table-of-contents__link toc-highlight">🌐 <strong>Extended Open Capabilities</strong></a></li></ul></li><li><a href="#1120---20250429" class="table-of-contents__link toc-highlight"><strong>[1.12.0] - 2025/04/29</strong></a><ul><li><a href="#-core-features-upgrade-1" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#️-developer-experience-improvements" class="table-of-contents__link toc-highlight">⚙️ <strong>Developer Experience Improvements</strong></a></li></ul></li><li><a href="#1110---20250417" class="table-of-contents__link toc-highlight"><strong>[1.11.0] - 2025/04/17</strong></a><ul><li><a href="#-core-features-upgrade-2" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#-extended-open-capabilities-1" class="table-of-contents__link toc-highlight">🌐 <strong>Extended Open Capabilities</strong></a></li></ul></li><li><a href="#1100---20250328" class="table-of-contents__link toc-highlight"><strong>[1.10.0] - 2025/03/28</strong></a><ul><li><a href="#-core-features-upgrade-full-support-for-mcp" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade: Full Support for MCP</strong></a></li><li><a href="#-upcoming-features-preview" class="table-of-contents__link toc-highlight">🚧 <strong>Upcoming Features Preview</strong></a></li></ul></li><li><a href="#190---20250321" class="table-of-contents__link toc-highlight"><strong>[1.9.0] - 2025/03/21</strong></a><ul><li><a href="#-core-features-upgrade-3" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#️-system-improvements" class="table-of-contents__link toc-highlight">⚙️ <strong>System Improvements</strong></a></li><li><a href="#-extended-open-capabilities-2" class="table-of-contents__link toc-highlight">🌐 <strong>Extended Open Capabilities</strong></a></li><li><a href="#-upcoming-features-preview-1" class="table-of-contents__link toc-highlight">🚧 <strong>Upcoming Features Preview</strong></a></li></ul></li><li><a href="#180---20250314" class="table-of-contents__link toc-highlight"><strong>[1.8.0] - 2025/03/14</strong></a><ul><li><a href="#-core-features-upgrade-4" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#️-system-improvements-1" class="table-of-contents__link toc-highlight">⚙️ <strong>System Improvements</strong></a></li><li><a href="#-extended-open-capabilities-3" class="table-of-contents__link toc-highlight">🌐 <strong>Extended Open Capabilities</strong></a></li><li><a href="#-upcoming-features-preview-2" class="table-of-contents__link toc-highlight">🚧 <strong>Upcoming Features Preview</strong></a></li></ul></li><li><a href="#170---20250307" class="table-of-contents__link toc-highlight"><strong>[1.7.0] - 2025/03/07</strong></a><ul><li><a href="#-core-features-upgrade-5" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#-extended-open-capabilities-4" class="table-of-contents__link toc-highlight">🌐 <strong>Extended Open Capabilities</strong></a></li><li><a href="#️-system-improvements-2" class="table-of-contents__link toc-highlight">⚙️ <strong>System Improvements</strong></a></li><li><a href="#-upcoming-features-preview-3" class="table-of-contents__link toc-highlight">🚧 <strong>Upcoming Features Preview</strong></a></li></ul></li><li><a href="#160---20250227" class="table-of-contents__link toc-highlight"><strong>[1.6.0] - 2025/02/27</strong></a><ul><li><a href="#-core-features-upgrade-6" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#-interactive-experience-optimization" class="table-of-contents__link toc-highlight">🎨 <strong>Interactive Experience Optimization</strong></a></li><li><a href="#-extended-open-capabilities-5" class="table-of-contents__link toc-highlight">🌐 <strong>Extended Open Capabilities</strong></a></li><li><a href="#️-system-improvements-3" class="table-of-contents__link toc-highlight">⚙️ <strong>System Improvements</strong></a></li><li><a href="#-upcoming-features-preview-4" class="table-of-contents__link toc-highlight">🚧 <strong>Upcoming Features Preview</strong></a></li></ul></li><li><a href="#150---20250221" class="table-of-contents__link toc-highlight">[1.5.0] - 2025/02/21</a><ul><li><a href="#-core-features-upgrade-7" class="table-of-contents__link toc-highlight">✨ <strong>Core Features Upgrade</strong></a></li><li><a href="#-performance-improvements" class="table-of-contents__link toc-highlight">⚡ <strong>Performance Improvements</strong></a></li><li><a href="#-open-interface" class="table-of-contents__link toc-highlight">🌐 <strong>Open Interface</strong></a></li></ul></li><li><a href="#140---20250221" class="table-of-contents__link toc-highlight">[1.4.0] - 2025/02/21</a><ul><li><a href="#-model-ecosystem" class="table-of-contents__link toc-highlight">🧠 Model Ecosystem</a></li><li><a href="#-application-building" class="table-of-contents__link toc-highlight">🚀 Application Building</a></li><li><a href="#-cross-platform-support" class="table-of-contents__link toc-highlight">📱 Cross-Platform Support</a></li></ul></li><li><a href="#historical-versions" class="table-of-contents__link toc-highlight">[Historical Versions]</a><ul><li><a href="#130" class="table-of-contents__link toc-highlight">1.3.0</a></li><li><a href="#120" class="table-of-contents__link toc-highlight">1.2.0</a></li><li><a href="#110" class="table-of-contents__link toc-highlight">1.1.0</a></li><li><a href="#100---initial-release" class="table-of-contents__link toc-highlight">1.0.0 - Initial Release</a></li></ul></li></ul></div><div class="tocActions_A3t2"><button class="tocActionButton_eGor" title="Copy page" aria-busy="false"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.75 4.75H10.25M5.75 7.75H10.25M5.75 10.75H7.75M9 13.25H2.75V2.75H9V13.25Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M7 13.25H13.25V2.75H7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Copy page</span></button><button class="tocActionButton_eGor" title="View Markdown"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.5 2.25h-17c-.69 0-1.25.56-1.25 1.25v9c0 .69.56 1.25 1.25 1.25h17c.69 0 1.25-.56 1.25-1.25v-9c0-.69-.56-1.25-1.25-1.25M2.5 1A2.5 2.5 0 0 0 0 3.5v9A2.5 2.5 0 0 0 2.5 15h17a2.5 2.5 0 0 0 2.5-2.5v-9A2.5 2.5 0 0 0 19.5 1zM3 4.5h1.69l.3.32L7 7.02l2.01-2.2.3-.32H11v7H9V7.8L7.74 9.18l-.74.8-.74-.8L5 7.8v3.7H3v-7M15 8V4.5h2V8h2.5L17 10.5l-1 1-1-1L12.5 8z"></path></svg><span>View Markdown</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 14.5C11.5899 14.5 14.5 11.5899 14.5 8C14.5 4.41015 11.5899 1.5 8 1.5C4.41015 1.5 1.5 4.41015 1.5 8C1.5 11.5899 4.41015 14.5 8 14.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8 11.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="8" cy="5" r="0.75" fill="currentColor"></circle></svg><span>Give feedback</span></button><button class="tocActionButton_eGor"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 1.5L10.5 6L15 6.5L11.5 10L12.5 14.5L8 12L3.5 14.5L4.5 10L1 6.5L5.5 6L8 1.5Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg><span>Ask AI about this page</span></button></div></div></div></div></div></main></div></div></div></div>
+</body>
+</html>

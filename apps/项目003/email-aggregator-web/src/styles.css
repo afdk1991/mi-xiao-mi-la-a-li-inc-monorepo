@@ -1014,7 +1014,13 @@ textarea:disabled {
   overflow: hidden;
   transition: background-color var(--dur-fast) var(--ease);
 }
-.mail-item:last-child {
+/* BUG-003-10 配套：li 改为纯 listitem 容器（.mail-row），可点击语义下移到内层
+   .mail-item，故「末项不画分隔线」的选择器同步改为匹配最后一行内的项。 */
+.mail-row {
+  margin: 0;
+  padding: 0;
+}
+.mail-row:last-child .mail-item {
   border-bottom: none;
 }
 
@@ -1244,9 +1250,10 @@ textarea:disabled {
 }
 
 /* 附件区：平底容器，避免"盒中盒" */
+/* 附件区已移出 <dl>（BUG-003-06），不再是网格项，
+   改用与 .modal-head 对齐的左右内边距，避免贴到模态边缘。 */
 .attachments {
-  grid-column: 1 / -1;
-  margin-top: var(--sp-2);
+  margin: var(--sp-2) var(--sp-6) 0;
   padding: var(--sp-3);
   background: var(--panel-2);
   border-radius: var(--radius-md);
@@ -1537,6 +1544,12 @@ textarea:disabled {
   font-family: var(--font-mono);
   font-size: var(--fs-sm);
   word-break: break-word;
+}
+/* BUG-003-12 配套：重试按钮下方的补充提示 */
+.error-boundary-hint {
+  margin-top: var(--sp-3);
+  color: var(--muted);
+  font-size: var(--fs-xs);
 }
 
 /* ==========================================================================

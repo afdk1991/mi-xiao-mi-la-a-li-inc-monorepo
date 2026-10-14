@@ -1,0 +1,14 @@
+{
+  "name": "@mxm/tools-scripts",
+  "version": "1.0.0",
+  "private": true,
+  "description": "部署与运维脚本集（Shell / PowerShell / Python，F 盘权威超集版）",
+  "mxm": {
+    "type": "scripts",
+    "group": "tools",
+    "note": "被各项目部署流程引用；本身无可构建产物"
+  },
+  "scripts": {
+    "build": "node -e \"console.log('脚本集：无可构建产物，直接调用')\""
+  }
+}
