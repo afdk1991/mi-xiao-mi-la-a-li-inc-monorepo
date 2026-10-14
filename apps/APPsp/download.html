@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>优选 APP · Android 下载</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: linear-gradient(160deg, #FF8A65 0%, #FF5A1F 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    color: #333;
+  }
+  .card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 40px 28px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0,0,0,.2);
+  }
+  .logo {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, #FF8A65, #FF5A1F);
+    border-radius: 20px;
+    margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 36px; font-weight: 700;
+  }
+  h1 { font-size: 24px; color: #222; margin-bottom: 6px; }
+  .slogan { color: #888; font-size: 14px; margin-bottom: 28px; }
+  .qr-wrap {
+    background: #f7f8fa;
+    border-radius: 16px;
+    padding: 20px;
+    display: inline-block;
+    margin-bottom: 24px;
+  }
+  #qrcode img, #qrcode canvas { display: block; margin: 0 auto; }
+  .tip { font-size: 13px; color: #999; margin-bottom: 24px; }
+  .dl-btn {
+    display: block;
+    background: linear-gradient(135deg, #FF8A65, #FF5A1F);
+    color: #fff;
+    text-decoration: none;
+    padding: 14px;
+    border-radius: 28px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .meta {
+    margin-top: 20px;
+    font-size: 12px;
+    color: #aaa;
+    line-height: 1.8;
+  }
+</style>
+</head>
+<body>
+  <div class="card">
+    <div class="logo">优</div>
+    <h1>优选 APP</h1>
+    <p class="slogan">商城 · 发现 · 工具 · 一站式生活</p>
+    <div class="qr-wrap">
+      <div id="qrcode"></div>
+    </div>
+    <p class="tip">用手机相机或微信扫码，直接下载安装</p>
+    <a class="dl-btn" href="https://appsp-cs-1-d5g815slocb5a611a.webapps.tcloudbase.com/download/app.apk">立即下载 APK</a>
+    <div class="meta">
+      Android 5.0+ · v0.0.0 · 112.5 KB<br>
+      安装时如提示"未知来源"，请在设置中允许
+    </div>
+  </div>
+<script>
+  var apkUrl = "https://appsp-cs-1-d5g815slocb5a611a.webapps.tcloudbase.com/download/app.apk";
+  new QRCode(document.getElementById("qrcode"), {
+    text: apkUrl,
+    width: 180,
+    height: 180,
+    colorDark: "#222",
+    colorLight: "#ffffff",
+    correctLevel: QRCode.CorrectLevel.M
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+# ---- 依赖 & 构建产物 ----
+node_modules/
+dist/
+# 构建验证时用的独立输出目录（UNI_OUTPUT_DIR=dist_verifyN / dist_vN）
+dist_*/
+unpackage/
+.hbuilderx/
+.temp/
+.cache/
+
+# ---- 环境变量 / 密钥（严禁提交）----
+.env
+.env.*
+!.env.example
+
+# ---- Android 壳：构建产物与本地配置 ----
+android-shell/.gradle/
+android-shell/.idea/
+android-shell/build/
+android-shell/app/build/
+android-shell/app/release/
+android-shell/local.properties
+*.apk
+*.aab
+*.jar
+*.dex
+
+# gradle wrapper jar 必须提交，否则他人 clone 后无法构建（上面的 *.jar 会把它拦掉）
+!android-shell/gradle/wrapper/gradle-wrapper.jar
+
+# ---- 打包/上传临时归档 ----
+*.zip
+
+# ---- 调试临时产物（下划线前缀）----
+_*/
+_*
+
+# ---- 未引用的大体积数据样本 ----
+dramas.json
+home.json
+series.json
+
+# ---- 一次性脚本 / 变体页 ----
+index_new.html
+fetch_update.js
+fetch_update2.js
+push_html.js
+
+# ---- 日志 ----
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ---- 编辑器 / 系统 ----
+.idea
+.vscode/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">优选</string>
+    <!-- WebView 启动地址：换部署域名时改这里即可，无需改动 Java 代码 -->
+    <string name="start_url">https://appsp-cs-1-d5g815slocb5a611a.webapps.tcloudbase.com/</string>
+</resources>

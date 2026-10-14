@@ -1,0 +1,53 @@
+{
+    "name" : "优选",
+    "appid" : "__UNI__APPSP01",
+    "description" : "综合型电商+内容+工具 Android APP",
+    "versionName" : "1.0.0",
+    "versionCode" : "10000",
+    "transformPx" : false,
+    "app-plus" : {
+        "usingComponents" : true,
+        "nvueStyleCompiler" : "uni-app",
+        "compilerVersion" : 3,
+        "splashscreen" : {
+            "alwaysShowBeforeRender" : true,
+            "waiting" : true,
+            "autoclose" : true,
+            "delay" : 0
+        },
+        "modules" : {},
+        "distribute" : {
+            "android" : {
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>"
+                ],
+                "minSdkVersion" : 21,
+                "targetSdkVersion" : 30
+            },
+            "ios" : {},
+            "sdkConfigs" : {}
+        }
+    },
+    "quickapp" : {},
+    "mp-weixin" : {
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : false
+        },
+        "usingComponents" : true
+    },
+    "uniStatistics" : {
+        "enable" : false
+    },
+    "h5" : {
+        "publicPath" : "./",
+        "router" : {
+            "mode" : "hash"
+        }
+    },
+    "vueVersion" : "3"
+}
