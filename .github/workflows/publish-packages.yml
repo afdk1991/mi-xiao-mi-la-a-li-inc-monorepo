@@ -83,9 +83,21 @@ jobs:
         run: npm run build --if-present
 
       - name: Publish
+        # 说明：npm view 探测可能因 registry 权限/scope 限制失败，故此处再兜一层——
+        #      若 npm publish 因"该版本已存在"失败，视为已发布并放行（黄灯），避免流水线长期红灯。
         if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
         working-directory: shared/${{ matrix.pkg }}
-        run: npm publish
+        run: |
+          set -o pipefail
+          if npm publish 2>&1 | tee publish.log; then
+            echo "::notice::🚀 published successfully"
+          elif grep -qiE "previously published|EPUBLISHCONFLICT|previously-published|cannot publish over" publish.log; then
+            echo "::warning::⏭️ 该版本已存在，按已发布处理（上游 npm view 可能因 scope 限制未提前识别）"
+          else
+            echo "::error::❌ 发布失败，原因如下："
+            cat publish.log
+            exit 1
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

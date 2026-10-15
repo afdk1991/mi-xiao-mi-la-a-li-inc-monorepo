@@ -84,7 +84,19 @@
 ```
 @afdk1991:registry=https://npm.pkg.github.com
 ```
-> 只路由该作用域，不影响公共 npm 包。若某个 `@afdk1991/*` 包尚未发布，安装时报 404/401 属预期。
+> 只路由该作用域，不影响公共 npm 包。若某个 `@afdk1991/*` 包尚未发布，安装时报 404 属预期。
+
+> **实测要点（已验证）**：GitHub Packages 的 npm 注册表**连读取都需要鉴权**，而且**必须带 `read:packages` 权限**——
+> 仅有 `repo` 范围的令牌会被明确拒绝：
+> ```
+> 403 Forbidden — permission_denied: The token provided does not match expected scopes
+> ```
+> 这与公共 npm registry（可匿名读）完全不同，容易踩坑。由此得出两条结论：
+> - **CI 内发布/版本探测**：用工作流内置 `GITHUB_TOKEN`（已授予 `packages: write`），可正常读写本仓库关联的包；
+> - **本机或其他仓库消费安装**：需要 PAT (classic) 且勾选 **`read:packages`**，仅 `repo` 不够。
+>
+> 相应地，`publish-packages.yml` 在发布步骤加了容错：即便上游 `npm view` 探测因权限未识别，
+> 只要 `npm publish` 因「该版本已存在」失败，就按已发布放行（警告而非错误），避免流水线长期红灯。
 
 **② 待发布包的 package.json**（`shared/*`，已具备）
 ```jsonc
