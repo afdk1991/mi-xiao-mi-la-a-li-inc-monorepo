@@ -14,6 +14,9 @@
   "files": [
     "dist"
   ],
+  "dependencies": {
+    "@afdk1991/shared-map": "^1.0.0"
+  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },

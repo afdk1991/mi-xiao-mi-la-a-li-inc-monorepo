@@ -7,6 +7,12 @@ name: Publish npm packages to GitHub Packages
 #   1) 推送到 master 且 shared/** 有变更（自动）
 #   2) 手动 workflow_dispatch（可勾选 force 强制重发）
 #
+#  依赖顺序（重要）：
+#    shared-config 在源码中 import @afdk1991/shared-map，
+#    因此必须先发布 map，再发布 config。本工作流用「单 job 顺序步骤」
+#    保证构建顺序，且构建时直接用根安装的 tsc + tsconfig paths 解析
+#    ../map/dist，避免 npm install 去拉取尚未发布的 map 依赖。
+#
 #  幂等设计：发布前先用 npm view 探测该版本是否已存在，
 #            已存在则跳过，避免 "You cannot publish over the previously published version" 报错。
 #
@@ -33,11 +39,6 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        pkg: [config, http, map]
-    name: publish @afdk1991/shared-${{ matrix.pkg }}
     steps:
       - uses: actions/checkout@v4
 
@@ -47,71 +48,62 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@afdk1991'
 
-      - name: Read package version
-        id: ver
-        working-directory: shared/${{ matrix.pkg }}
+      # 根安装 tsc，供三个包共用；构建时通过 tsconfig paths 解析 ../map/dist
+      - name: Install build tooling (typescript)
+        run: npm install -g typescript@5.9.3
+
+      - name: Publish @afdk1991/shared-map
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: shared/map
         run: |
           VER=$(node -p "require('./package.json').version")
-          echo "version=$VER" >> "$GITHUB_OUTPUT"
-          echo "Package @afdk1991/shared-${{ matrix.pkg }} version = $VER"
-
-      - name: Check if this version already exists
-        id: exists
-        if: ${{ inputs.force != true }}
-        run: |
-          NAME="@afdk1991/shared-${{ matrix.pkg }}"
-          VER="${{ steps.ver.outputs.version }}"
-          if npm view "$NAME@$VER" version >/dev/null 2>&1; then
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-            echo "::notice::$NAME@$VER already published -> skip"
+          if [ "${{ inputs.force }}" != "true" ] && npm view "@afdk1991/shared-map@$VER" version >/dev/null 2>&1; then
+            echo "::notice::@afdk1991/shared-map@$VER already published -> skip"
           else
-            echo "skip=false" >> "$GITHUB_OUTPUT"
-            echo "$NAME@$VER not found -> will publish"
+            npx tsc -p tsconfig.build.json
+            npm publish
+            echo "::notice::🚀 @afdk1991/shared-map@$VER published"
           fi
+
+      - name: Publish @afdk1991/shared-http
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Install dependencies
-        if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
-        working-directory: shared/${{ matrix.pkg }}
-        # monorepo 下 shared/* 无独立 lockfile，故用 npm install 而非 npm ci
-        run: npm install --ignore-scripts --no-audit --no-fund
-
-      - name: Build (if build script exists)
-        if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
-        working-directory: shared/${{ matrix.pkg }}
-        run: npm run build --if-present
-
-      - name: Publish
-        # 说明：npm view 探测可能因 registry 权限/scope 限制失败，故此处再兜一层——
-        #      若 npm publish 因"该版本已存在"失败，视为已发布并放行（黄灯），避免流水线长期红灯。
-        if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
-        working-directory: shared/${{ matrix.pkg }}
+        working-directory: shared/http
         run: |
-          set -o pipefail
-          if npm publish 2>&1 | tee publish.log; then
-            echo "::notice::🚀 published successfully"
-          elif grep -qiE "previously published|EPUBLISHCONFLICT|previously-published|cannot publish over" publish.log; then
-            echo "::warning::⏭️ 该版本已存在，按已发布处理（上游 npm view 可能因 scope 限制未提前识别）"
+          VER=$(node -p "require('./package.json').version")
+          if [ "${{ inputs.force }}" != "true" ] && npm view "@afdk1991/shared-http@$VER" version >/dev/null 2>&1; then
+            echo "::notice::@afdk1991/shared-http@$VER already published -> skip"
           else
-            echo "::error::❌ 发布失败，原因如下："
-            cat publish.log
-            exit 1
+            npx tsc -p tsconfig.build.json
+            npm publish
+            echo "::notice::🚀 @afdk1991/shared-http@$VER published"
           fi
+
+      - name: Publish @afdk1991/shared-config
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: shared/config
+        run: |
+          VER=$(node -p "require('./package.json').version")
+          if [ "${{ inputs.force }}" != "true" ] && npm view "@afdk1991/shared-config@$VER" version >/dev/null 2>&1; then
+            echo "::notice::@afdk1991/shared-config@$VER already published -> skip"
+          else
+            # ../map/dist 已由上一步构建存在，tsconfig paths 可解析 @afdk1991/shared-map
+            npx tsc -p tsconfig.build.json
+            npm publish
+            echo "::notice::🚀 @afdk1991/shared-config@$VER published"
+          fi
 
       - name: Summary
         if: always()
         run: |
           {
-            echo "### 📦 @afdk1991/shared-${{ matrix.pkg }}"
+            echo "### 📦 GitHub Packages 发布结果"
             echo ""
-            echo "- Version: \`${{ steps.ver.outputs.version }}\`"
-            echo "- Registry: npm.pkg.github.com"
-            if [ "${{ steps.exists.outputs.skip }}" = "true" ]; then
-              echo "- Result: ⏭️ skipped (version already exists)"
-            else
-              echo "- Result: 🚀 published"
-            fi
+            echo "- @afdk1991/shared-map"
+            echo "- @afdk1991/shared-http"
+            echo "- @afdk1991/shared-config（依赖 map，已按序发布）"
+            echo ""
+            echo "Registry: npm.pkg.github.com"
           } >> "$GITHUB_STEP_SUMMARY"

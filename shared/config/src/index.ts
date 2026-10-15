@@ -2,10 +2,10 @@
 // 消除各项目「各自读取 Key / env」的分散实现，收敛为统一入口：
 // 环境变量 → MapSettings 一次装配，且源码零硬编码凭证。
 
-import type { MapSettings } from '../../map/src/types'
+import type { MapSettings } from '@afdk1991/shared-map'
 
-// 地图配置的单一真源仍在 @shared/map，此处 re-export 保证上层只记一个入口
-export { getKey, hasCredentials, DEFAULT_SETTINGS, EMPTY_KEYS } from '../../map/src/config'
+// 地图配置的单一真源仍在 @afdk1991/shared-map，此处 re-export 保证上层只记一个入口
+export { getKey, hasCredentials, DEFAULT_SETTINGS, EMPTY_KEYS } from '@afdk1991/shared-map'
 
 /** 地图相关环境变量名（部署端注入，前端不落盘） */
 export const ENV_KEYS = {
