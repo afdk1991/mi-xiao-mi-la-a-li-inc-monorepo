@@ -16,8 +16,11 @@ release/
 __pycache__/
 .venv/
 .wrangler/
-**/.edgeone/*                    # 任意层级的 EdgeOne 部署产物（CLI 会把站点副本塞进来）
-!**/.edgeone/project.json        # 例外：项目绑定文件必须入库，防 CLI 另建项目
+# 任意层级的 EdgeOne 部署产物（CLI 会把站点副本塞进来）
+# 注意：gitignore 不支持行尾内联注释，`pattern # 注释` 会让整条规则失效
+**/.edgeone/*
+# 例外：项目绑定文件必须入库，防 CLI 另建项目
+!**/.edgeone/project.json
 .workbuddy/tmp/
 
 # Secrets / env
