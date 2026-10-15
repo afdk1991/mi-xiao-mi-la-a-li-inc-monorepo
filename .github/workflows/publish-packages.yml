@@ -58,10 +58,12 @@ jobs:
         working-directory: shared/map
         run: |
           VER=$(node -p "require('./package.json').version")
+          # 构建必须无条件执行：即使该版本已发布而跳过 publish，
+          # 后续 shared-config 仍依赖 ../map/dist 解析 @afdk1991/shared-map 类型。
+          npx tsc -p tsconfig.build.json
           if [ "${{ inputs.force }}" != "true" ] && npm view "@afdk1991/shared-map@$VER" version >/dev/null 2>&1; then
             echo "::notice::@afdk1991/shared-map@$VER already published -> skip"
           else
-            npx tsc -p tsconfig.build.json
             npm publish
             echo "::notice::🚀 @afdk1991/shared-map@$VER published"
           fi
@@ -72,10 +74,10 @@ jobs:
         working-directory: shared/http
         run: |
           VER=$(node -p "require('./package.json').version")
+          npx tsc -p tsconfig.build.json
           if [ "${{ inputs.force }}" != "true" ] && npm view "@afdk1991/shared-http@$VER" version >/dev/null 2>&1; then
             echo "::notice::@afdk1991/shared-http@$VER already published -> skip"
           else
-            npx tsc -p tsconfig.build.json
             npm publish
             echo "::notice::🚀 @afdk1991/shared-http@$VER published"
           fi
@@ -86,11 +88,11 @@ jobs:
         working-directory: shared/config
         run: |
           VER=$(node -p "require('./package.json').version")
+          # ../map/dist 由 map 步骤无条件构建产出，tsconfig paths 据此解析 @afdk1991/shared-map
+          npx tsc -p tsconfig.build.json
           if [ "${{ inputs.force }}" != "true" ] && npm view "@afdk1991/shared-config@$VER" version >/dev/null 2>&1; then
             echo "::notice::@afdk1991/shared-config@$VER already published -> skip"
           else
-            # ../map/dist 已由上一步构建存在，tsconfig paths 可解析 @afdk1991/shared-map
-            npx tsc -p tsconfig.build.json
             npm publish
             echo "::notice::🚀 @afdk1991/shared-config@$VER published"
           fi
