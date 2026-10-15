@@ -6,8 +6,6 @@ name: Deploy site to GitHub Pages
 on:
   push:
     branches: [master]
-    paths:
-      - 'sites/ai-server-resources/**'
   workflow_dispatch:
 
 permissions:
