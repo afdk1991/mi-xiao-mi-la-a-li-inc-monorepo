@@ -1,6 +1,6 @@
 {
   "name": "@afdk1991/shared-config",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "统一配置加载：环境变量读取、地图凭证装配、MapSettings 构建",
   "main": "./dist/index.js",
