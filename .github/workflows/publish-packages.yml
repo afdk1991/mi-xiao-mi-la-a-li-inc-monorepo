@@ -1,13 +1,30 @@
-name: Publish shared packages
+name: Publish npm packages to GitHub Packages
 
-# 发布 shared/{map,http,config} 三个共享库到 GitHub Packages。
-# 触发：手动 dispatch，或推送 shared-v* 标签。
-# 鉴权：使用 GITHUB_TOKEN（在 workflow 中授予 packages:write），无需用户额外 token。
+# ============================================================
+#  把 shared/* 共享库发布到 GitHub Packages（npm registry）
+# ============================================================
+#  触发时机：
+#   1) 推送到 master 且 shared/** 有变更（自动）
+#   2) 手动 workflow_dispatch（可勾选 force 强制重发）
+#
+#  幂等设计：发布前先用 npm view 探测该版本是否已存在，
+#            已存在则跳过，避免 "You cannot publish over the previously published version" 报错。
+#
+#  鉴权：统一使用内置 GITHUB_TOKEN（已通过 permissions.packages: write 授权），
+#        无需用户额外创建 PAT。
+# ============================================================
 on:
-  workflow_dispatch:
   push:
-    tags:
-      - 'shared-v*'
+    branches: [master]
+    paths:
+      - 'shared/**'
+      - '.github/workflows/publish-packages.yml'
+  workflow_dispatch:
+    inputs:
+      force:
+        description: '强制重新发布（忽略版本是否已存在）'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -17,8 +34,10 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
-        pkg: [map, http, config]
+        pkg: [config, http, map]
+    name: publish @afdk1991/shared-${{ matrix.pkg }}
     steps:
       - uses: actions/checkout@v4
 
@@ -28,8 +47,59 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@afdk1991'
 
-      - name: Publish @afdk1991/shared-${{ matrix.pkg }}
+      - name: Read package version
+        id: ver
+        working-directory: shared/${{ matrix.pkg }}
+        run: |
+          VER=$(node -p "require('./package.json').version")
+          echo "version=$VER" >> "$GITHUB_OUTPUT"
+          echo "Package @afdk1991/shared-${{ matrix.pkg }} version = $VER"
+
+      - name: Check if this version already exists
+        id: exists
+        if: ${{ inputs.force != true }}
+        run: |
+          NAME="@afdk1991/shared-${{ matrix.pkg }}"
+          VER="${{ steps.ver.outputs.version }}"
+          if npm view "$NAME@$VER" version >/dev/null 2>&1; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "::notice::$NAME@$VER already published -> skip"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "$NAME@$VER not found -> will publish"
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
+        working-directory: shared/${{ matrix.pkg }}
+        # monorepo 下 shared/* 无独立 lockfile，故用 npm install 而非 npm ci
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Build (if build script exists)
+        if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
+        working-directory: shared/${{ matrix.pkg }}
+        run: npm run build --if-present
+
+      - name: Publish
+        if: ${{ inputs.force == true || steps.exists.outputs.skip != 'true' }}
         working-directory: shared/${{ matrix.pkg }}
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### 📦 @afdk1991/shared-${{ matrix.pkg }}"
+            echo ""
+            echo "- Version: \`${{ steps.ver.outputs.version }}\`"
+            echo "- Registry: npm.pkg.github.com"
+            if [ "${{ steps.exists.outputs.skip }}" = "true" ]; then
+              echo "- Result: ⏭️ skipped (version already exists)"
+            else
+              echo "- Result: 🚀 published"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

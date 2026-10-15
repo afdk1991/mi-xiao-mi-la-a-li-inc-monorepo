@@ -1,0 +1,102 @@
+name: Deploy ai-server-resources to EdgeOne
+
+# ============================================================
+#  把 sites/ai-server-resources 部署到 EdgeOne Pages
+# ============================================================
+#  环境映射：
+#    pull_request        -> preview  （每个 PR 一份预览环境）
+#    push to master      -> production
+#    workflow_dispatch   -> 手动指定 environment
+#
+#  前置：仓库 Secrets 需配置 EDGEONE_API_TOKEN（EdgeOne Pages 控制台 -> API Token）
+#  说明：本站点为纯静态，无需构建步骤；采用「白名单复制」避免把 package.json/
+#        .env/构建脚本推上去（整目录发布会触发平台构建，且可能暴露敏感文件）。
+# ============================================================
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'sites/ai-server-resources/**'
+      - '.github/workflows/deploy-edgeone-site.yml'
+  pull_request:
+    branches: [master]
+    paths:
+      - 'sites/ai-server-resources/**'
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: '部署目标环境'
+        required: true
+        type: choice
+        options: [production, preview]
+        default: production
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Resolve target environment
+        id: env
+        run: |
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            echo "target=preview" >> "$GITHUB_OUTPUT"
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "target=${{ github.event.inputs.environment || 'production' }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "target=production" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Verify EdgeOne token is configured
+        run: |
+          if [ -z "${{ secrets.EDGEONE_API_TOKEN }}" ]; then
+            echo "::error::缺少 EDGEONE_API_TOKEN。请到 Settings > Secrets and variables > Actions 添加该 Secret（值取自 EdgeOne Pages 控制台的 API Token）。"
+            exit 1
+          fi
+
+      - name: Build publish directory (whitelist)
+        run: |
+          set -e
+          SRC=sites/ai-server-resources
+          rm -rf _edgeone_publish && mkdir -p _edgeone_publish
+          # 仅发布对外可见的静态资源：根 html + 资源/内容目录
+          cp $SRC/*.html _edgeone_publish/ || true
+          for d in assets articles fetched archive curated; do
+            [ -d "$SRC/$d" ] && cp -r "$SRC/$d" _edgeone_publish/ || true
+          done
+          rm -f _edgeone_publish/package.json
+          echo "publish files: $(find _edgeone_publish -type f | wc -l)"
+          test -f _edgeone_publish/index.html || { echo "::error::index.html missing"; exit 1; }
+
+      - name: Deploy to EdgeOne Pages
+        id: edgeone
+        env:
+          EDGEONE_API_TOKEN: ${{ secrets.EDGEONE_API_TOKEN }}
+          TARGET_ENV: ${{ steps.env.outputs.target }}
+        run: |
+          npx --yes edgeone pages deploy _edgeone_publish \
+            -n ai-server-resources \
+            -t "$EDGEONE_API_TOKEN" \
+            -e "$TARGET_ENV" 2>&1 | tee deploy.log
+          URL=$(grep -oE 'https://[^ ]+\.edgeone\.cool[^ ]*' deploy.log | head -1)
+          echo "url=${URL}" >> "$GITHUB_OUTPUT"
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### 🌏 EdgeOne Pages 部署完成"
+            echo ""
+            echo "- Project: \`ai-server-resources\`"
+            echo "- Environment: \`${{ steps.env.outputs.target }}\`"
+            echo "- Files: $(find _edgeone_publish -type f 2>/dev/null | wc -l)"
+            if [ -n "${{ steps.edgeone.outputs.url }}" ]; then
+              echo "- URL: ${{ steps.edgeone.outputs.url }}"
+            else
+              echo "- URL: 见上方 Deploy 步骤输出（务必保留含 \`?eo_token=\` 的完整链接）"
+            fi
+          } >> "$GITHUB_STEP_SUMMARY"

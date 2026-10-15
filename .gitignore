@@ -2,6 +2,8 @@
 node_modules/
 .pnpm-store/
 package-lock.json
+# 例外：需要在 CI 中做可复现构建并部署的应用，其锁文件必须入库（否则 npm ci 装到旧版本）
+!apps/delivery-router/package-lock.json
 
 # Build output
 dist/
