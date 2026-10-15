@@ -1,0 +1,100 @@
+name: Release (packages + edge apps)
+
+# ============================================================
+#  三平台协作的「总开关」：GitHub → GitHub Packages → EdgeOne Makers
+# ============================================================
+#  触发：
+#    · push 打 v* 标签（如 v1.2.0）   —— 协调发布
+#    · 手动 workflow_dispatch           —— 指定 EdgeOne 环境（production / preview）
+#
+#  执行顺序：
+#    ① publish-packages：构建并发布 shared/{config,http,map} 到 GitHub Packages
+#       （鉴权用内置 GITHUB_TOKEN；已发布版本自动跳过，可安全重跑）
+#    ② deploy-edge：等①完成后，用 `gh workflow run` 依序触发两个 EdgeOne 部署
+#       工作流（delivery-router 应用、ai-server-resources 站点）
+#
+#  前置：仓库 Secrets 需配置 EDGEONE_API_TOKEN（EdgeOne Pages 控制台 API Token）。
+#        共享包发布所需令牌为内置 GITHUB_TOKEN，无需额外配置。
+# ============================================================
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'EdgeOne 部署环境'
+        required: true
+        type: choice
+        options: [production, preview]
+        default: production
+
+permissions:
+  contents: read
+  packages: write
+  actions: write   # 用于 gh workflow run 触发其它工作流
+
+jobs:
+  publish-packages:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        pkg: [config, http, map]
+    name: publish @afdk1991/shared-${{ matrix.pkg }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@afdk1991'
+
+      - name: Read version
+        id: ver
+        working-directory: shared/${{ matrix.pkg }}
+        run: echo "version=$(node -p "require('./package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Install build toolchain
+        working-directory: shared/${{ matrix.pkg }}
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Build (emit dist)
+        working-directory: shared/${{ matrix.pkg }}
+        run: npm run build
+
+      - name: Verify dist emitted
+        working-directory: shared/${{ matrix.pkg }}
+        run: test -f dist/index.js && echo "dist OK" || { echo "::error::dist 未产出"; exit 1; }
+
+      - name: Publish (skip if version already exists)
+        working-directory: shared/${{ matrix.pkg }}
+        run: |
+          NAME="@afdk1991/shared-${{ matrix.pkg }}"
+          VER="${{ steps.ver.outputs.version }}"
+          if npm view "$NAME@$VER" version >/dev/null 2>&1; then
+            echo "::notice::$NAME@$VER 已存在，跳过发布（可加新版本号后重发）"
+          else
+            npm publish
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-edge:
+    needs: publish-packages
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        workflow: [deploy-edgeone-app.yml, deploy-edgeone-site.yml]
+    steps:
+      - name: Trigger EdgeOne deploy ${{ matrix.workflow }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          ENV="${{ github.event.inputs.environment || 'production' }}"
+          REF="${GITHUB_REF_NAME:-master}"
+          echo "触发 $WORKFLOW -> 环境 $ENV (ref $REF)"
+          gh workflow run "$WORKFLOW" \
+            -f environment="$ENV" \
+            -r "$REF" \
+            -R "$GITHUB_REPOSITORY"

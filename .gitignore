@@ -64,3 +64,10 @@ _deploy/
 .workbuddy/
 *.genie
 sites/ai-server-resources/archive/verify-*.png
+
+# Stale build artifacts & tracked-but-sensitive files (must never be public)
+# 带日期的构建残留（如 daijia-dist_old_20261002_141312）曾被强制入库，含硬编码 Key，必须排除
+**/*-dist_old*/
+**/daijia-dist_old*/
+**/_smoke*.log
+**/fetched/

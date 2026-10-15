@@ -121,19 +121,21 @@ type InMemoryKms struct {
 	kek []byte
 }
 
-// NewInMemoryKms 构造（32 字节演示密钥）
+// NewInMemoryKms 构造（随机 32 字节演示密钥，每次启动不同；不内置任何固定 KEK）
 func NewInMemoryKms() *InMemoryKms {
-	return &InMemoryKms{kek: []byte("KEK_REDACTED")}
+	b := make([]byte, 32)
+	_, _ = rand.Read(b)
+	return &InMemoryKms{kek: b}
 }
 
 // NewInMemoryKmsWithKEK 用外部 KEK 构造演示 KMS：任意长度字符串经 SHA-256 规整为 32 字节；
-// 空串回退到内置演示密钥。生产替换为云 KMS / Vault Transit，KEK 由密钥管理服务持有（不落盘）。
+// 空串回退到随机内存 KEK。生产替换为云 KMS / Vault Transit，KEK 由密钥管理服务持有（不落盘）。
 func NewInMemoryKmsWithKEK(key string) *InMemoryKms {
-	kek := []byte("KEK_REDACTED")
-	if key != "" {
-		sum := sha256.Sum256([]byte(key))
-		kek = sum[:]
+	if key == "" {
+		return NewInMemoryKms()
 	}
+	sum := sha256.Sum256([]byte(key))
+	kek := sum[:]
 	return &InMemoryKms{kek: kek}
 }
 

@@ -163,11 +163,13 @@ npm run clean delivery-router     # 清理构建产物（dist/build/out）
 
 ## 三平台上架（GitHub / GitHub Packages / EdgeOne Makers）
 
-| 平台 | 目标 | 形态 |
+> 完整职责划分、集成方式与端到端流程见 [`_docs/三平台协作方案.md`](_docs/三平台协作方案.md)。
+
+| 平台 | 角色 | 形态 |
 |---|---|---|
-| **GitHub** | `afdk1991/mi-xiao-mi-la-a-li-inc-monorepo`（private） | 单一仓库，默认分支 `master` |
-| **GitHub Packages** | `@afdk1991/shared-map`、`@afdk1991/shared-http`、`@afdk1991/shared-config` | 3 个包，由 CI 用 `GITHUB_TOKEN` 发布 |
-| **EdgeOne Makers** | `ai-server-resources`（静态资源站） | 直接上传 `.edgeone/` 目录，免构建 |
+| **GitHub** | 代码源真相 + CI 编排 | 私有仓 `afdk1991/mi-xiao-mi-la-a-li-inc-monorepo`，默认分支 `master` |
+| **GitHub Packages** | 私有 npm 注册表（仅共享库） | `@afdk1991/shared-{map,http,config}`，CI 用 `GITHUB_TOKEN` 发布，已可消费 |
+| **EdgeOne Makers / Pages** | 边缘应用发布目标 | 接收构建产物分发到边缘（production / preview） |
 
 ### GitHub
 ```bash
@@ -177,23 +179,41 @@ git push -u origin master
 > 推送前已用 `filter-branch` 从**全部历史**剔除 `_backups/`（含 226MB 的 `.git.bak` pack），
 > 否则 GitHub 会按单文件 100MB 硬限直接拒收。
 
-### GitHub Packages
-三个共享包已去掉 `private`、改 scope 为 `@afdk1991/*`、加 `files` / `publishConfig`。
-发布走 CI（`.github/workflows/publish-packages.yml`）：
+### GitHub Packages（共享库的私有 npm 源）
+三个共享包已改为**真正可消费**：`package.json` 的 `main`/`types`/`exports` 指向编译产物 `dist/`，
+`files` 仅含 `dist`，发布前由 `tsc -p tsconfig.build.json` 产出 `dist/index.js` + `.d.ts`。
+发布走 CI（`.github/workflows/publish-packages.yml`），鉴权用内置 `GITHUB_TOKEN`，无需 PAT。
 
 ```bash
 git tag shared-v1.0.0 && git push origin shared-v1.0.0   # 触发发布
-# 或在 Actions 里手动 workflow_dispatch
+# 或在 Actions 里手动 workflow_dispatch（可勾选 force 重发）
 ```
-消费方需配置 `.npmrc`：`@afdk1991:registry=https://npm.pkg.github.com`
 
-### EdgeOne Makers
-线上：`https://ai-server-resources-sm7xw6pm.edgeone.cool`（projectId `makers-n0wldhiwerxe`）
+消费端（EdgeOne 构建步骤 / 本地）统一靠根目录 `.npmrc` 鉴权，令牌从 `NODE_AUTH_TOKEN` 读取：
 
-两个必须避开的坑（都已固化进 `deploy-edgeone.sh`）：
-1. **不要用 `.edgeone/` 作部署源**——CLI 把它当构建输出标记目录，部署后线上根为空，首页 404。
-   要用**普通目录名**（脚本用 `_deploy`）。
-2. **部署目录内不能有 `package.json`**——否则 CLI 自动跑 `pnpm install`，本机无 pnpm 直接失败。
+```ini
+@afdk1991:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}
+```
+
+CI 中由部署工作流注入 `NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}`（需 `packages: read`），
+因此 EdgeOne 构建可透明拉取私有共享包。
+
+### EdgeOne Makers（边缘应用发布目标）
+- `delivery-router`（Vite SPA）→ `edgeone pages deploy`（`deploy-edgeone-app.yml`）
+- `ai-server-resources`（静态站）→ `edgeone pages deploy`（`deploy-edgeone-site.yml`）
+- `email-aggregator` 官网 → `edgeone makers deploy`（自定义脚本，最完整 Makers 链路）
+- `manju` 等 → `makers/edgeone.json` 声明的 Makers 项目
+
+**与 Packages 的集成点**：部署工作流在 `npm install` 前注入 `NODE_AUTH_TOKEN`，使构建步骤能拉取 `@afdk1991/shared-*`。
+
+**协调发布总开关**：打 `v*` 标签或手动触发 `.github/workflows/release.yml`，
+先发布三个共享包到 Packages，再依序触发上述 EdgeOne 部署工作流。
+
+坑（已固化）：
+1. 不要用 `.edgeone/` 作部署源（CLI 当构建标记目录→线上根空→404）；用普通目录名（如 `_deploy`/`_edgeone_publish`）。
+2. 部署目录内不能有 `package.json`（否则 CLI 跑 `pnpm install`，本机无 pnpm 即失败）。
+3. 固定 EdgeOne CLI 版本（如 `1.6.40`），`@latest` 会让部署输出结构漂移。
 
 ```bash
 cd sites/ai-server-resources && ./deploy-edgeone.sh

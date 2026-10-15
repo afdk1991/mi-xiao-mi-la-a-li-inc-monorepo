@@ -33,6 +33,7 @@ on:
 
 permissions:
   contents: read
+  packages: read   # 允许构建步骤经 .npmrc 拉取 @afdk1991/* 私有共享包（静态站当前未用，预留一致）
 
 jobs:
   deploy:
@@ -57,6 +58,9 @@ jobs:
             echo "::error::缺少 EDGEONE_API_TOKEN。请到 Settings > Secrets and variables > Actions 添加该 Secret（值取自 EdgeOne Pages 控制台的 API Token）。"
             exit 1
           fi
+
+      - name: Export GitHub Packages token
+        run: echo "NODE_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}" >> "$GITHUB_ENV"
 
       - name: Build publish directory (whitelist)
         run: |

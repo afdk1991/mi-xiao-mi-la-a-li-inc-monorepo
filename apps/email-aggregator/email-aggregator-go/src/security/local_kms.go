@@ -42,11 +42,12 @@ func NewLocalKmsInMemory() *LocalKms {
 
 // NewLocalKmsWithKey 用外部主密钥（passphrase/密钥串）构造单 KEK 本地 KMS（兼容旧 InMemoryKmsWithKEK 语义）。
 func NewLocalKmsWithKey(key string) *LocalKms {
-	kek := []byte("KEK_REDACTED")
-	if key != "" {
-		sum := sha256.Sum256([]byte(key))
-		kek = sum[:]
+	if key == "" {
+		// 公开仓库不得内置任何默认 KEK；未提供 key 时回退随机内存 KEK（进程退出即失效）
+		return NewLocalKmsInMemory()
 	}
+	sum := sha256.Sum256([]byte(key))
+	kek := sum[:]
 	return &LocalKms{keks: map[string][]byte{"kek-1": kek}, activeID: "kek-1"}
 }
 

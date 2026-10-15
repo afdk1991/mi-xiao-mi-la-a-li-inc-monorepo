@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "type": "module",
   "description": "统一地图服务抽象：配置 / 瓦片 / 坐标转换 / polyline 解码 / provider 接口",
-  "main": "./src/index.ts",
-  "types": "./src/index.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./src/index.ts"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
   },
   "files": [
-    "src"
+    "dist"
   ],
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
@@ -20,7 +23,10 @@
     "directory": "shared/map"
   },
   "scripts": {
-    "build": "node ../../tsc.mjs --noEmit",
+    "build": "tsc -p tsconfig.build.json",
     "typecheck": "node ../../tsc.mjs --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
