@@ -267,7 +267,10 @@ func (k *LocalKms) persist() error {
 	if err != nil {
 		return err
 	}
-	ct := aesGCMSeal(k.rek, inner)
+	ct, err := aesGCMSeal(k.rek, inner)
+	if err != nil {
+		return err
+	}
 	env := KeyringEnvelope{
 		V:          1,
 		KDF:        k.kdf,
