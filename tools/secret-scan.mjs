@@ -346,7 +346,10 @@ function scanFile(file) {
           /^\$\{/.test(bare) ||
           /^(?:process\.env|os\.Getenv|getenv|env)\b/i.test(bare);
         // 属性访问链同样算引用：OAUTH_CONFIG.qq.appSecret、config.wechat.key
-        const isPropChain = /^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)+[,;)]*$/.test(bare);
+        // 也排除函数调用形式：resolveEncryptionKey()、getSecret()
+        const isPropChain =
+          /^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)+[,;)]*$/.test(bare) ||
+          /^[A-Za-z_$][A-Za-z0-9_$]*\([^)]*\)[,;)]*$/.test(String(captured));
         if (
           (isVarRef || isPropChain || /^[A-Za-z_][A-Za-z0-9_]*$/.test(bare)) &&
           !/^(?:password|passwd|secret|token|changeme|admin|apikey|api_key)$/i.test(bare)
@@ -355,8 +358,9 @@ function scanFile(file) {
         }
         // 中文占位描述：「生产环境随机字符串」「请填写」等说明文字不是凭据
         if (/随机字符串|请填写|待填|占位|示例|生成|同上|替换为/i.test(bare)) continue;
-        // 密钥「生成」代码不是硬编码密钥：randomBytes / generateKey / Buffer.from(…32)
-        // 这类代码恰恰是正确做法（运行时生成），误报会惩罚好实践。
+        // 密钥「生成 / 配置注入」代码不是硬编码密钥，误报等于惩罚好实践：
+        //   - randomBytes / generateKey / pbkdf2 …（运行时生成）
+        //   - config.xxx / process.env.X / settings.xxx（配置注入后加工）
         if (
           /\b(?:randomBytes|generateKey|generateKeyPair|createHash|createHmac|pbkdf2|scrypt|deriveKey|crypto\.(?:getRandomValues|subtle))\b/i.test(
             line
@@ -364,6 +368,7 @@ function scanFile(file) {
         ) {
           continue;
         }
+        if (/\b(?:config|settings|process\.env|import\.meta\.env|getenv)\b/i.test(captured)) continue;
         // 文档示例私钥：`-----BEGIN RSA PRIVATE KEY-----...` 带省略号，属说明性占位
         if (rule.id === 'private-key' && /\.\.\.|…/.test(line)) continue;
         // 排除相对路径/URL 片段

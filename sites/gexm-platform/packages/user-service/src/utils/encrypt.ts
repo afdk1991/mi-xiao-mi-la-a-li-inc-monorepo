@@ -2,7 +2,24 @@ import crypto from 'crypto'
 import config from '../config'
 
 const ENCRYPTION_ALGORITHM = 'aes-256-gcm'
-const ENCRYPTION_KEY = Buffer.from(config.cryptoKey.padEnd(32, '0').slice(0, 32), 'utf-8')
+
+// 密钥必须来自配置注入（config.cryptoKey ← 环境变量 CRYPTO_KEY），不得硬编码。
+// 这里做两件防护：
+//   1) 缺失/过短时直接抛错——原实现用 padEnd(32,'0') 静默补零，
+//      未配置时密钥会退化成 32 个 '0'，等于用一把人尽皆知的钥匙加密 PII。
+//   2) 用 SHA-256 派生定长密钥，避免截断/补零弱化强度。
+function resolveEncryptionKey(): Buffer {
+  const raw = config.cryptoKey
+  if (!raw || raw.length < 16) {
+    throw new Error(
+      '[encrypt] CRYPTO_KEY 未配置或过短（至少 16 字符）。' +
+        '拒绝以弱密钥启动，请检查环境变量配置。'
+    )
+  }
+  return crypto.createHash('sha256').update(raw, 'utf-8').digest()
+}
+
+const ENCRYPTION_KEY = resolveEncryptionKey()
 
 export function encrypt(text: string): string {
   if (!text) return ''
