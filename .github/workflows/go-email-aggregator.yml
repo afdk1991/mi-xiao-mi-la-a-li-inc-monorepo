@@ -1,0 +1,73 @@
+name: Go (email-aggregator)
+
+# 目的：email-aggregator 是本仓库唯一的 Go 模块，其 security 包承载凭据信封加密
+# （密钥库加密落盘 + REK 保护）。本地环境可能没有 Go 工具链，故由 CI 提供确定性验证：
+# 编译、vet、单元测试、gofmt 全部真实执行。
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'apps/email-aggregator/**'
+      - '.github/workflows/go-email-aggregator.yml'
+  pull_request:
+    paths:
+      - 'apps/email-aggregator/**'
+      - '.github/workflows/go-email-aggregator.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: build / vet / test
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: apps/email-aggregator/email-aggregator-go
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          # 从 go.mod 读取版本（含 toolchain 指令），避免版本号写死导致漂移
+          go-version-file: 'apps/email-aggregator/email-aggregator-go/go.mod'
+          cache-dependency-path: 'apps/email-aggregator/email-aggregator-go/go.sum'
+
+      - name: Report toolchain
+        run: |
+          go version
+          go env GOTOOLCHAIN
+
+      - name: Download modules
+        run: go mod download
+
+      # 先验证本次改动直接相关的包能编译（失败即阻断）
+      - name: Build security package
+        run: go build ./src/security/... ./cmd/...
+
+      - name: Vet security package
+        run: go vet ./src/security/... ./cmd/...
+
+      - name: Test security package
+        run: go test ./src/security/... -v -count=1
+
+      # 格式检查：不阻断，仅报告，便于人工修正
+      - name: gofmt report (non-blocking)
+        id: fmt
+        continue-on-error: true
+        run: |
+          out=$(gofmt -l src/security cmd)
+          if [ -n "$out" ]; then
+            echo "以下文件不符合 gofmt："
+            echo "$out"
+            exit 1
+          fi
+          echo "gofmt clean"
+
+      # 全量编译：仅采集信息，不作为门禁（历史包可能已有独立问题）
+      - name: Build all packages (informational)
+        continue-on-error: true
+        run: go build ./... 2>&1 | tail -40
