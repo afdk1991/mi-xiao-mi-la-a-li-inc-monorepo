@@ -111,5 +111,18 @@ apps/manju/dist/
 *.pfx
 *.jks
 *.keystore
+*.ppk
+*.mobileprovision
+private.*.key
 !*.pub
 !*.pub.key
+
+# 密钥目录（纵深防御）：整目录屏蔽，防新增密钥文件漏网
+# 例外：_docs 下 CloudBase CLI 离线文档自带 secrets/ 说明页（已跟踪，非真实密钥）
+**/secrets/
+!_docs/cloudbase-adaptation-docs/offline-docs/cli-v1/secrets/
+!_docs/cloudbase-adaptation-docs/offline-docs/en/cli-v1/secrets/
+**/certs/
+**/keys/
+# 例外：manju 的公钥需随仓库分发（tracked，规则对已跟踪文件无效，此处仅为语义清晰）
+!apps/manju/keys/ota_public.pem
