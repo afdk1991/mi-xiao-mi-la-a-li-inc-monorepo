@@ -9,10 +9,22 @@ param(
   [string]$KeycloakBase = "http://localhost:8484",
   [string]$Realm = "email-aggregator",
   [string]$ClientId = "email-aggregator-go",
-  [string]$ClientSecret = "ea-dev-secret-2026",
-  [string]$TestUser = "alice@acme.test",
-  [string]$TestPassword = "alice-secret-2026"
+  # 凭据改为从环境变量取默认值，不在脚本内硬编码（脚本已入库，硬编码即泄露）
+  [string]$ClientSecret = $env:OIDC_CLIENT_SECRET,
+  [string]$TestUser = $(if ($env:OIDC_TEST_USER) { $env:OIDC_TEST_USER } else { "alice@acme.test" }),
+  [string]$TestPassword = $env:OIDC_TEST_PASSWORD
 )
+
+# 缺少凭据时立即报错，避免静默用空值去请求导致难以定位的失败
+if (-not $ClientSecret) {
+  Write-Host "请先设置环境变量 OIDC_CLIENT_SECRET（勿硬编码入库）：" -ForegroundColor Red
+  Write-Host '  $env:OIDC_CLIENT_SECRET = "<从 Keycloak 客户端凭据页获取>"'
+  exit 1
+}
+if (-not $TestPassword) {
+  Write-Host "请先设置环境变量 OIDC_TEST_PASSWORD（测试账号口令，勿硬编码入库）" -ForegroundColor Red
+  exit 1
+}
 
 $ErrorActionPreference = "Stop"
 $ProgressPreference = "SilentlyContinue"

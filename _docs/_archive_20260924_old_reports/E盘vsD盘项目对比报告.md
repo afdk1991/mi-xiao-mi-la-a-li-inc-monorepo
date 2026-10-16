@@ -168,7 +168,7 @@
 
 ### 2. 阿里云 LLM API 配置
 - `默认业务空间-apiKey-.csv` — 百炼大模型 API
-  - API Key: `sk-7d3c98af665b47a282541ced4f7c61bf`
+  - API Key: `sk-<REDACTED-请吊销此密钥>`
   - Endpoint: `llm-a4tbdocae0vllllg.cn-beijing.maas.aliyuncs.com`
   - ⚠️ **敏感信息，注意安全**
 

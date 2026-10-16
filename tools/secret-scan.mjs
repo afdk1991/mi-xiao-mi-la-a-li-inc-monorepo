@@ -337,15 +337,57 @@ function scanFile(file) {
         if (isPlaceholder(captured)) continue;
         // 排除纯数字（端口、ID 等）
         if (/^\d+$/.test(captured)) continue;
+        // 排除「变量引用」而非真实值：$ClientSecret（PS/PHP）、clientSecret,（结构体字段）
+        // 不这样的话，代码里正常的变量传递会被大量误报，门禁长期红 = 等于没有门禁。
+        const bare = String(captured).replace(/[,;)]+$/, '');
+        if (
+          /^\$?[A-Za-z_][A-Za-z0-9_]*$/.test(bare) &&
+          !/^(?:password|passwd|secret|token|changeme|admin|apikey|api_key)$/i.test(bare)
+        ) {
+          continue;
+        }
         // 排除相对路径/URL 片段
         if (/^[\w./-]+\.(?:js|ts|json|css|html|md|yml|yaml)$/.test(captured)) continue;
+
+        // 分级细化：连接串若指向本地/docker 内部服务且口令为弱口令，
+        // 属于「开发默认值」而非真实凭据，降级为 info 以免淹没真实告警。
+        // （告警疲劳是安全门禁失效的主因：全红 = 无人看。）
+        let severity = rule.severity;
+        let ruleName = rule.name;
+        if (rule.id === 'db-url-with-cred') {
+          const dm = line.match(
+            /\b(?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?|redis|rediss|amqp|sqlserver):\/\/[^\s:'"/]+:([^\s'@/]{3,})@([^\s'"/]+)/
+          );
+          if (dm) {
+            const pwd = dm[1];
+            const host = dm[2];
+            // 占位主机名（host / your_host / <host>）与 docker 服务名同样视为非真实目标
+            const isLocalHost =
+              /localhost|127\.0\.0\.1|0\.0\.0\.0|host\.docker\.internal|^(?:postgres|mysql|redis|mongo|db|database|host|localhost|your[_-]?host|<host>)(?::\d+)?$/i.test(
+                host
+              );
+            // 弱口令判定覆盖两类常见开发默认值：
+            //   ① 直接是通用弱口令（password/root/postgres...）
+            //   ②「短服务名 + -secret/-pass/-pwd/-key」组合（如 agg-secret、mailagg-secret）
+            const isWeakPwd =
+              // pass/user 一并纳入：代码中常以 postgres://user:pass@host 作为「格式示例」注释
+              /^(?:password|passwd|pwd|pass|user|username|postgres|admin|root|123456|secret|changeme|test|aggregator|agg|gexm|local|dev|mailagg|mail)(?:[-_](?:secret|pass|passwd|pwd|key|dev|local|test|123|user|name))?$/i.test(
+                pwd
+              );
+            const isEnvRef = /\$\{|process\.env|os\.Getenv|getenv|PGPASSWORD|env\(/i.test(pwd);
+            if (isLocalHost && (isWeakPwd || isEnvRef)) {
+              severity = 'info';
+              ruleName = `${rule.name}（本地开发默认值，非真实凭据）`;
+            }
+          }
+        }
 
         hits.push({
           file: path.relative(ROOT, file).replace(/\\/g, '/'),
           line: idx + 1,
           ruleId: rule.id,
-          ruleName: rule.name,
-          severity: rule.severity,
+          ruleName,
+          severity,
           masked: mask(captured),
           // snippet 必须脱敏：报告文件本身也会被归档/提交，不能成为二次泄露源
           snippet: redact(trimmed.slice(0, 120)),

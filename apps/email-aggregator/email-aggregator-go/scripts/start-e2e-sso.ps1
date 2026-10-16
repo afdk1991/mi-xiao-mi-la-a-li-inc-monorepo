@@ -19,7 +19,14 @@ $env:MINIO_SECURE      = "false"
 $env:MINIO_BUCKET      = "agg-mail"
 $env:OIDC_ISSUER       = "https://localhost:8443/realms/email-aggregator"
 $env:OIDC_CLIENT_ID    = "email-aggregator-go"
-$env:OIDC_CLIENT_SECRET = "ea-dev-secret-2026"
+# 凭据不写死在脚本里：优先取外部环境已注入的值，缺失时报错退出。
+# 说明：本脚本此前曾硬编码 OIDC_CLIENT_SECRET，已随安全整改移除；
+#      旧 secret 应视为已泄露并在 Keycloak 控制台重新签发。
+if (-not $env:OIDC_CLIENT_SECRET) {
+  Write-Host "[start-e2e-sso] 请先设置环境变量 OIDC_CLIENT_SECRET（勿硬编码入库）" -ForegroundColor Red
+  Write-Host '  示例：$env:OIDC_CLIENT_SECRET = "<从 Keycloak 客户端凭据页获取>"'
+  exit 1
+}
 $env:OIDC_REDIRECT_URI = "https://localhost:8080/api/auth/callback"
 
 Set-Location -Path (Join-Path $PSScriptRoot "..")
