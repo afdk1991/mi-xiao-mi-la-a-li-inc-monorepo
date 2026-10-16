@@ -340,12 +340,19 @@ function scanFile(file) {
         // 排除「变量引用」而非真实值：$ClientSecret（PS/PHP）、clientSecret,（结构体字段）
         // 不这样的话，代码里正常的变量传递会被大量误报，门禁长期红 = 等于没有门禁。
         const bare = String(captured).replace(/[,;)]+$/, '');
+        // 变量引用：$var / $env:VAR / $obj.prop / ${VAR} / process.env.X / os.Getenv("X")
+        const isVarRef =
+          /^\$/.test(bare) ||
+          /^\$\{/.test(bare) ||
+          /^(?:process\.env|os\.Getenv|getenv|env)\b/i.test(bare);
         if (
-          /^\$?[A-Za-z_][A-Za-z0-9_]*$/.test(bare) &&
+          (isVarRef || /^[A-Za-z_][A-Za-z0-9_]*$/.test(bare)) &&
           !/^(?:password|passwd|secret|token|changeme|admin|apikey|api_key)$/i.test(bare)
         ) {
           continue;
         }
+        // 文档示例私钥：`-----BEGIN RSA PRIVATE KEY-----...` 带省略号，属说明性占位
+        if (rule.id === 'private-key' && /\.\.\.|…/.test(line)) continue;
         // 排除相对路径/URL 片段
         if (/^[\w./-]+\.(?:js|ts|json|css|html|md|yml|yaml)$/.test(captured)) continue;
 
@@ -354,6 +361,17 @@ function scanFile(file) {
         // （告警疲劳是安全门禁失效的主因：全红 = 无人看。）
         let severity = rule.severity;
         let ruleName = rule.name;
+
+        // 对象存储 / JWT / 加密密钥：开发默认值（agg-secret、your-secret-key 等）
+        // 不构成泄露，降级为 info，避免真实告警被淹没
+        const devDefault =
+          /^(?:agg|agg-secret|minioadmin|minio-secret|changeme|your[-_].*|test|dev|local)/i.test(bare) ||
+          /^(?:your|xxx|change|placeholder|example|demo)/i.test(bare);
+        if (devDefault && /^(?:minio-credentials|jwt-secret|encryption-key|oidc-client-secret)$/.test(rule.id)) {
+          severity = 'info';
+          ruleName = `${rule.name}（开发默认值）`;
+        }
+
         if (rule.id === 'db-url-with-cred') {
           const dm = line.match(
             /\b(?:postgres(?:ql)?|mysql|mongodb(?:\+srv)?|redis|rediss|amqp|sqlserver):\/\/[^\s:'"/]+:([^\s'@/]{3,})@([^\s'"/]+)/
@@ -363,7 +381,7 @@ function scanFile(file) {
             const host = dm[2];
             // 占位主机名（host / your_host / <host>）与 docker 服务名同样视为非真实目标
             const isLocalHost =
-              /localhost|127\.0\.0\.1|0\.0\.0\.0|host\.docker\.internal|^(?:postgres|mysql|redis|mongo|db|database|host|localhost|your[_-]?host|<host>)(?::\d+)?$/i.test(
+              /localhost|127\.0\.0\.1|0\.0\.0\.0|host\.docker\.internal|^(?:postgres|mysql|redis|mongo|db|database|host|localhost|your[_-]?host|<host>)(?::(?:\d+|port))?$/i.test(
                 host
               );
             // 弱口令判定覆盖两类常见开发默认值：
@@ -371,11 +389,18 @@ function scanFile(file) {
             //   ②「短服务名 + -secret/-pass/-pwd/-key」组合（如 agg-secret、mailagg-secret）
             const isWeakPwd =
               // pass/user 一并纳入：代码中常以 postgres://user:pass@host 作为「格式示例」注释
-              /^(?:password|passwd|pwd|pass|user|username|postgres|admin|root|123456|secret|changeme|test|aggregator|agg|gexm|local|dev|mailagg|mail)(?:[-_](?:secret|pass|passwd|pwd|key|dev|local|test|123|user|name))?$/i.test(
+              // 后缀含 password（gexm_password、test_password 这类开发默认口令很常见）
+              /^(?:password|passwd|pwd|pass|user|username|postgres|admin|root|123456|secret|changeme|test|aggregator|agg|gexm|local|dev|mailagg|mail)(?:[-_]?(?:secret|pass|passwd|password|pwd|key|dev|local|test|123|user|name))?$/i.test(
                 pwd
               );
             const isEnvRef = /\$\{|process\.env|os\.Getenv|getenv|PGPASSWORD|env\(/i.test(pwd);
-            if (isLocalHost && (isWeakPwd || isEnvRef)) {
+            // 占位语义口令：CHANGE_THIS_TO_A_STRONG_PASSWORD 之类
+            const isPlaceholderPwd =
+              /change|your|placeholder|example|todo|xxx+|dummy|fake|strong|CHANGEME/i.test(pwd);
+            // 随机特征判据：真实生成的密钥几乎必然「大小写字母 + 数字」混合；
+            // 全小写/全大写 + 下划线的组合（gexm_test_password）属人工编写的开发默认值。
+            const hasRandomness = /[a-z]/.test(pwd) && /[A-Z]/.test(pwd) && /\d/.test(pwd);
+            if (isLocalHost && (isWeakPwd || isEnvRef || isPlaceholderPwd || !hasRandomness)) {
               severity = 'info';
               ruleName = `${rule.name}（本地开发默认值，非真实凭据）`;
             }

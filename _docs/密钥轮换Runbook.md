@@ -65,8 +65,9 @@ _ = kms.RekeyRing(newREK, "pbkdf2-hmac-sha256", newSalt)
 
 ### 2. 高德 JS API Key + 安全密钥（`daijia-config.js`）
 - 位置（**本地松散文件，未入仓**）：`apps/laal-platform/Mi-Xiao-Mi-La-A-Li-Inc/08-卫星产品/daijia/mobile/assets/js/daijia-config.js`
-  - 第 46 行 `mapKey: '3ec241d94ea4cce504d95eb16a8af9d9'`
-  - 第 50 行 `mapSecurityCode: '9415af3380bc3beef803cb7f43c91d5d'`
+  - 第 46 行 `mapKey: '3ec241d9…'`（完整值见本地文件；此处刻意只保留前 8 位用于定位，
+    避免文档本身成为泄露源——文档已入库并公开）
+  - 第 50 行 `mapSecurityCode: '9415af33…'`（同上，仅保留前 8 位）
 - 该目录是一个**遗留 gitlink（子模块指针，commit `48961cb…`）**，但 `.gitmodules` 已丢失、本地未 checkout、无 `.git`、引用的 commit 不在对象库 → 父仓不会跟踪其中的文件，当前**不会**随父仓推送外泄。
 - **处置**：
   1. 登录 高德控制台 → 应用 `MIXMLAAL-WebJS` → 开启**域名白名单（Referer 限制 / 安全密钥绑定）**，把业务域名加入。这是该 Key 的正确防护。

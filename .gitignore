@@ -100,3 +100,16 @@ apps/manju/dist/
 # Email-aggregator 本地密钥库（已用 REK 加密落盘，但绝不入库；含同目录机器密钥 <file>.mkey）
 **/kms-keyring*.json
 **/kms-keyring*.json.mkey
+
+# TLS 证书私钥 / 密钥文件（纵深防御）
+# 说明：sites/gexm-platform/certs/ 已由该项目自身 .gitignore 的 `certs/` 规则覆盖，
+#       实测 8 个 laal.top / mixm.top 私钥从未入库。此处在根级再加一层通用防护，
+#       避免私钥被移动到其他目录后因缺少规则而误提交。
+*.key
+*.pem
+*.p12
+*.pfx
+*.jks
+*.keystore
+!*.pub
+!*.pub.key
