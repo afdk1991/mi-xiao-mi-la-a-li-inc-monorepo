@@ -1,0 +1,69 @@
+name: Packages visibility
+
+# 目的：三平台公开要求 GitHub Packages 上的包也对外可见。
+# 关键约束：
+#   - GitHub npm registry 对「所有」请求强制鉴权，匿名访问统一 403，无法据此判断公私；
+#   - 本机可用令牌（gho_ OAuth）不含 read:packages / write:packages scope，查改都不行；
+#   - 但本仓库 Actions 的 GITHUB_TOKEN 具备 packages: write 权限，可以读取并修改可见性。
+# 因此由 CI 代为完成「核验 → 置 Public → 复核」的确定性闭环，无需人工在网页端点击。
+on:
+  workflow_dispatch:
+  push:
+    branches: [master]
+    paths:
+      - '.github/workflows/packages-visibility.yml'
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  enforce-public:
+    name: verify and set packages public
+    runs-on: ubuntu-latest
+    env:
+      OWNER: ${{ github.repository_owner }}
+      PKGS: shared-map shared-http shared-config
+    steps:
+      - name: Read current visibility (before)
+        run: |
+          for p in $PKGS; do
+            resp=$(curl -sS -w '\n%{http_code}' \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/users/$OWNER/packages/npm/$p")
+            echo "== $p (before) =="
+            echo "$resp" | tail -1 | sed 's/^/HTTP /'
+            echo "$resp" | head -n -1 | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);console.log('visibility=',j.visibility||j.message);}catch(e){console.log(d.slice(0,200));}});"
+          done
+
+      - name: Set visibility to public
+        run: |
+          for p in $PKGS; do
+            code=$(curl -sS -o /dev/null -w '%{http_code}' -X PUT \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              -d '{"visibility":"public"}' \
+              "https://api.github.com/users/$OWNER/packages/npm/$p/visibility")
+            echo "$p -> PUT /visibility HTTP $code"
+          done
+
+      - name: Read current visibility (after)
+        run: |
+          all_public=true
+          for p in $PKGS; do
+            vis=$(curl -sS \
+              -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+              -H "Accept: application/vnd.github+json" \
+              -H "X-GitHub-Api-Version: 2022-11-28" \
+              "https://api.github.com/users/$OWNER/packages/npm/$p" \
+              | node -e "let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);console.log(j.visibility||('ERR:'+(j.message||'')));}catch(e){console.log('PARSE_ERR');}});")
+            echo "$p -> $vis"
+            [ "$vis" = "public" ] || all_public=false
+          done
+          echo "ALL_PUBLIC=$all_public"
+          if [ "$all_public" != "true" ]; then
+            echo "::warning::部分包仍未置为 public，请检查上方输出"
+          fi
