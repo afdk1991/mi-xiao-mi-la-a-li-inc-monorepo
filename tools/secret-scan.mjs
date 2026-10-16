@@ -355,6 +355,15 @@ function scanFile(file) {
         }
         // 中文占位描述：「生产环境随机字符串」「请填写」等说明文字不是凭据
         if (/随机字符串|请填写|待填|占位|示例|生成|同上|替换为/i.test(bare)) continue;
+        // 密钥「生成」代码不是硬编码密钥：randomBytes / generateKey / Buffer.from(…32)
+        // 这类代码恰恰是正确做法（运行时生成），误报会惩罚好实践。
+        if (
+          /\b(?:randomBytes|generateKey|generateKeyPair|createHash|createHmac|pbkdf2|scrypt|deriveKey|crypto\.(?:getRandomValues|subtle))\b/i.test(
+            line
+          )
+        ) {
+          continue;
+        }
         // 文档示例私钥：`-----BEGIN RSA PRIVATE KEY-----...` 带省略号，属说明性占位
         if (rule.id === 'private-key' && /\.\.\.|…/.test(line)) continue;
         // 排除相对路径/URL 片段
