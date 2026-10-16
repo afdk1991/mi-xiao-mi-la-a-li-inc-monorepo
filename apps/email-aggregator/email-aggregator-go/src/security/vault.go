@@ -18,6 +18,8 @@ type Kms interface {
 	Encrypt(ctx context.Context, plaintext []byte) (blob []byte, err error)
 	Decrypt(ctx context.Context, blob []byte) (plaintext []byte, err error)
 	RotateKEK(ctx context.Context) (newKEKID string, err error)
+	// ActiveKEKID 返回当前 active 数据 KEK 标识，供信封准确记录（审计/轮换追踪）。
+	ActiveKEKID(ctx context.Context) string
 }
 
 // Envelope 信封加密产物（仅此结构可持久化，不含明文）
@@ -62,7 +64,7 @@ func (v *CredentialVault) Seal(ctx context.Context, plaintext []byte) (Envelope,
 		return Envelope{}, err
 	}
 	return Envelope{
-		KEKID:      "kek-1",
+		KEKID:      v.kms.ActiveKEKID(ctx),
 		WrappedDEK: base64.StdEncoding.EncodeToString(wrapped),
 		IV:         base64.StdEncoding.EncodeToString(iv),
 		Ciphertext: base64.StdEncoding.EncodeToString(ct),
@@ -181,3 +183,6 @@ func (k *InMemoryKms) Decrypt(_ context.Context, blob []byte) ([]byte, error) {
 func (k *InMemoryKms) RotateKEK(_ context.Context) (string, error) {
 	return "kek-2", nil
 }
+
+// ActiveKEKID 演示实现恒为 kek-1（InMemoryKms 为单密钥模型）。
+func (k *InMemoryKms) ActiveKEKID(_ context.Context) string { return "kek-1" }

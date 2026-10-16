@@ -1,8 +1,9 @@
 # 密钥轮换 Runbook（三平台公开收官后续）
 
-> 编写：2026-10-16 18:30
+> 编写：2026-10-16 18:30｜更新：2026-10-16 18:45（据用户决策"不轮换、把加密做实"改写）
 > 关联：`_docs/三平台公开收官报告.md` 第四节待办 #2
 > 结论先行：**公开父仓（`mi-xiao-mi-la-a-li-inc-monorepo`）经 `git filter-repo` + `git grep --all` 复核，历史与当前树均无明文密钥，已确认干净。**
+> 决策更新：**`email-aggregator` KEK 不再走"轮换"路线**——改为把加密做实（密钥库加密落盘 + REK 保护），真正机密是 REK 而非数据 KEK，因此无需轮换。详见第二节。
 
 ---
 
@@ -12,26 +13,51 @@
 |---|---|---|---|---|
 | **前端 JS Key** | 高德 JS API Key `mapKey`、高德安全密钥 `mapSecurityCode` | ❌ 否（仅本地松散文件，见下） | 低——按设计本就明文下发浏览器；防线是控制台域名白名单 | 🟡 启用白名单即可，轮换为卫生项 |
 | **边缘函数服务端 Key** | 高德 Web 服务 `AMAP_WEB_KEY` / 签名 `AMAP_SIG` / 猎鹰 `AMAP_FALCON_KEY` / 腾讯 `TENCENT_KEY` / 百度 `BAIDU_AK` | ❌ 否（仅存 EdgeOne Makers 环境变量，不入仓） | 中——服务端凭证，但未入仓；若曾误提交则风险高 | 🟡 确认未入仓后启用白名单 |
-| **服务端加密根密钥** | `email-aggregator` KEK（`KMS_KEYRING_FILE` → `bin/kms-keyring.json`） | ❌ 否（已 gitignore，旧硬编码已改随机内存兜底） | 高——一旦泄露可批量解密凭据；旧值若曾暴露必须换 | 🔴 必须轮换 |
+| **服务端加密根密钥** | `email-aggregator` 数据 KEK（`KMS_KEYRING_FILE` → 已加密的 `bin/kms-keyring.json`，其本身再由 REK 加密落盘） | ❌ 否（密钥库已 gitignore 且加密；旧硬编码已移除） | 中——凭据信封用随机数据 KEK 加密；密钥库文件再用 REK（口令/机器密钥）加密；**真正机密是 REK**，数据 KEK 泄露也不直接暴露凭据 | 🟢 不轮换（已加密保护，换 REK 即可，无需动数据） |
 | **云厂商 Secret** | `TENCENTCLOUD_SECRET_ID/SECRET_KEY`（仅模板占位 `os.environ.get`，非真实值） | ❌ 否 | 低 | 🟢 无需处理（模板） |
 
 > 说明：此前收官报告第四节写"明文密钥曾 push 到远端"，经本次复核需**修正**为——父仓历史已清洗干净；唯一残留的明文高德 Key 仅存在于本地一个**遗留（broken）子模块目录**的松散文件里，并未进入公开仓对象库。子模块自身是否曾被公开推送，**无法从沙箱确认**（无 `.gitmodules`、无本地对象、无远端配置），需你在本机核实。
 
 ---
 
-## 二、必做项（🔴 高优先级）
+## 二、必做项（🟢 已实现加密保护，无需轮换）
 
-### 1. `email-aggregator` KEK 轮换
-- 旧硬编码 KEK 已改为"未提供 key 时回退随机内存 KEK"（见 `apps/email-aggregator/email-aggregator-go/src/security/{local_kms.go,vault.go}`），但**旧值若曾在历史中暴露，仍应换**。
-- 生成新 keyring：
-  ```bash
-  # 旧 keyring 文件（如存在）先备份再替换
-  cp bin/kms-keyring.json bin/kms-keyring.json.bak-$(date +%F)
-  rm bin/kms-keyring.json        # 进程重启会自动生成新 kek-*
-  # 重启 email-aggregator，使其用新 KEK 生成 keyring
-  ```
-- **后果**：新 KEK 无法解密旧 KEK 加密的历史凭据（信封加密 + keyVersion 不匹配）→ 旧凭据需**重新录入/授权**一次。这是 KEK 轮换的固有代价，属预期。
-- 确认 `KMS_KEYRING_FILE` 指向持久化文件（避免回退到内存随机 KEK 导致重启即失效）。
+### 1. `email-aggregator` 加密落地（替代"KEK 轮换"）
+
+> 用户决策：**不轮换，把加密做实。** 代码已落地于 `apps/email-aggregator/email-aggregator-go/src/security/{local_kms.go,vault.go}`。
+
+**设计（信封加密 + 两层密钥）**
+- 凭据本身：一次性 DEK 加密明文 → 数据 KEK 包裹 DEK → 信封（`Envelope`）入库；明文仅存于进程内存、零落盘（见 `api/server.go:548` 的 `vault.Seal`）。
+- 数据 KEK：随机 32 字节、多版本、由 `LocalKms` 持有。
+- **密钥库文件（`KMS_KEYRING_FILE`，如 `bin/kms-keyring.json`）不再明文存 KEK**，而是用 **REK（密钥库加密密钥）** 做 AES-GCM 加密落盘。REK 来源按优先级：
+  1. `KMS_KEYRING_PASSPHRASE` —— 口令经 PBKDF2-HMAC-SHA256（20 万次迭代）派生 REK，**可跨机迁移**。
+  2. `KMS_KEYRING_KEYFILE` —— 直接提供 32 字节原始 REK 文件（最灵活）。
+  3. 默认：在密钥库同目录自动生成 `<file>.mkey` 机器密钥（0600，已 gitignore）。
+- **"不轮换"的依据**：真正机密是 REK 而非数据 KEK。换口令/换机器密钥只需调用 `LocalKms.RekeyRing(...)` 重封密钥库，**已封存的凭据信封无需重封、无需重新录入凭据**。若数据 KEK 万一需要轮换，`LocalKms` 的多版本机制也能无缝支持（旧信封仍可用 `Decrypt` 遍历历史 KEK 拆封）。
+
+**运维变量（在 email-aggregator 运行环境设置）**
+```bash
+# 推荐：持久化密钥库 + 口令派生 REK（跨机一致，重启安全）
+export KMS_KEYRING_FILE=/path/to/bin/kms-keyring.json
+export KMS_KEYRING_PASSPHRASE='你的强口令'
+
+# 或更稳妥：用 32 字节密钥文件（需自行用安全方式分发）
+# export KMS_KEYRING_KEYFILE=/secure/path/kms-rek.bin
+```
+- 不设以上变量时，默认自动生成机器密钥文件（`<file>.mkey`，0600）——**重启安全、不丢凭据**，适合单机部署。
+- 切勿两者都不设且让进程回退到"随机内存 KEK"（`KMS_KEYRING` 单 KEK 或纯内存模式）——那会在重启后无法解密历史凭据（已加告警）。
+
+**变更口令（无需轮换数据）**
+```go
+// 仅需重封密钥库，不动任何凭据信封
+newREK := pbkdf2HMACSHA256([]byte("新口令"), newSalt, 200000, 32)
+_ = kms.RekeyRing(newREK, "pbkdf2-hmac-sha256", newSalt)
+```
+
+**相关测试**（本地 `go test ./src/security/...`）
+- `TestLocalKms_PassphraseKDF`：同名口令可跨进程重载、错误口令失败。
+- `TestLocalKms_RekeyRing`：换 REK 后旧信封仍可解密（验证"不轮换"）。
+- `TestLocalKms_FilePersistence`：密钥库落盘后重启仍可解密历史信封。
 
 ---
 
@@ -68,7 +94,8 @@
 - [ ] 父仓 `git grep --all` 无明文密钥（已复核 ✅）
 - [ ] `daijia-config.js` 两枚 Key 确认未进入任何公开仓（当前仅本地松散文件 ✅；子模块历史暴露需本机确认 ⚠️）
 - [ ] 高德 / 百度 / 腾讯控制台均已开启域名白名单
-- [ ] `email-aggregator` KEK 已轮换且旧凭据已重新录入
+- [ ] `email-aggregator` 密钥库已加密落盘（`KMS_KEYRING_FILE` + `KMS_KEYRING_PASSPHRASE`/`KEYFILE` 已配置），**不轮换**（已加密保护 ✅）
+- [ ] 本地 `go test ./src/security/...` 全绿（含 `TestLocalKms_PassphraseKDF` / `TestLocalKms_RekeyRing`）
 - [ ] EdgeOne Makers 环境变量中的 Key 已确认无历史明文提交
 
 ---

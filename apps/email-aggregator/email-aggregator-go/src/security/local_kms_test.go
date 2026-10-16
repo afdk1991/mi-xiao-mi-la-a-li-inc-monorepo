@@ -115,3 +115,87 @@ func TestLocalKms_WithCredentialVault(t *testing.T) {
 		t.Fatalf("rotate: %v", err)
 	}
 }
+
+// TestLocalKms_PassphraseKDF 口令派生 REK：同名口令可跨进程重载；错误口令必须失败。
+func TestLocalKms_PassphraseKDF(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "keyring.json")
+	t.Setenv(envKeyringPassphrase, "correct horse battery staple")
+
+	k1, err := NewLocalKmsFromFile(path)
+	if err != nil {
+		t.Fatalf("create: %v", err)
+	}
+	if _, err := k1.RotateKEK(context.Background()); err != nil {
+		t.Fatalf("rotate: %v", err)
+	}
+	sealed, err := k1.Encrypt(context.Background(), []byte("vault-secret"))
+	if err != nil {
+		t.Fatalf("encrypt: %v", err)
+	}
+
+	// 用相同口令重载（模拟重启）。
+	t.Setenv(envKeyringPassphrase, "correct horse battery staple")
+	k2, err := NewLocalKmsFromFile(path)
+	if err != nil {
+		t.Fatalf("reload: %v", err)
+	}
+	got, err := k2.Decrypt(context.Background(), sealed)
+	if err != nil {
+		t.Fatalf("decrypt: %v", err)
+	}
+	if string(got) != "vault-secret" {
+		t.Fatalf("mismatch: %q", got)
+	}
+
+	// 错误口令必须失败（REK 不匹配）。
+	t.Setenv(envKeyringPassphrase, "wrong-pass")
+	if _, err := NewLocalKmsFromFile(path); err == nil {
+		t.Fatal("expected load failure with wrong passphrase")
+	}
+}
+
+// TestLocalKms_RekeyRing 更换 REK（口令变更）后旧信封仍可解密，无需数据 KEK 轮换。
+// 这正是"不轮换"策略的落点：真正机密是 REK，换口令只重封密钥库。
+func TestLocalKms_RekeyRing(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "keyring.json")
+	t.Setenv(envKeyringPassphrase, "old-pass")
+
+	k, err := NewLocalKmsFromFile(path)
+	if err != nil {
+		t.Fatalf("create: %v", err)
+	}
+	sealed, err := k.Encrypt(context.Background(), []byte("secret"))
+	if err != nil {
+		t.Fatalf("encrypt: %v", err)
+	}
+
+	// 更换 REK 为新口令派生（salt 一并更新）。
+	newSalt := []byte("newsalt")
+	newREK := pbkdf2HMACSHA256([]byte("new-pass"), newSalt, pbkdf2Iterations, 32)
+	if err := k.RekeyRing(newREK, "pbkdf2-hmac-sha256", newSalt); err != nil {
+		t.Fatalf("rekey: %v", err)
+	}
+	// 旧信封仍可用（数据 KEK 未变）。
+	got, err := k.Decrypt(context.Background(), sealed)
+	if err != nil {
+		t.Fatalf("decrypt after rekey: %v", err)
+	}
+	if string(got) != "secret" {
+		t.Fatalf("mismatch: %q", got)
+	}
+	// 用新口令派生 REK 应可重载。
+	t.Setenv(envKeyringPassphrase, "new-pass")
+	k2, err := NewLocalKmsFromFile(path)
+	if err != nil {
+		t.Fatalf("reload new: %v", err)
+	}
+	got2, err := k2.Decrypt(context.Background(), sealed)
+	if err != nil {
+		t.Fatalf("decrypt reload: %v", err)
+	}
+	if string(got2) != "secret" {
+		t.Fatalf("mismatch2: %q", got2)
+	}
+}

@@ -71,3 +71,7 @@ sites/ai-server-resources/archive/verify-*.png
 **/daijia-dist_old*/
 **/_smoke*.log
 **/fetched/
+
+# Email-aggregator 本地密钥库（已用 REK 加密落盘，但绝不入库；含同目录机器密钥 <file>.mkey）
+**/kms-keyring*.json
+**/kms-keyring*.json.mkey
