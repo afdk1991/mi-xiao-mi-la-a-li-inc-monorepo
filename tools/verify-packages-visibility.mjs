@@ -3,13 +3,22 @@
  * GitHub Packages 可见性核验 / 一键置 Public 工具
  * ------------------------------------------------------------------
  * 用途：
- *   1. 核验 @afdk1991 下三个 npm 包的当前可见性（public / private）。
- *   2. 可选：带 write:packages 权限的令牌时，一键把包设为 public。
+ *   核验 @afdk1991 下三个 npm 包的当前可见性（public / private）。
+ *
+ * ⚠️ 重要（2026-10-16 实测结论）：
+ *   GitHub REST API **不提供**修改包可见性的写入端点。实测
+ *   `POST /user/packages/{type}/{name}/visibility` 与
+ *   `POST /users/{owner}/packages/{type}/{name}/visibility` 均返回 404 Not Found；
+ *   官方文档中 visibility 仅为列表过滤参数与只读响应字段。
+ *   → 可见性只能在网页端手动修改：
+ *     github.com/users/afdk1991/packages → 各包 → Package settings → Change visibility → Public
+ *   本脚本的 --set-public 参数保留仅为记录该尝试，预计返回 404。
  *
  * 背景：
  *   GitHub 的 npm registry 对「所有」请求强制鉴权（匿名统一 403，
- *   无法据此判断公私）。要确定性地查看/修改可见性，必须用一个带
- *   read:packages（查看）和 write:packages（修改）scope 的令牌。
+ *   无法据此判断公私）。要确定性地查看可见性，必须用一个带
+ *   read:packages scope 的令牌（例如仓库 Actions 的 GITHUB_TOKEN，
+ *   其 packages: write 权限隐含读取能力）。
  *
  * 用法：
  *   # 仅查看（令牌只需 read:packages）
@@ -90,6 +99,12 @@ async function setPublic(pkg) {
   if (status === 204) return { ok: true };
   if (status === 401)
     return { ok: false, error: '401：令牌缺少 write:packages' };
+  if (status === 404)
+    return {
+      ok: false,
+      error:
+        '404：该端点不存在——GitHub REST API 不支持修改包可见性，请改用网页端（Package settings → Change visibility → Public）',
+    };
   return { ok: false, error: json?.message || `HTTP ${status}` };
 }
 
