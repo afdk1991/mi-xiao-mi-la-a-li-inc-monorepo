@@ -96,6 +96,8 @@ apps/manju/dist/
 **/*-dist-assets/
 **/deploy-script-assets/
 **/daijia-dist/
+**/dist-new/
+**/dist-new*/
 
 # Email-aggregator 本地密钥库（已用 REK 加密落盘，但绝不入库；含同目录机器密钥 <file>.mkey）
 **/kms-keyring*.json

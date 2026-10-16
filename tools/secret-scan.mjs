@@ -345,12 +345,16 @@ function scanFile(file) {
           /^\$/.test(bare) ||
           /^\$\{/.test(bare) ||
           /^(?:process\.env|os\.Getenv|getenv|env)\b/i.test(bare);
+        // 属性访问链同样算引用：OAUTH_CONFIG.qq.appSecret、config.wechat.key
+        const isPropChain = /^[A-Za-z_$][A-Za-z0-9_$]*(?:\.[A-Za-z_$][A-Za-z0-9_$]*)+[,;)]*$/.test(bare);
         if (
-          (isVarRef || /^[A-Za-z_][A-Za-z0-9_]*$/.test(bare)) &&
+          (isVarRef || isPropChain || /^[A-Za-z_][A-Za-z0-9_]*$/.test(bare)) &&
           !/^(?:password|passwd|secret|token|changeme|admin|apikey|api_key)$/i.test(bare)
         ) {
           continue;
         }
+        // 中文占位描述：「生产环境随机字符串」「请填写」等说明文字不是凭据
+        if (/随机字符串|请填写|待填|占位|示例|生成|同上|替换为/i.test(bare)) continue;
         // 文档示例私钥：`-----BEGIN RSA PRIVATE KEY-----...` 带省略号，属说明性占位
         if (rule.id === 'private-key' && /\.\.\.|…/.test(line)) continue;
         // 排除相对路径/URL 片段
