@@ -1,0 +1,15 @@
+{
+  "name": "@mxm/route-nav-server",
+  "private": true,
+  "version": "0.0.0",
+  "description": "route-nav 服务端：零运行时依赖（node:http + node:sqlite），Node >= 22.18 可直接运行 TS",
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/index.ts",
+    "start": "node src/index.ts",
+    "lint": "node scripts/lint.mjs"
+  },
+  "engines": {
+    "node": ">=22.18"
+  }
+}

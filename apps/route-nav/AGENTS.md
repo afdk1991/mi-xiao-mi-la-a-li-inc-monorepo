@@ -1,10 +1,10 @@
-# Expo App + Express.js
+# Expo App + Node.js Server
 
 ## 目录结构规范（严格遵循）
 
 当前仓库是一个 monorepo（基于 pnpm 的 workspace）
 
-- Expo 代码在 client 目录，Express.js 代码在 server 目录
+- Expo 代码在 client 目录，Node.js 服务端代码在 server 目录（零运行时依赖：node:http + node:sqlite，Node >= 22.18 可直接以 `node src/index.ts` 运行 TS）
 - 本模板默认无 Tab Bar，可按需改造
 
 ├── client/                     # React Native 前端代码
@@ -21,10 +21,20 @@
 │   ├── utils/                  # 工具函数
 │   ├── assets/                 # 静态资源
 |   └── package.json            # Expo 应用 package.json
-├── server/                     # 服务端代码根目录 (Express.js)
+├── server/                     # 服务端代码根目录（零依赖 Node）
 |   ├── src/
-│   │   └── index.ts            # 服务端入口文件
-|   └── package.json            # 服务端 package.json
+│   │   ├── index.ts            # 服务端入口文件（路由 + 启动）
+│   │   ├── db.ts               # node:sqlite 建表 + 景点种子数据
+│   │   ├── auth.ts             # scrypt 密码哈希 + HMAC 令牌
+│   │   ├── http.ts             # JSON/CORS/:param 路由
+│   │   ├── geo.ts              # 地理编码多级回退 + haversine
+│   │   ├── optimize.ts         # NN + 2-opt + regional 路线优化
+│   │   ├── extmap.ts           # 外部地图 URL + 坐标系转换
+│   │   ├── store.ts            # 数据访问层
+│   │   └── attractions.ts      # 景点种子数据
+|   ├── scripts/
+│   │   └── lint.mjs            # 零依赖链接检查
+|   └── package.json            # 服务端 package.json（无 dependencies）
 ├── package.json
 ├── .cozeproj                   # 预置脚手架脚本（禁止修改）
 └── .coze                       # 配置文件（禁止修改）
@@ -222,14 +232,14 @@ export { default } from "@/screens/home";
 | 目录 | 安装命令 | 说明 |
 |------|----------|------|
 | `client/` | `npx expo install <package>` | Expo 会自动选择与 SDK 兼容的版本 |
-| `server/` | `pnpm add <package>` | 使用 pnpm 管理后端依赖 |
+| `server/` | 无需安装（零运行时依赖） | 仅用 Node 内置模块；如需第三方包再 `pnpm add <package>` |
 
 ```bash
 # client 目录（Expo 项目）
 cd client && npx expo install expo-camera expo-image-picker
 
-# server 目录（Express 项目）
-cd server && pnpm add axios cors
+# server 目录（零依赖 Node 项目，直接运行）
+cd server && node src/index.ts
 ```
 
 **网络问题处理**：`npx expo install` 可能因网络原因失败，失败时重试 2 次，仍失败则改用 `pnpm add` 安装
