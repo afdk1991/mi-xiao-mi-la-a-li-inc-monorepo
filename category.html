@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>分类详情 · 可转载资源清单</title>
+<meta name="description" content="AI 大模型与服务器/计算机技术领域公开可转载资源索引。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><span class="mark">R</span><span>可转载资源清单<small>AI 大模型 · 服务器与计算机技术</small></span></a>
+    <nav class="nav" id="siteNav">
+      <a href="index.html">首页</a>
+      <a href="resources.html">资源库</a>
+      <a href="curated.html">精选 21 项</a>
+      <a href="articles.html">技术文章</a>
+      <a href="content.html">全文阅读</a>
+      <a href="category.html?c=A">分类</a>
+      <a href="compliance.html">合规指南</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="nav-search">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题">🌙</button>
+      <input id="globalSearch" type="search" placeholder="搜索资源…（回车）">
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+<div class="container">
+
+  <p class="breadcrumb" id="catCrumb"></p>
+
+  <div class="mb-lg">
+    <h1 id="catTitle" class="page-title"></h1>
+    <p id="catDesc" class="page-lead"></p>
+    <p id="catMeta" class="text-3"></p>
+  </div>
+
+  <div id="catOut"></div>
+
+  <div class="pager" id="catPager"></div>
+
+  <div class="note mt-lg" >
+    <b>提示：</b>许可等级依据整理时的官方声明判定，开源项目与文档站点的许可可能随版本调整；
+    类目内标注「以仓库 / 官方声明为准」的条目，转载或商用前请打开原始链接复核当前 LICENSE。
+  </div>
+
+</div>
+
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h5>关于本站</h5>
+        <p>收录 AI 大模型与服务器 / 计算机技术领域公开可得、可自由转载或注明出处即可引用的资源，逐项标注许可与版权状态。</p>
+        <p>当前共 <b id="footTotal">—</b> 项资源，分 8 大类。</p>
+      </div>
+      <div>
+        <h5>浏览</h5>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="resources.html">资源库（全量）</a></li>
+          <li><a href="curated.html">精选 21 项</a></li>
+          <li><a href="articles.html">技术文章</a></li>
+          <li><a href="content.html">全文阅读（全部正文）</a></li>
+          <li><a href="compliance.html">转载合规指南</a></li>
+          <li><a href="about.html">关于与勘误</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>类目速达</h5>
+        <ul>
+          <li><a href="category.html?c=A">A 类目</a></li>
+          <li><a href="category.html?c=B">B 类目</a></li>
+          <li><a href="category.html?c=C">C 类目</a></li>
+          <li><a href="category.html?c=D">D 类目</a></li>
+          <li><a href="category.html?c=E">E 类目</a></li>
+          <li><a href="category.html?c=F">F 类目</a></li>
+          <li><a href="category.html?c=G">G 类目</a></li>
+          <li><a href="category.html?c=H">H 类目</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>合规要点</h5>
+        <ul>
+          <li>权重开放 ≠ 开源</li>
+          <li>arXiv 默认不可全文转载</li>
+          <li>商标 Logo 需单独授权</li>
+          <li>中文社区默认禁转载</li>
+          <li>数据许可独立于模型</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> 可转载资源清单 · 本页为索引性质，不托管任何受版权保护的原文</span>
+      <span>许可信息以各来源官方声明为准</span>
+    </div>
+  </div>
+</footer>
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <header><b id="mdTitle">完整清单（Markdown）</b><button class="btn ghost sm" id="closeBtn">关闭</button></header>
+    <div class="modal-body"><textarea id="mdOut" readonly></textarea></div>
+    <div class="modal-foot">
+      <button class="btn" id="copyBtn">复制到剪贴板</button>
+      <button class="btn ghost" id="dlBtn">下载 .md 文件</button>
+      <span id="copyTip"></span>
+    </div>
+  </div>
+</div>
+<button id="toTop" aria-label="回到顶部">↑</button>
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="assets/cloud.js"></script>
+<script src="assets/curated.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

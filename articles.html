@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>技术文章 · 可转载资源清单</title>
+<meta name="description" content="原创可转载的 AI 大模型与服务器/计算机技术科普正文。">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container nav-wrap">
+    <a class="brand" href="index.html"><span class="mark">R</span><span>可转载资源清单<small>AI 大模型 · 服务器与计算机技术</small></span></a>
+    <nav class="nav" id="siteNav">
+      <a href="index.html">首页</a>
+      <a href="resources.html">资源库</a>
+      <a href="curated.html">精选 21 项</a>
+      <a href="articles.html">技术文章</a>
+      <a href="content.html">全文阅读</a>
+      <a href="category.html?c=A">分类</a>
+      <a href="compliance.html">合规指南</a>
+      <a href="about.html">关于</a>
+    </nav>
+    <div class="nav-search">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="切换深色 / 浅色主题" title="切换主题">🌙</button>
+      <input id="globalSearch" type="search" placeholder="搜索资源…（回车）">
+      <button class="nav-toggle" id="navToggle" aria-label="菜单">☰</button>
+    </div>
+  </div>
+</header>
+<main class="site-main">
+<section class="page-head">
+  <div class="container">
+    <span class="eyebrow">原创 ＋ 官方原文转载 · 正文均可直接阅读</span>
+    <h1>技术文章</h1>
+    <p class="lead">
+      这里收录的是<b>完整可读的正文</b>，而非外链索引。既包含本站原创撰写的科普长文，
+      也包含从 nginx、SQLite、PostgreSQL、Kubernetes、ArchWiki、IETF RFC、vLLM、PyTorch 等官方文档
+      <b>联网抓取的原文全文</b>——这些来源的许可均允许全文转载，页首与页尾已附来源、原文链接与许可声明。
+      全部内容可直接阅读、复制发布或改编，覆盖大模型原理、训练微调、推理部署、服务器运维与网络存储五大方向。
+    </p>
+  </div>
+</section>
+<div class="container">
+  <p class="panel-lead" id="artStat"></p>
+  <div id="artOut"></div>
+</div>
+</main>
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <h5>关于本站</h5>
+        <p>收录 AI 大模型与服务器 / 计算机技术领域公开可得、可自由转载或注明出处即可引用的资源，逐项标注许可与版权状态。</p>
+        <p>当前共 <b id="footTotal">—</b> 项资源，分 8 大类。</p>
+      </div>
+      <div>
+        <h5>浏览</h5>
+        <ul>
+          <li><a href="index.html">首页</a></li>
+          <li><a href="resources.html">资源库（全量）</a></li>
+          <li><a href="curated.html">精选 21 项</a></li>
+          <li><a href="articles.html">技术文章</a></li>
+          <li><a href="content.html">全文阅读（全部正文）</a></li>
+          <li><a href="compliance.html">转载合规指南</a></li>
+          <li><a href="about.html">关于与勘误</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>类目速达</h5>
+        <ul>
+          <li><a href="category.html?c=A">A 类目</a></li>
+          <li><a href="category.html?c=B">B 类目</a></li>
+          <li><a href="category.html?c=C">C 类目</a></li>
+          <li><a href="category.html?c=D">D 类目</a></li>
+          <li><a href="category.html?c=E">E 类目</a></li>
+          <li><a href="category.html?c=F">F 类目</a></li>
+          <li><a href="category.html?c=G">G 类目</a></li>
+          <li><a href="category.html?c=H">H 类目</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>合规要点</h5>
+        <ul>
+          <li>权重开放 ≠ 开源</li>
+          <li>arXiv 默认不可全文转载</li>
+          <li>商标 Logo 需单独授权</li>
+          <li>中文社区默认禁转载</li>
+          <li>数据许可独立于模型</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year">2026</span> 可转载资源清单 · 文章为原创正文，依 CC BY 4.0 可自由转载</span>
+      <span>许可信息以各来源官方声明为准</span>
+    </div>
+  </div>
+</footer>
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <header><b id="mdTitle">完整清单（Markdown）</b><button class="btn ghost sm" id="closeBtn">关闭</button></header>
+    <div class="modal-body"><textarea id="mdOut" readonly></textarea></div>
+    <div class="modal-foot">
+      <button class="btn" id="copyBtn">复制到剪贴板</button>
+      <button class="btn ghost" id="dlBtn">下载 .md 文件</button>
+      <span id="copyTip"></span>
+    </div>
+  </div>
+</div>
+<button id="toTop" aria-label="回到顶部">↑</button>
+<script src="https://cdn.jsdelivr.net/npm/@tencent-ai/workbuddy-cloud-sdk@dev/lib/index.global.js"></script>
+<script src="assets/cloud.js"></script>
+<script src="assets/curated.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
