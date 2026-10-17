@@ -1,0 +1,49 @@
+# Dependabot 配置：收敛依赖更新范围
+# ============================================================
+#  背景（2026-10-17 实测）：
+#   无本文件时 Dependabot 按默认策略扫描全仓库所有受支持生态
+#   （约 30 个 package.json + github-actions），10-17 两次
+#   "Dependabot Updates" 动态运行均以
+#   "The updater encountered one or more errors" 失败
+#   （一次覆盖 7 个目录、60+ 依赖，更新面过大且与已开 PR 冲突）。
+#
+#  收敛策略：
+#    ① gexm-platform 是依赖最活跃的 pnpm workspace（8 包），
+#       按 workspace 根目录单条目配置，pnpm-lock.yaml 整体更新，
+#       全部依赖聚为 1 个 PR（不再 7 目录扇出），每周一执行；
+#    ② GitHub Actions 版本月度更新（仓库根目录）；
+#    ③ 其余模块依赖相对稳定，停止自动扫描以消除噪声
+#       （需要时可随时加回对应 directory 条目）。
+# ============================================================
+version: 2
+
+updates:
+  # gexm-platform pnpm workspace：整园一次性更新 + 单 PR 聚合
+  - package-ecosystem: npm
+    directory: /sites/gexm-platform
+    schedule:
+      interval: weekly
+      day: monday
+      time: '09:00'
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 3
+    labels:
+      - dependencies
+      - javascript
+    groups:
+      gexm-platform-deps:
+        patterns:
+          - '*'
+        update-types:
+          - version-update:semver-patch
+          - version-update:semver-minor
+          - version-update:semver-major
+
+  # GitHub Actions 运行时与第三方 action 版本
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    labels:
+      - dependencies
+      - github-actions
